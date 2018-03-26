@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player
 {
     string name;
-    Piece playerPiece;
-    public Player()
+    public Piece playerPiece;
+    public Player(string name)
     {
-        
+        this.name = name;
     }
 	
 	

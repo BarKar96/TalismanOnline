@@ -5,6 +5,7 @@ using UnityEngine;
 public class Piece : MonoBehaviour {
 
     public int indexOfField;
+    //ktory pierscien
 	void Start ()
     {
 		

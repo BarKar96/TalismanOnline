@@ -9,20 +9,25 @@ public class TalismanBoardScript : MonoBehaviour {
     Field[] middleRing;
     Field[] innerRing;
 
-    Piece[] pieceArray;
     Player[] playerArray;
+
+    private int playerIndex;
 
     public GameObject piecePrefab;
     public int playersCounter;
 
-    private void initializePlayer()
+
+    private void initializePlayers()
     {
+        playerIndex = 0;
+        playersCounter = 2;
         playerArray = new Player[playersCounter];
         for (int i=0; i<playersCounter; i++)
         {
-            playerArray[i] = new Player();
-            
+            playerArray[i] = new Player("bartek");
+            GeneratePiece(i);
         }
+ 
     }
 
     private int rollDice()
@@ -43,22 +48,15 @@ public class TalismanBoardScript : MonoBehaviour {
         }
     }
 
-    private void movePiece(int indexOfPieceToMove, int indexOfFieldToMoveOn)
+    private void movePiece(int indexOfPlayer, int indexOfFieldToMoveOn)
     {
-       pieceArray[indexOfPieceToMove].transform.position = outerRing[indexOfFieldToMoveOn].emptyGameObject.transform.position;
+      playerArray[indexOfPlayer].playerPiece.transform.position = outerRing[indexOfFieldToMoveOn].emptyGameObject.transform.position;
     }
 
 
     private void GenerateBoard()
     {
-        playersCounter = 1;
-        pieceArray = new Piece[playersCounter];
-        for (int i=0; i<playersCounter; i++)
-        {
-            pieceArray[i] = new Piece();
-            GeneratePiece(i);
-            initializePlayer();
-        }
+        initializePlayers();
         fillFields(); 
     }
 
@@ -67,7 +65,7 @@ public class TalismanBoardScript : MonoBehaviour {
         GameObject go = Instantiate(piecePrefab) as GameObject;
         go.transform.SetParent(transform);
         Piece p = go.GetComponent<Piece>();
-        pieceArray[i] = p;
+        playerArray[i].playerPiece = p;
         MovePieceToStartLocation(p, i);
         return p;
     }
@@ -75,17 +73,26 @@ public class TalismanBoardScript : MonoBehaviour {
     //do nadpisania wg regul gry
     private void MovePieceToStartLocation(Piece p, int i)
     {
-       pieceArray[i].transform.position = transform.GetChild(i+1).gameObject.transform.position;
+       playerArray[i].playerPiece.transform.position = transform.GetChild(i+1).gameObject.transform.position;
        p.indexOfField = i;
     }
     public void Button_Click()
     {
         int x = rollDice();
         Debug.Log(x);
-        int y = pieceArray[0].indexOfField;
+        int y = playerArray[playerIndex].playerPiece.indexOfField;
         int whereToMove = (x + y) % 24;
-        movePiece(0,whereToMove);
-        pieceArray[0].indexOfField = whereToMove;
+
+
+
+
+        movePiece(playerIndex,whereToMove);
+        playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+        playerIndex++;
+        if (playerIndex == playersCounter)
+        {
+            playerIndex = 0;
+        }
 
     }
     void Start ()
