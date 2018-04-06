@@ -20,7 +20,7 @@ public class TalismanBoardScript : MonoBehaviour {
     private void initializePlayers()
     {
         playerIndex = 0;
-        playersCounter = 2;
+        playersCounter = 3;
         playerArray = new Player[playersCounter];
         for (int i=0; i<playersCounter; i++)
         {
@@ -33,7 +33,8 @@ public class TalismanBoardScript : MonoBehaviour {
     private int rollDice()
     {
         System.Random rnd = new System.Random();
-        return rnd.Next(1,6);
+        //return rnd.Next(1,6);
+        return 1;
     }
 
     private void fillFields()
@@ -76,11 +77,15 @@ public class TalismanBoardScript : MonoBehaviour {
        playerArray[i].playerPiece.transform.position = transform.GetChild(i+1).gameObject.transform.position;
        p.indexOfField = i;
     }
+
     public void Button_Click()
     {
+       
+        CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
         int x = rollDice();
-        Debug.Log(x);
+      
         int y = playerArray[playerIndex].playerPiece.indexOfField;
+
         int whereToMove = (x + y) % 24;
 
 
@@ -88,11 +93,21 @@ public class TalismanBoardScript : MonoBehaviour {
 
         movePiece(playerIndex,whereToMove);
         playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+
+        cd.movePieceToRightLocation();
+        Debug.Log(playerIndex + " " + playerArray[playerIndex].playerPiece.indexOfField);
+
+
+        // przejscie do kolejnej tury
         playerIndex++;
         if (playerIndex == playersCounter)
         {
             playerIndex = 0;
         }
+
+
+        
+
 
     }
     void Start ()
