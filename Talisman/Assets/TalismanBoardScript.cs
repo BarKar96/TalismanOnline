@@ -20,7 +20,7 @@ public class TalismanBoardScript : MonoBehaviour {
     private void initializePlayers()
     {
         playerIndex = 0;
-        playersCounter = 3;
+        playersCounter = 6;
         playerArray = new Player[playersCounter];
         for (int i=0; i<playersCounter; i++)
         {
@@ -33,8 +33,8 @@ public class TalismanBoardScript : MonoBehaviour {
     private int rollDice()
     {
         System.Random rnd = new System.Random();
-        //return rnd.Next(1,6);
-        return 1;
+        return rnd.Next(1,6);
+        //return 1;
     }
 
     private void fillFields()
@@ -57,8 +57,9 @@ public class TalismanBoardScript : MonoBehaviour {
 
     private void GenerateBoard()
     {
+        fillFields();
         initializePlayers();
-        fillFields(); 
+       
     }
 
     private Piece GeneratePiece(int i)
@@ -74,14 +75,16 @@ public class TalismanBoardScript : MonoBehaviour {
     //do nadpisania wg regul gry
     private void MovePieceToStartLocation(Piece p, int i)
     {
-       playerArray[i].playerPiece.transform.position = transform.GetChild(i+1).gameObject.transform.position;
-       p.indexOfField = i;
+        playerArray[i].playerPiece.transform.position = transform.GetChild(i + 1).gameObject.transform.position;
+        p.indexOfField = i;
+        outerRing[i].counter++;
+
     }
 
     public void Button_Click()
     {
        
-        CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
+        CollisionDetector cd = new CollisionDetector(playerArray, playerIndex, outerRing);
         int x = rollDice();
       
         int y = playerArray[playerIndex].playerPiece.indexOfField;
@@ -94,8 +97,10 @@ public class TalismanBoardScript : MonoBehaviour {
         movePiece(playerIndex,whereToMove);
         playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
 
+
         cd.movePieceToRightLocation();
-        Debug.Log(playerIndex + " " + playerArray[playerIndex].playerPiece.indexOfField);
+       
+
 
 
         // przejscie do kolejnej tury
