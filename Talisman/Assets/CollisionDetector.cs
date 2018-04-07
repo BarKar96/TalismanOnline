@@ -7,14 +7,12 @@ public class CollisionDetector
 
     Player[] playerArray;
     private int playerIndex;
-    Field[] outerRing;
 
-    public CollisionDetector(Player[] playerArray,int playerIndex, Field[] outerRing)
+
+    public CollisionDetector(Player[] playerArray,int playerIndex)
     {
         this.playerArray = playerArray;
-        this.playerIndex = playerIndex;
-        this.outerRing = outerRing;
-      
+        this.playerIndex = playerIndex;    
     }
 
     private int countPiecesOnField()
@@ -38,11 +36,39 @@ public class CollisionDetector
         return counter;
     }
     
-    public void movePieceToRightLocation()
+    public void movePieceToRightLocation(Field[] nameOfRing)
     {
-        int temp = outerRing[playerArray[playerIndex].playerPiece.indexOfField].counter;
-        
-        if (playerArray[playerIndex].playerPiece.indexOfField >= 0 && playerArray[playerIndex].playerPiece.indexOfField < 6)
+        int temp = nameOfRing[playerArray[playerIndex].playerPiece.indexOfField].counter;
+
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+
+        if (playerArray[playerIndex].outerRing == true)
+        {
+            a = 6;
+            b = 12;
+            c = 18;
+            d = 24;
+        }
+        if (playerArray[playerIndex].middleRing == true)
+        {
+            a = 4;
+            b = 8;
+            c = 12;
+            d = 16;
+        }
+        if (playerArray[playerIndex].innerRing == true)
+        {
+            a = 2;
+            b = 4;
+            c = 6;
+            d = 8;
+        }
+
+
+        if (playerArray[playerIndex].playerPiece.indexOfField >= 0 && playerArray[playerIndex].playerPiece.indexOfField < a)
         {
            
             playerArray[playerIndex].playerPiece.transform.position += new Vector3(-0.3f * ((temp) % 3), 0, 0);
@@ -53,7 +79,7 @@ public class CollisionDetector
             }
             temp++;
         }
-        if (playerArray[playerIndex].playerPiece.indexOfField >= 6 && playerArray[playerIndex].playerPiece.indexOfField < 12)
+        if (playerArray[playerIndex].playerPiece.indexOfField >= a && playerArray[playerIndex].playerPiece.indexOfField < b)
         {
 
             playerArray[playerIndex].playerPiece.transform.position += new Vector3(0, 0, 0.3f * ((temp) % 3));
@@ -64,7 +90,7 @@ public class CollisionDetector
             }
             temp++;
         }
-        if (playerArray[playerIndex].playerPiece.indexOfField >= 12 && playerArray[playerIndex].playerPiece.indexOfField < 18)
+        if (playerArray[playerIndex].playerPiece.indexOfField >= b && playerArray[playerIndex].playerPiece.indexOfField < c)
         {
 
             playerArray[playerIndex].playerPiece.transform.position += new Vector3(0.3f * ((temp) % 3), 0, 0);
@@ -75,7 +101,7 @@ public class CollisionDetector
             }
             temp++;
         }
-        if (playerArray[playerIndex].playerPiece.indexOfField >= 18 && playerArray[playerIndex].playerPiece.indexOfField < 24)
+        if (playerArray[playerIndex].playerPiece.indexOfField >= c && playerArray[playerIndex].playerPiece.indexOfField < d)
         {
 
             playerArray[playerIndex].playerPiece.transform.position += new Vector3(0, 0, -0.3f * ((temp) % 3));
@@ -94,7 +120,7 @@ public class CollisionDetector
             temp = 0;
         }
 
-        outerRing[playerArray[playerIndex].playerPiece.indexOfField].counter = temp;
+        nameOfRing[playerArray[playerIndex].playerPiece.indexOfField].counter = temp;
     }
 }
 
