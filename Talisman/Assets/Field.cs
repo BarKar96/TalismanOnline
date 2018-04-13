@@ -9,7 +9,7 @@ public class Field {
     public int counter = 0;
     private int current_position;
     public int get_currentposition() { return current_position; }
-    private Card field_event;
+    public Card fieldEvent;
     //obraz / id_obrazu
     //opis
 
