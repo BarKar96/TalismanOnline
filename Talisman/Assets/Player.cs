@@ -9,12 +9,14 @@ public class Player
     public bool outerRing { get; set; }
     public bool middleRing { get; set; }
     public bool innerRing { get; set; }
-    public Player(string name)
+    public Hero hero;
+    public Player(string name, Hero hero)
     {
         this.name = name;
-        this.outerRing = true;
-        this.middleRing = false;
+        this.outerRing = false;
+        this.middleRing = true;
         this.innerRing = false;
+        this.hero = hero;
         
         
     }

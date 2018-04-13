@@ -22,17 +22,18 @@ public class TalismanBoardScript : MonoBehaviour {
 /// </summary>
 
 
-
-
-
     private void initializePlayers()
     {
         playerIndex = 0;
         playersCounter = 2;
         playerArray = new Player[playersCounter];
+       
+       
         for (int i=0; i<playersCounter; i++)
         {
-            playerArray[i] = new Player("bartek");
+            Hero hero = new Hero(i);
+            playerArray[i] = new Player("bartek", hero);
+           
             GeneratePiece(i);
         }
  
@@ -109,12 +110,11 @@ public class TalismanBoardScript : MonoBehaviour {
         return p;
     }
 
-    //do nadpisania wg regul gry
     private void MovePieceToStartLocation(Piece p, int i)
-    {
-        playerArray[i].playerPiece.transform.position = transform.GetChild(i + 1).gameObject.transform.position;
-        p.indexOfField = i;
-        outerRing[i].counter++;
+    {     
+        playerArray[i].playerPiece.indexOfField = playerArray[playerIndex].hero.startingLocation;
+        playerArray[i].playerPiece.transform.position = outerRing[playerArray[i].hero.startingLocation].emptyGameObject.transform.position;
+        outerRing[playerArray[playerIndex].hero.startingLocation].counter++;
     }
 
     private void nextTurn()
