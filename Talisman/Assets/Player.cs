@@ -32,7 +32,7 @@ public class Player
         this.cards = new List<Card>();
     }
 
-	public List<Card> getPlayerCards()
+	public List<Card> getCards()
     {
         return cards;
     }

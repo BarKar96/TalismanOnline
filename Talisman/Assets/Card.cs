@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets
 {
-    class Card
+    public class Card
     {
         private card_type logic_event;
         private event_type[] events;
@@ -16,10 +16,15 @@ namespace Assets
         }
         
         public void completeEvent(Player player, event_type eventtype){
-            switch (event_type)
+            switch (eventtype)
             {
                 case event_type.DRAW_CARD:
-                    player.get
+                    player.getCards().Add(new Card(card_type.ENEMY));
+                    break;
+                case event_type.ROLL_DICE:
+                    //  Roll player's dice
+                    break;
+                //  To be extended
             }
         }
 
