@@ -9,43 +9,73 @@ namespace Assets
     {
         private card_type logic_event;
         private event_type[] events;
+        private bool specialField = false;
+        private List<special> specialCardEvents;
         public event_type[] getEvents() { return events; }
+
         public Card(card_type type, event_type[] events)
         {
             this.logic_event = type;
             this.events = events;
         }
-        
-        public void completeEvent(Player player, event_type eventtype){
-            switch (eventtype)
+
+        public void AssignSpecial(int[] rolls, event_type et)
+        {
+            if (!this.specialField)
+                this.specialField = true;
+            this.specialCardEvents = new List<special>();
+            this.specialCardEvents.Add(new special(rolls, et));
+        }
+
+        public void specialAction(Player p)
+        {
+            foreach(special s in this.specialCardEvents)
             {
-                case event_type.DRAW_CARD:
-                    player.getCards().Add(new Card(card_type.ENEMY, null));
+                if (s.get_roll().Contains(p.gold))
+                {
+                    actOnPlayer(p, s.getEvent());
+                }
+            }
+        }
+        private void actOnPlayer(Player p, event_type et)
+        {
+            switch (et)
+            {
+                case event_type.ADD_COIN:
+                    p.gold++;
+                    break;
+                case event_type.LOSE_HEALTH:
+                    p.current_health--;
                     break;
                 case event_type.ROLL_DICE:
-                    //  Roll player's dice
+                    //p.rollDice();
                     break;
-                //  To be extended
+                case event_type.DRAW_CARD:
+                    p.getCards().Add(new Card(card_type.ITEM, null));
+                    break;
             }
         }
         public void iterateEvents(Player p)
         {
-                foreach(event_type et in events)
+            if (this.specialField)
+                specialAction(p);
+
+            foreach (event_type et in events)
+            {
+                switch (et)
                 {
-                    switch (et)
-                    {
-                        case event_type.ADD_COIN:
-                            p.gold++;
-                            break;
-                        case event_type.LOSE_HEALTH:
-                            p.current_health--;
-                            break;
-                        case event_type.ROLL_DICE:
-                            //p.rollDice();
-                            break;
-                        case event_type.DRAW_CARD:
-                            p.getCards().Add(new Card(card_type.ITEM, null));
-                            break;
+                    case event_type.ADD_COIN:
+                        p.gold++;
+                        break;
+                    case event_type.LOSE_HEALTH:
+                        p.current_health--;
+                        break;
+                    case event_type.ROLL_DICE:
+                        //p.rollDice();
+                        break;
+                    case event_type.DRAW_CARD:
+                        p.getCards().Add(new Card(card_type.ITEM, null));
+                        break;
                 }
             }
         }
@@ -54,10 +84,10 @@ namespace Assets
             switch (this.logic_event)
             {
                 case card_type.BOARDFIELD:
-                    
+
                     break;
                 case card_type.EVENT:
-                    
+
                     break;
                 case card_type.ENEMY:
 
@@ -70,5 +100,20 @@ namespace Assets
                     break;
             }
         }
+        private class special
+        {
+            public special(int[] rolls, event_type et)
+            {
+                this.rolls = rolls;
+                this.resulting_event = et;
+            }
+            private int[] rolls;
+            public int[] get_roll() { return rolls; }
+            private event_type resulting_event;
+            public event_type getEvent() { return resulting_event; }
+        }
     }
+
+
+
 }
