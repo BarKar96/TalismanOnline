@@ -10,16 +10,17 @@ namespace Assets
         private card_type logic_event;
         private event_type[] events;
 
-        public Card(card_type type)
+        public Card(card_type type, event_type[] events)
         {
             this.logic_event = type;
+            this.events = events;
         }
         
         public void completeEvent(Player player, event_type eventtype){
             switch (eventtype)
             {
                 case event_type.DRAW_CARD:
-                    player.getCards().Add(new Card(card_type.ENEMY));
+                    player.getCards().Add(new Card(card_type.ENEMY, null));
                     break;
                 case event_type.ROLL_DICE:
                     //  Roll player's dice

@@ -36,5 +36,11 @@ public class Player
     {
         return cards;
     }
+    public void Turn()
+    {
+        //  BoardField.actOnPlayer();
+        //  IteratePlayerCards()
+        //  EndTurn();
+    }
 	
 }
