@@ -9,7 +9,7 @@ namespace Assets
     {
         private card_type logic_event;
         private event_type[] events;
-
+        public event_type[] getEvents() { return events; }
         public Card(card_type type, event_type[] events)
         {
             this.logic_event = type;
@@ -28,7 +28,27 @@ namespace Assets
                 //  To be extended
             }
         }
-
+        public void iterateEvents(Player p)
+        {
+                foreach(event_type et in events)
+                {
+                    switch (et)
+                    {
+                        case event_type.ADD_COIN:
+                            p.gold++;
+                            break;
+                        case event_type.LOSE_HEALTH:
+                            p.current_health--;
+                            break;
+                        case event_type.ROLL_DICE:
+                            //p.rollDice();
+                            break;
+                        case event_type.DRAW_CARD:
+                            p.getCards().Add(new Card(card_type.ITEM, null));
+                            break;
+                }
+            }
+        }
         public void onPlayerEvent(Player player)
         {
             switch (this.logic_event)

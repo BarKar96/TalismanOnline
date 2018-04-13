@@ -14,7 +14,7 @@ public class Field {
     //opis
 
 
-    public Field(Card events)
+    public Field()
     {
 
     }

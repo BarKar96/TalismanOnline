@@ -107,7 +107,7 @@ public class TalismanBoardScript : MonoBehaviour {
     {
         for (int i = 0; i < 24; i++)
         {
-            Card c = new Card(card_type.ITEM);
+            Card c = new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN});
             outerRing[i].fieldEvent = c;
         }
     }
@@ -140,15 +140,19 @@ public class TalismanBoardScript : MonoBehaviour {
     private void nextTurn()
     {
         //zabawa xd
-        Debug.Log("przed: " + playerArray[playerIndex].gold);
-        outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
-        Debug.Log("po: " + playerArray[playerIndex].gold);
+        playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN }));
+        playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
+        Debug.Log("przed: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
+        //outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
+        playerArray[playerIndex].iterate_cards();
+        Debug.Log("po: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
         //
         playerIndex++;
         if (playerIndex == playersCounter)
         {
             playerIndex = 0;
         }
+        playerArray[playerIndex].getCards().Clear();
     }
 
     private int getActualPlayerRingFieldNumber()

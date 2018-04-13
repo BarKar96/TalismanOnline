@@ -31,7 +31,13 @@ public class Player
         this.total_health = this.current_health = this.hero.hp;
         this.cards = new List<Card>();
     }
-
+    public void iterate_cards()
+    {
+        foreach (Card C in cards)
+        {
+            C.iterateEvents(this);
+        }
+    }
 	public List<Card> getCards()
     {
         return cards;
