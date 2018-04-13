@@ -35,7 +35,7 @@ public class TalismanBoardScript : MonoBehaviour {
        
         for (int i=0; i<playersCounter; i++)
         {
-            Hero hero = new Hero(i);
+            Hero hero = new Hero(hero_type.CZAROWNICA);
             playerArray[i] = new Player("bartek", hero);
            
             GeneratePiece(i);
