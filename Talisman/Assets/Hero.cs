@@ -26,7 +26,7 @@ public class Hero
                 strength = 1;
                 power = 1;
                 luck = 5;
-                hp = 1;
+                hp = 10;
                 startingLocation = 7;
                 break;
             case 1:

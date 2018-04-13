@@ -42,10 +42,10 @@ namespace Assets
 
                     break;
                 case card_type.ITEM:
-
+                    player.gold += 1;
                     break;
                 case card_type.MAGIC_ITEM:
-
+                    player.current_health -= 3;
                     break;
             }
         }

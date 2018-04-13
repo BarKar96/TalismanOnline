@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Assets;
 
 public class TalismanBoardScript : MonoBehaviour {
 
@@ -102,10 +103,20 @@ public class TalismanBoardScript : MonoBehaviour {
 
         }
     }
+    private void addCardsToFields()
+    {
+        for (int i = 0; i < 24; i++)
+        {
+            Card c = new Card(card_type.ITEM);
+            outerRing[i].fieldEvent = c;
+        }
+    }
     private void GenerateBoard()
     {
         fillFields();
+        addCardsToFields();
         initializePlayers();
+
        
     }
 
@@ -128,6 +139,11 @@ public class TalismanBoardScript : MonoBehaviour {
 
     private void nextTurn()
     {
+        //zabawa xd
+        Debug.Log("przed: " + playerArray[playerIndex].gold);
+        outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
+        Debug.Log("po: " + playerArray[playerIndex].gold);
+        //
         playerIndex++;
         if (playerIndex == playersCounter)
         {
@@ -165,7 +181,10 @@ public class TalismanBoardScript : MonoBehaviour {
         
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
-        
+        Debug.Log(playerArray[playerIndex].current_health);
+
+       
+
         // przejscie do kolejnej tury
         nextTurn();
     }
