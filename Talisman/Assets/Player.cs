@@ -21,6 +21,8 @@ public class Player
     public bool middleRing { get; set; }
     public bool innerRing { get; set; }
     public Hero hero;
+    public int diceResult;
+
     public Player(string name, Hero hero)
     {
         this.name = name;
@@ -30,6 +32,11 @@ public class Player
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
         this.cards = new List<Card>();
+    }
+    public void rollDice()
+    {
+        System.Random rnd = new System.Random();     
+        diceResult = rnd.Next(1, 6);
     }
     public void iterate_cards()
     {

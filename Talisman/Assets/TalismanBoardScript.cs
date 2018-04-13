@@ -21,10 +21,9 @@ public class TalismanBoardScript : MonoBehaviour {
     private int playersCounter;
 
     private int diceResult;
-/// <summary>
-/// //////////////////////////////////////////////////////////////
-/// </summary>
-
+    /// <summary>
+    /// //////////////////////////////////////////////////////////////
+    /// </summary>
 
     private void initializePlayers()
     {
@@ -140,7 +139,7 @@ public class TalismanBoardScript : MonoBehaviour {
     private void nextTurn()
     {
         //zabawa xd
-        playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN }));
+        playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN , event_type.ROLL_DICE }));
         playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
         Debug.Log("przed: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
         //outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
@@ -165,7 +164,7 @@ public class TalismanBoardScript : MonoBehaviour {
 
     private void RollADice_Button()
     {       
-        diceResult = rollDice();       
+        playerArray[playerIndex].diceResult = rollDice();       
     }
 
 
@@ -177,8 +176,8 @@ public class TalismanBoardScript : MonoBehaviour {
         //obliczanie gdzie przesunac pionek
         int y = playerArray[playerIndex].playerPiece.indexOfField;
         int whereToMove = 0;
-        if (diceResult>y) { whereToMove = temp + (y - diceResult);}
-        else { whereToMove = Math.Abs(y - diceResult) % temp;}
+        if (playerArray[playerIndex].diceResult > y) { whereToMove = temp + (y - playerArray[playerIndex].diceResult);}
+        else { whereToMove = Math.Abs(y - playerArray[playerIndex].diceResult) % temp;}
 
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);
@@ -199,7 +198,7 @@ public class TalismanBoardScript : MonoBehaviour {
         //obliczanie gdzie przesunac pionek
         int temp = getActualPlayerRingFieldNumber();
         int y = playerArray[playerIndex].playerPiece.indexOfField;
-        int whereToMove = (diceResult + y) % temp;
+        int whereToMove = (playerArray[playerIndex].diceResult + y) % temp;
 
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);

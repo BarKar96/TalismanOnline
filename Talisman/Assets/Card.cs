@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets
 {
@@ -72,7 +74,8 @@ namespace Assets
                         p.current_health--;
                         break;
                     case event_type.ROLL_DICE:
-                        //p.rollDice();
+                        p.rollDice();
+                        Debug.Log("rzut kostka z eventu" + p.diceResult);
                         break;
                     case event_type.DRAW_CARD:
                         p.getCards().Add(new Card(card_type.ITEM, null));
