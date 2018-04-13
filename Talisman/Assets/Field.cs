@@ -20,6 +20,7 @@ public class Field {
             switch (playerArray[playerIndex].playerPiece.indexOfField)
             {
                 case 0:
+
                     break;
             }
         }
