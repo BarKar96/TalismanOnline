@@ -5,6 +5,9 @@ using System;
 
 public class TalismanBoardScript : MonoBehaviour {
 
+    //private Field[][] rings;
+
+
     private Field[] outerRing;
     private Field[] middleRing;
     private Field[] innerRing;
@@ -92,7 +95,13 @@ public class TalismanBoardScript : MonoBehaviour {
         playerArray[playerIndex].playerPiece.indexOfField = indexOfFieldToMoveOn;
 
     }
+    private void actOnPlayer()
+    {
+        switch (playerArray[playerIndex].playerPiece.indexOfField)
+        {
 
+        }
+    }
     private void GenerateBoard()
     {
         fillFields();
