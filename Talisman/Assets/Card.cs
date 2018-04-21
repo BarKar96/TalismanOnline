@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -30,7 +29,10 @@ namespace Assets
         {
             return this.description;
         }
-
+        public card_type getCard_Type()
+        {
+            return logic_event;
+        }
         public void AssignSpecial(int[] rolls, event_type et)
         {
             if (!this.specialField)

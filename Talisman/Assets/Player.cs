@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player
 {
-    string name;
+    public string name;
     public Piece playerPiece;
     //Control event on field
     private Card boardField;
@@ -31,7 +31,7 @@ public class Player
         this.innerRing = false;
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
-        this.cards = new List<Card>();
+        this.cards = new List<Card>(5);
     }
     public void rollDice()
     {

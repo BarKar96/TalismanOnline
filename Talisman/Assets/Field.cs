@@ -7,15 +7,22 @@ public class Field {
 
     public GameObject emptyGameObject;
     public int counter = 0;
-    private int current_position;
-    public int get_currentposition() { return current_position; }
     public Card fieldEvent;
     //obraz / id_obrazu
     //opis
+    private string fieldDescription;
 
+    public string get_fieldDescription()
+    {
+        return fieldDescription;
+    }
+    public void set_fieldDescription(string desc)
+    {
+        this.fieldDescription = desc;
+    }
 
     public Field()
     {
-
+        this.fieldDescription = "";
     }
 }
