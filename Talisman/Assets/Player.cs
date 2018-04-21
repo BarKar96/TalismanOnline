@@ -26,8 +26,8 @@ public class Player
     public Player(string name, Hero hero)
     {
         this.name = name;
-        this.outerRing = false;
-        this.middleRing = true;
+        this.outerRing = true;
+        this.middleRing = false;
         this.innerRing = false;
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
@@ -40,11 +40,47 @@ public class Player
     }
     public void iterate_cards()
     {
-        foreach (Card C in cards)
+        /*foreach (Card C in cards)
         {
+            Debug.Log("at least made it here");
             C.iterateEvents(this);
+        }*/
+        checkoutCards();
+    }
+
+    public void checkoutCards()
+    {
+        int size = this.cards.Count;
+        int current = 0;
+        while(current != size)
+        {
+            foreach(event_type et in this.cards[current].getEvents())
+            {
+                switch (et)
+                {
+                    case event_type.ADD_COIN:
+                        this.gold++;
+                        break;
+                    case event_type.LOSE_HEALTH:
+                        this.current_health--;
+                        break;
+                    case event_type.GAIN_HEALTH:
+                        this.current_health++;
+                        break;
+                    case event_type.ROLL_DICE:
+                        this.rollDice();
+                        Debug.Log("rzut kostka z eventu" + this.diceResult);
+                        break;
+                    case event_type.DRAW_CARD:
+                        //  Throws Error
+                        this.cards.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
+                        break;
+                }
+            }
+            current++;
         }
     }
+
 	public List<Card> getCards()
     {
         return cards;
