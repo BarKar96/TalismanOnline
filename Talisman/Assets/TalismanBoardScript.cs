@@ -265,7 +265,10 @@ public class TalismanBoardScript : MonoBehaviour
         GenerateBoard();
         playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.GAIN_HEALTH }));
         nextTurn();
-        
+        CardDrawer cd = new CardDrawer();
+        cd.spawnCard("smok", 7);
+        cd.spawnCard("sep", 9);
+
     }
 
     void Update()
