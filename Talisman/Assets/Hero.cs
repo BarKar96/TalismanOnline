@@ -23,7 +23,7 @@ public class Hero
         switch (ht)
         {
             case hero_type.ZLODZIEJ:
-                name = "Złodziej";
+                name = "Zlodziej";
                 strength = 3;
                 power = 3;
                 luck = 2;

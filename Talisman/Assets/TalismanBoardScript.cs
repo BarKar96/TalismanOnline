@@ -40,7 +40,7 @@ public class TalismanBoardScript : MonoBehaviour
     private void initializePlayers()
     {
         playerIndex = 0;
-        playersCounter = 2;
+        playersCounter = 3;
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
@@ -51,7 +51,7 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
-        // playerArray[2] = new Player("Darek", new Hero(hero_type.GHUL));
+        playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);
@@ -166,12 +166,20 @@ public class TalismanBoardScript : MonoBehaviour
     }
     private void nextTurn()
     {
+        if (CardDrawer.heroCardList.Count > 0)
+        {
+            Destroy(CardDrawer.heroCardList[0]);
+            CardDrawer.heroCardList.Clear();
+        }  
         playerIndex++;
         if (playerIndex == playersCounter)
         {
             playerIndex = 0;
         }
+        CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
         
+
+
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
@@ -335,9 +343,9 @@ public class TalismanBoardScript : MonoBehaviour
     void Start()
     {
         GenerateBoard();
-       
+        playerIndex = 0;
         nextTurn();
-        CardDrawer.spawnPlayerHeroCard("krasnolud");
+        
     }
 
     void Update()
