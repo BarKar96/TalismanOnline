@@ -8,7 +8,7 @@ public class Player
     public string name;
     public Piece playerPiece;
     //Control event on field
-    private Card boardField;
+    public Card boardField;
     //Control occuring event on card draw
     private Card eventCard;
     //Player item inventory
@@ -22,6 +22,7 @@ public class Player
     public bool innerRing { get; set; }
     public Hero hero;
     public int diceResult;
+    public bool fieldCheckedOut = false;
 
     public Player(string name, Hero hero)
     {
@@ -47,14 +48,18 @@ public class Player
     {
         int size = this.cards.Count;
         int current = 0;
-
-        //TODO Implement checkout of board event
-        /*
-        if (cards[current].isSpecialField())
+        if (!fieldCheckedOut)
         {
-
+            
+            if (boardField.isSpecialField())
+            {
+                Debug.Log("Player has dice roll of: " + diceResult);
+                boardField.specialAction(this);
+            }
+            //  Player can't checkout the same field on next turn
+            //fieldCheckedOut = true;
         }
-        */
+
         while (current != size)
         {
             foreach (event_type et in this.cards[current].getEvents())
