@@ -46,6 +46,10 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
         // playerArray[2] = new Player("Darek", new Hero(hero_type.GHUL));
         for (int i = 0; i < playersCounter; i++)
