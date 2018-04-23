@@ -52,8 +52,8 @@ public class TalismanBoardScript : MonoBehaviour
     private int rollDice()
     {
         System.Random rnd = new System.Random();
-        //return rnd.Next(1, 6);
-        return 1;
+        return rnd.Next(1, 6);
+        //return 1;
     }
 
     private void fillFields()
