@@ -14,11 +14,32 @@ namespace Assets
         private List<special> specialCardEvents;
         public event_type[] getEvents() { return events; }
         private string description;
+        private string name;
+
+        public void setName(string n)
+        {
+            this.name = n;
+        }
+        public string getName() { return this.name; }
 
         public Card(card_type type, event_type[] events)
         {
             this.logic_event = type;
             this.events = events;
+        }
+
+        public Card(string name, card_type type, event_type[] events)
+        {
+            this.logic_event = type;
+            this.events = events;
+            this.name = name;
+        }
+        public Card(string name, card_type type, event_type[] events, string desc)
+        {
+            this.logic_event = type;
+            this.events = events;
+            this.name = name;
+            this.description = desc;
         }
 
         public void setDescription(string d)

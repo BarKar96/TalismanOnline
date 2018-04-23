@@ -72,7 +72,6 @@ public class Player
                         Debug.Log("rzut kostka z eventu" + this.diceResult);
                         break;
                     case event_type.DRAW_CARD:
-                        //  Throws Error
                         this.cards.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
                         break;
                 }

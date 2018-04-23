@@ -106,16 +106,16 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 14:
-                    outerRing[i].fieldEvent = new Card(card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD });
+                    outerRing[i].fieldEvent = new Card("Łózko sławka",card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD });
                     break;
                 case 16:
-                    outerRing[i].fieldEvent = new Card(card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
+                    outerRing[i].fieldEvent = new Card("Jama Kasi",card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
                     break;
                 case 20:
-                    outerRing[i].fieldEvent = new Card(card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
+                    outerRing[i].fieldEvent = new Card("Swędowory",card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
                     break;
                 default:
-                    outerRing[i].fieldEvent = new Card(card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD });
+                    outerRing[i].fieldEvent = new Card("Bagno SHreka",card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD });
                     break;
             }
         }
@@ -149,11 +149,12 @@ public class TalismanBoardScript : MonoBehaviour
         //zabawa xd
         //playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN , event_type.ROLL_DICE }));
         //playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
-        //playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
         //Debug.Log("przed: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
         //outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
-        //playerArray[playerIndex].iterate_cards();
+        playerArray[playerIndex].iterate_cards();
         //Debug.Log("po: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
+        playerArray[playerIndex].getCards().Clear();
         playerIndex++;
         if (playerIndex == playersCounter)
         {
@@ -250,7 +251,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     public void showFieldDescription()
     {
-        fieldDescription.text = outerRing[playerArray[playerIndex].playerPiece.indexOfField].get_fieldDescription();
+        fieldDescription.text = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName();
     }
 
 
@@ -266,8 +267,8 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.GAIN_HEALTH }));
         nextTurn();
         CardDrawer cd = new CardDrawer();
-        cd.spawnCard("smok", 7);
-        cd.spawnCard("sep", 9);
+        cd.spawnCard("sep", 7);
+        cd.spawnCard("sep", 11);
 
     }
 
