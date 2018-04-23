@@ -17,6 +17,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     private Player[] playerArray;
 
+
     private int playerIndex;
 
     public GameObject piecePrefab;
@@ -36,12 +37,14 @@ public class TalismanBoardScript : MonoBehaviour
     private void initializePlayers()
     {
         playerIndex = 0;
-        playersCounter = 3;
+        playersCounter = 2;
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
-        playerArray[1] = new Player("Sławek", new Hero(hero_type.TROLL));
-        playerArray[2] = new Player("Darek", new Hero(hero_type.GHUL));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
+        // playerArray[2] = new Player("Darek", new Hero(hero_type.GHUL));
         for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);
@@ -105,20 +108,14 @@ public class TalismanBoardScript : MonoBehaviour
         {
             switch (i)
             {
-                case 0:
-                    outerRing[i].fieldEvent = new Card("Miasto", card_type.BOARDFIELD, null, "W dupe ciasno");
-                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 1, 2 }, event_type.ADD_COIN);
-                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 3, 4 }, event_type.GAIN_HEALTH);
-                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.LOSE_HEALTH);
-                    break;
                 case 14:
-                    outerRing[i].fieldEvent = new Card("Łózko sławka", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD });
+                    outerRing[i].fieldEvent = new Card("Lózko slawka", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD });
                     break;
                 case 16:
                     outerRing[i].fieldEvent = new Card("Jama Kasi", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
                     break;
                 case 20:
-                    outerRing[i].fieldEvent = new Card("Swędowory", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
+                    outerRing[i].fieldEvent = new Card("Swedowory", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
                     break;
                 default:
                     outerRing[i].fieldEvent = new Card("Bagno SHreka", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD });
@@ -128,6 +125,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     private void GenerateBoard()
     {
+
         fillFields();
         addCardsToFields();
         initializePlayers();
@@ -150,27 +148,35 @@ public class TalismanBoardScript : MonoBehaviour
         outerRing[playerArray[playerIndex].hero.startingLocation].counter++;
     }
 
+
+    public static void clearPlayerItemsView()
+    {
+        foreach (GameObject go in CardDrawer.itemsList)
+        {
+            Destroy(go);
+        }
+        CardDrawer.itemsList.Clear();
+    }
     private void nextTurn()
     {
-        //zabawa xd
-        //playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN , event_type.ROLL_DICE }));
-        //playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
-        //playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
-        //Debug.Log("przed: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
-        //outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
-        playerArray[playerIndex].iterate_cards();
-        //Debug.Log("po: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
-        playerArray[playerIndex].getCards().Clear();
+
+
         playerIndex++;
         if (playerIndex == playersCounter)
         {
             playerIndex = 0;
         }
+        clearPlayerItemsView();
+        CardDrawer.spawnPlayerItems(playerArray[playerIndex]);
+        Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
 
-        showHeroName();
-        showHeroStatistics();
-        showHeroCards();
+
+
+
+
+
     }
 
     private int getActualPlayerRingFieldNumber()
@@ -205,10 +211,18 @@ public class TalismanBoardScript : MonoBehaviour
         cd.movePieceToRightLocation(outerRing);
         //Debug.Log(playerArray[playerIndex].current_health);
 
+        playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        playerArray[playerIndex].iterate_cards();
+        playerArray[playerIndex].getCards().Clear();
 
 
-        // przejscie do kolejnej tury
-        nextTurn();
+
+        showHeroName();
+        showHeroStatistics();
+        showHeroCards();
+
+
+
     }
     public void Right_Button()
     {
@@ -226,7 +240,12 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
 
-        // przejscie do kolejnej tury
+
+
+    }
+    // przejscie do kolejnej tury
+    public void nextTurn_Button()
+    {
         nextTurn();
     }
 
@@ -248,7 +267,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     public void showHeroCards()
     {
-        playerInformationPanel.text += "\nCards:";
+        playerInformationPanel.text += "\nCards:" + playerArray[playerIndex].getItems().Count;
         foreach (Card c in playerArray[playerIndex].getCards())
         {
             playerInformationPanel.text += "\n" + Enum.GetName(typeof(card_type), c.getCard_Type());
@@ -270,12 +289,7 @@ public class TalismanBoardScript : MonoBehaviour
     void Start()
     {
         GenerateBoard();
-        playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.GAIN_HEALTH }));
         nextTurn();
-        CardDrawer cd = new CardDrawer();
-        cd.spawnCard("sep", 7);
-        cd.spawnCard("sep", 11);
-
     }
 
     void Update()

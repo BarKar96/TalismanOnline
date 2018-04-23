@@ -12,9 +12,10 @@ public class Player
     //Control occuring event on card draw
     private Card eventCard;
     //Player item inventory
-    private Card[] items;
+
     public int gold;
     private List<Card> cards;
+    private List<Card> items;
     public int total_health;
     public int current_health;
     public bool outerRing { get; set; }
@@ -33,6 +34,7 @@ public class Player
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
         this.cards = new List<Card>(5);
+        this.items = new List<Card>();
     }
     public void rollDice()
     {
@@ -79,8 +81,12 @@ public class Player
                         Debug.Log("Player " + hero.name + " draws card");
                         this.rollDice();
                         break;
+
                     case event_type.DRAW_CARD:
-                        this.cards.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
+                        Debug.Log("draw " + this.name);
+                        this.items.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH }));
+                        TalismanBoardScript.clearPlayerItemsView();
+                        CardDrawer.spawnPlayerItems(this);
                         break;
                 }
             }
@@ -91,6 +97,10 @@ public class Player
     public List<Card> getCards()
     {
         return cards;
+    }
+    public List<Card> getItems()
+    {
+        return items;
     }
     public void Turn()
     {
