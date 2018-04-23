@@ -24,20 +24,20 @@ namespace Assets
 
         public Card(card_type type, event_type[] events)
         {
+            this.events = events == null ? new event_type[] { } : events;
             this.logic_event = type;
-            this.events = events;
         }
 
         public Card(string name, card_type type, event_type[] events)
         {
             this.logic_event = type;
-            this.events = events;
+            this.events = events == null ? new event_type[] { } : events;
             this.name = name;
         }
         public Card(string name, card_type type, event_type[] events, string desc)
         {
             this.logic_event = type;
-            this.events = events;
+            this.events = events == null ? new event_type[] { } : events;
             this.name = name;
             this.description = desc;
         }
@@ -61,8 +61,10 @@ namespace Assets
         public void AssignSpecial(int[] rolls, event_type et)
         {
             if (!this.specialField)
+            {
+                this.specialCardEvents = new List<special>();
                 this.specialField = true;
-            this.specialCardEvents = new List<special>();
+            }
             this.specialCardEvents.Add(new special(rolls, et));
         }
 
@@ -70,13 +72,13 @@ namespace Assets
         {
             foreach (special s in this.specialCardEvents)
             {
-                if (s.get_roll().Contains(p.gold))
+                if (s.get_roll().Contains(p.diceResult))
                 {
                     actOnPlayer(p, s.getEvent());
                 }
             }
         }
-        // comment
+
         private void actOnPlayer(Player p, event_type et)
         {
             switch (et)
@@ -90,61 +92,15 @@ namespace Assets
                 case event_type.ROLL_DICE:
                     //p.rollDice();
                     break;
+                case event_type.GAIN_HEALTH:
+                    p.current_health++;
+                    break;
                 case event_type.DRAW_CARD:
                     p.getCards().Add(new Card(card_type.ITEM, null));
                     break;
             }
         }
-        public void iterateEvents(Player p)
-        {
-            if (this.specialField)
-                specialAction(p);
 
-            foreach (event_type et in events)
-            {
-                switch (et)
-                {
-                    case event_type.ADD_COIN:
-                        p.gold++;
-                        break;
-                    case event_type.LOSE_HEALTH:
-                        p.current_health--;
-                        break;
-                    case event_type.GAIN_HEALTH:
-                        p.current_health++;
-                        break;
-                    case event_type.ROLL_DICE:
-                        p.rollDice();
-                        Debug.Log("rzut kostka z eventu" + p.diceResult);
-                        break;
-                    case event_type.DRAW_CARD:
-                        //  Throws Error
-                        //p.getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
-                        break;
-                }
-            }
-        }
-        public void onPlayerEvent(Player player)
-        {
-            switch (this.logic_event)
-            {
-                case card_type.BOARDFIELD:
-
-                    break;
-                case card_type.EVENT:
-
-                    break;
-                case card_type.ENEMY:
-
-                    break;
-                case card_type.ITEM:
-                    player.gold += 1;
-                    break;
-                case card_type.MAGIC_ITEM:
-                    player.current_health -= 3;
-                    break;
-            }
-        }
         private class special
         {
             public special(int[] rolls, event_type et)
@@ -156,6 +112,14 @@ namespace Assets
             public int[] get_roll() { return rolls; }
             private event_type resulting_event;
             public event_type getEvent() { return resulting_event; }
+            public string toString()
+            {
+                string desc = "With each ";
+                foreach (int k in rolls)
+                    desc += k + " ";
+                desc += " will generate " + resulting_event.ToString();
+                return desc;
+            }
         }
     }
 

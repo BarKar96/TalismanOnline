@@ -52,8 +52,8 @@ public class TalismanBoardScript : MonoBehaviour
     private int rollDice()
     {
         System.Random rnd = new System.Random();
-        return rnd.Next(1, 6);
-        //return 1;
+        //return rnd.Next(1, 6);
+        return 1;
     }
 
     private void fillFields()
@@ -105,17 +105,23 @@ public class TalismanBoardScript : MonoBehaviour
         {
             switch (i)
             {
+                case 0:
+                    outerRing[i].fieldEvent = new Card("Miasto", card_type.BOARDFIELD, null, "W dupe ciasno");
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 1, 2 }, event_type.ADD_COIN);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 3, 4 }, event_type.GAIN_HEALTH);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.LOSE_HEALTH);
+                    break;
                 case 14:
-                    outerRing[i].fieldEvent = new Card("Łózko sławka",card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD });
+                    outerRing[i].fieldEvent = new Card("Łózko sławka", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD });
                     break;
                 case 16:
-                    outerRing[i].fieldEvent = new Card("Jama Kasi",card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
+                    outerRing[i].fieldEvent = new Card("Jama Kasi", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
                     break;
                 case 20:
-                    outerRing[i].fieldEvent = new Card("Swędowory",card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
+                    outerRing[i].fieldEvent = new Card("Swędowory", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE });
                     break;
                 default:
-                    outerRing[i].fieldEvent = new Card("Bagno SHreka",card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD });
+                    outerRing[i].fieldEvent = new Card("Bagno SHreka", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD });
                     break;
             }
         }
@@ -149,7 +155,8 @@ public class TalismanBoardScript : MonoBehaviour
         //zabawa xd
         //playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN, event_type.ADD_COIN , event_type.ROLL_DICE }));
         //playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
-        playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        //playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
         //Debug.Log("przed: " + playerArray[playerIndex].gold + " / " + playerArray[playerIndex].current_health);
         //outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.onPlayerEvent(playerArray[playerIndex]);
         playerArray[playerIndex].iterate_cards();
@@ -160,7 +167,7 @@ public class TalismanBoardScript : MonoBehaviour
         {
             playerIndex = 0;
         }
-        
+
         showHeroName();
         showHeroStatistics();
         showHeroCards();
@@ -177,7 +184,6 @@ public class TalismanBoardScript : MonoBehaviour
     private void RollADice_Button()
     {
         playerArray[playerIndex].diceResult = rollDice();
-        
     }
 
 
@@ -229,15 +235,15 @@ public class TalismanBoardScript : MonoBehaviour
     /// </summary>
     public void showHeroName()
     {
-        
+
         playerInformationPanel.text = "Tura gracza: " + playerArray[playerIndex].name;
     }
     public void showHeroStatistics()
     {
         playerInformationPanel.text += "\nHero Type: " + playerArray[playerIndex].hero.name;
-        playerInformationPanel.text += "\nStrength: " + playerArray[playerIndex].current_health; 
+        playerInformationPanel.text += "\nStrength: " + playerArray[playerIndex].current_health;
         //text.text += "\nPower: " + playerArray[playerIndex].power;        
-        playerInformationPanel.text += "\nHP: " + playerArray[playerIndex].current_health +"/"+ playerArray[playerIndex].total_health;
+        playerInformationPanel.text += "\nHP: " + playerArray[playerIndex].current_health + "/" + playerArray[playerIndex].total_health;
         playerInformationPanel.text += "\nGold: " + playerArray[playerIndex].gold;
     }
     public void showHeroCards()
@@ -262,7 +268,7 @@ public class TalismanBoardScript : MonoBehaviour
 
 
     void Start()
-    {     
+    {
         GenerateBoard();
         playerArray[playerIndex].getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.GAIN_HEALTH }));
         nextTurn();
@@ -274,6 +280,6 @@ public class TalismanBoardScript : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }
