@@ -30,6 +30,9 @@ public class TalismanBoardScript : MonoBehaviour
     private int playersCounter;
     private int diceResult;
 
+    public GameObject subPanel;
+    private bool _subPanelOpened = false;
+
     /// <summary>
     /// //////////////////////////////////////////////////////////////
     /// </summary>
@@ -164,8 +167,7 @@ public class TalismanBoardScript : MonoBehaviour
         {
             playerIndex = 0;
         }
-        clearPlayerItemsView();
-        CardDrawer.spawnPlayerItems(playerArray[playerIndex]);
+        
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
@@ -248,6 +250,38 @@ public class TalismanBoardScript : MonoBehaviour
         showHeroCards();
 
     }
+
+    //panel ekwipunku
+    public void Items_Button()
+    {
+        _subPanelOpened = !_subPanelOpened;
+        setSubPanelVisibility();
+        if (_subPanelOpened == true)
+        {
+            CardDrawer.spawnPlayerItems(playerArray[playerIndex]);
+        }
+        else
+        {
+            clearPlayerItemsView();
+        }
+        
+        
+
+
+    }
+    public void setSubPanelVisibility()
+    {
+        if (subPanel !=null)
+        {
+            subPanel.SetActive(_subPanelOpened);
+        }
+        
+        
+    }
+    //
+
+
+
     // przejscie do kolejnej tury
     public void nextTurn_Button()
     {

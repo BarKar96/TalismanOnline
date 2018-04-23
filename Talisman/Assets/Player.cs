@@ -85,8 +85,8 @@ public class Player
                     case event_type.DRAW_CARD:
                         Debug.Log("draw " + this.name);
                         this.items.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH }));
-                        TalismanBoardScript.clearPlayerItemsView();
-                        CardDrawer.spawnPlayerItems(this);
+                        //TalismanBoardScript.clearPlayerItemsView();
+                        //CardDrawer.spawnPlayerItems(this);
                         break;
                 }
             }

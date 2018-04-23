@@ -15,9 +15,10 @@ public static class CardDrawer
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat = Resources.Load(name, typeof(Material)) as Material;
         go.transform.localScale = new Vector3(0.2f, 0.1f, 0.3f);
-        go.transform.localRotation *= Quaternion.Euler(0, 180, 0);
-        go.transform.SetParent(GameObject.Find("SpellItemBoard").transform);
-        go.transform.localPosition = new Vector3(0, 2, 0);
+        go.transform.localRotation *= Quaternion.Euler(0, 0, 0);
+        go.transform.SetParent(GameObject.Find("PanelEkwipunku").transform);
+        
+        go.transform.localPosition += new Vector3(0,-1,-2);
         go.GetComponent<Renderer>().material = newMat;
         
         itemsList.Add(go);
@@ -27,7 +28,6 @@ public static class CardDrawer
     {
         CardDrawer.itemsList.Clear();
         counter = 0;
-        //p.getItems().Add(new Card(card_type.MAGIC_ITEM, new event_type[] { event_type.GAIN_HEALTH }));
         //////////////       
         foreach (Card c in p.getItems())
         {
