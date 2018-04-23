@@ -35,16 +35,11 @@ public class Player
     }
     public void rollDice()
     {
-        System.Random rnd = new System.Random();     
+        System.Random rnd = new System.Random();
         diceResult = rnd.Next(1, 6);
     }
     public void iterate_cards()
     {
-        /*foreach (Card C in cards)
-        {
-            Debug.Log("at least made it here");
-            C.iterateEvents(this);
-        }*/
         checkoutCards();
     }
 
@@ -52,9 +47,17 @@ public class Player
     {
         int size = this.cards.Count;
         int current = 0;
-        while(current != size)
+
+        //TODO Implement checkout of board event
+        /*
+        if (cards[current].isSpecialField())
         {
-            foreach(event_type et in this.cards[current].getEvents())
+
+        }
+        */
+        while (current != size)
+        {
+            foreach (event_type et in this.cards[current].getEvents())
             {
                 switch (et)
                 {
@@ -68,8 +71,8 @@ public class Player
                         this.current_health++;
                         break;
                     case event_type.ROLL_DICE:
+                        Debug.Log("Player " + hero.name + " draws card");
                         this.rollDice();
-                        Debug.Log("rzut kostka z eventu" + this.diceResult);
                         break;
                     case event_type.DRAW_CARD:
                         this.cards.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH}));
@@ -80,7 +83,7 @@ public class Player
         }
     }
 
-	public List<Card> getCards()
+    public List<Card> getCards()
     {
         return cards;
     }
@@ -90,5 +93,5 @@ public class Player
         //  IteratePlayerCards()
         //  EndTurn();
     }
-	
+
 }

@@ -42,6 +42,10 @@ namespace Assets
             this.description = desc;
         }
 
+        public bool isSpecialField()
+        {
+            return this.specialField;
+        }
         public void setDescription(string d)
         {
             this.description = d;
