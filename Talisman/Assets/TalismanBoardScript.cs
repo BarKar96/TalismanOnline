@@ -159,10 +159,6 @@ public class TalismanBoardScript : MonoBehaviour
     }
     private void nextTurn()
     {
-
-        playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
-
-
         playerIndex++;
         if (playerIndex == playersCounter)
         {
@@ -171,9 +167,11 @@ public class TalismanBoardScript : MonoBehaviour
         clearPlayerItemsView();
         CardDrawer.spawnPlayerItems(playerArray[playerIndex]);
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
+        playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
-
-
+        showHeroName();
+        showHeroStatistics();
+        showHeroCards();
 
 
 
@@ -240,7 +238,14 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
 
+        playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        playerArray[playerIndex].iterate_cards();
+        playerArray[playerIndex].getCards().Clear();
 
+
+        showHeroName();
+        showHeroStatistics();
+        showHeroCards();
 
     }
     // przejscie do kolejnej tury
@@ -254,7 +259,8 @@ public class TalismanBoardScript : MonoBehaviour
     /// </summary>
     public void showHeroName()
     {
-
+        //playerInformationPanel.color = Color.white;
+        //playerInformationPanel.transform.position += new Vector3(0, 0, -4);
         playerInformationPanel.text = "Tura gracza: " + playerArray[playerIndex].name;
     }
     public void showHeroStatistics()
@@ -276,6 +282,8 @@ public class TalismanBoardScript : MonoBehaviour
     }
     public void showFieldDescription()
     {
+        //fieldDescription.color = Color.white;
+        //fieldDescription.transform.position = new Vector3(0, 0, -4);
         fieldDescription.text = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName();
     }
 
@@ -289,7 +297,9 @@ public class TalismanBoardScript : MonoBehaviour
     void Start()
     {
         GenerateBoard();
+       
         nextTurn();
+        CardDrawer.spawnPlayerHeroCard("krasnolud");
     }
 
     void Update()
