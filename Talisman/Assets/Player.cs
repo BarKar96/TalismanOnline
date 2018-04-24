@@ -16,6 +16,7 @@ public class Player
     public int gold;
     private List<Card> cards;
     private List<Card> items;
+    private List<Card> spells;
     public int total_health;
     public int current_health;
     public bool outerRing { get; set; }
@@ -35,6 +36,7 @@ public class Player
         this.total_health = this.current_health = this.hero.hp;
         this.cards = new List<Card>(5);
         this.items = new List<Card>();
+        this.spells = new List<Card>();
     }
     public void rollDice()
     {
@@ -101,6 +103,10 @@ public class Player
     public List<Card> getItems()
     {
         return items;
+    }
+    public List<Card> getSpells()
+    {
+        return spells;
     }
     public void Turn()
     {

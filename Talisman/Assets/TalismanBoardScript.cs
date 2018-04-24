@@ -30,8 +30,11 @@ public class TalismanBoardScript : MonoBehaviour
     private int playersCounter;
     private int diceResult;
 
-    public GameObject subPanel;
-    private bool _subPanelOpened = false;
+    public GameObject subPanel_Items;
+    private bool _subPanel_Items_Opened = false;
+
+    public GameObject subPanel_Spells;
+    private bool _subPanel_Spells_Opened = false;
 
     /// <summary>
     /// //////////////////////////////////////////////////////////////
@@ -50,7 +53,10 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
         playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
+        playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
         {
@@ -156,13 +162,13 @@ public class TalismanBoardScript : MonoBehaviour
     }
 
 
-    public static void clearPlayerItemsView()
+    public static void clearPlayerPanelView(List<GameObject> list)
     {
-        foreach (GameObject go in CardDrawer.itemsList)
+        foreach (GameObject go in list)
         {
             Destroy(go);
         }
-        CardDrawer.itemsList.Clear();
+        list.Clear();
     }
     private void nextTurn()
     {
@@ -177,9 +183,6 @@ public class TalismanBoardScript : MonoBehaviour
             playerIndex = 0;
         }
         CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
-        
-
-
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
@@ -266,29 +269,38 @@ public class TalismanBoardScript : MonoBehaviour
     //panel ekwipunku
     public void Items_Button()
     {
-        _subPanelOpened = !_subPanelOpened;
-        setSubPanelVisibility();
-        if (_subPanelOpened == true)
+        _subPanel_Items_Opened = !_subPanel_Items_Opened;
+        setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
+        if (_subPanel_Items_Opened == true)
         {
             CardDrawer.spawnPlayerItems(playerArray[playerIndex]);
         }
         else
         {
-            clearPlayerItemsView();
+            clearPlayerPanelView(CardDrawer.itemsList);
         }
-        
-        
-
-
     }
-    public void setSubPanelVisibility()
+    public void setSubPanelVisibility(GameObject subPanel, bool b)
     {
-        if (subPanel !=null)
+        if (subPanel != null)
         {
-            subPanel.SetActive(_subPanelOpened);
+            subPanel.SetActive(b);
         }
         
         
+    }
+    public void Spells_Button()
+    {
+        _subPanel_Spells_Opened = !_subPanel_Spells_Opened;
+        setSubPanelVisibility(subPanel_Spells, _subPanel_Spells_Opened);
+        if (_subPanel_Spells_Opened == true)
+        {
+            CardDrawer.spawnPlayerSpells(playerArray[playerIndex]);
+        }
+        else
+        {
+            clearPlayerPanelView(CardDrawer.spellsList);
+        }
     }
     //
 
