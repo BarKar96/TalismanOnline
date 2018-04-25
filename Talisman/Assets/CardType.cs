@@ -12,7 +12,7 @@ namespace Assets
     }
     public enum card_type
     {
-        BOARDFIELD, EVENT, ENEMY, ITEM, MAGIC_ITEM
+        BOARDFIELD, EVENT, ENEMY, ITEM, MAGIC_ITEM, FRIEND
     }
     public enum event_type
     {

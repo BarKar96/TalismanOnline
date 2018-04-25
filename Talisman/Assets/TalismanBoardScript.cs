@@ -14,7 +14,7 @@ public class TalismanBoardScript : MonoBehaviour
     private Field[] outerRing;
     private Field[] middleRing;
     private Field[] innerRing;
-
+    private Deck deckOfCards;
     private Player[] playerArray;
 
 
@@ -47,22 +47,23 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
 
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
-        playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, null));
+        playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
 
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);
         }
-
+        deckOfCards = new Deck();
+        deckOfCards.loadFromFileAndParse();
     }
 
     private int rollDice()
@@ -172,6 +173,9 @@ public class TalismanBoardScript : MonoBehaviour
     }
     private void nextTurn()
     {
+        Debug.Log(deckOfCards.drawCard().getName());    // Returns one random card
+        //deckOfCards.listCards();                         //Use to list cards
+
         if (CardDrawer.heroCardList.Count > 0)
         {
             Destroy(CardDrawer.heroCardList[0]);

@@ -17,10 +17,8 @@ namespace Assets
         }
         public void addCard(string name, card_type c_t)
         {
-            Card c = new Card(name, c_t, null);
+            Card c = new Card(name, c_t, new event_type[] { });
             allCardsList.Add(c);
         }
-
-
     }
 }

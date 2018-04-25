@@ -42,6 +42,22 @@ namespace Assets
             this.description = desc;
         }
 
+        public Card(string name, card_type type, List<event_type> events)
+        {
+            this.name = name;
+            this.logic_event = type;
+            if (events == null || events.Count == 0)
+            {
+                this.events = null;
+                return;
+            }
+            this.events = new event_type[events.Count];
+            for(int i =0; i < events.Count; i++)
+            {
+                this.events[i] = events[i];
+            }
+        }
+
         public bool isSpecialField()
         {
             return this.specialField;
