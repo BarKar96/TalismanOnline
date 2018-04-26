@@ -47,12 +47,12 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
 
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
         playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));

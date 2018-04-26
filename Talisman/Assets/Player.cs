@@ -12,6 +12,8 @@ public class Player
     //Control occuring event on card draw
     private Card eventCard;
     //Player item inventory
+    private Deck deck;
+
 
     public int gold;
     private List<Card> cards;
@@ -37,6 +39,7 @@ public class Player
         this.cards = new List<Card>(5);
         this.items = new List<Card>();
         this.spells = new List<Card>();
+        this.deck = new Deck();
     }
     public void rollDice()
     {
@@ -85,10 +88,11 @@ public class Player
                         break;
 
                     case event_type.DRAW_CARD:
-                        Debug.Log("draw " + this.name);
-                        this.items.Add(new Card(card_type.ITEM, new event_type[] { event_type.LOSE_HEALTH }));
-                        //TalismanBoardScript.clearPlayerItemsView();
-                        //CardDrawer.spawnPlayerItems(this);
+                        
+                        Card c = deck.drawCard();
+                        Debug.Log("draw " + this.name +c.getName());
+                        this.items.Add(c);
+                       
                         break;
                 }
             }

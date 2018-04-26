@@ -16,6 +16,7 @@ namespace Assets
         public Deck()
         {
             fullDeck = new List<Card>();
+            loadFromFileAndParse();
         }
         public int getDeckSize()
         {

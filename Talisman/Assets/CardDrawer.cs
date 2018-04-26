@@ -49,12 +49,12 @@ public static class CardDrawer
                     counter = 0;
                     help = 1;
                 }
-                CardDrawer.spawnCard("smok","PanelEkwipunku", counter, 220);
+                CardDrawer.spawnCard(c.getName(),"PanelEkwipunku", counter, 220);
                 
             }
             else
             {
-                CardDrawer.spawnCard("smok", "PanelEkwipunku", counter, 0);
+                CardDrawer.spawnCard(c.getName(), "PanelEkwipunku", counter, 0);
             }
             counter+=200;
             temp++;
