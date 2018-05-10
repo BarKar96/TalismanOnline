@@ -75,17 +75,10 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     void CmdRollDice()
     {
-        int k = Random.Range(1, 6);
-        //RpctranslateTo(k);
-        localPlayerPiece.transform.position = fields[localPlayer.NET_RingPos + k].emptyGameObject.transform.position;
+        int k = Random.Range(1, 7);
+        localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
+        localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
     }
     
-    [ClientRpc]
-    void RpctranslateTo(int k)
-    {
-        GameObject go = Instantiate(localPlayerPiece);
-        go.transform.position = fields[localPlayer.NET_RingPos + k].emptyGameObject.transform.position;
-        localPlayerPiece = go;
-        Debug.Log("rolled dice for: " + k);
-    }
+    
 }
