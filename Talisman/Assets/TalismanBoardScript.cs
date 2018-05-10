@@ -4,16 +4,14 @@ using UnityEngine;
 using System;
 using Assets;
 using UnityEngine.UI;
-
-public class TalismanBoardScript : MonoBehaviour
+using UnityEngine.Networking;
+public class TalismanBoardScript : NetworkBehaviour
 {
-
     //private Field[][] rings;
 
-
-    private Field[] outerRing;
-    private Field[] middleRing;
-    private Field[] innerRing;
+    public static Field[] outerRing;
+    public static Field[] middleRing;
+    public static Field[] innerRing;
     private Deck deckOfCards;
     private Player[] playerArray;
 
@@ -40,6 +38,14 @@ public class TalismanBoardScript : MonoBehaviour
     /// //////////////////////////////////////////////////////////////
     /// </summary>
 
+    void Start()
+    {
+        GenerateBoard();
+        playerIndex = 0;
+        nextTurn();
+
+    }
+
     private void initializePlayers()
     {
         playerIndex = 0;
@@ -47,12 +53,6 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
 
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
         playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
@@ -81,7 +81,6 @@ public class TalismanBoardScript : MonoBehaviour
 
         for (int i = 0; i < 24; i++)
         {
-
             outerRing[i] = new Field();
             outerRing[i].emptyGameObject = transform.GetChild(i + 1).gameObject;
         }
@@ -123,7 +122,26 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
+                    //int modifier;
                     outerRing[i].fieldEvent = new Card("Miasto", card_type.BOARDFIELD, new event_type[] { }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
+                    //  Tawerna
+                    /*outerRing[i].fieldEvent.AssignSpecial(new int[] { 1, 2 }, event_type.DRAW_CARD);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 3, 4 }, event_type.DRAW_CARD);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    //  Swiatynia
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    //  Sklep
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    outerRing[i].fieldEvent.AssignSpecial(new int[] { 5, 6 }, event_type.DRAW_CARD);
+                    String text = "";
+                    foreach(Card.special a in outerRing[i].fieldEvent.specialCardEvents)
+                    {
+                        text += a.toString();
+                    }
+                    //  GUI.DisplayText(text);*/
                     break;
                 case 1:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -290,7 +308,6 @@ public class TalismanBoardScript : MonoBehaviour
 
     private void GenerateBoard()
     {
-
         fillFields();
         addCardsToFields();
         initializePlayers();
@@ -331,7 +348,7 @@ public class TalismanBoardScript : MonoBehaviour
         {
             Destroy(CardDrawer.heroCardList[0]);
             CardDrawer.heroCardList.Clear();
-        }  
+        }
         playerIndex++;
         if (playerIndex == playersCounter)
         {
@@ -344,9 +361,6 @@ public class TalismanBoardScript : MonoBehaviour
         showHeroName();
         showHeroStatistics();
         showHeroCards();
-
-
-
     }
 
     private int getActualPlayerRingFieldNumber()
@@ -441,8 +455,8 @@ public class TalismanBoardScript : MonoBehaviour
         {
             subPanel.SetActive(b);
         }
-        
-        
+
+
     }
     public void Spells_Button()
     {
@@ -507,12 +521,20 @@ public class TalismanBoardScript : MonoBehaviour
     /// </summary>
 
 
-    void Start()
+
+
+    public static Field[] getInnerRing(int k)
     {
-        GenerateBoard();
-        playerIndex = 0;
-        nextTurn();
-        
+        switch (k)
+        {
+            case 1:
+                return outerRing;
+            case 2:
+                return middleRing;
+            case 3:
+                return innerRing;
+        }
+        return outerRing;
     }
 
     void Update()

@@ -60,6 +60,7 @@ public class Player
             
             if (boardField.isSpecialField())
             {
+                //rzut koscia dla specjal eventu
                 Debug.Log("Player has dice roll of: " + diceResult);
                 boardField.specialAction(this);
             }

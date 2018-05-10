@@ -11,11 +11,11 @@ namespace Assets
         private card_type logic_event;
         private event_type[] events;
         private bool specialField = false;
-        private List<special> specialCardEvents;
+        public List<special> specialCardEvents;
         public event_type[] getEvents() { return events; }
         private string description;
         private string name;
-
+        System.Random r;
         public void setName(string n)
         {
             this.name = n;
@@ -30,12 +30,14 @@ namespace Assets
 
         public Card(string name, card_type type, event_type[] events)
         {
+            this.r = new System.Random();
             this.logic_event = type;
             this.events = events == null ? new event_type[] { } : events;
             this.name = name;
         }
         public Card(string name, card_type type, event_type[] events, string desc)
         {
+            this.r = new System.Random();
             this.logic_event = type;
             this.events = events == null ? new event_type[] { } : events;
             this.name = name;
@@ -44,6 +46,7 @@ namespace Assets
 
         public Card(string name, card_type type, List<event_type> events)
         {
+            this.r = new System.Random();
             this.name = name;
             this.logic_event = type;
             if (events == null || events.Count == 0)
@@ -88,8 +91,10 @@ namespace Assets
         {
             foreach (special s in this.specialCardEvents)
             {
-                if (s.get_roll().Contains(p.diceResult))
+                if (s.get_roll().Contains(r.Next(1,6)))
                 {
+                    //wyswietl info o dzialaniu
+                    //wait chwile [OK]
                     actOnPlayer(p, s.getEvent());
                 }
             }
@@ -114,10 +119,19 @@ namespace Assets
                 case event_type.DRAW_CARD:
                     p.getCards().Add(new Card(card_type.ITEM, null));
                     break;
+                case event_type.RING_UP:
+                    foreach(Card c in p.getItems())
+                    {
+                        if (c.name.Equals("maczeta") || c.name.Equals("wanna"))
+                        {
+                            //  Zapytaj czy chce przejsc wyzej
+                        }
+                    }
+                    break;
             }
         }
 
-        private class special
+        public class special
         {
             public special(int[] rolls, event_type et)
             {
