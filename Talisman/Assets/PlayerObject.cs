@@ -16,12 +16,13 @@ public class PlayerObject : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        r = new System.Random();
+        localPlayer = new Player("Suavek", new Hero(Assets.hero_type.TROLL));
+        
         fields = TalismanBoardScript.outerRing;
         if (!isLocalPlayer)
             return;
         Debug.Log("Created local player piece");
-        localPlayer = new Player("Suavek", new Hero(Assets.hero_type.TROLL));
+        
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
     }
@@ -33,13 +34,11 @@ public class PlayerObject : NetworkBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (fields != null)
-                Debug.Log("aye");
             CmdTranslatePiece();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //Cmdgetroll();
+            CmdRollDice();
             Debug.Log("Roll ");
         }
     }
@@ -71,5 +70,22 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Fields are: " + fields.Length);
         localPlayerPiece.transform.position = fields[localPlayer.hero.startingLocation].emptyGameObject.transform.position;
         //fields[localPlayer.hero.startingLocation].counter++;
+    }
+
+    [Command]
+    void CmdRollDice()
+    {
+        int k = Random.Range(1, 6);
+        //RpctranslateTo(k);
+        localPlayerPiece.transform.position = fields[localPlayer.NET_RingPos + k].emptyGameObject.transform.position;
+    }
+    
+    [ClientRpc]
+    void RpctranslateTo(int k)
+    {
+        GameObject go = Instantiate(localPlayerPiece);
+        go.transform.position = fields[localPlayer.NET_RingPos + k].emptyGameObject.transform.position;
+        localPlayerPiece = go;
+        Debug.Log("rolled dice for: " + k);
     }
 }

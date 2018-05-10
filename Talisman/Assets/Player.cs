@@ -14,7 +14,7 @@ public class Player
     //Player item inventory
     private Deck deck;
 
-
+    public int NET_RingPos;
     public int gold;
     private List<Card> cards;
     private List<Card> items;
@@ -40,6 +40,7 @@ public class Player
         this.items = new List<Card>();
         this.spells = new List<Card>();
         this.deck = new Deck();
+        NET_RingPos = hero.startingLocation;
     }
     public void rollDice()
     {
