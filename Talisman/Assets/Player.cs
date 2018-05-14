@@ -19,8 +19,13 @@ public class Player
     private List<Card> cards;
     private List<Card> items;
     private List<Card> spells;
+
+    //statystyki
     public int total_health;
     public int current_health;
+    public int strength;
+
+
     public bool outerRing { get; set; }
     public bool middleRing { get; set; }
     public bool innerRing { get; set; }
@@ -36,6 +41,7 @@ public class Player
         this.innerRing = false;
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
+        this.strength = this.hero.strength;
         this.cards = new List<Card>(5);
         this.items = new List<Card>();
         this.spells = new List<Card>();
