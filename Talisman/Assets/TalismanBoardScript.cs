@@ -52,12 +52,12 @@ public class TalismanBoardScript : NetworkBehaviour
         playersCounter = 3;
         playerArray = new Player[playersCounter];
         //  Initialise sample players
-        playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
+        playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK),1);
 
-        playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
+        playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL),1);
         playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
 
-        playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
+        playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD),1);
         for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);

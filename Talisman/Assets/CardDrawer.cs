@@ -91,12 +91,12 @@ public static class CardDrawer
                     counter = 0;
                     help = 1;
                 }
-                CardDrawer.spawnCard("sep", "PanelZaklec", counter, 220);
+                CardDrawer.spawnCard(c.getName(), "PanelZaklec", counter, 220);
 
             }
             else
             {
-                CardDrawer.spawnCard("sep", "PanelZaklec", counter, 0);
+                CardDrawer.spawnCard(c.getName(), "PanelZaklec", counter, 0);
             }
             counter += 200;
             temp++;

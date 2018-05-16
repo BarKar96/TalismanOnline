@@ -14,13 +14,19 @@ public class Player
     //Player item inventory
     private Deck deck;
 
-    public int NET_RingPos;
+    public int NET_RingPos,
+        NET_Turn;
     public int gold;
     private List<Card> cards;
     private List<Card> items;
     private List<Card> spells;
+
+    //statystyki
     public int total_health;
     public int current_health;
+    public int strength;
+
+    
     public bool outerRing { get; set; }
     public bool middleRing { get; set; }
     public bool innerRing { get; set; }
@@ -28,7 +34,7 @@ public class Player
     public int diceResult;
     public bool fieldCheckedOut = false;
 
-    public Player(string name, Hero hero)
+    public Player(string name, Hero hero, int turn)
     {
         this.name = name;
         this.outerRing = true;
@@ -36,11 +42,13 @@ public class Player
         this.innerRing = false;
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
+        this.strength = this.hero.strength;
         this.cards = new List<Card>(5);
         this.items = new List<Card>();
         this.spells = new List<Card>();
         this.deck = new Deck();
         NET_RingPos = hero.startingLocation;
+        this.NET_Turn = turn;
     }
     public void rollDice()
     {

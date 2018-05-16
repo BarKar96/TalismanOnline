@@ -12,12 +12,14 @@ public class PlayerObject : NetworkBehaviour
     public Field[] fields;
     public Player localPlayer;
     public Piece localPiece;
-
+    [SyncVar]
+    public int turn = 0;
     // Use this for initialization
     void Start()
     {
-        localPlayer = new Player("Suavek", new Hero(Assets.hero_type.TROLL));
         
+        localPlayer = new Player("Suavek", new Hero(Assets.hero_type.TROLL), turn);
+        turn++;
         fields = TalismanBoardScript.outerRing;
         if (!isLocalPlayer)
             return;
@@ -34,7 +36,8 @@ public class PlayerObject : NetworkBehaviour
             return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CmdTranslatePiece();
+            Debug.Log("Player turn: " + turn);
+            //CmdTranslatePiece();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
