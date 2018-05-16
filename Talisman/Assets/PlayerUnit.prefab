@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4560451445359314}
   - component: {fileID: 114838966792942068}
+  - component: {fileID: 114888584555930260}
   m_Layer: 0
   m_Name: PlayerUnit
   m_TagString: Untagged
@@ -145,6 +146,27 @@ MonoBehaviour:
     i15: 69
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114888584555930260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661436657814914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!136 &136364079761260688
 CapsuleCollider:
   m_ObjectHideFlags: 1
