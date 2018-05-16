@@ -52,12 +52,8 @@ public class Player
         System.Random rnd = new System.Random();
         diceResult = rnd.Next(1, 6);
     }
-    public void iterate_cards()
-    {
-        checkoutCards();
-    }
 
-    public void checkoutCards()
+    public void iterate_cards()
     {
         int size = this.cards.Count;
         int current = 0;
@@ -100,6 +96,7 @@ public class Player
                         this.items.Add(c);
                        
                         break;
+                    
                 }
             }
             current++;
@@ -117,12 +114,6 @@ public class Player
     public List<Card> getSpells()
     {
         return spells;
-    }
-    public void Turn()
-    {
-        //  BoardField.actOnPlayer();
-        //  IteratePlayerCards()
-        //  EndTurn();
     }
 
 }

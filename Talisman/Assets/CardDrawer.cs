@@ -10,7 +10,10 @@ public static class CardDrawer
     public static List<GameObject> itemsList = new List<GameObject>();
     public static List<GameObject> spellsList = new List<GameObject>();
     public static List<GameObject> heroCardList = new List<GameObject>();
+   
     public static int counter;
+  
+
     public static void spawnCard(string name,string panelName, int x, int y)
     {
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -30,6 +33,7 @@ public static class CardDrawer
         {
             spellsList.Add(go);
         }
+       
         
     }
 
@@ -103,4 +107,5 @@ public static class CardDrawer
         }
         //////////////
     }
+   
 }

@@ -25,6 +25,8 @@ public class TalismanBoardScript : MonoBehaviour
     public Text playerInformationPanel;
     public Text fieldDescription;
 
+    Combat combat;
+
 
 
     private int playersCounter;
@@ -36,12 +38,15 @@ public class TalismanBoardScript : MonoBehaviour
     public GameObject subPanel_Spells;
     private bool _subPanel_Spells_Opened = false;
 
+    
+
     /// <summary>
     /// //////////////////////////////////////////////////////////////
     /// </summary>
-
+    
     private void initializePlayers()
     {
+        combat = GameObject.Find("Combat").GetComponent<Combat>();
         playerIndex = 0;
         playersCounter = 3;
         playerArray = new Player[playersCounter];
@@ -384,7 +389,7 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
         playerArray[playerIndex].iterate_cards();
         playerArray[playerIndex].getCards().Clear();
-
+        
 
 
         showHeroName();
@@ -457,7 +462,7 @@ public class TalismanBoardScript : MonoBehaviour
             clearPlayerPanelView(CardDrawer.spellsList);
         }
     }
-    //
+   
 
 
 
@@ -475,11 +480,12 @@ public class TalismanBoardScript : MonoBehaviour
         //playerInformationPanel.color = Color.white;
         //playerInformationPanel.transform.position += new Vector3(0, 0, -4);
         playerInformationPanel.text = "Tura gracza: " + playerArray[playerIndex].name;
+        
     }
     public void showHeroStatistics()
     {
         playerInformationPanel.text += "\nHero Type: " + playerArray[playerIndex].hero.name;
-        playerInformationPanel.text += "\nStrength: " + playerArray[playerIndex].current_health;
+        playerInformationPanel.text += "\nStrength: " + playerArray[playerIndex].strength;
         //text.text += "\nPower: " + playerArray[playerIndex].power;        
         playerInformationPanel.text += "\nHP: " + playerArray[playerIndex].current_health + "/" + playerArray[playerIndex].total_health;
         playerInformationPanel.text += "\nGold: " + playerArray[playerIndex].gold;

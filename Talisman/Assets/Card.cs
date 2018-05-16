@@ -15,7 +15,16 @@ namespace Assets
         public event_type[] getEvents() { return events; }
         private string description;
         private string name;
+        private int strength = 0;
 
+        public void setStrength(int strength)
+        {
+            this.strength = strength;
+        }
+        public int getStrength()
+        {
+            return this.strength;
+        }
         public void setName(string n)
         {
             this.name = n;
