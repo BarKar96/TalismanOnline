@@ -9,7 +9,40 @@ public class TalismanBoardScript : MonoBehaviour
 {
 
     //private Field[][] rings;
-
+    #region Dice
+    public Sprite dice1;
+    public Sprite dice2;
+    public Sprite dice3;
+    public Sprite dice4;
+    public Sprite dice5;
+    public Sprite dice6;
+    public Button buttonDice;
+    public int diceValue;
+    private void DiceRoller(int diceValue)
+    {
+        switch (diceValue)
+        {
+            case 1:
+                buttonDice.image.sprite = dice1;
+                break;
+            case 2:
+                buttonDice.image.sprite = dice2;
+                break;
+            case 3:
+                buttonDice.image.sprite = dice3;
+                break;
+            case 4:
+                buttonDice.image.sprite = dice4;
+                break;
+            case 5:
+                buttonDice.image.sprite = dice5;
+                break;
+            case 6:
+                buttonDice.image.sprite = dice6;
+                break;
+        }
+    }
+    #endregion
 
     private Field[] outerRing;
     private Field[] middleRing;
@@ -65,8 +98,7 @@ public class TalismanBoardScript : MonoBehaviour
     private int rollDice()
     {
         System.Random rnd = new System.Random();
-        return rnd.Next(1, 6);
-        //return 1;
+        return rnd.Next(1, 7);
     }
 
     private void fillFields()
@@ -356,6 +388,7 @@ public class TalismanBoardScript : MonoBehaviour
     private void RollADice_Button()
     {
         playerArray[playerIndex].diceResult = rollDice();
+        DiceRoller(playerArray[playerIndex].diceResult);
     }
 
 
