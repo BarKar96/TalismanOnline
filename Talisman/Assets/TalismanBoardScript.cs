@@ -52,16 +52,7 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-        //playerArray[0].getItems().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
-        playerArray[1].getSpells().Add(new Card("qweqwewqe", card_type.BOARDFIELD, new event_type[] { }));
-
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
         {
@@ -128,22 +119,22 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    outerRing[i].fieldEvent = new Card("Miasto", card_type.BOARDFIELD, new event_type[] { }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
+                    outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
                     break;
                 case 1:
-                    outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("rolnicy", card_type.ENEMY, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 2:
-                    outerRing[i].fieldEvent = new Card("Wzgórza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("dorozkaze", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 3:
-                    outerRing[i].fieldEvent = new Card("Równina", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("zewastobomir", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 4:
-                    outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 5:
-                    outerRing[i].fieldEvent = new Card("Równina", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 6:
                     outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wykonaj 1 rzut kością. (1) Upiłeś się i zasnąłeś w kącie - tracisz turę. (2) Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła 3). (3) Grałeś w karty i przegrałeś 1 sztukę złota. (4) Grałeś w karty i wygrałeś jedną sztukę złota. (5) Czarownik obiecuje teleportować Cię do dowolnego miejsca na tej krainie. (6) Przewoźnik oferuję Ci przeprawę do świątyni.");

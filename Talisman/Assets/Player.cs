@@ -32,9 +32,11 @@ public class Player
     public Hero hero;
     public int diceResult;
     public bool fieldCheckedOut = false;
+    Combat combat;
 
     public Player(string name, Hero hero)
     {
+        combat = GameObject.Find("Combat").GetComponent<Combat>();
         this.name = name;
         this.outerRing = true;
         this.middleRing = false;
@@ -85,18 +87,25 @@ public class Player
                         this.current_health++;
                         break;
                     case event_type.ROLL_DICE:
-                        Debug.Log("Player " + hero.name + " draws card");
                         this.rollDice();
                         break;
 
                     case event_type.DRAW_CARD:
-                        
                         Card c = deck.drawCard();
-                        Debug.Log("draw " + this.name +c.getName());
-                        this.items.Add(c);
-                       
+                        if (cards[current].getCard_Type() == card_type.ITEM)
+                        {
+                            this.items.Add(c);
+                        }
+                        if (cards[current].getCard_Type() == card_type.MAGIC_ITEM)
+                        {
+                            this.items.Add(c);
+                        }
                         break;
-                    
+
+                    case event_type.ENEMY:
+                        combat.StartCombat(this, cards[current]);
+                        break;
+
                 }
             }
             current++;
