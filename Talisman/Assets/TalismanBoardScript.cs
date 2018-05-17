@@ -93,6 +93,7 @@ public class TalismanBoardScript : MonoBehaviour
         }
         deckOfCards = new Deck();
         deckOfCards.loadFromFileAndParse();
+       // deckOfCards.listCards();
     }
 
     private int rollDice()

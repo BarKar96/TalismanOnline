@@ -9,6 +9,11 @@ namespace Assets
     class Deck
     {
         List<Card> fullDeck;
+        List<Card> fullItemsDeck;
+        List<Card> fullSpellsDeck;
+        List<Card> fullEnemyDeck;
+
+
         private int cardsInDeck;
         private int cardsRemaining;
         private string[] possibleEvents = { "get_gold", "get_spell", "gain_power" };
@@ -16,13 +21,34 @@ namespace Assets
         public Deck()
         {
             fullDeck = new List<Card>();
+            fullItemsDeck = new List<Card>();
+            fullSpellsDeck = new List<Card>();
+            fullEnemyDeck = new List<Card>();
             loadFromFileAndParse();
+            divideFullDeck();
         }
         public int getDeckSize()
         {
             return cardsInDeck;
         }
-
+        public void divideFullDeck()
+        {
+            foreach (Card c in fullDeck)
+            {
+                if (c.getCard_Type() == card_type.ENEMY)
+                {
+                    fullEnemyDeck.Add(c);
+                }
+                if (c.getCard_Type() == card_type.SPELL)
+                {
+                    fullSpellsDeck.Add(c);
+                }
+                if (c.getCard_Type() == card_type.ITEM)
+                {
+                    fullItemsDeck.Add(c);
+                }
+            }
+        }
         public Card drawCard()
         {
             System.Random rand = new System.Random();
@@ -47,14 +73,17 @@ namespace Assets
         {
             switch (s)
             {
-                case "str":
-                    return card_type.FRIEND;
+               
                 case "itm":
                     return card_type.ITEM;
-                case "frn":
-                    return card_type.FRIEND;
+                case "spl":
+                    return card_type.SPELL;   
                 case "enm":
                     return card_type.ENEMY;
+                //case "str":
+                //    return card_type.FRIEND;
+                //case "frn":
+                //    return card_type.FRIEND;
                 default:
                     return card_type.BOARDFIELD;
             }
@@ -87,7 +116,8 @@ namespace Assets
                         {
                             fullDeck.Add(newCard);
                         }
-                    }else if (parsedRow[fields].Equals("special"))
+                    }
+                    else if (parsedRow[fields].Equals("special"))
                     {
                         int current = fields + 1;
                         newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents);
@@ -112,6 +142,22 @@ namespace Assets
             {
                 Debug.Log(c.getName());
             }
+            //Debug.Log("Spells in deck: " + fullSpellsDeck.Count());
+            //foreach (Card c in fullSpellsDeck)
+            //{
+            //    Debug.Log(c.getName());
+            //}
+            //Debug.Log("Items in deck: " + fullItemsDeck.Count());
+            //foreach (Card c in fullItemsDeck)
+            //{
+            //    Debug.Log(c.getName());
+            //}
+            //Debug.Log("Enemies in deck: " + fullEnemyDeck.Count());
+            //foreach (Card c in fullEnemyDeck)
+            //{
+            //    Debug.Log(c.getName());
+            //}
+
         }
     }
 }

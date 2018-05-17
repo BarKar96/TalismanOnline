@@ -204,7 +204,6 @@ public  class Combat : MonoBehaviour
 
     public void OK_Button()
     {
-       
         toggleCombatPanel();
     }
     public void Atakuj_Button()

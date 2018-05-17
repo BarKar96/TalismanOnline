@@ -1,9 +1,17 @@
 #Hash defines a comment
 #file structure:
 #nr of cards in deck:name:effect:effect:effect...:boolean is card special:special_eff:special_eff...
-1:str:mag:get_spell:nospecial
+#-------------------ITEMS-----------------------------#
 2:itm:butelka:desert_immmunity:nospecial
-2:itm:puszka:get_gold:get_gold:nospecial
-1:frn:dziewica:gain_power:gain_power:nospecial
+2:itm:zbroja:gain_power:nospecial
+#-------------------Spells----------------------------#
+2:spl:kula_ognia:get_spell:nospecial
+2:spl:zamiec:get_spell:nospeacial
+#-------------------Enemies---------------------------#
+2:enm:tomasz:get_spell:nospecial
+1:enm:pszczoly:get_spell:nospecial
+#1:str:mag:get_spell:nospecial
+#2:itm:puszka:get_gold:get_gold:nospecial
+#1:frn:dziewica:gain_power:gain_power:nospecial
 #2:enm:tomasz:strn@7:powr@3:nospecial
-1:itm:zbroja:special:gain_health@6:get_gold@5
+#1:itm:zbroja:special:gain_health@6:get_gold@5

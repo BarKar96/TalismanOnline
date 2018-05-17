@@ -96,14 +96,14 @@ public class Player
                         {
                             this.items.Add(c);
                         }
-                        if (cards[current].getCard_Type() == card_type.MAGIC_ITEM)
-                        {
-                            this.items.Add(c);
-                        }
+                        //if (cards[current].getCard_Type() == card_type.MAGIC_ITEM)
+                        //{
+                        //    this.items.Add(c);
+                        //}
                         break;
 
                     case event_type.ENEMY:
-                        combat.StartCombat(this, cards[current]);
+                        combat.StartCombat(this, cards[current]);   
                         break;
 
                 }
