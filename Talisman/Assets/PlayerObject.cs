@@ -14,12 +14,13 @@ public class PlayerObject : NetworkBehaviour
     public Piece localPiece;
     [SyncVar]
     public int turn = 0;
-    
-    public int current = 0;
+    //[SyncVar]
+    public static int current = 0;
     // Use this for initialization
     void Start()
     {
         this.localPlayer = new Player("Suavek", new Hero(Assets.hero_type.TROLL), turn);
+        turn++;
         fields = TalismanBoardScript.outerRing;
         if (!isLocalPlayer)
             return;
@@ -74,7 +75,7 @@ public class PlayerObject : NetworkBehaviour
     void CmdspawnPlayerPiece()
     {
         
-        turn++;
+        //turn++;
 
         GameObject go = Instantiate(PlayerUnitPrefab);
         localPlayerPiece = go;
@@ -108,7 +109,7 @@ public class PlayerObject : NetworkBehaviour
     void CmdRollDice()
     {
         int k = Random.Range(1, 7);
-        current = k;
+        //current = k;
         Debug.Log("Server sets current to: " + k);
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
@@ -117,8 +118,8 @@ public class PlayerObject : NetworkBehaviour
     [ClientRpc]
     void RpcupdateTurn(int c)
     {
-        this.current = c;
-        Debug.Log("Server wants Clients to set current to: " + c + " / " + current);
+        current = c;
+        Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
     }
     
 }
