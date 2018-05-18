@@ -65,6 +65,10 @@ namespace Assets
                     return event_type.GAIN_HEALTH;
                 case "gain_power":
                     return event_type.LOSE_HEALTH;
+                case "powr":
+                    return event_type.POWER;
+                case "strn":
+                    return event_type.STRENGTH;
                 default:
                     return event_type.ADD_COIN;
             }
@@ -101,6 +105,20 @@ namespace Assets
                 string cardname = parsedRow[2];
                 List<event_type> readEvents = new List<event_type>();
                 //  Add actions
+                if (parsedRow[1].Equals("enm"))
+                {
+                    newCard = new Card(cardname, translateToType(parsedRow[1]), new event_type[] { event_type.ENEMY });
+                    for (int fields = 3; fields < parsedRow.Length; fields++)
+                    {
+                        if (parsedRow[fields].Equals("nospecial"))
+                            break;
+                       // Debug.Log("Enemy card attrs:" + parsedRow[fields]);
+                        string[] attrs = parsedRow[fields].Split('@');
+                        newCard.AssignSpecial(new int[] {int.Parse( attrs[1]) }, translateToEvent(attrs[0]));
+                    }
+                    fullDeck.Add(newCard);
+                }
+                else
                 for (int fields = 3; fields < parsedRow.Length; fields++)
                 {
                     //  Check what actions does the card have
@@ -133,14 +151,30 @@ namespace Assets
                     }
                 }
             }
-
+            listCards();
         }
         public void listCards()
         {
             Debug.Log("Cards in deck: " + fullDeck.Count());
             foreach(Card c in fullDeck)
             {
-                Debug.Log(c.getName());
+                switch (c.getCard_Type())
+                {
+                    case card_type.ENEMY:
+                        Debug.Log("Enemy : " +c.getName());
+
+                        break;
+                    case card_type.ITEM:
+                        Debug.Log("Item : " + c.getName());
+                        break;
+                    case card_type.SPELL:
+                        Debug.Log("Spell : " + c.getName());
+                        break;
+                    default:
+                        Debug.Log("Other? : " + c.getName());
+                        break;
+                }
+                
             }
             //Debug.Log("Spells in deck: " + fullSpellsDeck.Count());
             //foreach (Card c in fullSpellsDeck)

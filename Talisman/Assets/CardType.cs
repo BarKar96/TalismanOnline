@@ -16,6 +16,8 @@ namespace Assets
     }
     public enum event_type
     {
-        ROLL_DICE, DRAW_CARD, LOSE_HEALTH, ADD_COIN, ENEMY, GAIN_HEALTH
+        ROLL_DICE, DRAW_CARD, LOSE_HEALTH, ADD_COIN, ENEMY, GAIN_HEALTH, 
+        /*  ENEMY CARD SPECIFIC */
+        POWER, STRENGTH
     }
 }
