@@ -114,7 +114,17 @@ namespace Assets
                             break;
                        // Debug.Log("Enemy card attrs:" + parsedRow[fields]);
                         string[] attrs = parsedRow[fields].Split('@');
-                        newCard.AssignSpecial(new int[] {int.Parse( attrs[1]) }, translateToEvent(attrs[0]));
+                        switch (attrs[0])
+                        {
+                            case "powr":
+                                newCard.power = int.Parse(attrs[1]);
+                                break;
+                            case "strn":
+                                newCard.strength = int.Parse(attrs[1]);
+                                break;
+
+                        }
+
                     }
                     fullDeck.Add(newCard);
                 }
@@ -161,8 +171,8 @@ namespace Assets
                 switch (c.getCard_Type())
                 {
                     case card_type.ENEMY:
-                        Debug.Log("Enemy : " +c.getName());
-
+                        Debug.Log("Enemy : " +c.getName()+c);
+                        c.describeSpecial();
                         break;
                     case card_type.ITEM:
                         Debug.Log("Item : " + c.getName());

@@ -106,7 +106,7 @@ public  class Combat : MonoBehaviour
         //rzut ataku istoty
         rzut_Ataku_istoty = rzutAtaku();
         textPrzebieg.text += "\n\nPrzeciwnik wyrzucił: " + rzut_Ataku_istoty;
-        skutecznosc_Ataku_istoty = rzut_Ataku_istoty + c.getStrength();
+        skutecznosc_Ataku_istoty = rzut_Ataku_istoty + c.strength;
         textPrzebieg.text += "\nSkuteczność ataku przeciwnika: " + skutecznosc_Ataku_istoty;
 
         if (skutecznosc_Ataku_gracza > skutecznosc_Ataku_istoty)

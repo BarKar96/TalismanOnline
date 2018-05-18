@@ -15,7 +15,8 @@ namespace Assets
         public event_type[] getEvents() { return events; }
         private string description;
         private string name;
-        private int strength = 0;
+        public int strength, power;
+        /*private int strength = 0;
 
         public void setStrength(int strength)
         {
@@ -24,7 +25,7 @@ namespace Assets
         public int getStrength()
         {
             return this.strength;
-        }
+        }*/
         public void setName(string n)
         {
             this.name = n;
@@ -66,7 +67,10 @@ namespace Assets
                 this.events[i] = events[i];
             }
         }
-
+        public void describeSpecial()
+        {
+            Debug.Log("Str: " + this.strength + " Pwr: " + this.power);
+        }
         public bool isSpecialField()
         {
             return this.specialField;
