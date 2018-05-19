@@ -4,45 +4,13 @@ using UnityEngine;
 using System;
 using Assets;
 using UnityEngine.UI;
+using TMPro;
 
 public class TalismanBoardScript : MonoBehaviour
 {
 
     //private Field[][] rings;
-    #region Dice
-    public Sprite dice1;
-    public Sprite dice2;
-    public Sprite dice3;
-    public Sprite dice4;
-    public Sprite dice5;
-    public Sprite dice6;
-    public Button buttonDice;
-    public int diceValue;
-    private void DiceRoller(int diceValue)
-    {
-        switch (diceValue)
-        {
-            case 1:
-                buttonDice.image.sprite = dice1;
-                break;
-            case 2:
-                buttonDice.image.sprite = dice2;
-                break;
-            case 3:
-                buttonDice.image.sprite = dice3;
-                break;
-            case 4:
-                buttonDice.image.sprite = dice4;
-                break;
-            case 5:
-                buttonDice.image.sprite = dice5;
-                break;
-            case 6:
-                buttonDice.image.sprite = dice6;
-                break;
-        }
-    }
-    #endregion
+    
 
     private Field[] outerRing;
     private Field[] middleRing;
@@ -55,8 +23,10 @@ public class TalismanBoardScript : MonoBehaviour
 
     public GameObject piecePrefab;
 
+    public TextMeshProUGUI playerName;
+
     public Text playerInformationPanel;
-    public Text fieldDescription;
+    public TextMeshProUGUI fieldDescription;
 
     Combat combat;
 
@@ -369,13 +339,13 @@ public class TalismanBoardScript : MonoBehaviour
         {
             playerIndex = 0;
         }
-        CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
+        //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
         showHeroName();
         showHeroStatistics();
-        showHeroCards();
+        //showHeroCards();
 
 
 
@@ -392,7 +362,6 @@ public class TalismanBoardScript : MonoBehaviour
     private void RollADice_Button()
     {
         playerArray[playerIndex].diceResult = rollDice();
-        DiceRoller(playerArray[playerIndex].diceResult);
     }
 
 
@@ -421,7 +390,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         showHeroName();
         showHeroStatistics();
-        showHeroCards();
+        //showHeroCards();
 
 
 
@@ -454,7 +423,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         showHeroName();
         showHeroStatistics();
-        showHeroCards();
+        //showHeroCards();
 
     }
 
@@ -515,7 +484,8 @@ public class TalismanBoardScript : MonoBehaviour
     {
         //playerInformationPanel.color = Color.white;
         //playerInformationPanel.transform.position += new Vector3(0, 0, -4);
-        playerInformationPanel.text = "Tura gracza: " + playerArray[playerIndex].name;
+        playerName.text = playerArray[playerIndex].name;
+        playerInformationPanel.text = "Tura gracza: ";
         
     }
     public void showHeroStatistics()
