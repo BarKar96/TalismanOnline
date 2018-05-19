@@ -63,7 +63,7 @@ public class TalismanBoardScript : MonoBehaviour
 
 
     private int playersCounter;
-    private int diceResult;
+    public int diceResult;
 
     public GameObject subPanel_Items;
     private bool _subPanel_Items_Opened = false;
@@ -331,6 +331,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         GameObject go = Instantiate(piecePrefab) as GameObject;
         go.transform.SetParent(transform);
+        go.transform.localScale += new Vector3(20, 20, 20);
         Piece p = go.GetComponent<Piece>();
         playerArray[i].playerPiece = p;
         MovePieceToStartLocation(p, i);
@@ -399,7 +400,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
         int temp = getActualPlayerRingFieldNumber();
-
+        playerArray[playerIndex].diceResult = diceResult;
         //obliczanie gdzie przesunac pionek
         int y = playerArray[playerIndex].playerPiece.indexOfField;
         int whereToMove = 0;
@@ -428,7 +429,7 @@ public class TalismanBoardScript : MonoBehaviour
     public void Right_Button()
     {
         CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
-
+        playerArray[playerIndex].diceResult = diceResult;
         //obliczanie gdzie przesunac pionek
         int temp = getActualPlayerRingFieldNumber();
         int y = playerArray[playerIndex].playerPiece.indexOfField;
@@ -554,6 +555,6 @@ public class TalismanBoardScript : MonoBehaviour
 
     void Update()
     {
-
+        //Debug.Log(diceResult);
     }
 }
