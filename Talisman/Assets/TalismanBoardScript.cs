@@ -91,8 +91,7 @@ public class TalismanBoardScript : MonoBehaviour
         {
             GeneratePiece(i);
         }
-        deckOfCards = new Deck();
-        deckOfCards.loadFromFileAndParse();
+        
        // deckOfCards.listCards();
     }
 
@@ -104,6 +103,8 @@ public class TalismanBoardScript : MonoBehaviour
 
     private void fillFields()
     {
+        deckOfCards = new Deck();
+        deckOfCards.loadFromFileAndParse();
         outerRing = new Field[24];
         middleRing = new Field[16];
         innerRing = new Field[8];
@@ -153,6 +154,7 @@ public class TalismanBoardScript : MonoBehaviour
             {
                 case 0:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 1:
                     outerRing[i].fieldEvent = new Card("rolnicy", card_type.ENEMY, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -408,8 +410,7 @@ public class TalismanBoardScript : MonoBehaviour
         movePiece(playerIndex, whereToMove);
 
         //przesuniecie pionka, aby nie nachodzily na siebie
-        cd.movePieceToRightLocation(outerRing);
-        //Debug.Log(playerArray[playerIndex].current_health);
+        cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
 
         playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
         playerArray[playerIndex].iterate_cards();
@@ -439,8 +440,13 @@ public class TalismanBoardScript : MonoBehaviour
 
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
-
+        Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
         playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        //foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
+        //{
+        //    playerArray[playerIndex].getCards().Add(c);
+        //}
+
         playerArray[playerIndex].iterate_cards();
         playerArray[playerIndex].getCards().Clear();
 

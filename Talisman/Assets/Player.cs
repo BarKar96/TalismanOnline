@@ -9,14 +9,13 @@ public class Player
     public Piece playerPiece;
     //Control event on field
     public Card boardField;
-    //Control occuring event on card draw
-    private Card eventCard;
+
     //Player item inventory
     private Deck deck;
 
 
     public int gold;
-    private List<Card> cards;
+    private List<Card> cardsToIterate;
     private List<Card> items;
     private List<Card> spells;
 
@@ -44,7 +43,7 @@ public class Player
         this.hero = hero;
         this.total_health = this.current_health = this.hero.hp;
         this.strength = this.hero.strength;
-        this.cards = new List<Card>(5);
+        this.cardsToIterate = new List<Card>(5);
         this.items = new List<Card>();
         this.spells = new List<Card>();
         this.deck = new Deck();
@@ -57,7 +56,7 @@ public class Player
 
     public void iterate_cards()
     {
-        int size = this.cards.Count;
+        int size = this.cardsToIterate.Count;
         int current = 0;
         if (!fieldCheckedOut)
         {
@@ -73,38 +72,49 @@ public class Player
 
         while (current != size)
         {
-            foreach (event_type et in this.cards[current].getEvents())
+            card_type et = cardsToIterate[current].getCard_Type();
             {
                 switch (et)
                 {
-                    case event_type.ADD_COIN:
-                        this.gold++;
+                    case card_type.ENEMY:
+                        combat.StartCombat(this, cardsToIterate[current]);
                         break;
-                    case event_type.LOSE_HEALTH:
-                        this.current_health--;
+                    case card_type.SPELL:
+                        this.getSpells().Add(cardsToIterate[current]);
                         break;
-                    case event_type.GAIN_HEALTH:
-                        this.current_health++;
-                        break;
-                    case event_type.ROLL_DICE:
-                        this.rollDice();
+                    case card_type.ITEM:
+                        this.getItems().Add(cardsToIterate[current]);
                         break;
 
-                    case event_type.DRAW_CARD:
-                        Card c = deck.drawCard();
-                        if (cards[current].getCard_Type() == card_type.ITEM)
-                        {
-                            this.items.Add(c);
-                        }
+                        //case event_type.ADD_COIN:
+                        //    this.gold++;
+                        //    break;
+                        //case event_type.LOSE_HEALTH:
+                        //    this.current_health--;
+                        //    break;
+                        //case event_type.GAIN_HEALTH:
+                        //    this.current_health++;
+                        //    break;
+                        //case event_type.ROLL_DICE:
+                        //    //this.rollDice();
+                        //    break;
+
+                        //case card_type.DRAW_CARD:
+                        //    Card c = deck.drawCard();
+                        //    if (cardsToIterate[current].getCard_Type() == card_type.ITEM)
+                        //    {
+                        //        this.items.Add(c);
+                        //    }
                         //if (cards[current].getCard_Type() == card_type.MAGIC_ITEM)
                         //{
                         //    this.items.Add(c);
                         //}
-                        break;
+                        //break;
 
-                    case event_type.ENEMY:
-                        combat.StartCombat(this, cards[current]);   
-                        break;
+
+                        //case event_type:
+                        //    combat.StartCombat(this, cardsToIterate[current]);
+                        //    break;
 
                 }
             }
@@ -114,7 +124,7 @@ public class Player
 
     public List<Card> getCards()
     {
-        return cards;
+        return cardsToIterate;
     }
     public List<Card> getItems()
     {

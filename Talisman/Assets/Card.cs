@@ -8,7 +8,7 @@ namespace Assets
 {
     public class Card
     {
-        private card_type logic_event;
+        public card_type logic_event;
         private event_type[] events;
         private bool specialField = false;
         private List<special> specialCardEvents;

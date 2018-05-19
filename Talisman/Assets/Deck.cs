@@ -8,10 +8,10 @@ namespace Assets
 {
     class Deck
     {
-        List<Card> fullDeck;
-        List<Card> fullItemsDeck;
-        List<Card> fullSpellsDeck;
-        List<Card> fullEnemyDeck;
+        public List<Card> fullDeck;
+        public List<Card> fullItemsDeck;
+        public List<Card> fullSpellsDeck;
+        public List<Card> fullEnemyDeck;
 
 
         private int cardsInDeck;
@@ -185,22 +185,7 @@ namespace Assets
                         break;
                 }
                 
-            }
-            //Debug.Log("Spells in deck: " + fullSpellsDeck.Count());
-            //foreach (Card c in fullSpellsDeck)
-            //{
-            //    Debug.Log(c.getName());
-            //}
-            //Debug.Log("Items in deck: " + fullItemsDeck.Count());
-            //foreach (Card c in fullItemsDeck)
-            //{
-            //    Debug.Log(c.getName());
-            //}
-            //Debug.Log("Enemies in deck: " + fullEnemyDeck.Count());
-            //foreach (Card c in fullEnemyDeck)
-            //{
-            //    Debug.Log(c.getName());
-            //}
+            } 
 
         }
     }

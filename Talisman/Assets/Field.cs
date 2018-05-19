@@ -8,4 +8,9 @@ public class Field {
     public GameObject emptyGameObject;
     public int counter = 0;
     public Card fieldEvent;
+    public List<Card> cardsOnField;
+    public Field()
+    {
+        cardsOnField = new List<Card>();
+    }
 }

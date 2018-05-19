@@ -188,8 +188,7 @@ public  class Combat : MonoBehaviour
 
         textPrzeciwnik.text = "";
         textPrzeciwnik.text += "Bohater: " + c.getName();
-        textPrzeciwnik.text += "\nSiła:  ";
-        textPrzeciwnik.text += "\nHP: ";
+        textPrzeciwnik.text += "\nSiła:  " + c.strength;
 
 
     }
