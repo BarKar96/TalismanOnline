@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.UI;
 
 public static class CardDrawer
 {
@@ -46,6 +45,12 @@ public static class CardDrawer
         //////////////       
         foreach (Card c in p.getItems())
         {
+            //if (c.equipable == true)
+            //{
+            //    var go = GameObject.Find("Slider1").GetComponent<Slider>();
+            //    Debug.Log("znalazlem");
+            //    go.gameObject.SetActive(true);
+            //}
             if (temp > 3)
             {
                 if (help == 0)
@@ -54,6 +59,7 @@ public static class CardDrawer
                     help = 1;
                 }
                 CardDrawer.spawnCard(c.getName(),"PanelEkwipunku", counter, 220);
+                
                 
             }
             else

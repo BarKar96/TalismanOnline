@@ -16,6 +16,7 @@ namespace Assets
         private string description;
         private string name;
         public int strength, power;
+        public bool equipable = false;
         /*private int strength = 0;
 
         public void setStrength(int strength)

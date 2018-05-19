@@ -461,6 +461,10 @@ public class TalismanBoardScript : MonoBehaviour
     //panel ekwipunku
     public void Items_Button()
     {
+        //Card c = new Card(card_type.ITEM, new event_type[] { });
+        //c.equipable = true;
+        //playerArray[playerIndex].getItems().Add(c);
+
         _subPanel_Items_Opened = !_subPanel_Items_Opened;
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
         if (_subPanel_Items_Opened == true)
