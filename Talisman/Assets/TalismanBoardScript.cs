@@ -411,7 +411,7 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
         Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
-        playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        playerArray[playerIndex].getCards().Add(c);
         //foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
         //{
         //    playerArray[playerIndex].getCards().Add(c);

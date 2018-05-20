@@ -9,6 +9,10 @@ public  class Combat : MonoBehaviour
     Player p;
     Card c;
 
+    public bool turaIstoty = false;
+    public bool turaGracza = true;
+
+
     public List<GameObject> combatCardList = new List<GameObject>();
     public int rzut_Ataku_gracza = 0;
     public  int skutecznosc_Ataku_gracza = 0;
@@ -93,18 +97,39 @@ public  class Combat : MonoBehaviour
 
         //porownanie skutecznosci ataku
     }
-    public void rozpocznijWalke()
+    public IEnumerator rzuty()
     {
+        var script = GameObject.Find("D6").GetComponent<DiceScript>();
+        var dice = GameObject.Find("D6");
+        dice.gameObject.transform.localPosition = new Vector3(-100,0,0);
+        script.roll();
+        //czekaj az spadnie 1sza kostka
+        yield return new WaitForSeconds(5);
+        script.enabled = true;
+        turaGracza = false;
+        turaIstoty = true;
+        script.roll();
+    }
+
+    public IEnumerator rozpocznijWalke()
+    {
+        turaGracza = true;
+        turaIstoty = false;
         spawnCombatCards(p, c);
+       // var script = GameObject.Find("D6").GetComponent<DiceScript>();
+
+       
+        StartCoroutine(rzuty());
+
+        //czekaj az spadnie druga kostka
+        yield return new WaitForSeconds(10);
         //rzut ataku gracza
         textPrzebieg.text = "";
-        rzut_Ataku_gracza = rzutAtaku();
         textPrzebieg.text += "Gracz wyrzucił: " + rzut_Ataku_gracza;
         skutecznosc_Ataku_gracza = rzut_Ataku_gracza + p.strength;
         textPrzebieg.text += "\nSkuteczność ataku gracza: " + skutecznosc_Ataku_gracza;
 
         //rzut ataku istoty
-        rzut_Ataku_istoty = rzutAtaku();
         textPrzebieg.text += "\n\nPrzeciwnik wyrzucił: " + rzut_Ataku_istoty;
         skutecznosc_Ataku_istoty = rzut_Ataku_istoty + c.strength;
         textPrzebieg.text += "\nSkuteczność ataku przeciwnika: " + skutecznosc_Ataku_istoty;
@@ -143,7 +168,7 @@ public  class Combat : MonoBehaviour
         }
         else
         {
-            rozpocznijWalke();
+            StartCoroutine(rozpocznijWalke());
             toggleEnterCombatPanel();
         }
     }
@@ -208,7 +233,7 @@ public  class Combat : MonoBehaviour
     public void Atakuj_Button()
     {
         toggleEnterCombatPanel();
-        rozpocznijWalke();
+        StartCoroutine(rozpocznijWalke());
     }
     public void Wymykanie_Button()
     {
