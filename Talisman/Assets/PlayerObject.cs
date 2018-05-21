@@ -43,7 +43,9 @@ public class PlayerObject : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Player turn: " + turn);
-            CmdTranslatePiece();
+            //CmdTranslatePiece();
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            go.lalala(localPlayer);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -147,6 +149,7 @@ public class PlayerObject : NetworkBehaviour
     {
         Debug.Log("Player " + playername + " Sets new hero");
         Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+        p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
