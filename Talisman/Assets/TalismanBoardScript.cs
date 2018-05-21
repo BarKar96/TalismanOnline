@@ -30,7 +30,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     Combat combat;
 
-
+    public Sprite sprite;
 
     private int playersCounter;
     public int diceResult;
@@ -52,6 +52,7 @@ public class TalismanBoardScript : MonoBehaviour
         combat = GameObject.Find("Combat").GetComponent<Combat>();
         playerIndex = 0;
         playersCounter = 3;
+        wstawPortret();
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
@@ -64,7 +65,11 @@ public class TalismanBoardScript : MonoBehaviour
         
        // deckOfCards.listCards();
     }
-
+    public void wstawPortret()
+    {
+        var go = GameObject.Find("ButtonHero6");
+        go.gameObject.GetComponent<Image>().sprite = sprite;
+    }
     private int rollDice()
     {
         System.Random rnd = new System.Random();
