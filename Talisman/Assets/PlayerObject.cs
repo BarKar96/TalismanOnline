@@ -16,6 +16,7 @@ public class PlayerObject : NetworkBehaviour
     public static int turn = 0;
     //[SyncVar]
     public static int current = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -35,6 +36,10 @@ public class PlayerObject : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Hero type: " + localPlayer.hero.name);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Player turn: " + turn);
@@ -82,7 +87,7 @@ public class PlayerObject : NetworkBehaviour
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
         turn++;
-//        CmdtranslatePieceToStart();
+//      CmdtranslatePieceToStart();
         NetworkServer.Spawn(go);
     }
     
@@ -95,47 +100,54 @@ public class PlayerObject : NetworkBehaviour
     }
 
     [Command]
-    void CmdtranslatePieceToStart()
+    void CmdtranslatePieceToStart(int p)
     {
-        if (!(current == localPlayer.NET_Turn))
-            return;
+        
         /*if (!isLocalPlayer)
             return;*/
         //localPlayer.playerPiece.indexOfField = localPlayer.hero.startingLocation;
         Debug.Log("Moving player to " + localPlayer.hero.startingLocation);
-        localPlayerPiece.transform.position = fields[localPlayer.hero.startingLocation].emptyGameObject.transform.position;
+        localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
         //fields[localPlayer.hero.startingLocation].counter++;
-        if (current < turn)
-           RpcupdateTurn( current++);
-        else
-            RpcupdateTurn(0);
+        
     }
 
     [Command]
     void CmdRollDice()
     {
+        if (!(current == localPlayer.NET_Turn))
+            return;
         int k = Random.Range(1, 7);
         //current = k;
         Debug.Log("Server sets current to: " + k);
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
-        RpcupdateTurn(k);
+        //RpcupdateTurn(k);
+        if (current < turn-1)
+        {
+            current++;
+            RpcupdateTurn(current, turn);
+        }            
+        else
+            RpcupdateTurn(0, turn);
     }
 
     //******CLIENT_SIDE******
 
     [ClientRpc]
-    void RpcupdateTurn(int c)
+    void RpcupdateTurn(int c, int t)
     {
+        turn = t;
         current = c;
         Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
     }
+
     [ClientRpc]
     void RpcAssignPlayer(string s, int turn)
     {
         Debug.Log("Player " + playername + " Sets new hero");
         Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
         localPlayer = p;
-        CmdtranslatePieceToStart();
+        CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
 }
