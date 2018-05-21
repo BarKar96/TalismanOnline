@@ -44,9 +44,9 @@ public class TalismanBoardScript : NetworkBehaviour
         playerIndex = 0;
         nextTurn();
     }
-    public void lalala(Player p)
+    public void ChangeNetworkPlayerState(Player p)
     {
-        p.getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN }));
+        //p.getCards().Add(new Card(card_type.ITEM, new event_type[] { event_type.ADD_COIN }));
         p.checkoutCards();
         Debug.Log("Player has: " + p.gold);
     }

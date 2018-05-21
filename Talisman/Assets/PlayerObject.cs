@@ -44,8 +44,7 @@ public class PlayerObject : NetworkBehaviour
         {
             Debug.Log("Player turn: " + turn);
             //CmdTranslatePiece();
-            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-            go.lalala(localPlayer);
+           
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -60,6 +59,8 @@ public class PlayerObject : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             CmdRollDice();
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            go.ChangeNetworkPlayerState(localPlayer);
             Debug.Log("Roll ");
         }
         if (Input.GetKeyDown(KeyCode.N))
@@ -124,6 +125,7 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Server sets current to: " + k);
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
+        localPlayer.boardField = fields[localPlayer.NET_RingPos].fieldEvent;
         //RpcupdateTurn(k);
         if (current < turn-1)
         {
