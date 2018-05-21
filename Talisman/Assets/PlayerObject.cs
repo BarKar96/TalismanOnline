@@ -10,22 +10,22 @@ public class PlayerObject : NetworkBehaviour
     public GameObject PlayerUnitPrefab;
     public GameObject localPlayerPiece;
     public Field[] fields;
-    public Player localPlayer;
+    public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
-    [SyncVar]
-    public int turn = 0;
+    
+    public static int turn = 0;
     //[SyncVar]
     public static int current = 0;
     // Use this for initialization
     void Start()
     {
-        this.localPlayer = new Player("Suavek", new Hero(Assets.hero_type.TROLL), turn);
-        turn++;
+        //this.localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
+        //turn++;
         fields = TalismanBoardScript.outerRing;
         if (!isLocalPlayer)
             return;
         Debug.Log("Created local player piece");
-        
+        //localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
     }
@@ -65,6 +65,8 @@ public class PlayerObject : NetworkBehaviour
     [SyncVar]
     public string playername = "asjkglhalsk";
 
+    //******SERVER_SIDE******
+
     [Command]
     void CmdChangePlayerName(string s)
     {
@@ -74,17 +76,16 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     void CmdspawnPlayerPiece()
     {
-        
-        //turn++;
-
         GameObject go = Instantiate(PlayerUnitPrefab);
         localPlayerPiece = go;
         //Piece p = go.GetComponent<Piece>();
         //localPlayer.playerPiece = p;
-        CmdtranslatePieceToStart();
+        RpcAssignPlayer("asd", turn);
+        turn++;
+//        CmdtranslatePieceToStart();
         NetworkServer.Spawn(go);
     }
-
+    
     [Command]
     void CmdTranslatePiece()
     {
@@ -96,13 +97,18 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     void CmdtranslatePieceToStart()
     {
-        /*if (!(current == localPlayer.NET_Turn))
+        if (!(current == localPlayer.NET_Turn))
+            return;
+        /*if (!isLocalPlayer)
             return;*/
         //localPlayer.playerPiece.indexOfField = localPlayer.hero.startingLocation;
-        Debug.Log("Fields are: " + fields.Length);
+        Debug.Log("Moving player to " + localPlayer.hero.startingLocation);
         localPlayerPiece.transform.position = fields[localPlayer.hero.startingLocation].emptyGameObject.transform.position;
         //fields[localPlayer.hero.startingLocation].counter++;
-        
+        if (current < turn)
+           RpcupdateTurn( current++);
+        else
+            RpcupdateTurn(0);
     }
 
     [Command]
@@ -115,11 +121,21 @@ public class PlayerObject : NetworkBehaviour
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
         RpcupdateTurn(k);
     }
+
+    //******CLIENT_SIDE******
+
     [ClientRpc]
     void RpcupdateTurn(int c)
     {
         current = c;
         Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
     }
-    
+    [ClientRpc]
+    void RpcAssignPlayer(string s, int turn)
+    {
+        Debug.Log("Player " + playername + " Sets new hero");
+        Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+        localPlayer = p;
+        CmdtranslatePieceToStart();
+    }
 }
