@@ -16,10 +16,10 @@ public class TalismanBoardScript : MonoBehaviour
     private Field[] middleRing;
     private Field[] innerRing;
     private Deck deckOfCards;
-    private Player[] playerArray;
+    public Player[] playerArray;
 
 
-    private int playerIndex;
+    public int playerIndex;
 
     public GameObject piecePrefab;
 
@@ -58,7 +58,13 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
+        playerArray[0].getItems().Add(new Card(card_type.ITEM,new event_type[] { }));
+        playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
+        playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
+        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
+        playerArray[1].getItems().Add(new Card("karta2", card_type.ITEM, new event_type[] { }));
+        playerArray[1].getItems().Add(new Card("karta3", card_type.ITEM, new event_type[] { }));
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
         {
@@ -360,6 +366,7 @@ public class TalismanBoardScript : MonoBehaviour
         else if (playerArray[playerIndex].innerRing == true) { return 8; }
         else { return 0; }
     }
+   
 
     private void RollADice_Button()
     {
@@ -528,9 +535,13 @@ public class TalismanBoardScript : MonoBehaviour
         nextTurn();
         
     }
-
+    void OnMouseDown()
+    {
+        // this object was clicked - do something
+        Destroy(this.gameObject);
+    }
     void Update()
     {
-        //Debug.Log(diceResult);
+        
     }
 }
