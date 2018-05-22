@@ -71,7 +71,7 @@ public class Hero
                 startingLocation = 6;
                 break;
             case hero_type.WROZKA:
-                name = "Wróżka";
+                name = "Wrozka";
                 strength = 2;
                 power = 4;
                 luck = 2;
@@ -79,7 +79,7 @@ public class Hero
                 startingLocation = 7;
                 break;
             case hero_type.CZARNOKSIEZNIK:
-                name = "Czarnoksiężnik";
+                name = "Czarnoksieznik";
                 strength = 2;
                 power = 5;
                 luck = 3;
@@ -103,7 +103,7 @@ public class Hero
                 startingLocation = 10;
                 break;
             case hero_type.ZABOJCA:
-                name = "Zabójca";
+                name = "Zabojca";
                 strength = 3;
                 power = 3;
                 luck = 3;
@@ -119,7 +119,7 @@ public class Hero
                 startingLocation = 12;
                 break;
             case hero_type.KAPLAN:
-                name = "Kapłan";
+                name = "Kaplan";
                 strength = 2;
                 power = 4;
                 luck = 5;

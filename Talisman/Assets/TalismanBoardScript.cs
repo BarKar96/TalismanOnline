@@ -30,7 +30,9 @@ public class TalismanBoardScript : MonoBehaviour
 
     Combat combat;
 
-    public Sprite sprite;
+    public Sprite Hero1;
+    public Sprite Hero2;
+    public Sprite Hero3;
 
     private int playersCounter;
     public int diceResult;
@@ -41,7 +43,7 @@ public class TalismanBoardScript : MonoBehaviour
     public GameObject subPanel_Spells;
     private bool _subPanel_Spells_Opened = false;
 
-    
+    Windows windows;
 
     /// <summary>
     /// //////////////////////////////////////////////////////////////
@@ -50,9 +52,9 @@ public class TalismanBoardScript : MonoBehaviour
     private void initializePlayers()
     {
         combat = GameObject.Find("Combat").GetComponent<Combat>();
+        windows = GameObject.Find("Windows").GetComponent<Windows>();
         playerIndex = 0;
         playersCounter = 3;
-        wstawPortret();
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
@@ -62,13 +64,8 @@ public class TalismanBoardScript : MonoBehaviour
         {
             GeneratePiece(i);
         }
-        
+        windows.wstawPortret(playerArray);
        // deckOfCards.listCards();
-    }
-    public void wstawPortret()
-    {
-        var go = GameObject.Find("ButtonHero6");
-        go.gameObject.GetComponent<Image>().sprite = sprite;
     }
     private int rollDice()
     {
