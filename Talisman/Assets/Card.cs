@@ -33,30 +33,34 @@ namespace Assets
         }
         public string getName() { return this.name; }
 
-        public Card(card_type type, event_type[] events)
+        public Card(card_type type, event_type[] events, item_type itemType)
         {
+            this.itemType = itemType;
             this.events = events == null ? new event_type[] { } : events;
             this.logic_event = type;
         }
 
-        public Card(string name, card_type type, event_type[] events)
+        public Card(string name, card_type type, event_type[] events, item_type itemType)
         {
+            this.itemType = itemType;
             this.logic_event = type;
             this.events = events == null ? new event_type[] { } : events;
             this.name = name;
         }
-        public Card(string name, card_type type, event_type[] events, string desc)
+        public Card(string name, card_type type, event_type[] events, string desc, item_type itemType)
         {
+            this.itemType = itemType;
             this.logic_event = type;
             this.events = events == null ? new event_type[] { } : events;
             this.name = name;
             this.description = desc;
         }
 
-        public Card(string name, card_type type, List<event_type> events)
+        public Card(string name, card_type type, List<event_type> events, item_type itemType)
         {
+            this.itemType = itemType;
             this.name = name;
-            
+
             this.logic_event = type;
             if (events == null || events.Count == 0)
             {
@@ -64,13 +68,14 @@ namespace Assets
                 return;
             }
             this.events = new event_type[events.Count];
-            for(int i =0; i < events.Count; i++)
+            for (int i = 0; i < events.Count; i++)
             {
                 this.events[i] = events[i];
             }
         }
-        public Card(string name, card_type type, List<event_type> events, item_type it)
+        public Card(string name, card_type type, List<event_type> events, item_type it, item_type itemType)
         {
+            this.itemType = itemType;
             this.name = name;
             this.itemType = it;
             this.logic_event = type;
@@ -85,6 +90,47 @@ namespace Assets
                 this.events[i] = events[i];
             }
         }
+        public Card(card_type type, event_type[] events)
+        {
+
+            this.events = events == null ? new event_type[] { } : events;
+            this.logic_event = type;
+        }
+
+        public Card(string name, card_type type, event_type[] events)
+        {
+
+            this.logic_event = type;
+            this.events = events == null ? new event_type[] { } : events;
+            this.name = name;
+        }
+        public Card(string name, card_type type, event_type[] events, string desc)
+        {
+
+            this.logic_event = type;
+            this.events = events == null ? new event_type[] { } : events;
+            this.name = name;
+            this.description = desc;
+        }
+
+        public Card(string name, card_type type, List<event_type> events)
+        {
+
+            this.name = name;
+
+            this.logic_event = type;
+            if (events == null || events.Count == 0)
+            {
+                this.events = null;
+                return;
+            }
+            this.events = new event_type[events.Count];
+            for (int i = 0; i < events.Count; i++)
+            {
+                this.events[i] = events[i];
+            }
+        }
+       
         public List<special> getSpecialCardEvents()
         {
            return specialCardEvents;
@@ -148,7 +194,7 @@ namespace Assets
                     p.current_health++;
                     break;
                 case event_type.DRAW_CARD:
-                    p.getCards().Add(new Card(card_type.ITEM, null));
+                    p.getCards().Add(new Card(card_type.ITEM, null, item_type.CONSUMABLE));
                     break;
             }
         }

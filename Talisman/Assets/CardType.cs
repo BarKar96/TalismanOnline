@@ -16,7 +16,7 @@ namespace Assets
     }
     public enum item_type
     {
-        WEAPON, ARMOR, CONSUMEABLE
+        WEAPON, ARMOR, CONSUMABLE, ENEMY
     }
     public enum event_type
     {

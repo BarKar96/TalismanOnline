@@ -73,11 +73,25 @@ namespace Assets
                     return event_type.ADD_COIN;
             }
         }
-        public card_type translateToType(string s)
+        public item_type translateToItemType(string s)
         {
             switch (s)
             {
-               
+                case "arm":
+                    return item_type.ARMOR;
+                case "wep":
+                    return item_type.WEAPON;
+                case "con":
+                    return item_type.CONSUMABLE;
+                default:
+                    //  Had to throw something in
+                    return item_type.CONSUMABLE;
+            }
+        }
+        public card_type translateToType(string s)
+        {
+            switch (s)
+            {               
                 case "itm":
                     return card_type.ITEM;
                 case "spl":
@@ -91,7 +105,7 @@ namespace Assets
         public void loadFromFileAndParse()
         {
             String[] loaded = File.ReadAllLines("./Assets/Resources/deck_cards.txt");
-            foreach(string s in loaded)
+            foreach (string s in loaded)
             {
                 if (s.StartsWith("#"))
                     continue;
@@ -103,12 +117,12 @@ namespace Assets
                 //  Add actions
                 if (parsedRow[1].Equals("enm"))
                 {
-                    newCard = new Card(cardname, translateToType(parsedRow[1]), new event_type[] { event_type.ENEMY });
+                    newCard = new Card(cardname, translateToType(parsedRow[1]), new event_type[] { event_type.ENEMY }, item_type.ENEMY);
                     for (int fields = 3; fields < parsedRow.Length; fields++)
                     {
                         if (parsedRow[fields].Equals("nospecial"))
                             break;
-                       // Debug.Log("Enemy card attrs:" + parsedRow[fields]);
+                        // Debug.Log("Enemy card attrs:" + parsedRow[fields]);
                         string[] attrs = parsedRow[fields].Split('@');
                         switch (attrs[0])
                         {
@@ -125,37 +139,53 @@ namespace Assets
                     fullDeck.Add(newCard);
                 }
                 else
-                for (int fields = 3; fields < parsedRow.Length; fields++)
                 {
-                    //  Check what actions does the card have
-                    if (possibleEvents.Contains(parsedRow[fields]))
+                    int begin = 3;
+                    item_type type = item_type.CONSUMABLE;
+                    if (parsedRow[1].Equals("itm"))
                     {
-                        readEvents.Add(translateToEvent(parsedRow[fields]));
+                        type = translateToItemType(parsedRow[3]);
+                        begin = 4;
                     }
-                    //  If field is not special finish building
-                    if (parsedRow[fields].Equals("nospecial"))
+                        
+                    for (int fields = begin; fields < parsedRow.Length; fields++)
                     {
-                        newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents);
-                        for (int times = 0; times < theseInDeck; times++)
+                        //  Check what actions does the card have
+                        if (possibleEvents.Contains(parsedRow[fields]))
                         {
-                            fullDeck.Add(newCard);
+                            readEvents.Add(translateToEvent(parsedRow[fields]));
+                        }
+                        //  If field is not special finish building
+                        if (parsedRow[fields].Equals("nospecial"))
+                        {
+                            if(parsedRow[1].Equals("itm"))
+                                newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents, type);
+                            else
+                                newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents);
+                            for (int times = 0; times < theseInDeck; times++)
+                            {
+                                fullDeck.Add(newCard);
+                            }
+                        }
+                        else if (parsedRow[fields].Equals("special"))
+                        {
+                            int current = fields + 1;
+                            if (parsedRow[1].Equals("itm"))
+                                newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents, type);
+                            else
+                                newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents);
+                            for (; current < parsedRow.Length; current++)
+                            {
+                                string[] ev_roll = parsedRow[current].Split('@');
+                                newCard.AssignSpecial(new int[] { int.Parse(ev_roll[1]) }, translateToEvent(ev_roll[0]));
+                            }
+                            for (int times = 0; times < theseInDeck; times++)
+                            {
+                                fullDeck.Add(newCard);
+                            }
                         }
                     }
-                    else if (parsedRow[fields].Equals("special"))
-                    {
-                        int current = fields + 1;
-                        newCard = new Card(cardname, translateToType(parsedRow[1]), readEvents);
-                        for (; current < parsedRow.Length; current++)
-                        {
-                            string[] ev_roll = parsedRow[current].Split('@');
-                            newCard.AssignSpecial(new int[] { int.Parse(ev_roll[1]) }, translateToEvent(ev_roll[0]));
-                        }
-                        for (int times = 0; times < theseInDeck; times++)
-                        {
-                            fullDeck.Add(newCard);
-                        }
-                    }
-                }
+            }
             }
             listCards();
         }
