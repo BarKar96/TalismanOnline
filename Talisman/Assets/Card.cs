@@ -16,7 +16,7 @@ namespace Assets
         private string description;
         private string name;
         public int strength, power;
-        public bool equipable = false;
+        public item_type itemType;
        
 
         public void setStrength(int strength)
@@ -56,6 +56,7 @@ namespace Assets
         public Card(string name, card_type type, List<event_type> events)
         {
             this.name = name;
+            
             this.logic_event = type;
             if (events == null || events.Count == 0)
             {
@@ -64,6 +65,22 @@ namespace Assets
             }
             this.events = new event_type[events.Count];
             for(int i =0; i < events.Count; i++)
+            {
+                this.events[i] = events[i];
+            }
+        }
+        public Card(string name, card_type type, List<event_type> events, item_type it)
+        {
+            this.name = name;
+            this.itemType = it;
+            this.logic_event = type;
+            if (events == null || events.Count == 0)
+            {
+                this.events = null;
+                return;
+            }
+            this.events = new event_type[events.Count];
+            for (int i = 0; i < events.Count; i++)
             {
                 this.events[i] = events[i];
             }

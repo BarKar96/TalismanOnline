@@ -61,10 +61,10 @@ namespace Assets
             {
                 case "get_gold":
                     return event_type.ADD_COIN;
-                case "get_spell":
+                case "gain_health":
                     return event_type.GAIN_HEALTH;
-                case "gain_power":
-                    return event_type.LOSE_HEALTH;
+                case "gain_strength":
+                    return event_type.GAIN_STRENGTH;
                 case "powr":
                     return event_type.POWER;
                 case "strn":
@@ -84,10 +84,6 @@ namespace Assets
                     return card_type.SPELL;   
                 case "enm":
                     return card_type.ENEMY;
-                //case "str":
-                //    return card_type.FRIEND;
-                //case "frn":
-                //    return card_type.FRIEND;
                 default:
                     return card_type.BOARDFIELD;
             }

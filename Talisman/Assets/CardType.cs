@@ -14,9 +14,13 @@ namespace Assets
     {
         BOARDFIELD, ENEMY, ITEM, SPELL
     }
+    public enum item_type
+    {
+        WEAPON, ARMOR, CONSUMEABLE
+    }
     public enum event_type
     {
-        ROLL_DICE, DRAW_CARD, LOSE_HEALTH, ADD_COIN, ENEMY, GAIN_HEALTH, 
+        ROLL_DICE, DRAW_CARD, LOSE_HEALTH, ADD_COIN, ENEMY, GAIN_HEALTH, GAIN_STRENGTH,
         /*  ENEMY CARD SPECIFIC */
         POWER, STRENGTH
     }
