@@ -15,7 +15,7 @@ public class TalismanBoardScript : MonoBehaviour
     private Field[] outerRing;
     private Field[] middleRing;
     private Field[] innerRing;
-    private Deck deckOfCards;
+    public Deck deckOfCards;
     public Player[] playerArray;
 
 

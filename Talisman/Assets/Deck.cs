@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 namespace Assets
 {
-    class Deck
+    public class Deck
     {
         public List<Card> fullDeck;
         public List<Card> fullItemsDeck;

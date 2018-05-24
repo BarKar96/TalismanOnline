@@ -3,7 +3,7 @@
 #nr of cards in deck:name:effect:effect:effect...:boolean is card special:special_eff:special_eff...
 #-------------------ITEMS-----------------------------#
 2:itm:butelka:desert_immmunity:nospecial
-2:itm:zbroja:gain_power:nospecial
+2:itm:zbroja:gain_health:special
 #-------------------Spells----------------------------#
 2:spl:kula_ognia:get_spell:nospecial
 2:spl:zamiec:get_spell:nospeacial

@@ -17,7 +17,7 @@ namespace Assets
         private string name;
         public int strength, power;
         public bool equipable = false;
-        /*private int strength = 0;
+       
 
         public void setStrength(int strength)
         {
@@ -26,7 +26,7 @@ namespace Assets
         public int getStrength()
         {
             return this.strength;
-        }*/
+        }
         public void setName(string n)
         {
             this.name = n;
@@ -68,7 +68,12 @@ namespace Assets
                 this.events[i] = events[i];
             }
         }
-        public void describeSpecial()
+        public List<special> getSpecialCardEvents()
+        {
+           return specialCardEvents;
+        }
+
+    public void describeSpecial()
         {
             Debug.Log("Str: " + this.strength + " Pwr: " + this.power);
         }
@@ -131,7 +136,7 @@ namespace Assets
             }
         }
 
-        private class special
+        public class special
         {
             public special(int[] rolls, event_type et)
             {

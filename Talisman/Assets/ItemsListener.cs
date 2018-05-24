@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets;
 
 public class ItemsListener : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class ItemsListener : MonoBehaviour
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         Player[] tempPlayerArray = go.playerArray;
         int tempPlayerIndex = go.playerIndex;
-        if (name == "zbroja")
+        Deck deck = go.deckOfCards;
+        Card c = deck.fullDeck.Find(x => x.getName().Equals("zbroja"));
+        if (c.getName().Equals("zbroja"))
         {
             Debug.Log(tempPlayerArray[tempPlayerIndex].current_health);
-            tempPlayerArray[tempPlayerIndex].current_health += 10;
+            tempPlayerArray[tempPlayerIndex].current_health += c.getSpecialCardEvents()[0].get_roll()[0];
             Debug.Log(tempPlayerArray[tempPlayerIndex].current_health);
         }
     }
@@ -28,6 +31,7 @@ public class ItemsListener : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100))
             {
+                Debug.Log(hit.transform.gameObject.name);
                 useItem(hit.transform.gameObject.name);
             }
         }
