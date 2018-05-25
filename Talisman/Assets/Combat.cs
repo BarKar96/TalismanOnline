@@ -37,6 +37,7 @@ public  class Combat : MonoBehaviour
 
     public void toggleEnterCombatPanel()
     {
+        
         _subPanel_enterCombat_Opened = !_subPanel_enterCombat_Opened;
         setSubPanelVisibility(subPanel_enterCombat, _subPanel_enterCombat_Opened);
         if (_subPanel_Combat_Opened == true)
@@ -76,7 +77,8 @@ public  class Combat : MonoBehaviour
         this.p = p;
         this.c = c;
 
-        
+
+        textPrzebieg.text = "";
 
         toggleEnterCombatPanel();
         //wyswietlanie teksturek

@@ -356,8 +356,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.4, y: -0.7}
-  m_SizeDelta: {x: 5.59, y: 10.35}
+  m_AnchoredPosition: {x: 0.16, y: -0.09}
+  m_SizeDelta: {x: 11.46, y: 11.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &32415729
 MonoBehaviour:
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 87286443}
   - component: {fileID: 87286442}
   m_Layer: 5
-  m_Name: "Hero6Z\u0142oto"
+  m_Name: "Hero2Z\u0142oto"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,7 +699,7 @@ RectTransform:
   m_Children:
   - {fileID: 1166018146}
   m_Father: {fileID: 731953100}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1101,7 +1101,7 @@ RectTransform:
   m_Children:
   - {fileID: 966695566}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1237,7 +1237,7 @@ GameObject:
   - component: {fileID: 112470297}
   - component: {fileID: 112470296}
   m_Layer: 5
-  m_Name: "Hero6Z\u0142oto"
+  m_Name: "Hero1Z\u0142oto"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1255,7 +1255,7 @@ RectTransform:
   m_Children:
   - {fileID: 344279160}
   m_Father: {fileID: 2119504150}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 119627438}
   - component: {fileID: 119627437}
   m_Layer: 5
-  m_Name: Hero6Los
+  m_Name: Hero4Los
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1324,7 +1324,7 @@ RectTransform:
   m_Children:
   - {fileID: 1789642726}
   m_Father: {fileID: 906003221}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1774,7 +1774,7 @@ GameObject:
   - component: {fileID: 139737011}
   - component: {fileID: 139737010}
   m_Layer: 5
-  m_Name: "Hero6Punkty\u017Bycia"
+  m_Name: "Hero1Punkty\u017Bycia"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1792,7 +1792,7 @@ RectTransform:
   m_Children:
   - {fileID: 200507218}
   m_Father: {fileID: 2119504150}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2058,7 +2058,7 @@ GameObject:
   - component: {fileID: 188341318}
   - component: {fileID: 188341317}
   m_Layer: 5
-  m_Name: Hero6Sila
+  m_Name: Hero2Sila
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2076,7 +2076,7 @@ RectTransform:
   m_Children:
   - {fileID: 1538116006}
   m_Father: {fileID: 731953100}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2168,6 +2168,42 @@ MonoBehaviour:
   _hero4button: {fileID: 933706376}
   _hero5button: {fileID: 1653892990}
   _hero6button: {fileID: 771387430}
+  _hero1HP: {fileID: 200507219}
+  _hero2HP: {fileID: 1922222334}
+  _hero3HP: {fileID: 625949618}
+  _hero4HP: {fileID: 423061522}
+  _hero5HP: {fileID: 263316661}
+  _hero6HP: {fileID: 1680782688}
+  _hero1STR: {fileID: 32415729}
+  _hero2STR: {fileID: 1538116007}
+  _hero3STR: {fileID: 132573989}
+  _hero4STR: {fileID: 122582929}
+  _hero5STR: {fileID: 500067265}
+  _hero6STR: {fileID: 1854918607}
+  _hero1INT: {fileID: 908853311}
+  _hero2INT: {fileID: 631284526}
+  _hero3INT: {fileID: 1041135422}
+  _hero4INT: {fileID: 816582193}
+  _hero5INT: {fileID: 952810484}
+  _hero6INT: {fileID: 1694154357}
+  _hero1LOS: {fileID: 2054087839}
+  _hero2LOS: {fileID: 1731333264}
+  _hero3LOS: {fileID: 93128521}
+  _hero4LOS: {fileID: 1789642727}
+  _hero5LOS: {fileID: 1715851287}
+  _hero6LOS: {fileID: 1918792155}
+  _hero1GOLD: {fileID: 344279161}
+  _hero2GOLD: {fileID: 1166018147}
+  _hero3GOLD: {fileID: 1189665691}
+  _hero4GOLD: {fileID: 1828262908}
+  _hero5GOLD: {fileID: 1374965448}
+  _hero6GOLD: {fileID: 970983393}
+  _heroItems_1: {fileID: 0}
+  _heroItems_2: {fileID: 0}
+  _heroItems_3: {fileID: 0}
+  _heroItems_4: {fileID: 0}
+  _heroItems_5: {fileID: 0}
+  _heroItems_6: {fileID: 0}
 --- !u!4 &196285797
 Transform:
   m_ObjectHideFlags: 0
@@ -2213,8 +2249,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.37999344, y: -0.5}
-  m_SizeDelta: {x: 5.59, y: 10.35}
+  m_AnchoredPosition: {x: 0.125, y: -0.095}
+  m_SizeDelta: {x: 11.345, y: 11.969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &200507219
 MonoBehaviour:
@@ -2269,7 +2305,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2299,7 +2335,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.072837956, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 200507219}
     characterCount: 1
@@ -2345,7 +2381,7 @@ GameObject:
   - component: {fileID: 202707984}
   - component: {fileID: 202707983}
   m_Layer: 5
-  m_Name: Hero6Sila
+  m_Name: Hero5Sila
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2363,7 +2399,7 @@ RectTransform:
   m_Children:
   - {fileID: 500067264}
   m_Father: {fileID: 1634544471}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2777,7 +2813,7 @@ GameObject:
   - component: {fileID: 301429626}
   - component: {fileID: 301429625}
   m_Layer: 5
-  m_Name: Hero6Moc
+  m_Name: Hero1Moc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2795,7 +2831,7 @@ RectTransform:
   m_Children:
   - {fileID: 908853310}
   m_Father: {fileID: 2119504150}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2846,7 +2882,7 @@ GameObject:
   - component: {fileID: 342796702}
   - component: {fileID: 342796701}
   m_Layer: 5
-  m_Name: "Hero6Punkty\u017Bycia"
+  m_Name: "Hero4Punkty\u017Bycia"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2864,7 +2900,7 @@ RectTransform:
   m_Children:
   - {fileID: 423061521}
   m_Father: {fileID: 906003221}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2936,8 +2972,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.80000496, y: -0.2}
-  m_SizeDelta: {x: 5.59, y: 10.35}
+  m_AnchoredPosition: {x: 0.19, y: -0.26}
+  m_SizeDelta: {x: 10.73, y: 14.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344279161
 MonoBehaviour:
@@ -2992,7 +3028,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3086,7 +3122,7 @@ Transform:
   m_LocalScale: {x: 80, y: -3, z: 50}
   m_Children: []
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!23 &357831837
 MeshRenderer:
@@ -3174,7 +3210,7 @@ RectTransform:
   - {fileID: 1183168220}
   - {fileID: 1634544471}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3242,7 +3278,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000061, y: 1.0000066, z: 1.0000066}
   m_Children: []
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3863,7 +3899,7 @@ GameObject:
   - component: {fileID: 492474590}
   - component: {fileID: 492474589}
   m_Layer: 5
-  m_Name: Hero6Moc
+  m_Name: Hero5Moc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3881,7 +3917,7 @@ RectTransform:
   m_Children:
   - {fileID: 952810483}
   m_Father: {fileID: 1634544471}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -4180,7 +4216,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d3198824f89d5d3479830d40cc4a3ff7, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d3198824f89d5d3479830d40cc4a3ff7, type: 3}
       propertyPath: m_LocalScale.x
@@ -4264,7 +4300,7 @@ RectTransform:
   - {fileID: 1365352797}
   - {fileID: 1849448670}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4482,7 +4518,7 @@ GameObject:
   - component: {fileID: 622591191}
   - component: {fileID: 622591190}
   m_Layer: 5
-  m_Name: Hero6Moc
+  m_Name: Hero4Moc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4500,7 +4536,7 @@ RectTransform:
   m_Children:
   - {fileID: 816582192}
   m_Father: {fileID: 906003221}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -4901,11 +4937,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1052399458}
   - {fileID: 1795929570}
   - {fileID: 1537792350}
-  - {fileID: 1052399458}
-  - {fileID: 1217768155}
   - {fileID: 1885169263}
+  - {fileID: 1217768155}
   m_Father: {fileID: 1569813257}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4958,7 +4994,7 @@ GameObject:
   - component: {fileID: 682545624}
   - component: {fileID: 682545623}
   m_Layer: 5
-  m_Name: Hero6Sila
+  m_Name: Hero1Sila
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4976,7 +5012,7 @@ RectTransform:
   m_Children:
   - {fileID: 32415728}
   m_Father: {fileID: 2119504150}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -5256,7 +5292,7 @@ RectTransform:
   - {fileID: 1084952166}
   - {fileID: 731953100}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5323,11 +5359,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1624638042}
   - {fileID: 188341316}
   - {fileID: 1058808723}
-  - {fileID: 1624638042}
-  - {fileID: 87286441}
   - {fileID: 990194294}
+  - {fileID: 87286441}
   m_Father: {fileID: 730196086}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5398,7 +5434,7 @@ RectTransform:
   m_Children:
   - {fileID: 1918792154}
   m_Father: {fileID: 1849448670}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5477,7 +5513,7 @@ GameObject:
   - component: {fileID: 764872363}
   - component: {fileID: 764872362}
   m_Layer: 5
-  m_Name: "Hero6Z\u0142oto"
+  m_Name: "Hero4Z\u0142oto"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5495,7 +5531,7 @@ RectTransform:
   m_Children:
   - {fileID: 1828262907}
   m_Father: {fileID: 906003221}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5615,7 +5651,7 @@ RectTransform:
   - {fileID: 70019957}
   - {fileID: 1072059019}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5649,7 +5685,7 @@ MonoBehaviour:
   piecePrefab: {fileID: 1800155370316318, guid: a3ab7504c9fa6844892988499bb3ae89,
     type: 2}
   playerName: {fileID: 401532957}
-  playerInformationPanel: {fileID: 1112117131}
+  playerInformationPanel: {fileID: 0}
   fieldDescription: {fileID: 1090987806}
   Hero1: {fileID: 21300000, guid: 0fdd795a226c3e04a8a31face74ea94e, type: 3}
   Hero2: {fileID: 21300000, guid: 49356471d1d9ca145a89b752396719af, type: 3}
@@ -5716,7 +5752,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5981,7 +6017,7 @@ RectTransform:
   - {fileID: 1049383162}
   - {fileID: 2041709152}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6650,7 +6686,7 @@ RectTransform:
   - {fileID: 861147211}
   - {fileID: 1026996915}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6871,11 +6907,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 342796700}
   - {fileID: 1712141453}
   - {fileID: 622591189}
-  - {fileID: 342796700}
-  - {fileID: 764872361}
   - {fileID: 119627436}
+  - {fileID: 764872361}
   m_Father: {fileID: 1513528483}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6949,8 +6985,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.42998123, y: 0.3}
-  m_SizeDelta: {x: 5.59, y: 10.35}
+  m_AnchoredPosition: {x: -0.012, y: -0.19}
+  m_SizeDelta: {x: 11.981, y: 12.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &908853311
 MonoBehaviour:
@@ -7005,7 +7041,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7789,7 +7825,7 @@ GameObject:
   - component: {fileID: 990194296}
   - component: {fileID: 990194295}
   m_Layer: 5
-  m_Name: Hero6Los
+  m_Name: Hero2Los
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7807,7 +7843,7 @@ RectTransform:
   m_Children:
   - {fileID: 1731333263}
   m_Father: {fileID: 731953100}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8664,7 +8700,7 @@ GameObject:
   - component: {fileID: 1052399460}
   - component: {fileID: 1052399459}
   m_Layer: 5
-  m_Name: "Hero6Punkty\u017Bycia"
+  m_Name: "Hero3Punkty\u017Bycia"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8682,7 +8718,7 @@ RectTransform:
   m_Children:
   - {fileID: 625949617}
   m_Father: {fileID: 644974636}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -8733,7 +8769,7 @@ GameObject:
   - component: {fileID: 1058808725}
   - component: {fileID: 1058808724}
   m_Layer: 5
-  m_Name: Hero6Moc
+  m_Name: Hero2Moc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8751,7 +8787,7 @@ RectTransform:
   m_Children:
   - {fileID: 631284525}
   m_Father: {fileID: 731953100}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -9328,7 +9364,7 @@ RectTransform:
   - {fileID: 1900856713}
   - {fileID: 1090987805}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9368,82 +9404,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096482669}
---- !u!1 &1112117129
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1112117130}
-  - component: {fileID: 1112117132}
-  - component: {fileID: 1112117131}
-  m_Layer: 5
-  m_Name: TextStatystki
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1112117130
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112117129}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.9999879}
-  m_LocalScale: {x: 0.3, y: 0.45, z: 0.2}
-  m_Children: []
-  m_Father: {fileID: 2027656290}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -243, y: 109.5}
-  m_SizeDelta: {x: -810, y: -410}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1112117131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112117129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 'Statystyki
-
-'
---- !u!222 &1112117132
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1112117129}
 --- !u!1 &1151249410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9474,7 +9434,7 @@ RectTransform:
   m_Children:
   - {fileID: 1576406954}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10291,7 +10251,7 @@ GameObject:
   - component: {fileID: 1203523884}
   - component: {fileID: 1203523883}
   m_Layer: 5
-  m_Name: "Hero6Z\u0142oto"
+  m_Name: "Hero5Z\u0142oto"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10309,7 +10269,7 @@ RectTransform:
   m_Children:
   - {fileID: 1374965447}
   m_Father: {fileID: 1634544471}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10360,7 +10320,7 @@ GameObject:
   - component: {fileID: 1217768157}
   - component: {fileID: 1217768156}
   m_Layer: 5
-  m_Name: "Hero6Z\u0142oto"
+  m_Name: "Hero3Z\u0142oto"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10378,7 +10338,7 @@ RectTransform:
   m_Children:
   - {fileID: 1189665690}
   m_Father: {fileID: 644974636}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10682,7 +10642,7 @@ Transform:
   m_LocalScale: {x: 30, y: 30, z: 20}
   m_Children: []
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1262177837
 GameObject:
@@ -10695,7 +10655,7 @@ GameObject:
   - component: {fileID: 1262177840}
   - component: {fileID: 1262177839}
   m_Layer: 5
-  m_Name: "Hero6Punkty\u017Bycia"
+  m_Name: "Hero5Punkty\u017Bycia"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10713,7 +10673,7 @@ RectTransform:
   m_Children:
   - {fileID: 263316660}
   m_Father: {fileID: 1634544471}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -11284,7 +11244,7 @@ RectTransform:
   m_Children:
   - {fileID: 1787507182}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11590,7 +11550,7 @@ GameObject:
   - component: {fileID: 1419910560}
   - component: {fileID: 1419910559}
   m_Layer: 5
-  m_Name: Hero6Los
+  m_Name: Hero5Los
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11608,7 +11568,7 @@ RectTransform:
   m_Children:
   - {fileID: 1715851286}
   m_Father: {fileID: 1634544471}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11687,7 +11647,7 @@ GameObject:
   - component: {fileID: 1481338341}
   - component: {fileID: 1481338340}
   m_Layer: 5
-  m_Name: Hero6Los
+  m_Name: Hero1Los
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11705,7 +11665,7 @@ RectTransform:
   m_Children:
   - {fileID: 2054087838}
   m_Father: {fileID: 2119504150}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11878,7 +11838,7 @@ RectTransform:
   - {fileID: 948031565}
   - {fileID: 906003221}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11957,7 +11917,7 @@ GameObject:
   - component: {fileID: 1537792352}
   - component: {fileID: 1537792351}
   m_Layer: 5
-  m_Name: Hero6Moc
+  m_Name: Hero3Moc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11975,7 +11935,7 @@ RectTransform:
   m_Children:
   - {fileID: 1041135421}
   m_Father: {fileID: 644974636}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -12283,7 +12243,7 @@ RectTransform:
   - {fileID: 184648745}
   - {fileID: 644974636}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12352,7 +12312,7 @@ RectTransform:
   m_Children:
   - {fileID: 1680782687}
   m_Father: {fileID: 1849448670}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -12602,7 +12562,7 @@ RectTransform:
   m_Children:
   - {fileID: 1854918606}
   m_Father: {fileID: 1849448670}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -12681,7 +12641,7 @@ GameObject:
   - component: {fileID: 1624638044}
   - component: {fileID: 1624638043}
   m_Layer: 5
-  m_Name: "Hero6Punkty\u017Bycia"
+  m_Name: "Hero2Punkty\u017Bycia"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12699,7 +12659,7 @@ RectTransform:
   m_Children:
   - {fileID: 1922222333}
   m_Father: {fileID: 731953100}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -12766,11 +12726,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1262177838}
   - {fileID: 202707982}
   - {fileID: 492474588}
-  - {fileID: 1262177838}
-  - {fileID: 1203523882}
   - {fileID: 1419910558}
+  - {fileID: 1203523882}
   m_Father: {fileID: 394881870}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13319,7 +13279,7 @@ RectTransform:
   m_Children:
   - {fileID: 970983392}
   m_Father: {fileID: 1849448670}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -13398,7 +13358,7 @@ GameObject:
   - component: {fileID: 1712141455}
   - component: {fileID: 1712141454}
   m_Layer: 5
-  m_Name: Hero6Sila
+  m_Name: Hero4Sila
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13416,7 +13376,7 @@ RectTransform:
   m_Children:
   - {fileID: 122582928}
   m_Father: {fileID: 906003221}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -14135,7 +14095,7 @@ GameObject:
   - component: {fileID: 1795929572}
   - component: {fileID: 1795929571}
   m_Layer: 5
-  m_Name: Hero6Sila
+  m_Name: Hero3Sila
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14153,7 +14113,7 @@ RectTransform:
   m_Children:
   - {fileID: 132573988}
   m_Father: {fileID: 644974636}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -14210,7 +14170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1813572026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14223,7 +14183,7 @@ RectTransform:
   m_Children:
   - {fileID: 140508945}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14489,7 +14449,7 @@ RectTransform:
   m_LocalScale: {x: 0.2, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14523,11 +14483,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1570608353}
   - {fileID: 1594129513}
   - {fileID: 2140799270}
-  - {fileID: 1570608353}
-  - {fileID: 1702875282}
   - {fileID: 733107981}
+  - {fileID: 1702875282}
   m_Father: {fileID: 562839543}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14733,7 +14693,7 @@ GameObject:
   - component: {fileID: 1885169265}
   - component: {fileID: 1885169264}
   m_Layer: 5
-  m_Name: Hero6Los
+  m_Name: Hero3Los
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14751,7 +14711,7 @@ RectTransform:
   m_Children:
   - {fileID: 93128520}
   m_Father: {fileID: 644974636}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -15713,7 +15673,6 @@ RectTransform:
   - {fileID: 1190367418}
   - {fileID: 460522929}
   - {fileID: 2122171759}
-  - {fileID: 1112117130}
   - {fileID: 357831836}
   - {fileID: 1835610235}
   - {fileID: 1813572026}
@@ -15896,8 +15855,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9, y: -0.7}
-  m_SizeDelta: {x: 5.59, y: 10.35}
+  m_AnchoredPosition: {x: -0.053, y: 0.08}
+  m_SizeDelta: {x: 10.791, y: 16.418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054087839
 MonoBehaviour:
@@ -15952,7 +15911,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -16044,11 +16003,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 139737009}
   - {fileID: 682545622}
   - {fileID: 301429624}
-  - {fileID: 139737009}
-  - {fileID: 112470295}
   - {fileID: 1481338339}
+  - {fileID: 112470295}
   m_Father: {fileID: 2139691132}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16243,7 +16202,7 @@ RectTransform:
   - {fileID: 569853418}
   - {fileID: 2119504150}
   m_Father: {fileID: 2027656290}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -16312,7 +16271,7 @@ RectTransform:
   m_Children:
   - {fileID: 1694154356}
   m_Father: {fileID: 1849448670}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
