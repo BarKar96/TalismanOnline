@@ -9,6 +9,7 @@
 #-------------------Spells----------------------------#
 2:spl:kula_ognia:get_spell:nospecial
 2:spl:zamiec:get_spell:nospeacial
+2:spl:lodowa_strzala:get_spell:nospecial
 #-------------------Enemies---------------------------#
 1:enm:pszczoly:strn@3:nospecial
 2:enm:tomasz:strn@7:powr@3:nospecial

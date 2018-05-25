@@ -15,6 +15,8 @@ public  class Combat : MonoBehaviour
     
 
     public List<GameObject> combatCardList = new List<GameObject>();
+    public List<GameObject> spellList = new List<GameObject>();
+
     public int rzut_Ataku_gracza = 0;
     public  int skutecznosc_Ataku_gracza = 0;
 
@@ -26,6 +28,10 @@ public  class Combat : MonoBehaviour
 
     public GameObject subPanel_enterCombat;
     private bool _subPanel_enterCombat_Opened    = false;
+
+    public GameObject subPanel_Spell;
+    private bool _subPanel_Spell_Opened = false;
+
 
     public Button ButtonOK;
     public TextMeshProUGUI textGracz;
@@ -63,6 +69,19 @@ public  class Combat : MonoBehaviour
             clearPlayerPanelView(combatCardList);
         }
     }
+    public void toggleSpellPanel()
+    {
+        _subPanel_Spell_Opened = !_subPanel_Spell_Opened;
+        setSubPanelVisibility(subPanel_Spell, _subPanel_Spell_Opened);
+        if (_subPanel_Spell_Opened == true)
+        {
+            CardDrawer.spawnPlayerSpells(p, "PanelZaklecWalki");
+        }
+        else
+        {
+            clearPlayerPanelView(CardDrawer.spellsListCombat);
+        }
+    }
     public void setSubPanelVisibility(GameObject subPanel, bool b)
     {
         if (subPanel != null)
@@ -77,6 +96,7 @@ public  class Combat : MonoBehaviour
         this.p = p;
         this.c = c;
 
+        
 
         textPrzebieg.text = "";
 
@@ -93,12 +113,12 @@ public  class Combat : MonoBehaviour
         combatCardList.Add(go1);
 
 
-        //zaklecia
+  
 
 
 
 
-        //porownanie skutecznosci ataku
+        
     }
     public IEnumerator rzuty()
     {
@@ -117,6 +137,10 @@ public  class Combat : MonoBehaviour
 
     public IEnumerator rozpocznijWalke()
     {
+        var spellListener = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
+
+        int spellDMG = spellListener.playerDMG;
+        toggleSpellPanel();
         turaGracza = true;
         turaIstoty = false;
         spawnCombatCards(p, c);
@@ -128,10 +152,10 @@ public  class Combat : MonoBehaviour
         //czekaj az spadnie druga kostka
         yield return new WaitForSeconds(10);
         //rzut ataku gracza
-        textPrzebieg.text = "";
+        
         textPrzebieg.text += "Gracz wyrzucił: " + rzut_Ataku_gracza;
-        skutecznosc_Ataku_gracza = rzut_Ataku_gracza + p.strength;
-        textPrzebieg.text += "\nSkuteczność ataku gracza: " + skutecznosc_Ataku_gracza;
+        skutecznosc_Ataku_gracza = rzut_Ataku_gracza + p.strength + spellDMG;
+        textPrzebieg.text += "\nSkuteczność ataku gracza: " + skutecznosc_Ataku_gracza ;
 
         //rzut ataku istoty
         textPrzebieg.text += "\n\nPrzeciwnik wyrzucił: " + rzut_Ataku_istoty;
@@ -168,14 +192,12 @@ public  class Combat : MonoBehaviour
         }
         else
         {
-            StartCoroutine(rozpocznijWalke());
+            toggleSpellPanel();
+            textPrzebieg.text += "Ucieczka nie powiodła się!" + "\n";
             toggleEnterCombatPanel();
         }
     }
-    public void uzyjZaklecia(Player p)
-    {
-        //CardDrawer.spawnPlayerSpells(p);
-    }
+
     public  int rzutAtaku()
     {
         System.Random rnd = new System.Random();
@@ -227,10 +249,19 @@ public  class Combat : MonoBehaviour
     {
         toggleCombatPanel();
     }
+    public void SpellOK_Button()
+    {
+        
+        StartCoroutine(rozpocznijWalke());
+    }
     public void Atakuj_Button()
     {
+        textPrzebieg.text += "Zaatakowałeś przeciwnika!" + "\n";
         toggleEnterCombatPanel();
-        StartCoroutine(rozpocznijWalke());
+        toggleSpellPanel();
+        CardDrawer.spawnPlayerSpells(p, "PanelZaklecWalki");
+
+       
     }
     public void Wymykanie_Button()
     {

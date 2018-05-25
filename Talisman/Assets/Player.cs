@@ -88,7 +88,15 @@ public class Player
                         this.getSpells().Add(cardsToIterate[current]);
                         break;
                     case card_type.ITEM:
-                        this.getItems().Add(cardsToIterate[current]);
+                        if (this.getItems().Count <8)
+                        {
+                            this.getItems().Add(cardsToIterate[current]);
+                        }
+                        else
+                        {
+                            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+                            go.showFullEQMessage();
+                        }
                         break;
 
                         //case event_type.ADD_COIN:
@@ -126,7 +134,7 @@ public class Player
             current++;
         }
     }
-
+   
     public List<Card> getCards()
     {
         return cardsToIterate;

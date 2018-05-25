@@ -195,7 +195,7 @@ public class Windows : MonoBehaviour {
         {
             case 1:
                 changeColor(_hero1HP, playerArray[0]);
-                _hero1HP.text = playerArray[0].current_health.ToString();
+                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
                 _hero1STR.text = playerArray[0].strength.ToString();
                 _hero1INT.text = playerArray[0].hero.power.ToString();
                 _hero1LOS.text = playerArray[0].hero.luck.ToString();
@@ -224,19 +224,19 @@ public class Windows : MonoBehaviour {
                 changeColor(_hero2HP, playerArray[1]);
                 changeColor(_hero3HP, playerArray[2]);
                 //player 1
-                _hero1HP.text = playerArray[0].current_health.ToString();
+                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
                 _hero1STR.text = playerArray[0].strength.ToString();
                 _hero1INT.text = playerArray[0].hero.power.ToString();
                 _hero1LOS.text = playerArray[0].hero.luck.ToString();
                 _hero1GOLD.text = playerArray[0].gold.ToString();
                 //player 2
-                _hero2HP.text = playerArray[1].current_health.ToString();
+                _hero2HP.text = (playerArray[1].current_health + playerArray[1].health_modifier).ToString();
                 _hero2STR.text = playerArray[1].strength.ToString();
                 _hero2INT.text = playerArray[1].hero.power.ToString();
                 _hero2LOS.text = playerArray[1].hero.luck.ToString();
                 _hero2GOLD.text = playerArray[1].gold.ToString();
                 //player 3
-                _hero3HP.text = playerArray[2].current_health.ToString();
+                _hero3HP.text = (playerArray[2].current_health + playerArray[2].health_modifier).ToString();
                 _hero3STR.text = playerArray[2].strength.ToString();
                 _hero3INT.text = playerArray[2].hero.power.ToString();
                 _hero3LOS.text = playerArray[2].hero.luck.ToString();

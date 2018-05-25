@@ -8,6 +8,7 @@ public static class CardDrawer
 {
     public static List<GameObject> itemsList = new List<GameObject>();
     public static List<GameObject> spellsList = new List<GameObject>();
+    public static List<GameObject> spellsListCombat = new List<GameObject>();
     public static List<GameObject> heroCardList = new List<GameObject>();
    
     public static int counter;
@@ -17,13 +18,13 @@ public static class CardDrawer
     {
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat = Resources.Load(name, typeof(Material)) as Material;
-        go.transform.localScale = new Vector3(0.8f, 0.2f, 1.2f);
+        go.transform.localScale = new Vector3(1.3f, 0.4f, 2f);
         go.transform.localRotation *= Quaternion.Euler(0, 180, 0);
         go.name = name;
        //Rigidbody gameObjectsRigidBody = go.AddComponent<Rigidbody>();
         go.transform.SetParent(GameObject.Find(panelName).transform);
-        Debug.Log(GameObject.Find(panelName).transform);
-        go.transform.localPosition = new Vector3(-330+counter,100-y,-2);
+        //Debug.Log(GameObject.Find(panelName).transform);
+        go.transform.localPosition = new Vector3(-330+counter,120-y,-2);
         go.GetComponent<Renderer>().material = newMat;
         
         if (panelName == "PanelEkwipunku")
@@ -34,8 +35,12 @@ public static class CardDrawer
         {
             spellsList.Add(go);
         }
-       
-        
+        if (panelName == "PanelZaklecWalki")
+        {
+            spellsListCombat.Add(go);
+        }
+
+
     }
 
     public static void spawnPlayerItems(Player p)
@@ -60,7 +65,7 @@ public static class CardDrawer
                     counter = 0;
                     help = 1;
                 }
-                CardDrawer.spawnCard(c.getName(),"PanelEkwipunku", counter, 220);
+                CardDrawer.spawnCard(c.getName(),"PanelEkwipunku", counter, 240);
                 
                 
             }
@@ -85,7 +90,7 @@ public static class CardDrawer
         heroCardList.Add(go);
     }
 
-    public static void spawnPlayerSpells(Player p)
+    public static void spawnPlayerSpells(Player p, string name)
     {
         CardDrawer.spellsList.Clear();
         counter = 0;
@@ -103,17 +108,19 @@ public static class CardDrawer
                     counter = 0;
                     help = 1;
                 }
-                CardDrawer.spawnCard(c.getName(), "PanelZaklec", counter, 220);
+                CardDrawer.spawnCard(c.getName(), name, counter, 220);
 
             }
             else
             {
-                CardDrawer.spawnCard(c.getName(), "PanelZaklec", counter, 0);
+                CardDrawer.spawnCard(c.getName(), name, counter, 0);
             }
             counter += 200;
             temp++;
         }
         //////////////
     }
-   
+
+
+
 }

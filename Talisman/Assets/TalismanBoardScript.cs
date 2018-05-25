@@ -25,7 +25,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     public TextMeshProUGUI playerName;
 
-    public Text playerInformationPanel;
+    public Text zaDuzoPrzedmiotow;
     public TextMeshProUGUI fieldDescription;
 
     Combat combat;
@@ -44,6 +44,8 @@ public class TalismanBoardScript : MonoBehaviour
     private bool _subPanel_Spells_Opened = false;
 
     Windows windows;
+
+    
 
     /// <summary>
     /// //////////////////////////////////////////////////////////////
@@ -65,6 +67,15 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
+        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
+        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
+
+
+        playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+        playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
+
+
         playerArray[1].current_health = 1;
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
@@ -352,8 +363,8 @@ public class TalismanBoardScript : MonoBehaviour
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
-        showHeroName();
-        showHeroStatistics();
+        //showHeroName();
+        //showHeroStatistics();
         //showHeroCards();
 
 
@@ -398,8 +409,8 @@ public class TalismanBoardScript : MonoBehaviour
         
 
 
-        showHeroName();
-        showHeroStatistics();
+        //showHeroName();
+        //showHeroStatistics();
         //showHeroCards();
 
 
@@ -431,8 +442,8 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[playerIndex].getCards().Clear();
 
 
-        showHeroName();
-        showHeroStatistics();
+        //showHeroName();
+        //showHeroStatistics();
         //showHeroCards();
 
     }
@@ -470,7 +481,7 @@ public class TalismanBoardScript : MonoBehaviour
         setSubPanelVisibility(subPanel_Spells, _subPanel_Spells_Opened);
         if (_subPanel_Spells_Opened == true)
         {
-            CardDrawer.spawnPlayerSpells(playerArray[playerIndex]);
+            CardDrawer.spawnPlayerSpells(playerArray[playerIndex], "PanelZaklec");
         }
         else
         {
@@ -490,31 +501,31 @@ public class TalismanBoardScript : MonoBehaviour
     /// <summary>
     /// /////////////////////////////////UI/////////////////////////////////////////////////
     /// </summary>
-    public void showHeroName()
-    {
-        //playerInformationPanel.color = Color.white;
-        //playerInformationPanel.transform.position += new Vector3(0, 0, -4);
-        playerName.text = playerArray[playerIndex].name;
-        playerInformationPanel.text = "Tura gracza: ";
+    //public void showHeroName()
+    //{
+    //    //playerInformationPanel.color = Color.white;
+    //    //playerInformationPanel.transform.position += new Vector3(0, 0, -4);
+    //    playerName.text = playerArray[playerIndex].name;
+    //    playerInformationPanel.text = "Tura gracza: ";
         
-    }
-    public void showHeroStatistics()
-    {
-        playerInformationPanel.text += "\nHero Type: " + playerArray[playerIndex].hero.name;
-        playerInformationPanel.text += "\nStrength: " + playerArray[playerIndex].strength;
-        //text.text += "\nPower: " + playerArray[playerIndex].power;        
-        playerInformationPanel.text += "\nHP: " + playerArray[playerIndex].current_health + "/" + playerArray[playerIndex].total_health;
-        playerInformationPanel.text += "\nGold: " + playerArray[playerIndex].gold;
-    }
-    public void showHeroCards()
-    {
-        playerInformationPanel.text += "\nCards:" + playerArray[playerIndex].getItems().Count;
-        foreach (Card c in playerArray[playerIndex].getCards())
-        {
-            playerInformationPanel.text += "\n" + Enum.GetName(typeof(card_type), c.getCard_Type());
-            Debug.Log(Enum.GetName(typeof(card_type), card_type.ITEM));
-        }
-    }
+    //}
+    //public void showHeroStatistics()
+    //{
+    //    playerInformationPanel.text += "\nHero Type: " + playerArray[playerIndex].hero.name;
+    //    playerInformationPanel.text += "\nStrength: " + playerArray[playerIndex].strength;
+    //    //text.text += "\nPower: " + playerArray[playerIndex].power;        
+    //    playerInformationPanel.text += "\nHP: " + playerArray[playerIndex].current_health + "/" + playerArray[playerIndex].total_health;
+    //    playerInformationPanel.text += "\nGold: " + playerArray[playerIndex].gold;
+    //}
+    //public void showHeroCards()
+    //{
+    //    playerInformationPanel.text += "\nCards:" + playerArray[playerIndex].getItems().Count;
+    //    foreach (Card c in playerArray[playerIndex].getCards())
+    //    {
+    //        playerInformationPanel.text += "\n" + Enum.GetName(typeof(card_type), c.getCard_Type());
+    //        Debug.Log(Enum.GetName(typeof(card_type), card_type.ITEM));
+    //    }
+    //}
     public void showFieldDescription()
     {
         //fieldDescription.color = Color.white;
@@ -523,7 +534,16 @@ public class TalismanBoardScript : MonoBehaviour
     }
 
 
-
+    public IEnumerator messager(string message)
+    {
+        zaDuzoPrzedmiotow.text = message;
+        yield return new WaitForSeconds(2);
+        zaDuzoPrzedmiotow.text = "";
+    }
+    public void showFullEQMessage()
+    {
+        StartCoroutine(messager("Masz zbyt wiele przedmiotów,aby podnieść kolejny!"));
+    }
     /// <summary>
     /// /////////////////////////////////MAIN/////////////////////////////////////////////////
     /// </summary>
