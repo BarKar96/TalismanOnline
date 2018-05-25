@@ -64,7 +64,8 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
-        playerArray[1].getItems().Add(new Card("karta3", card_type.ITEM, new event_type[] { }));
+        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+        playerArray[1].current_health = 1;
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
         for (int i = 0; i < playersCounter; i++)
         {

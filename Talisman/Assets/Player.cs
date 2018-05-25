@@ -24,6 +24,10 @@ public class Player
     public int current_health;
     public int strength;
 
+    //modyfikacje
+    public int strength_modifier = 0;
+    public int health_modifier = 0;
+
 
     public bool outerRing { get; set; }
     public bool middleRing { get; set; }
@@ -53,6 +57,7 @@ public class Player
         System.Random rnd = new System.Random();
         diceResult = rnd.Next(1, 6);
     }
+
 
     public void iterate_cards()
     {

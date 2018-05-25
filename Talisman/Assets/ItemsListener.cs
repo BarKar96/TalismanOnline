@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ItemsListener : MonoBehaviour
 {
+    public Text text;
     public void useItem(string name)
     {
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
@@ -18,21 +19,36 @@ public class ItemsListener : MonoBehaviour
         {
 
         }
-        else if (c.getName().Equals("zbroja"))
+        else if (c.itemType == item_type.CONSUMABLE)
         {
-            tempPlayerArray[tempPlayerIndex].current_health += c.getSpecialCardEvents()[0].get_roll()[0];
+            if (!(tempPlayerArray[tempPlayerIndex].current_health == tempPlayerArray[tempPlayerIndex].total_health))
+            {
+                tempPlayerArray[tempPlayerIndex].current_health += c.getSpecialCardEvents()[0].get_roll()[0];
+                tempPlayerArray[tempPlayerIndex].getItems().Remove(c);
+                go.Items_Button();
+                go.Items_Button();
+                StartCoroutine(messager("użyto przedmiotu: " + c.getName()));               
+            }
         }
-        else if (c.getName().Equals("miecz"))
+        else if (c.itemType == item_type.WEAPON)
         {
-            tempPlayerArray[tempPlayerIndex].strength += c.getSpecialCardEvents()[0].get_roll()[0];
+            
+            tempPlayerArray[tempPlayerIndex].strength_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            StartCoroutine(messager("założono broń: " + c.getName()));
         }
-        
-        Debug.Log(tempPlayerArray[tempPlayerIndex].current_health + " " + tempPlayerArray[tempPlayerIndex].strength);
-
-
-       
+        else if (c.itemType == item_type.ARMOR)
+        {
+            tempPlayerArray[tempPlayerIndex].health_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            StartCoroutine(messager("założono zbroję: " + c.getName()));
+        }
     }
-   
+    public IEnumerator messager(string message)
+    {
+        text.text = message;
+        yield return new WaitForSeconds(2);
+        text.text = "";
+    }
+
     // Update is called once per frame
     void Update ()
     {
