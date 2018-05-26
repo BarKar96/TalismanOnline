@@ -7,6 +7,8 @@ using TMPro;
 
 public  class Combat : MonoBehaviour
 {
+    TalismanBoardScript tal;
+
     Player p;
     Card c;
 
@@ -188,7 +190,8 @@ public  class Combat : MonoBehaviour
         Debug.Log(x);
         if (x>3)
         {
-            toggleEnterCombatPanel();
+            subPanel_enterCombat.SetActive(false);
+            tal.buttonSetNextTurnButtonOn();
         }
         else
         {

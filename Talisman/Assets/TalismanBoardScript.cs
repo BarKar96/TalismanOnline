@@ -30,6 +30,9 @@ public class TalismanBoardScript : MonoBehaviour
 
     Combat combat;
 
+    public Button combatButton;
+    public Button nextTurnButton;
+
     public Sprite Hero1;
     public Sprite Hero2;
     public Sprite Hero3;
@@ -180,7 +183,7 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 12:
-                    outerRing[i].fieldEvent = new Card("Wioska", card_type.BOARDFIELD, new event_type[] { }, "Możesz odwiedzić kowala, medyka lub mistyka. Kowal: (możesz zakupić za złoto przedmioty: Hełm [2 SZ], Miecz [2 SZ], Topór [3 SZ], Tarczę [3 SZ], Zbroję [4 SZ], Medyk odzyskujesz 1 punkt zdrowia za 1 sztuke złota, Mistyk (Rzucasz kostką jeśli wypadnie: (1) Stajesz się zły. (2-3) Nic się nie dzieje. (4) Stajesz się dobry. (5) Otrzymujesz jeden punkt mocy. (6) Otrzymujesz 1 zaklęcie.");
+                    outerRing[i].fieldEvent = new Card("Wioska", card_type.BOARDFIELD, new event_type[] { }, "Możesz odwiedzić kowala, medyka lub mistyka. Kowal: (możesz zakupić za złoto przedmioty: Hełm [2 SZ], Miecz [2 SZ], Topór [3 SZ], Tarczę [3 SZ], Zbroję [4 SZ], Medyk odzyskujesz 1 punkt zdrowia za 1 sztuke złota, Mistyk (Rzucasz kostką jeśli wypadnie: (1) Tracisz jeden punkt życia bo otrzymujesz czarem rykoszetem. (2-4) Nic się nie dzieje. (5) Otrzymujesz jeden punkt mocy. (6) Otrzymujesz 1 zaklęcie.");
                     break;
                 case 13:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -404,15 +407,16 @@ public class TalismanBoardScript : MonoBehaviour
         cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
 
         playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
-        playerArray[playerIndex].iterate_cards();
-        playerArray[playerIndex].getCards().Clear();
-        
+        //playerArray[playerIndex].iterate_cards();
+        //playerArray[playerIndex].getCards().Clear();
+
 
 
         //showHeroName();
         //showHeroStatistics();
         //showHeroCards();
 
+        buttonCombat();
 
 
     }
@@ -437,11 +441,11 @@ public class TalismanBoardScript : MonoBehaviour
         //{
         //    playerArray[playerIndex].getCards().Add(c);
         //}
+        //playerArray[playerIndex].iterate_cards();
+        //playerArray[playerIndex].getCards().Clear();
 
-        playerArray[playerIndex].iterate_cards();
-        playerArray[playerIndex].getCards().Clear();
 
-
+        buttonCombat();
         //showHeroName();
         //showHeroStatistics();
         //showHeroCards();
@@ -488,9 +492,29 @@ public class TalismanBoardScript : MonoBehaviour
             clearPlayerPanelView(CardDrawer.spellsList);
         }
     }
-   
-
-
+    //Button walki z graczem
+    public void buttonCombat()
+    {
+        for (int counterOfPlayer = 0; counterOfPlayer < playerArray.Length; counterOfPlayer++)
+        {
+            if (playerArray[counterOfPlayer] == playerArray[playerIndex]) continue;
+            else if (playerArray[counterOfPlayer].playerPiece.indexOfField == playerArray[playerIndex].playerPiece.indexOfField)
+            {
+                combatButton.gameObject.SetActive(true);
+                break;
+            }
+            else combatButton.gameObject.SetActive(false);
+        }
+    }
+    public void buttonExplore()
+    {
+        playerArray[playerIndex].iterate_cards();
+        playerArray[playerIndex].getCards().Clear();
+    }
+    public void buttonSetNextTurnButtonOn()
+    {
+        nextTurnButton.gameObject.SetActive(true);
+    }
 
     // przejscie do kolejnej tury
     public void nextTurn_Button()
@@ -563,6 +587,5 @@ public class TalismanBoardScript : MonoBehaviour
     }
     void Update()
     {
-        
     }
 }
