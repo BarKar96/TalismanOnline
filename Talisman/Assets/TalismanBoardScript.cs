@@ -91,7 +91,9 @@ public class TalismanBoardScript : MonoBehaviour
             GeneratePiece(i);
         }
         windows.wstawPortret(playerArray);
-       // deckOfCards.listCards();
+        playerName.text = playerArray[playerIndex].name;
+        windows.setCursor(playerIndex);
+        // deckOfCards.listCards();
     }
     private int rollDice()
     {
@@ -370,6 +372,8 @@ public class TalismanBoardScript : MonoBehaviour
         //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
         Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
+        
+        
 
         //showHeroName();
         //showHeroStatistics();
@@ -512,6 +516,18 @@ public class TalismanBoardScript : MonoBehaviour
             else combatButton.gameObject.SetActive(false);
         }
     }
+    public void buttonCombat2()
+    {
+        for (int counterOfPlayer = 0; counterOfPlayer < playerArray.Length; counterOfPlayer++)
+        {
+            if (playerArray[counterOfPlayer] == playerArray[playerIndex]) continue;
+            else if (playerArray[counterOfPlayer].playerPiece.indexOfField == playerArray[playerIndex].playerPiece.indexOfField)
+            {
+                combat.StartCombat(playerArray[counterOfPlayer], playerArray[playerIndex]);
+                break;
+            }
+        }
+    }
     public void buttonExplore()
     {
         playerArray[playerIndex].iterate_cards();
@@ -535,7 +551,7 @@ public class TalismanBoardScript : MonoBehaviour
     //{
     //    //playerInformationPanel.color = Color.white;
     //    //playerInformationPanel.transform.position += new Vector3(0, 0, -4);
-    //    playerName.text = playerArray[playerIndex].name;
+    //    
     //    playerInformationPanel.text = "Tura gracza: ";
         
     //}
@@ -584,9 +600,15 @@ public class TalismanBoardScript : MonoBehaviour
         GenerateBoard();
         playerIndex = 0;
         nextTurn();
-        
+        playerName.text = playerArray[playerIndex].name;
+        Debug.Log("pozycja gracza w kolejce " + playerIndex);
+        windows.setCursor(playerIndex);
+
     }
     void Update()
     {
+        playerName.text = playerArray[playerIndex].name;
+        Debug.Log("pozycja gracza w kolejce " + playerIndex);
+        windows.setCursor(playerIndex);
     }
 }

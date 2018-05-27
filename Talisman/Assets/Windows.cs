@@ -102,6 +102,52 @@ public class Windows : MonoBehaviour {
     public GameObject _heroPanel5;
     public GameObject _heroPanel6;
 
+    public TextMeshProUGUI _heroName1;
+    public TextMeshProUGUI _heroName2;
+    public TextMeshProUGUI _heroName3;
+    public TextMeshProUGUI _heroName4;
+    public TextMeshProUGUI _heroName5;
+    public TextMeshProUGUI _heroName6;
+
+    public void heroNames(Player[] playerArray)
+    {
+        switch(playerArray.Length)
+        {
+            case 1:
+                _heroName1.text = playerArray[0].name;
+                break;
+            case 2:
+                _heroName1.text = playerArray[0].name;
+                _heroName2.text = playerArray[1].name;
+                break;
+            case 3:
+                _heroName1.text = playerArray[0].name;
+                _heroName2.text = playerArray[1].name;
+                _heroName3.text = playerArray[2].name;
+                break;
+            case 4:
+                _heroName1.text = playerArray[0].name;
+                _heroName2.text = playerArray[1].name;
+                _heroName3.text = playerArray[2].name;
+                _heroName4.text = playerArray[3].name;
+                break;
+            case 5:
+                _heroName1.text = playerArray[0].name;
+                _heroName2.text = playerArray[1].name;
+                _heroName3.text = playerArray[2].name;
+                _heroName4.text = playerArray[3].name;
+                _heroName5.text = playerArray[4].name;
+                break;
+            case 6:
+                _heroName1.text = playerArray[0].name;
+                _heroName2.text = playerArray[1].name;
+                _heroName3.text = playerArray[2].name;
+                _heroName4.text = playerArray[3].name;
+                _heroName5.text = playerArray[4].name;
+                _heroName6.text = playerArray[5].name;
+                break;
+        }
+    }
     public void SpawnPlayers(int x)
     {
         switch (x)
@@ -191,6 +237,7 @@ public class Windows : MonoBehaviour {
     }
     public void UpdateStatsToText(Player[] playerArray)
     {
+        heroNames(playerArray);
         switch (playerArray.Length)
         {
             case 1:
@@ -363,7 +410,45 @@ public class Windows : MonoBehaviour {
     public Button _heroItems_3;
     public Button _heroItems_4;
     public Button _heroItems_5;
-    public Button _heroItems_6;    
+    public Button _heroItems_6;
+    #region Kogo Tura
+    public GameObject Arrow1;
+    public GameObject Arrow2;
+    public GameObject Arrow3;
+    public GameObject Arrow4;
+    public GameObject Arrow5;
+    public GameObject Arrow6;
+    public void setCursor(int current)
+    {
+        Arrow1.SetActive(false);
+        Arrow2.SetActive(false);
+        Arrow3.SetActive(false);
+        Arrow4.SetActive(false);
+        Arrow5.SetActive(false);
+        Arrow6.SetActive(false);
+        switch (current)
+        {
+            case 0:
+                Arrow1.SetActive(true);
+                break;
+            case 1:
+                Arrow2.SetActive(true);
+                break;
+            case 2:
+                Arrow3.SetActive(true);
+                break;
+            case 3:
+                Arrow4.SetActive(true);
+                break;
+            case 4:
+                Arrow5.SetActive(true);
+                break;
+            case 5:
+                Arrow6.SetActive(true);
+                break;
+        }
+    }
+    #endregion
     /*public void PlayerItems(Player [] playerArray,int index)
     {
         CardDrawer.spawnPlayerItems(playerArray[index]);
