@@ -23,12 +23,24 @@ public class SpellListener : MonoBehaviour
 
         if (c != null)
         {
-            playerDMG += 10;
-            tempPlayerArray[tempPlayerIndex].getSpells().Remove(c);
-            temp.toggleSpellPanel();
-            temp.toggleSpellPanel();
+            if(!temp.player1SpellsDone)
+            {
+                playerDMG += 10;
+                temp.player1.getSpells().Remove(c);
+                temp.toggleSpellPanel(temp.player1);
+                temp.toggleSpellPanel(temp.player1);
+               
+            }
+            else
+            {
+                opponentDMG += 10;
+                temp.player2.getSpells().Remove(c);
+                temp.toggleSpellPanel(temp.player2);
+                temp.toggleSpellPanel(temp.player2);
+            }
             StartCoroutine(messager("Użyto zaklęcia: " + c.getName()));
-            temp.textPrzebieg.text += "Użyto zaklęcia: " + c.getName() + "\n"; 
+            temp.textPrzebieg.text += "Użyto zaklęcia: " + c.getName() + "\n";
+
 
 
         }
@@ -40,7 +52,7 @@ public class SpellListener : MonoBehaviour
     public IEnumerator messager(string message)
     {
         text.text = message;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         text.text = "";
     }
 

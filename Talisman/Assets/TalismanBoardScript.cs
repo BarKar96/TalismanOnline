@@ -75,8 +75,13 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
 
 
-        playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
         playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
+        playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
+
+        playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+        playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+        playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+
 
 
         playerArray[1].current_health = 1;
@@ -407,6 +412,7 @@ public class TalismanBoardScript : MonoBehaviour
         cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
 
         playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        //combat.StartCombat(playerArray[playerIndex], playerArray[0]);
         //playerArray[playerIndex].iterate_cards();
         //playerArray[playerIndex].getCards().Clear();
 
@@ -579,11 +585,6 @@ public class TalismanBoardScript : MonoBehaviour
         playerIndex = 0;
         nextTurn();
         
-    }
-    void OnMouseDown()
-    {
-        // this object was clicked - do something
-        Destroy(this.gameObject);
     }
     void Update()
     {

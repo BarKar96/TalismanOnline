@@ -6199,6 +6199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d4b4ddbaaf93348b49cd868deea4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player2SpellsDone: 0
+  player1SpellsDone: 0
   turaIstoty: 0
   turaGracza: 1
   combatCardList: []
@@ -16180,7 +16182,7 @@ GameObject:
   - component: {fileID: 1922545524}
   - component: {fileID: 1922545523}
   m_Layer: 5
-  m_Name: BurronZbadajTeren
+  m_Name: ButtonZbadajTeren
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
