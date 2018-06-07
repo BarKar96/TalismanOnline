@@ -333,6 +333,8 @@ public class TalismanBoardScript : MonoBehaviour
         go.transform.SetParent(transform);
         go.transform.localScale += new Vector3(20, 20, 20);
         Piece p = go.GetComponent<Piece>();
+
+
         playerArray[i].playerPiece = p;
         MovePieceToStartLocation(p, i);
         return p;
@@ -542,6 +544,9 @@ public class TalismanBoardScript : MonoBehaviour
     public void nextTurn_Button()
     {
         nextTurn();
+        playerName.text = playerArray[playerIndex].name;
+        Debug.Log("pozycja gracza w kolejce " + playerIndex);
+        windows.setCursor(playerIndex);
     }
 
     /// <summary>
@@ -607,8 +612,9 @@ public class TalismanBoardScript : MonoBehaviour
     }
     void Update()
     {
-        playerName.text = playerArray[playerIndex].name;
+        /*playerName.text = playerArray[playerIndex].name;
         Debug.Log("pozycja gracza w kolejce " + playerIndex);
         windows.setCursor(playerIndex);
+        */
     }
 }
