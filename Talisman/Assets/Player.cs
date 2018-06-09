@@ -113,11 +113,17 @@ public class Player
                         combat.StartCombat(this, cardsToIterate[current]);
                         break;
                     case card_type.SPELL:
+                        //var k = GameObject.Find("Komunikat");
+                       // k.SetActive(true);
+                        //CardDrawer.spawnCard(cardsToIterate[current].getName(), "Komunikat", 0, 0);
                         this.getSpells().Add(cardsToIterate[current]);
                         break;
                     case card_type.ITEM:
                         if (this.getItems().Count <8)
                         {
+                           // var ki = GameObject.Find("Komunikat");
+                            //ki.SetActive(true);
+                            //CardDrawer.spawnCard(cardsToIterate[current].getName(), "Komunikat", 0, 0);
                             this.getItems().Add(cardsToIterate[current]);
                         }
                         else

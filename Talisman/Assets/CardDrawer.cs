@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public static class CardDrawer
 {
+    public static List<GameObject> komunikatList = new List<GameObject>();
     public static List<GameObject> itemsList = new List<GameObject>();
     public static List<GameObject> spellsList = new List<GameObject>();
     public static List<GameObject> spellsListCombat = new List<GameObject>();
@@ -38,6 +39,12 @@ public static class CardDrawer
         if (panelName == "PanelZaklecWalki")
         {
             spellsListCombat.Add(go);
+        }
+        if (panelName == "Komunikat")
+        {
+            komunikatList.Add(go);
+         
+            go.transform.localPosition = new Vector3(0,25,-2);
         }
 
 
