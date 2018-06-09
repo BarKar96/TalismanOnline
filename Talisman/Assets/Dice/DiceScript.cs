@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DiceScript : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class DiceScript : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
-        Debug.Log("St");
-        //roll();
        
     }
     public void roll()

@@ -25,7 +25,7 @@ public class SpellListener : MonoBehaviour
         {
             if(!temp.player1SpellsDone)
             {
-                playerDMG += 10;
+                playerDMG += c.strength;
                 temp.player1.getSpells().Remove(c);
                 temp.toggleSpellPanel(temp.player1);
                 temp.toggleSpellPanel(temp.player1);

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ItemsListener : MonoBehaviour
 {
     public Text text;
+    public Text bron;
+    public Text zbroja;
     public void useItem(string name)
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
@@ -28,8 +30,9 @@ public class ItemsListener : MonoBehaviour
                 tempPlayerArray[tempPlayerIndex].getItems().Remove(c);
                 tbs.Items_Button();
                 tbs.Items_Button();
+              
+                StartCoroutine(messager("użyto przedmiotu: " + c.getName()));   
                 
-                StartCoroutine(messager("użyto przedmiotu: " + c.getName()));      
                 
             }
         }
@@ -37,12 +40,18 @@ public class ItemsListener : MonoBehaviour
         {
             
             tempPlayerArray[tempPlayerIndex].strength_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            bron.text = "Założona broń: \n" + c.getName();
             StartCoroutine(messager("założono broń: " + c.getName()));
+
+           
+
         }
         else if (c.itemType == item_type.ARMOR)
         {
             tempPlayerArray[tempPlayerIndex].health_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            zbroja.text = "Założony pancerz: \n"+ c.getName();
             StartCoroutine(messager("założono zbroję: " + c.getName()));
+            
         }
         windows.UpdateStatsToText(tempPlayerArray);
     }
@@ -61,11 +70,13 @@ public class ItemsListener : MonoBehaviour
 
                 tempPlayerArray[tempPlayerIndex].strength_modifier = 0;
                 StartCoroutine(messager("zdjęto broń: " + c.getName()));
+                bron.text = "Założona broń: \n";
             }
             else if (c.itemType == item_type.ARMOR)
             {
                 tempPlayerArray[tempPlayerIndex].health_modifier = 0;
                 StartCoroutine(messager("zdjęto zbroję: " + c.getName()));
+                zbroja.text = "Założony pancerz: \n";
             }
             windows.UpdateStatsToText(tempPlayerArray);
         }
@@ -97,6 +108,7 @@ public class ItemsListener : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

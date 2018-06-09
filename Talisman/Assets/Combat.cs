@@ -38,6 +38,9 @@ public  class Combat : MonoBehaviour
     public GameObject subPanel_Spell;
     private bool _subPanel_Spell_Opened = false;
 
+    public GameObject subPanel_Reward;
+    private bool _subPanel_Reward_Opened = false;
+
 
     public Button ButtonOK;
     public TextMeshProUGUI textGracz;
@@ -49,14 +52,16 @@ public  class Combat : MonoBehaviour
 
     public void reset()
     {
-      player1 = null;
-      player2 = null;
-      player2SpellsDone = false;
-      player1SpellsDone = false;
-      c = null;
-      turaIstoty = false;
-      turaGracza = true;
-}
+        
+        
+        player1 = null;
+        player2 = null;
+        player2SpellsDone = false;
+        player1SpellsDone = false;
+        c = null;
+        turaIstoty = false;
+        turaGracza = true;
+    }
     public void toggleEnterCombatPanel()
     {
         
@@ -94,10 +99,25 @@ public  class Combat : MonoBehaviour
             var sl = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
             sl.text.text = "";
             CardDrawer.spawnPlayerSpells(player, "PanelZaklecWalki");
+            sl.text.text = "Panel zaklęć gracza: " + player.name ;
         }
         else
         {
             clearPlayerPanelView(CardDrawer.spellsListCombat);
+        }
+    }
+    public void toggleRewardPanel(Player player)
+    {
+        _subPanel_Reward_Opened = !_subPanel_Reward_Opened;
+        setSubPanelVisibility(subPanel_Reward, _subPanel_Reward_Opened);
+        if (_subPanel_Spell_Opened == true)
+        {
+            
+            CardDrawer.spawnPlayerItems(player,"PanelWyboruNagrody");
+        }
+        else
+        {
+            clearPlayerPanelView(CardDrawer.itemsList);
         }
     }
     public void setSubPanelVisibility(GameObject subPanel, bool b)
@@ -222,6 +242,12 @@ public  class Combat : MonoBehaviour
         {
             //istota zostala pokonana wyczyszczenie pola planszy z tej kart;
             textPrzebieg.text += "\n\nPrzeciwnik pokonany! ";
+            if (player2 != null)
+            {
+                player2.current_health--;
+
+            }
+
 
         }
         else if (skutecznosc_Ataku_gracza < skutecznosc_Ataku_istoty)
@@ -373,9 +399,12 @@ public  class Combat : MonoBehaviour
         textPrzebieg.text += "Zaatakowałeś przeciwnika!" + "\n";
         toggleEnterCombatPanel();
         toggleSpellPanel(player1);
+        var sl = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
+        sl.opponentDMG = 0;
+        sl.playerDMG = 0;
         //CardDrawer.spawnPlayerSpells(player1, "PanelZaklecWalki");
 
-       
+
     }
     public void Wymykanie_Button()
     {

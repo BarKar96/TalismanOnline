@@ -419,7 +419,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
         //combat.StartCombat(playerArray[playerIndex], playerArray[0]);
-        //playerArray[playerIndex].iterate_cards();
+        playerArray[playerIndex].iterate_cards();
         //playerArray[playerIndex].getCards().Clear();
 
 
@@ -475,7 +475,7 @@ public class TalismanBoardScript : MonoBehaviour
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
         if (_subPanel_Items_Opened == true)
         {
-            CardDrawer.spawnPlayerItems(playerArray[playerIndex]);
+            CardDrawer.spawnPlayerItems(playerArray[playerIndex],"PanelEkwipunku");
         }
         else
         {

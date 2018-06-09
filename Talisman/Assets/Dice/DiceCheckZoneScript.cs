@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DiceCheckZoneScript : MonoBehaviour
 {
     public int result = 0;
-
+    public Button btnright;
+    public Button btnleft;
     Vector3 diceVelocity;
 
     // Update is called once per frame

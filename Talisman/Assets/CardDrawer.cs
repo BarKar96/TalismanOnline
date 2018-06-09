@@ -43,7 +43,7 @@ public static class CardDrawer
 
     }
 
-    public static void spawnPlayerItems(Player p)
+    public static void spawnPlayerItems(Player p, string name)
     {
         CardDrawer.itemsList.Clear();
         counter = 0;
@@ -52,12 +52,6 @@ public static class CardDrawer
         //////////////       
         foreach (Card c in p.getItems())
         {
-            //if (c.equipable == true)
-            //{
-            //    var go = GameObject.Find("Slider1").GetComponent<Slider>();
-            //    Debug.Log("znalazlem");
-            //    go.gameObject.SetActive(true);
-            //}
             if (temp > 3)
             {
                 if (help == 0)
@@ -65,15 +59,15 @@ public static class CardDrawer
                     counter = 0;
                     help = 1;
                 }
-                CardDrawer.spawnCard(c.getName(),"PanelEkwipunku", counter, 240);
+                CardDrawer.spawnCard(c.getName(),name, counter, 240);
                 
                 
             }
             else
             {
-                CardDrawer.spawnCard(c.getName(), "PanelEkwipunku", counter, 0);
+                CardDrawer.spawnCard(c.getName(), name, counter, 0);
             }
-            counter+=200;
+            counter+=150;
             temp++;
         }
         //////////////
