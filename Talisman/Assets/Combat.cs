@@ -241,10 +241,11 @@ public  class Combat : MonoBehaviour
         if (skutecznosc_Ataku_gracza > skutecznosc_Ataku_istoty)
         {
             //istota zostala pokonana wyczyszczenie pola planszy z tej kart;
-            textPrzebieg.text += "\n\nPrzeciwnik pokonany! ";
+            textPrzebieg.text += "\n\n Udało ci się pokonać stwora!";
             if (player2 != null)
             {
                 player2.current_health--;
+                textPrzebieg.text += "\n\n" + player1.name + " wygrał! ";
 
             }
 
@@ -252,8 +253,18 @@ public  class Combat : MonoBehaviour
         }
         else if (skutecznosc_Ataku_gracza < skutecznosc_Ataku_istoty)
         {
-            textPrzebieg.text += "\n\nPonosisz porażkę! ";
+            
             player1.current_health--;
+            if (player2 != null)
+            {
+                textPrzebieg.text += "\n\n" + player2.name + " wygrał! ";
+                
+
+            }
+            else
+            {
+                textPrzebieg.text += "\n\n Ponosisz porażkę!";
+            }
 
         }
         else if (skutecznosc_Ataku_gracza == skutecznosc_Ataku_istoty)

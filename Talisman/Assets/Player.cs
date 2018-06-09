@@ -27,6 +27,8 @@ public class Player
     //modyfikacje
     public int strength_modifier = 0;
     public int health_modifier = 0;
+    public Card armor = null;
+    public Card weapon = null;
 
 
     public bool outerRing { get; set; }
@@ -56,6 +58,32 @@ public class Player
     {
         System.Random rnd = new System.Random();
         diceResult = rnd.Next(1, 6);
+    }
+    public void updateStatistics()
+    {
+        
+        if ( weapon !=null)
+        {
+            this.strength_modifier = weapon.getSpecialCardEvents()[0].get_roll()[0];
+            
+        }
+        else
+        {
+            strength_modifier = 0;
+           
+        }
+        if(armor !=null)
+        {
+            this.health_modifier = armor.getSpecialCardEvents()[0].get_roll()[0];
+            
+        }
+        else
+        {
+            health_modifier = 0;
+           
+        }
+       
+       
     }
 
 

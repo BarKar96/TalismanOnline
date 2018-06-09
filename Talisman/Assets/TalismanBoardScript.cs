@@ -153,7 +153,7 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
+                    //outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 1:
@@ -167,18 +167,23 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 4:
                     outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 5:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 6:
                     outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wykonaj 1 rzut kością. (1) Upiłeś się i zasnąłeś w kącie - tracisz turę. (2) Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła 3). (3) Grałeś w karty i przegrałeś 1 sztukę złota. (4) Grałeś w karty i wygrałeś jedną sztukę złota. (5) Czarownik obiecuje teleportować Cię do dowolnego miejsca na tej krainie. (6) Przewoźnik oferuję Ci przeprawę do świątyni.");
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 7:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 8:
                     outerRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 2 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 2 karty");
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz")));
                     break;
                 case 9:
                     outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -417,7 +422,10 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
 
-        playerArray[playerIndex].getCards().Add(outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent);
+        foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
+        {
+            playerArray[playerIndex].getCards().Add(c);
+        }
         //combat.StartCombat(playerArray[playerIndex], playerArray[0]);
         playerArray[playerIndex].iterate_cards();
         //playerArray[playerIndex].getCards().Clear();
@@ -447,14 +455,14 @@ public class TalismanBoardScript : MonoBehaviour
 
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
-        Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
-        playerArray[playerIndex].getCards().Add(c);
-        //foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
-        //{
-        //    playerArray[playerIndex].getCards().Add(c);
-        //}
-        //playerArray[playerIndex].iterate_cards();
-        //playerArray[playerIndex].getCards().Clear();
+        //Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
+        //playerArray[playerIndex].getCards().Add(c);
+        foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
+        {
+            playerArray[playerIndex].getCards().Add(c);
+        }
+        playerArray[playerIndex].iterate_cards();
+        playerArray[playerIndex].getCards().Clear();
 
 
         buttonCombat();

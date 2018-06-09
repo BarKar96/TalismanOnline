@@ -39,7 +39,8 @@ public class ItemsListener : MonoBehaviour
         else if (c.itemType == item_type.WEAPON)
         {
             
-            tempPlayerArray[tempPlayerIndex].strength_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            //tempPlayerArray[tempPlayerIndex].strength_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            tempPlayerArray[tempPlayerIndex].weapon = c;
             bron.text = "Założona broń: \n" + c.getName();
             StartCoroutine(messager("założono broń: " + c.getName()));
 
@@ -48,11 +49,13 @@ public class ItemsListener : MonoBehaviour
         }
         else if (c.itemType == item_type.ARMOR)
         {
-            tempPlayerArray[tempPlayerIndex].health_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            // tempPlayerArray[tempPlayerIndex].health_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
+            tempPlayerArray[tempPlayerIndex].armor = c;
             zbroja.text = "Założony pancerz: \n"+ c.getName();
             StartCoroutine(messager("założono zbroję: " + c.getName()));
             
         }
+        tempPlayerArray[tempPlayerIndex].updateStatistics();
         windows.UpdateStatsToText(tempPlayerArray);
     }
     public void detachItem(string name)
@@ -68,16 +71,19 @@ public class ItemsListener : MonoBehaviour
             if (c.itemType == item_type.WEAPON)
             {
 
-                tempPlayerArray[tempPlayerIndex].strength_modifier = 0;
+                //tempPlayerArray[tempPlayerIndex].strength_modifier = 0;
+                tempPlayerArray[tempPlayerIndex].weapon = null;
                 StartCoroutine(messager("zdjęto broń: " + c.getName()));
                 bron.text = "Założona broń: \n";
             }
             else if (c.itemType == item_type.ARMOR)
             {
-                tempPlayerArray[tempPlayerIndex].health_modifier = 0;
+                //tempPlayerArray[tempPlayerIndex].health_modifier = 0;
+                tempPlayerArray[tempPlayerIndex].armor = null;
                 StartCoroutine(messager("zdjęto zbroję: " + c.getName()));
                 zbroja.text = "Założony pancerz: \n";
             }
+            tempPlayerArray[tempPlayerIndex].updateStatistics();
             windows.UpdateStatsToText(tempPlayerArray);
         }
         

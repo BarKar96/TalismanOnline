@@ -29,17 +29,19 @@ public class SpellListener : MonoBehaviour
                 temp.player1.getSpells().Remove(c);
                 temp.toggleSpellPanel(temp.player1);
                 temp.toggleSpellPanel(temp.player1);
-               
+                temp.textPrzebieg.text += temp.player1.name + " użył zaklęcia: " + c.getName() + "\n";
+
             }
             else
             {
-                opponentDMG += 10;
+                opponentDMG += c.strength;
                 temp.player2.getSpells().Remove(c);
                 temp.toggleSpellPanel(temp.player2);
                 temp.toggleSpellPanel(temp.player2);
+                temp.textPrzebieg.text += temp.player2.name+" użył zaklęcia: " + c.getName() + "\n";
             }
             StartCoroutine(messager("Użyto zaklęcia: " + c.getName()));
-            temp.textPrzebieg.text += "Użyto zaklęcia: " + c.getName() + "\n";
+           
 
 
 
