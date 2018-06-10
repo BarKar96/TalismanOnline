@@ -32,6 +32,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     public Button combatButton;
     public Button nextTurnButton;
+    public GameObject messagePanel;
 
     public Sprite Hero1;
     public Sprite Hero2;
@@ -59,7 +60,7 @@ public class TalismanBoardScript : MonoBehaviour
         combat = GameObject.Find("Combat").GetComponent<Combat>();
         windows = GameObject.Find("Windows").GetComponent<Windows>();
         playerIndex = 0;
-        playersCounter = 3;
+        playersCounter = 5;
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
@@ -67,6 +68,8 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
         playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
+        playerArray[3] = new Player("Slawek", new Hero(hero_type.TROLL));
+        playerArray[4] = new Player("Slawek", new Hero(hero_type.TROLL));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
         playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
@@ -94,6 +97,20 @@ public class TalismanBoardScript : MonoBehaviour
         playerName.text = playerArray[playerIndex].name;
         windows.setCursor(playerIndex);
         // deckOfCards.listCards();
+    }
+
+    private void setPieceColor(GameObject g, int rValue,int  gValue,int bValue)
+    {
+
+        GameObject whateverGameObject = g;
+        Color whateverColor = new Color(rValue, gValue, bValue, 1);
+
+        MeshRenderer gameObjectRenderer = whateverGameObject.GetComponent<MeshRenderer>();
+
+        Material newMaterial = new Material(Shader.Find("Standard"));
+
+        newMaterial.color = whateverColor;
+        gameObjectRenderer.material = newMaterial;
     }
     private int rollDice()
     {
@@ -338,13 +355,52 @@ public class TalismanBoardScript : MonoBehaviour
         go.transform.SetParent(transform);
         go.transform.localScale += new Vector3(20, 20, 20);
         Piece p = go.GetComponent<Piece>();
+        
+        switch(i)
+        {
+            case 0:
+                setPieceColor(p.gameObject, 255, 0, 0);
+                break;
+            case 1:
+                setPieceColor(p.gameObject, 0, 255, 0);
+                break;
+            case 2:
+                setPieceColor(p.gameObject, 0, 0, 255);
+                break;
+            case 3:
+                setPieceColor(p.gameObject, 255, 255, 0);
+                break;
+            case 4:
+                setPieceColor(p.gameObject, 0, 255, 255);
+                break;
+            case 5:
+                setPieceColor(p.gameObject, 255, 0, 255);
+                break;
 
-
+        }
+        createMessage(p.gameObject, "lololo");
         playerArray[i].playerPiece = p;
         MovePieceToStartLocation(p, i);
         return p;
     }
+    public List<GameObject> list = new List<GameObject>();
+    public List<GameObject> list2 = new List<GameObject>();
 
+    public void createMessage(GameObject p, string text)
+    {
+        
+        GameObject ngo = new GameObject("myTextGO");
+        ngo.transform.SetParent(p.transform);
+
+        Text myText = ngo.AddComponent<Text>();
+        myText.text = text;
+        Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        myText.font = ArialFont;
+        myText.material = ArialFont.material;
+
+
+
+    }
     private void MovePieceToStartLocation(Piece p, int i)
     {
         playerArray[i].playerPiece.indexOfField = playerArray[playerIndex].hero.startingLocation;
@@ -426,15 +482,7 @@ public class TalismanBoardScript : MonoBehaviour
         {
             playerArray[playerIndex].getCards().Add(c);
         }
-        //combat.StartCombat(playerArray[playerIndex], playerArray[0]);
-        playerArray[playerIndex].iterate_cards();
-        //playerArray[playerIndex].getCards().Clear();
 
-
-
-        //showHeroName();
-        //showHeroStatistics();
-        //showHeroCards();
 
         buttonCombat();
 
@@ -461,14 +509,11 @@ public class TalismanBoardScript : MonoBehaviour
         {
             playerArray[playerIndex].getCards().Add(c);
         }
-        playerArray[playerIndex].iterate_cards();
-        playerArray[playerIndex].getCards().Clear();
+
 
 
         buttonCombat();
-        //showHeroName();
-        //showHeroStatistics();
-        //showHeroCards();
+
 
     }
 
@@ -603,6 +648,12 @@ public class TalismanBoardScript : MonoBehaviour
     {
         StartCoroutine(messager("Masz zbyt wiele przedmiotów,aby podnieść kolejny!"));
     }
+    public void exitMessage()
+    {
+        clearPlayerPanelView(CardDrawer.komunikatList);
+        messagePanel.gameObject.SetActive(false);
+
+    }
     /// <summary>
     /// /////////////////////////////////MAIN/////////////////////////////////////////////////
     /// </summary>
@@ -621,9 +672,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     void Update()
     {
-        /*playerName.text = playerArray[playerIndex].name;
-        Debug.Log("pozycja gracza w kolejce " + playerIndex);
-        windows.setCursor(playerIndex);
-        */
+
+
     }
 }

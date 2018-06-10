@@ -11,9 +11,8 @@ public static class CardDrawer
     public static List<GameObject> spellsList = new List<GameObject>();
     public static List<GameObject> spellsListCombat = new List<GameObject>();
     public static List<GameObject> heroCardList = new List<GameObject>();
-   
     public static int counter;
-  
+    public static GameObject panelMessage;
 
     public static void spawnCard(string name,string panelName, int x, int y)
     {
@@ -121,7 +120,25 @@ public static class CardDrawer
         }
         //////////////
     }
+    public static void spawnMessage(Card c)
+    {
+        var q = GameObject.Find("Canvas");
+        var tb = FindObject(q, "Komunikat");
+        tb.gameObject.SetActive(true);
+        spawnCard(c.getName(), "Komunikat", 0, 0);
+    }
 
-
+    public static GameObject FindObject(this GameObject parent, string name)
+    {
+        Transform[] trs = parent.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in trs)
+        {
+            if (t.name == name)
+            {
+                return t.gameObject;
+            }
+        }
+        return null;
+    }
 
 }

@@ -147,6 +147,33 @@ public class Windows : MonoBehaviour {
                 _heroName6.text = playerArray[5].name;
                 break;
         }
+        for (int i=0; i<playerArray.Length; i++)
+        {
+            if (i == 0)
+            {
+                _heroName1.text += " - czerowny";
+            }
+            if (i == 1)
+            {
+                _heroName2.text += " - zielony";
+            }
+            if (i == 2)
+            {
+                _heroName3.text += " - niebieski";
+            }
+            if (i == 3)
+            {
+                _heroName4.text += " - zolty";
+            }
+            if (i == 4)
+            {
+                _heroName5.text += " - seledynowy";
+            }
+            if (i == 5)
+            {
+                _heroName6.text += " - fioletowy";
+            }
+        }
     }
     public void SpawnPlayers(int x)
     {
