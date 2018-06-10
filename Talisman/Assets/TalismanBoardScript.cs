@@ -169,20 +169,26 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 1:
-                    outerRing[i].fieldEvent = new Card("rolnicy", card_type.ENEMY, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] {}, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
+
                     break;
                 case 2:
                     outerRing[i].fieldEvent = new Card("dorozkaze", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
                     break;
                 case 3:
                     outerRing[i].fieldEvent = new Card("zewastobomir", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
                     break;
                 case 4:
                     outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 5:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 6:
@@ -602,22 +608,22 @@ public class TalismanBoardScript : MonoBehaviour
             switch (target)
             {
                 case "ButtonCards1":
-                    CardDrawer.spawnPlayerItems(playerArray[0], "Panel Ekwipunku" + playerArray[0].name);
+                    CardDrawer.spawnPlayerItems(playerArray[0], "PanelEkwipunku");
                     break;
                 case "ButtonCards2":
-                    CardDrawer.spawnPlayerItems(playerArray[1], "Panel Ekwipunku" + playerArray[1].name);
+                    CardDrawer.spawnPlayerItems(playerArray[1], "PanelEkwipunku");
                     break;
                 case "ButtonCards3":
-                    CardDrawer.spawnPlayerItems(playerArray[2], "Panel Ekwipunku" + playerArray[2].name);
+                    CardDrawer.spawnPlayerItems(playerArray[2], "PanelEkwipunku");
                     break;
                 case "ButtonCards4":
-                    CardDrawer.spawnPlayerItems(playerArray[3], "Panel Ekwipunku" + playerArray[3].name);
+                    CardDrawer.spawnPlayerItems(playerArray[3], "PanelEkwipunku");
                     break;
                 case "ButtonCards5":
-                    CardDrawer.spawnPlayerItems(playerArray[4], "Panel Ekwipunku" + playerArray[4].name);
+                    CardDrawer.spawnPlayerItems(playerArray[4], "PanelEkwipunku");
                     break;
                 case "ButtonCards6":
-                    CardDrawer.spawnPlayerItems(playerArray[5], "Panel Ekwipunku" + playerArray[5].name);
+                    CardDrawer.spawnPlayerItems(playerArray[5], "PanelEkwipunku");
                     break;
             }
         }

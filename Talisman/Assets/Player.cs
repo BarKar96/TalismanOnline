@@ -109,6 +109,13 @@ public class Player
             {
                 switch (et)
                 {
+                    case card_type.BOARDFIELD:
+                        if (cardsToIterate[current].getName().Equals("Gospoda"))
+                        {
+                            var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
+                            g1.SetPanelOn();
+                        }
+                        break;
                     case card_type.ENEMY:
                         combat.StartCombat(this, cardsToIterate[current]);
                         break;
