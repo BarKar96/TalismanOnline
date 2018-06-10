@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DiceCheckZoneScript : MonoBehaviour
 {
-    public int result = 0;
+    public static int result = 0;
     public Button btnright;
     public Button btnleft;
     Vector3 diceVelocity;
@@ -33,6 +33,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                 {
                     case "Side1":
                         Debug.Log("1");
+                        result = 1;
                         go.diceResult = 1;
                         if (combat.turaGracza == true)
                         {
@@ -46,6 +47,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                         break;
                     case "Side2":
                         Debug.Log("2");
+                        result = 2;
                         go.diceResult = 2;
                         if (combat.turaGracza == true)
                         {
@@ -59,6 +61,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                         break;
                     case "Side3":
                         Debug.Log("3");
+                        result = 3;
                         go.diceResult = 3;
                         if (combat.turaGracza == true)
                         {
@@ -72,6 +75,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                         break;
                     case "Side4":
                         Debug.Log("4");
+                        result = 4;
                         go.diceResult = 4;
                         if (combat.turaGracza == true)
                         {
@@ -85,6 +89,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                         break;
                     case "Side5":
                         Debug.Log("5");
+                        result = 5;
                         go.diceResult = 5;
                         if (combat.turaGracza == true)
                         {
@@ -98,6 +103,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                         break;
                     case "Side6":
                         Debug.Log("6");
+                        result = 6;
                         go.diceResult = 6;
                         if (combat.turaGracza == true)
                         {

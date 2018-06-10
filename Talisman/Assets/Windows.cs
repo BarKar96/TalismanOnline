@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Windows : MonoBehaviour {
-    #region Avatary i ich dodawanie
+    //Kod odpowiedzialny za informacje o bohaterze i wszystkie informacje na jego temat
+    #region Avatary
+    //Fragment kodu odpowiedzialny za portrety bohaterów
     public Sprite KAPLAN;
     public Sprite ELF;
     public Sprite ZLODZIEJ;
@@ -19,6 +22,7 @@ public class Windows : MonoBehaviour {
     public Sprite KRASNOLUD;
     public Sprite DRUID;
     public Sprite MINSTREL;
+    //funkcja wstawiająca portrety
     public void wstawPortret(Player[] playerArray)
     {
         SpawnPlayers(playerArray.Length);
@@ -60,6 +64,7 @@ public class Windows : MonoBehaviour {
         }
         UpdateStatsToText(playerArray);
     }
+    //funkcja wybierająca portrety
     public Sprite HeroPort(Hero i)
     {
         switch (i.name)
@@ -95,6 +100,7 @@ public class Windows : MonoBehaviour {
     }
     #endregion
     #region Resp Playerow
+    // Fragment kodu odpowiedzialny za panele i nazwy
     public GameObject _heroPanel1;
     public GameObject _heroPanel2;
     public GameObject _heroPanel3;
@@ -108,7 +114,7 @@ public class Windows : MonoBehaviour {
     public TextMeshProUGUI _heroName4;
     public TextMeshProUGUI _heroName5;
     public TextMeshProUGUI _heroName6;
-
+    // funkcja wyświetlająca nickname gracza
     public void heroNames(Player[] playerArray)
     {
         switch(playerArray.Length)
@@ -175,6 +181,7 @@ public class Windows : MonoBehaviour {
             }
         }
     }
+    //funkcja respiąca graczy
     public void SpawnPlayers(int x)
     {
         switch (x)
@@ -222,6 +229,7 @@ public class Windows : MonoBehaviour {
     public Button _hero5button;
     public Button _hero6button;
     #region Statystyki Graczy
+    //Fragment kodu dotyczący statystyk graczy ich pojawiania się na mapie i ich zmian
     // HP = punkty życia
     public TextMeshProUGUI _hero1HP;
     public TextMeshProUGUI _hero2HP;
@@ -256,12 +264,15 @@ public class Windows : MonoBehaviour {
     public TextMeshProUGUI _hero3GOLD;
     public TextMeshProUGUI _hero4GOLD;
     public TextMeshProUGUI _hero5GOLD;
+    public TextMeshProUGUI _hero6GOLD;
+    //funkcja do hp ukazująca że dany użytkownik jeśli nie ma bazowej ilości hp zamieniany jest kolor hp na czerwony
     public void changeColor(TextMeshProUGUI text, Player player)
     {
         if (player.current_health > player.total_health)
             text.color = Color.green;
         else text.color = Color.blue;
     }
+    //funkcja dotycząca statystyk czyli wypisująca i aktualizująca statystyki wszystkich użytkowników na raz
     public void UpdateStatsToText(Player[] playerArray)
     {
         heroNames(playerArray);
@@ -428,21 +439,17 @@ public class Windows : MonoBehaviour {
                 break;
         }
     }
-    public TextMeshProUGUI _hero6GOLD;
+    
     #endregion
-    public Button _heroItems_1;
-    public Button _heroItems_2;
-    public Button _heroItems_3;
-    public Button _heroItems_4;
-    public Button _heroItems_5;
-    public Button _heroItems_6;
     #region Kogo Tura
+    //Fragment kodu dotyczący wskazania który gracz się teraz porusza
     public GameObject Arrow1;
     public GameObject Arrow2;
     public GameObject Arrow3;
     public GameObject Arrow4;
     public GameObject Arrow5;
     public GameObject Arrow6;
+    //funkcja ustawiająca odpowiedni kursor
     public void setCursor(int current)
     {
         Arrow1.SetActive(false);
@@ -474,9 +481,47 @@ public class Windows : MonoBehaviour {
         }
     }
     #endregion
-    /*public void PlayerItems(Player [] playerArray,int index)
+    /*
+    #region Ekwipunek
+    private TalismanBoardScript TBS;
+    //Przyciski poszczególnych bohaterów
+    public Button _heroItems_1;
+    public Button _heroItems_2;
+    public Button _heroItems_3;
+    public Button _heroItems_4;
+    public Button _heroItems_5;
+    public Button _heroItems_6;
+    public GameObject subPanel_Items;
+    //Fragment kodu dotyczący ekwipunku i wyświetlania jego
+    //funkcja definiująca którego gracza ekwipunek wyświetlić
+    public void PlayerItems()        
     {
-        CardDrawer.spawnPlayerItems(playerArray[index]);
+        subPanel_Items.SetActive(true);
+        string target = EventSystem.current.currentSelectedGameObject.name;
+        switch (target)
+        {
+                case "ButtonCards1":
+                    CardDrawer.spawnPlayerItems(TBS.playerArray[0], "Panel Ekwipunku" + TBS.playerArray[0].name);
+                    break;
+                case "ButtonCards2":
+                    CardDrawer.spawnPlayerItems(TBS.playerArray[1], "Panel Ekwipunku" + TBS.playerArray[1].name);
+                    break;
+                case "ButtonCards3":
+                    CardDrawer.spawnPlayerItems(TBS.playerArray[2], "Panel Ekwipunku" + TBS.playerArray[2].name);
+                    break;
+                case "ButtonCards4":
+                    CardDrawer.spawnPlayerItems(TBS.playerArray[3], "Panel Ekwipunku" + TBS.playerArray[3].name);
+                    break;
+                case "ButtonCards5":
+                    CardDrawer.spawnPlayerItems(TBS.playerArray[4], "Panel Ekwipunku" + TBS.playerArray[4].name);
+                    break;
+                case "ButtonCards6":
+                    CardDrawer.spawnPlayerItems(TBS.playerArray[5], "Panel Ekwipunku" + TBS.playerArray[5].name);
+                    break;
+            }
+        
+        //CardDrawer.spawnPlayerItems(playerArray[0], playerArray[0].name);
     }
+    #endregion   
     */
 }

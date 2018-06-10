@@ -32,6 +32,10 @@ public class DiceScript : MonoBehaviour
 
 
     }
+    public static int getResult()
+    {
+        return DiceCheckZoneScript.result;
+    }
     // Update is called once per frame
     void Update()
     {

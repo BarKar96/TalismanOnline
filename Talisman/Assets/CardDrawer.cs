@@ -21,7 +21,7 @@ public static class CardDrawer
         go.transform.localScale = new Vector3(1.3f, 0.4f, 2f);
         go.transform.localRotation *= Quaternion.Euler(0, 180, 0);
         go.name = name;
-       //Rigidbody gameObjectsRigidBody = go.AddComponent<Rigidbody>();
+        //Rigidbody gameObjectsRigidBody = go.AddComponent<Rigidbody>();
         go.transform.SetParent(GameObject.Find(panelName).transform);
         //Debug.Log(GameObject.Find(panelName).transform);
         go.transform.localPosition = new Vector3(-330+counter,120-y,-2);

@@ -5,19 +5,18 @@ using System;
 using Assets;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class TalismanBoardScript : MonoBehaviour
 {
 
     //private Field[][] rings;
-    
-
     private Field[] outerRing;
     private Field[] middleRing;
     private Field[] innerRing;
     public Deck deckOfCards;
     public Player[] playerArray;
-
+    public SpecialFields spc;
 
     public int playerIndex;
 
@@ -32,12 +31,8 @@ public class TalismanBoardScript : MonoBehaviour
 
     public Button combatButton;
     public Button nextTurnButton;
+
     public GameObject messagePanel;
-
-    public Sprite Hero1;
-    public Sprite Hero2;
-    public Sprite Hero3;
-
     private int playersCounter;
     public int diceResult;
 
@@ -191,8 +186,16 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 6:
-                    outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wykonaj 1 rzut kością. (1) Upiłeś się i zasnąłeś w kącie - tracisz turę. (2) Upiłeś się i wdałeś w bójkę z miejscowym osiłkiem (Siła 3). (3) Grałeś w karty i przegrałeś 1 sztukę złota. (4) Grałeś w karty i wygrałeś jedną sztukę złota. (5) Czarownik obiecuje teleportować Cię do dowolnego miejsca na tej krainie. (6) Przewoźnik oferuję Ci przeprawę do świątyni.");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    //todo Slavek
+                    var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Gospoda");                  
+                    //  Gospoda
+                    /*Gospoda.AssignSpecial(new int[] { 1 }, event_type.LOSE_TURN);
+                    Gospoda.AssignSpecial(new int[] { 2 }, event_type.COMBAT);
+                    Gospoda.AssignSpecial(new int[] { 3 }, event_type.LOSE_COIN);
+                    Gospoda.AssignSpecial(new int[] { 4 }, event_type.ADD_COIN);
+                    Gospoda.AssignSpecial(new int[] { 5 }, event_type.ADD_COINx2);
+                    Gospoda.AssignSpecial(new int[] { 6 }, event_type.GAIN_STRENGTH);*/
+                    outerRing[i].fieldEvent = Gospoda;
                     break;
                 case 7:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -588,6 +591,41 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[playerIndex].iterate_cards();
         playerArray[playerIndex].getCards().Clear();
     }
+    //to fix
+    public void PlayerItems()
+    {
+        _subPanel_Items_Opened = !_subPanel_Items_Opened;
+        setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
+        if (_subPanel_Items_Opened == true)
+        {
+            string target = EventSystem.current.currentSelectedGameObject.name;
+            switch (target)
+            {
+                case "ButtonCards1":
+                    CardDrawer.spawnPlayerItems(playerArray[0], "Panel Ekwipunku" + playerArray[0].name);
+                    break;
+                case "ButtonCards2":
+                    CardDrawer.spawnPlayerItems(playerArray[1], "Panel Ekwipunku" + playerArray[1].name);
+                    break;
+                case "ButtonCards3":
+                    CardDrawer.spawnPlayerItems(playerArray[2], "Panel Ekwipunku" + playerArray[2].name);
+                    break;
+                case "ButtonCards4":
+                    CardDrawer.spawnPlayerItems(playerArray[3], "Panel Ekwipunku" + playerArray[3].name);
+                    break;
+                case "ButtonCards5":
+                    CardDrawer.spawnPlayerItems(playerArray[4], "Panel Ekwipunku" + playerArray[4].name);
+                    break;
+                case "ButtonCards6":
+                    CardDrawer.spawnPlayerItems(playerArray[5], "Panel Ekwipunku" + playerArray[5].name);
+                    break;
+            }
+        }
+        else
+        {
+            clearPlayerPanelView(CardDrawer.itemsList);
+        }
+    }
     public void buttonSetNextTurnButtonOn()
     {
         nextTurnButton.gameObject.SetActive(true);
@@ -598,7 +636,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         nextTurn();
         playerName.text = playerArray[playerIndex].name;
-        Debug.Log("pozycja gracza w kolejce " + playerIndex);
+        //Debug.Log("pozycja gracza w kolejce " + playerIndex);
         windows.setCursor(playerIndex);
     }
 
