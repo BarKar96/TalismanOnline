@@ -12,8 +12,6 @@ public class Player
 
     //Player item inventory
     private Deck deck;
-
-
     public int gold;
     private List<Card> cardsToIterate;
     private List<Card> items;
@@ -39,6 +37,10 @@ public class Player
     public bool fieldCheckedOut = false;
     Combat combat;
 
+    //  Online related Variables
+    public int NET_RingPos,
+                NET_Turn;
+
     public Player(string name, Hero hero)
     {
         combat = GameObject.Find("Combat").GetComponent<Combat>();
@@ -54,6 +56,26 @@ public class Player
         this.spells = new List<Card>();
         this.deck = new Deck();
     }
+
+    //Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+
+    public Player(string name, Hero hero, int net_turn)
+    {
+        combat = GameObject.Find("Combat").GetComponent<Combat>();
+        this.name = name;
+        this.outerRing = true;
+        this.middleRing = false;
+        this.innerRing = false;
+        this.hero = hero;
+        this.total_health = this.current_health = this.hero.hp;
+        this.strength = this.hero.strength;
+        this.cardsToIterate = new List<Card>(5);
+        this.items = new List<Card>();
+        this.spells = new List<Card>();
+        this.deck = new Deck();
+        this.NET_Turn = net_turn;
+    }
+
     public void rollDice()
     {
         System.Random rnd = new System.Random();

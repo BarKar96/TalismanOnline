@@ -11,7 +11,7 @@ public class TalismanBoardScript : MonoBehaviour
 {
 
     //private Field[][] rings;
-    private Field[] outerRing;
+    public static Field[] outerRing;
     private Field[] middleRing;
     private Field[] innerRing;
     public Deck deckOfCards;
@@ -92,6 +92,11 @@ public class TalismanBoardScript : MonoBehaviour
         playerName.text = playerArray[playerIndex].name;
         windows.setCursor(playerIndex);
         // deckOfCards.listCards();
+    }
+
+    public void ChangeNetworkPlayerState(Player p){
+        p.iterate_cards();
+
     }
 
     private void setPieceColor(GameObject g, int rValue,int  gValue,int bValue)
