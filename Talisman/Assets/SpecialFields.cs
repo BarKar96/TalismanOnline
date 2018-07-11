@@ -13,6 +13,7 @@ public class SpecialFields : MonoBehaviour {
     public GameObject panel;
     public GameObject MessageBox;
 	// Use this for initialization
+    //just some random comment
     public void SetPanelOn()
     {
         panel.SetActive(true);
