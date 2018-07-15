@@ -12,7 +12,9 @@ public class PlayerObject : NetworkBehaviour
     public Field[] fields;
     public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
-    
+
+    public static bool RequestMovement = false;
+    public static char direction = 'l';
     public static int turn = 0;
     //[SyncVar]
     public static int current = 0;
@@ -30,6 +32,8 @@ public class PlayerObject : NetworkBehaviour
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -59,8 +63,8 @@ public class PlayerObject : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             CmdRollDice();
-            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-            go.ChangeNetworkPlayerState(localPlayer);
+           // var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            //go.ChangeNetworkPlayerState(localPlayer);
             Debug.Log("Roll ");
         }
         if (Input.GetKeyDown(KeyCode.N))
@@ -68,13 +72,42 @@ public class PlayerObject : NetworkBehaviour
             string n = "Worked?:" + Random.Range(1,23);
             CmdChangePlayerName(n);
         }
+        if (RequestMovement)
+        {
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            switch (direction)
+            {
+                case 'l':
+                    Debug.Log("moving player : " + current + " left:" + go.diceResult);
+                    break;
+
+                case 'r':
+                    Debug.Log("moving player : " + current + " right: " + go.diceResult);
+                    break;
+
+                default:
+
+                    break;
+            }
+            if (current < turn - 1)
+            {
+                current++;
+                RpcupdateTurn(current, turn);
+            }
+            else
+                RpcupdateTurn(0, turn);
+
+            RequestMovement = false;
+        }
+
     }
+  
 
     [SyncVar]
     public string playername = "asjkglhalsk";
 
     //******SERVER_SIDE******
-
+    
     [Command]
     void CmdChangePlayerName(string s)
     {
@@ -86,12 +119,15 @@ public class PlayerObject : NetworkBehaviour
     {
         Debug.Log("*********************Spawning one piece*********************");
         GameObject go = Instantiate(PlayerUnitPrefab);
+        
         localPlayerPiece = go;
         //Piece p = go.GetComponent<Piece>();
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
+        this.name = "Piece" + turn;
         turn++;
-//      CmdtranslatePieceToStart();
+        //      CmdtranslatePieceToStart();
+        
         NetworkServer.Spawn(go);
     }
     
@@ -136,7 +172,51 @@ public class PlayerObject : NetworkBehaviour
         else
             RpcupdateTurn(0, turn);
     }
+    public int abs(int k)
+    {
+        return k < 0 ? (-1) * k : k;
+    }
+    [Command]
+    public void CmdMovePlayerLeft(int k)
+    {
+        /*if (!(current == localPlayer.NET_Turn))
+            return;*/
+        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
+        localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
 
+        localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
+        localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
+        //RpcupdateTurn(k);
+        if (current < turn - 1)
+        {
+            current++;
+            RpcupdateTurn(current, turn);
+        }
+        else
+            RpcupdateTurn(0, turn);
+
+        Debug.Log("Moving online player to the left");
+    }
+    [Command]
+    public void CmdMovePlayerRight(int k)
+    {
+       /* if (!(current == localPlayer.NET_Turn))
+            return;*/
+        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
+        localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
+
+        localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
+        localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
+        //RpcupdateTurn(k);
+        if (current < turn - 1)
+        {
+            current++;
+            RpcupdateTurn(current, turn);
+        }
+        else
+            RpcupdateTurn(0, turn);
+        Debug.Log("Moving online player to the right");
+    }
     //******CLIENT_SIDE******
 
     [ClientRpc]

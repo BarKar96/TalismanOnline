@@ -91,7 +91,7 @@ public class TalismanBoardScript : MonoBehaviour
         windows.wstawPortret(playerArray);
         playerName.text = playerArray[playerIndex].name;
         windows.setCursor(playerIndex);
-        // deckOfCards.listCards();
+        // deckOfCards.listCards();a
     }
 
     public void ChangeNetworkPlayerState(Player p){
@@ -493,6 +493,12 @@ public class TalismanBoardScript : MonoBehaviour
         if (playerArray[playerIndex].diceResult > y) { whereToMove = temp + (y - playerArray[playerIndex].diceResult); }
         else { whereToMove = Math.Abs(y - playerArray[playerIndex].diceResult) % temp; }
 
+        
+        Debug.Log("Move player left");
+        PlayerObject.direction = 'l';
+        PlayerObject.RequestMovement = true;
+
+
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);
 
@@ -503,6 +509,8 @@ public class TalismanBoardScript : MonoBehaviour
         {
             playerArray[playerIndex].getCards().Add(c);
         }
+
+
 
 
         buttonCombat();
@@ -520,7 +528,14 @@ public class TalismanBoardScript : MonoBehaviour
 
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);
+        /*Debug.Log("Requesting Piece" + PlayerObject.current);
+        var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
+        
+        go.CmdMovePlayerRight(diceResult);*/
 
+        Debug.Log("Move player right");
+        PlayerObject.direction = 'r';
+        PlayerObject.RequestMovement = true;
 
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);

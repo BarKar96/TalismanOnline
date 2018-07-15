@@ -24,7 +24,7 @@ public class DiceCheckZoneScript : MonoBehaviour
     {
         if (this.enabled)
         {
-            Debug.Log("tutaj" + col.gameObject.name);
+            //Debug.Log("tutaj" + col.gameObject.name);
             if (diceVelocity.x == 0f && diceVelocity.y == 0f && diceVelocity.z == 0f)
             {
                 var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
