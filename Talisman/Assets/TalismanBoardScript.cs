@@ -28,7 +28,7 @@ public class TalismanBoardScript : MonoBehaviour
     public TextMeshProUGUI fieldDescription;
 
     Combat combat;
-
+    MainMenu main;
     public Button combatButton;
     public Button nextTurnButton;
 
