@@ -56,7 +56,7 @@ public class PlayerObject : NetworkBehaviour
             if (localPlayer == null) Debug.Log("Player doesn't exist");
             else
             {
-                Debug.Log("Player name: " + this.localPlayer.name);
+                Debug.Log("Player name: " + this.localPlayer.hero.name);
                 Debug.Log("Turn / current / playerTurn:" + turn + " / " + current + " / " + localPlayer.NET_Turn);
             }
         }
@@ -92,16 +92,34 @@ public class PlayerObject : NetworkBehaviour
             if (current < turn - 1)
             {
                 current++;
-                RpcupdateTurn(current, turn);
+                RpcupdateTurn(current, turn, localPlayer.NET_Turn);
             }
             else
-                RpcupdateTurn(0, turn);
+                RpcupdateTurn(0, turn, localPlayer.NET_Turn);
 
             RequestMovement = false;
         }
 
     }
-  
+    public void showDiceAndButtons(int turn, int localPlayerTurn)
+    {
+        Debug.Log("Wartosci t/lpt: " + turn + " / " + localPlayerTurn);
+        if (turn == localPlayerTurn - 1 || turn < localPlayerTurn)
+        {
+            Debug.Log("Pokazuje kosc");
+            var kosc = GameObject.Find("ButtonRzutKoscia");
+            kosc.transform.position = new Vector3(388.075f, -25.0f, -1.0f);
+            //  kosc.setVisible = true;
+        }
+        else
+        {
+            Debug.Log("chowam kosc");
+            var kosc = GameObject.Find("ButtonRzutKoscia");
+            kosc.transform.position -= new Vector3(0, 0, 1000);
+            //  kosc.setVisible = false;
+        }
+
+    }
 
     [SyncVar]
     public string playername = "asjkglhalsk";
@@ -173,10 +191,10 @@ public class PlayerObject : NetworkBehaviour
         if (current < turn-1)
         {
             current++;
-            RpcupdateTurn(current, turn);
+            RpcupdateTurn(current, turn, localPlayer.NET_Turn);
         }            
         else
-            RpcupdateTurn(0, turn);
+            RpcupdateTurn(0, turn, localPlayer.NET_Turn);
     }
 
     public int abs(int k)
@@ -197,10 +215,10 @@ public class PlayerObject : NetworkBehaviour
         if (current < turn - 1)
         {
             current++;
-            RpcupdateTurn(current, turn);
+            RpcupdateTurn(current, turn, localPlayer.NET_Turn);
         }
         else
-            RpcupdateTurn(0, turn);
+            RpcupdateTurn(0, turn, localPlayer.NET_Turn);
 
         Debug.Log("Moving online player to the left");
     }
@@ -218,23 +236,24 @@ public class PlayerObject : NetworkBehaviour
         if (current < turn - 1)
         {
             current++;
-            RpcupdateTurn(current, turn);
+            RpcupdateTurn(current, turn, localPlayer.NET_Turn);
         }
         else
-            RpcupdateTurn(0, turn);
+            RpcupdateTurn(0, turn, localPlayer.NET_Turn);
         Debug.Log("Moving online player to the right");
     }
     //******CLIENT_SIDE******
 
     [ClientRpc]
-    void RpcupdateTurn(int c, int t)
+    void RpcupdateTurn(int c, int t, int lpt)
     {
         turn = t;
         current = c;
         // var go = GameObject.find(Gracz, ktorego jest tura)...
         // go.ustaw_ze_ma_wyswietlic_przyciski_ruchu(true);
         Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
-        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().showDiceAndButtons(current, localPlayer.NET_Turn);
+        //GameObject.Find("Tile").GetComponent<TalismanBoardScript>().showDiceAndButtons(current, localPlayer.NET_Turn);
+        showDiceAndButtons(current, lpt);
     }
 
     [ClientRpc]

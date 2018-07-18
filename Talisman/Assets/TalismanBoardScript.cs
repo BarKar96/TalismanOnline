@@ -558,13 +558,15 @@ public class TalismanBoardScript : MonoBehaviour
         if(turn == localPlayerTurn)
         {
             Debug.Log("Pokazuje kosc");
-            GameObject.Find("ButtonRzutKoscia").SetActive(true);
+            var kosc = GameObject.Find("ButtonRzutKoscia");
+            kosc.transform.position = new Vector3(388.075f, -25.0f, -1.0f);
             //  kosc.setVisible = true;
         }
         else
         {
             Debug.Log("chowam kosc");
-            GameObject.Find("ButtonRzutKoscia").SetActive(false);
+            var kosc = GameObject.Find("ButtonRzutKoscia");
+            kosc.transform.position -= new Vector3(0, 0, 1000);
             //  kosc.setVisible = false;
         }
 
