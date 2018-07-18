@@ -552,7 +552,23 @@ public class TalismanBoardScript : MonoBehaviour
 
 
     }
+    public void showDiceAndButtons(int turn, int localPlayerTurn)
+    {
+        Debug.Log("Wartosci t/lpt: " + turn + " / " + localPlayerTurn);
+        if(turn == localPlayerTurn)
+        {
+            Debug.Log("Pokazuje kosc");
+            GameObject.Find("ButtonRzutKoscia").SetActive(true);
+            //  kosc.setVisible = true;
+        }
+        else
+        {
+            Debug.Log("chowam kosc");
+            GameObject.Find("ButtonRzutKoscia").SetActive(false);
+            //  kosc.setVisible = false;
+        }
 
+    }
     //panel ekwipunku
     public void Items_Button()
     {

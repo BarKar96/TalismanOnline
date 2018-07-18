@@ -153,6 +153,12 @@ public class PlayerObject : NetworkBehaviour
     }
 
     [Command]
+    void CmdUpdateTurn()
+    {
+
+    }
+
+    [Command]
     void CmdRollDice()
     {
         if (!(current == localPlayer.NET_Turn))
@@ -172,6 +178,7 @@ public class PlayerObject : NetworkBehaviour
         else
             RpcupdateTurn(0, turn);
     }
+
     public int abs(int k)
     {
         return k < 0 ? (-1) * k : k;
@@ -224,7 +231,10 @@ public class PlayerObject : NetworkBehaviour
     {
         turn = t;
         current = c;
+        // var go = GameObject.find(Gracz, ktorego jest tura)...
+        // go.ustaw_ze_ma_wyswietlic_przyciski_ruchu(true);
         Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
+        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().showDiceAndButtons(current, localPlayer.NET_Turn);
     }
 
     [ClientRpc]
