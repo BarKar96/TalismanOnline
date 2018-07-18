@@ -9,6 +9,7 @@ public class PlayerObject : NetworkBehaviour
     private System.Random r;
     public GameObject PlayerUnitPrefab;
     public GameObject localPlayerPiece;
+    public GameObject dice;
     public Field[] fields;
     public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
@@ -22,6 +23,8 @@ public class PlayerObject : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        dice = GameObject.Find("ButtonRzutKoscia");
+        Debug.Log(dice.name);
         //this.localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //turn++;
         fields = TalismanBoardScript.outerRing;
@@ -31,6 +34,7 @@ public class PlayerObject : NetworkBehaviour
         //localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
+        
     }
 
 
@@ -106,17 +110,16 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Wartosci t/lpt: " + turn + " / " + localPlayerTurn);
         if (turn == localPlayerTurn - 1 || turn < localPlayerTurn)
         {
-            Debug.Log("Pokazuje kosc");
-            var kosc = GameObject.Find("ButtonRzutKoscia");
-            kosc.transform.position = new Vector3(388.075f, -25.0f, -1.0f);
-            //  kosc.setVisible = true;
+
+            dice.SetActive(true);
         }
         else
         {
-            Debug.Log("chowam kosc");
-            var kosc = GameObject.Find("ButtonRzutKoscia");
-            kosc.transform.position -= new Vector3(0, 0, 1000);
-            //  kosc.setVisible = false;
+           
+            Debug.Log(dice.name);
+            dice.SetActive(false);
+            
+            Debug.Log(dice.name);
         }
 
     }
