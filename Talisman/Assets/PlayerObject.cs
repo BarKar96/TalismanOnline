@@ -82,8 +82,12 @@ public class PlayerObject : NetworkBehaviour
     [ClientRpc]
     void RpcshowDiceAndButtons()
     {
+        if(localPlayer != null)
+        {
+            Debug.Log("Things'Fine: " + localPlayer.hero.name);
+        }
         Debug.Log("IF: Wartosci t/lpt: " + current + " / " + nowMoves);
-        if (current == this.nowMoves)
+        if (current == localPlayer.NET_Turn)
         {
             Debug.Log("Showing Dice");
             dice.SetActive(true);
@@ -100,11 +104,22 @@ public class PlayerObject : NetworkBehaviour
     public string playername = "asjkglhalsk";
 
     //******SERVER_SIDE******
-    
+    [ClientRpc]
+    void printStats()
+    {
+        Debug.Log("NETSTATS");
+        Debug.Log("current: " + current);
+        Debug.Log("Turn: " + turn);
+        Debug.Log("PlayerName: " + localPlayer.hero.name);
+        Debug.Log("nowMoves: " + nowMoves);
+        //Debug.Log("current: " + current);
+        Debug.Log("NETSTATS_END");
+    }
     [Command]
     void CmdChangePlayerName(string s)
     {
         playername = s;
+        printStats();
     }
 
     [Command]
@@ -164,6 +179,7 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
         localPlayer.boardField = fields[localPlayer.NET_RingPos].fieldEvent;
+        RpcshowDiceAndButtons();
 
         //RpcupdateTurn(k);
         if (current < turn-1)
@@ -176,7 +192,7 @@ public class PlayerObject : NetworkBehaviour
             
             RpcupdateTurn(0, turn);
         }
-        RpcshowDiceAndButtons();       
+         
     }
 
     public int abs(int k)
