@@ -16,6 +16,7 @@ public class PlayerObject : NetworkBehaviour
 
     public static int turn = 0;
     //[SyncVar]
+    
     public static int current = 0;
 
     [SyncVar]
@@ -121,7 +122,11 @@ public class PlayerObject : NetworkBehaviour
         playername = s;
         /*if(isServer)
             RpcprintStats();*/
-        TargetcheckThis(connectionToClient, 55);
+        //TargetcheckThis(connectionToClient, 55);
+        foreach (var conn in NetworkServer.connections)
+        {
+            TargetcheckThis(conn, 15);
+        }
     }
 
     [Command]
@@ -150,18 +155,25 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.Translate(1, 0, 0);
     }
     [TargetRpc]
-    public void TargetcheckThis(NetworkConnection nc, int printValue)
+    public void TargetShowDice(NetworkConnection nc)
     {
+        /*
         if (localPlayer != null)
         {
-            Debug.Log("Player");
+            Debug.Log("Player: " + localPlayer.hero.name);
 
         }
         else
-            Debug.Log("No player found");
-        Debug.Log("Value is: " + printValue);
+            Debug.Log("No player found");*/
+        Debug.Log("showing dice");
+        dice.SetActive(true);
     }
-
+    [TargetRpc]
+    public void TargetHideDice(NetworkConnection nc)
+    {
+        Debug.Log("showing dice");
+        dice.SetActive(false);
+    }
 
     [Command]
     void CmdtranslatePieceToStart(int p)
@@ -194,8 +206,13 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
         localPlayer.boardField = fields[localPlayer.NET_RingPos].fieldEvent;
-        RpcshowDiceAndButtons();
-
+        
+        //RpcshowDiceAndButtons();
+        for(int i  = 0; i < turn; i++)
+        {
+            TargetHideDice(NetworkServer.connections[i]);
+        }
+        
         //RpcupdateTurn(k);
         if (current < turn-1)
         {            
@@ -204,10 +221,10 @@ public class PlayerObject : NetworkBehaviour
         }
         else
         {
-            
+            current = 0;
             RpcupdateTurn(0, turn);
         }
-         
+        TargetShowDice(NetworkServer.connections[current]);
     }
 
     public int abs(int k)
