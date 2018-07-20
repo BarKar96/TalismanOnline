@@ -123,10 +123,10 @@ public class PlayerObject : NetworkBehaviour
         /*if(isServer)
             RpcprintStats();*/
         //TargetcheckThis(connectionToClient, 55);
-        foreach (var conn in NetworkServer.connections)
+        /*foreach (var conn in NetworkServer.connections)
         {
             TargetcheckThis(conn, 15);
-        }
+        }*/
     }
 
     [Command]
