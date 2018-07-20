@@ -79,12 +79,11 @@ public class PlayerObject : NetworkBehaviour
         }
 
     }
-    public void showDiceAndButtons(int turn, int localPlayerTurn)
+    public void showDiceAndButtons(int turn)
     {
-        Debug.Log("Wartosci t/lpt: " + turn + " / " + localPlayerTurn);
-        if (turn == localPlayerTurn - 1 || turn < localPlayerTurn)
+        Debug.Log("Wartosci t/lpt: " + turn + " / " + nowMoves);
+        if (turn == nowMoves)
         {
-
             dice.SetActive(true);
         }
         else
@@ -169,10 +168,10 @@ public class PlayerObject : NetworkBehaviour
         if (current < turn-1)
         {
             current++;
-            RpcupdateTurn(current, turn, localPlayer.NET_Turn);
+            RpcupdateTurn(current, turn);
         }            
         else
-            RpcupdateTurn(0, turn, localPlayer.NET_Turn);
+            RpcupdateTurn(0, turn);
     }
 
     public int abs(int k)
@@ -193,10 +192,10 @@ public class PlayerObject : NetworkBehaviour
         if (current < turn - 1)
         {
             current++;
-            RpcupdateTurn(current, turn, localPlayer.NET_Turn);
+            RpcupdateTurn(current, turn);
         }
         else
-            RpcupdateTurn(0, turn, localPlayer.NET_Turn);
+            RpcupdateTurn(0, turn);
 
         Debug.Log("Moving online player to the left");
     }
@@ -214,16 +213,16 @@ public class PlayerObject : NetworkBehaviour
         if (current < turn - 1)
         {
             current++;
-            RpcupdateTurn(current, turn, localPlayer.NET_Turn);
+            RpcupdateTurn(current, turn);
         }
         else
-            RpcupdateTurn(0, turn, localPlayer.NET_Turn);
+            RpcupdateTurn(0, turn);
         Debug.Log("Moving online player to the right");
     }
     //******CLIENT_SIDE******
 
     [ClientRpc]
-    void RpcupdateTurn(int c, int t, int lpt)
+    void RpcupdateTurn(int c, int t)
     {
         turn = t;
         current = c;
@@ -231,7 +230,7 @@ public class PlayerObject : NetworkBehaviour
         // go.ustaw_ze_ma_wyswietlic_przyciski_ruchu(true);
         Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
         //GameObject.Find("Tile").GetComponent<TalismanBoardScript>().showDiceAndButtons(current, localPlayer.NET_Turn);
-        showDiceAndButtons(current, lpt);
+        showDiceAndButtons(current);
     }
 
     [ClientRpc]

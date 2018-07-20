@@ -550,9 +550,10 @@ public class TalismanBoardScript : MonoBehaviour
 
 
     }
-    public void showDiceAndButtons(int turn, int localPlayerTurn)
+    /*
+    public void showDiceAndButtons(int turn)
     {
-        Debug.Log("Wartosci t/lpt: " + turn + " / " + localPlayerTurn);
+        Debug.Log("Wartosci t/lpt: " + turn + " / " + nowMoves);
         if(turn == localPlayerTurn)
         {
             Debug.Log("Pokazuje kosc");
@@ -569,6 +570,7 @@ public class TalismanBoardScript : MonoBehaviour
         }
 
     }
+    */
     //panel ekwipunku
     public void Items_Button()
     {
