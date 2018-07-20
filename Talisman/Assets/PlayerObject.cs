@@ -105,7 +105,7 @@ public class PlayerObject : NetworkBehaviour
 
     //******SERVER_SIDE******
     [ClientRpc]
-    void printStats()
+    void RpcprintStats()
     {
         Debug.Log("NETSTATS");
         Debug.Log("current: " + current);
@@ -119,7 +119,9 @@ public class PlayerObject : NetworkBehaviour
     void CmdChangePlayerName(string s)
     {
         playername = s;
-        printStats();
+        /*if(isServer)
+            RpcprintStats();*/
+        TargetcheckThis(connectionToClient, 55);
     }
 
     [Command]
@@ -132,7 +134,7 @@ public class PlayerObject : NetworkBehaviour
         //Piece p = go.GetComponent<Piece>();
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
-        this.name = "Piece" + turn;
+        
         nowMoves = turn;
         turn++;
         //      CmdtranslatePieceToStart();
@@ -147,6 +149,12 @@ public class PlayerObject : NetworkBehaviour
             return;
         localPlayerPiece.transform.Translate(1, 0, 0);
     }
+    [TargetRpc]
+    public void TargetcheckThis(NetworkConnection nc, int printValue)
+    {
+        Debug.Log("Value is: " + printValue);
+    }
+
 
     [Command]
     void CmdtranslatePieceToStart(int p)
