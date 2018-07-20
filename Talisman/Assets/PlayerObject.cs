@@ -14,11 +14,12 @@ public class PlayerObject : NetworkBehaviour
     public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
 
-    public static bool RequestMovement = false;
-    public static char direction = 'l';
     public static int turn = 0;
     //[SyncVar]
     public static int current = 0;
+
+    [SyncVar]
+    private int nowMoves = -1;
 
     // Use this for initialization
     void Start()
@@ -61,7 +62,7 @@ public class PlayerObject : NetworkBehaviour
             else
             {
                 Debug.Log("Player name: " + this.localPlayer.hero.name);
-                Debug.Log("Turn / current / playerTurn:" + turn + " / " + current + " / " + localPlayer.NET_Turn);
+                Debug.Log("Turn / current / playerTurn / nowMoves:" + turn + " / " + current + " / " + localPlayer.NET_Turn + " / " + nowMoves);
             }
         }
         if (Input.GetKeyDown(KeyCode.R))
@@ -75,33 +76,6 @@ public class PlayerObject : NetworkBehaviour
         {
             string n = "Worked?:" + Random.Range(1,23);
             CmdChangePlayerName(n);
-        }
-        if (RequestMovement)
-        {
-            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-            switch (direction)
-            {
-                case 'l':
-                    Debug.Log("moving player : " + current + " left:" + go.diceResult);
-                    break;
-
-                case 'r':
-                    Debug.Log("moving player : " + current + " right: " + go.diceResult);
-                    break;
-
-                default:
-
-                    break;
-            }
-            if (current < turn - 1)
-            {
-                current++;
-                RpcupdateTurn(current, turn, localPlayer.NET_Turn);
-            }
-            else
-                RpcupdateTurn(0, turn, localPlayer.NET_Turn);
-
-            RequestMovement = false;
         }
 
     }
@@ -146,6 +120,7 @@ public class PlayerObject : NetworkBehaviour
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
         this.name = "Piece" + turn;
+        nowMoves = turn;
         turn++;
         //      CmdtranslatePieceToStart();
         

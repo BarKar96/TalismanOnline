@@ -495,8 +495,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         
         Debug.Log("Move player left");
-        PlayerObject.direction = 'l';
-        PlayerObject.RequestMovement = true;
+        
 
 
         //przesuniecie pionka
@@ -534,8 +533,7 @@ public class TalismanBoardScript : MonoBehaviour
         go.CmdMovePlayerRight(diceResult);*/
 
         Debug.Log("Move player right");
-        PlayerObject.direction = 'r';
-        PlayerObject.RequestMovement = true;
+        
 
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing);
