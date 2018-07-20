@@ -152,6 +152,13 @@ public class PlayerObject : NetworkBehaviour
     [TargetRpc]
     public void TargetcheckThis(NetworkConnection nc, int printValue)
     {
+        if (localPlayer != null)
+        {
+            Debug.Log("Player");
+
+        }
+        else
+            Debug.Log("No player found");
         Debug.Log("Value is: " + printValue);
     }
 
