@@ -19,7 +19,7 @@ public class PlayerObject : NetworkBehaviour
     public static int current = 0;
 
     [SyncVar]
-    private int nowMoves = -1;
+    private int nowMoves = 0;
 
     // Use this for initialization
     void Start()
@@ -79,20 +79,19 @@ public class PlayerObject : NetworkBehaviour
         }
 
     }
-    public void showDiceAndButtons(int turn)
+    [ClientRpc]
+    void RpcshowDiceAndButtons()
     {
-        Debug.Log("Wartosci t/lpt: " + turn + " / " + nowMoves);
-        if (turn == nowMoves)
+        Debug.Log("IF: Wartosci t/lpt: " + current + " / " + nowMoves);
+        if (current == this.nowMoves)
         {
+            Debug.Log("Showing Dice");
             dice.SetActive(true);
         }
         else
         {
-           
-            Debug.Log(dice.name);
+            Debug.Log("Hiding Dice");
             dice.SetActive(false);
-            
-            Debug.Log(dice.name);
         }
 
     }
@@ -156,6 +155,7 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     void CmdRollDice()
     {
+        Debug.Log("OF: Wartosci t/lpt: " + current + " / " + nowMoves);
         if (!(current == localPlayer.NET_Turn))
             return;
         int k = Random.Range(1, 7);
@@ -164,61 +164,26 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + k) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
         localPlayer.boardField = fields[localPlayer.NET_RingPos].fieldEvent;
+
         //RpcupdateTurn(k);
         if (current < turn-1)
-        {
+        {            
             current++;
             RpcupdateTurn(current, turn);
-        }            
+        }
         else
+        {
+            
             RpcupdateTurn(0, turn);
+        }
+        RpcshowDiceAndButtons();       
     }
 
     public int abs(int k)
     {
         return k < 0 ? (-1) * k : k;
     }
-    [Command]
-    public void CmdMovePlayerLeft(int k)
-    {
-        /*if (!(current == localPlayer.NET_Turn))
-            return;*/
-        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
-        localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
-
-        localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
-        localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
-        //RpcupdateTurn(k);
-        if (current < turn - 1)
-        {
-            current++;
-            RpcupdateTurn(current, turn);
-        }
-        else
-            RpcupdateTurn(0, turn);
-
-        Debug.Log("Moving online player to the left");
-    }
-    [Command]
-    public void CmdMovePlayerRight(int k)
-    {
-       /* if (!(current == localPlayer.NET_Turn))
-            return;*/
-        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
-        localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
-
-        localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
-        localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
-        //RpcupdateTurn(k);
-        if (current < turn - 1)
-        {
-            current++;
-            RpcupdateTurn(current, turn);
-        }
-        else
-            RpcupdateTurn(0, turn);
-        Debug.Log("Moving online player to the right");
-    }
+    
     //******CLIENT_SIDE******
 
     [ClientRpc]
@@ -230,7 +195,7 @@ public class PlayerObject : NetworkBehaviour
         // go.ustaw_ze_ma_wyswietlic_przyciski_ruchu(true);
         Debug.Log("Server wants " + playername + "to set current to: " + c + " / " + current);
         //GameObject.Find("Tile").GetComponent<TalismanBoardScript>().showDiceAndButtons(current, localPlayer.NET_Turn);
-        showDiceAndButtons(current);
+        //showDiceAndButtons();
     }
 
     [ClientRpc]
