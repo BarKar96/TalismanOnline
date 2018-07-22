@@ -8,14 +8,18 @@ public class DiceScript : MonoBehaviour
 
     static Rigidbody rb;
     public static Vector3 diceVelocity;
-
+    public GameObject buttonLewo;
+    public GameObject buttonPrawo;
+    public GameObject buttonRzutKoscia;
 
     // Use this for initialization
     void Start()
     {
 
         rb = GetComponent<Rigidbody>();
-       
+        var go = GameObject.Find("DiceCheckZone").GetComponent<DiceCheckZoneScript>();
+        go.GetComponent<DiceCheckZoneScript>().enabled = false;
+
     }
     public void roll()
     {

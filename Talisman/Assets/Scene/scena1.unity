@@ -8432,6 +8432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad3b04be8053dc4da5b4bbddad7a49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonLewo: {fileID: 1151249410}
+  buttonPrawo: {fileID: 109485804}
+  buttonRzutKoscia: {fileID: 1190367417}
 --- !u!1 &861147210
 GameObject:
   m_ObjectHideFlags: 0
@@ -12831,7 +12834,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1151249410}
         m_MethodName: SetActive
         m_Mode: 6
@@ -12842,7 +12845,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 109485804}
         m_MethodName: SetActive
         m_Mode: 6
@@ -12853,7 +12856,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 0
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1190367420
