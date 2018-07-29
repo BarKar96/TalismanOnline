@@ -55,39 +55,46 @@ public class TalismanBoardScript : MonoBehaviour
         combat = GameObject.Find("Combat").GetComponent<Combat>();
         windows = GameObject.Find("Windows").GetComponent<Windows>();
         playerIndex = 0;
-        playersCounter = 5;
+        playersCounter = 3;
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
-        playerArray[0].getItems().Add(new Card(card_type.ITEM,new event_type[] { }));
-        playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
-        playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
-        playerArray[3] = new Player("Slawek", new Hero(hero_type.TROLL));
-        playerArray[4] = new Player("Slawek", new Hero(hero_type.TROLL));
-        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
-        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
-        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
-        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
-        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
-        playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
-
-       
-        playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
-        playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
-
-        playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
-        playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
-        playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
-
-
-
-        playerArray[1].current_health = 1;
         playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
+
+
+
+
+        //playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
+        //playerArray[0].getItems().Add(new Card(card_type.ITEM, new event_type[] { }));
+
+        //playerArray[3] = new Player("Slawek", new Hero(hero_type.TROLL));
+        //playerArray[4] = new Player("Slawek", new Hero(hero_type.TROLL));
+        //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
+        //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
+        //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+        //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
+        //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
+        //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
+
+
+        //playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
+        //playerArray[1].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("kula_ognia")));
+
+        //playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+        //playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+        //playerArray[0].getSpells().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("lodowa_strzala")));
+
+
+
+        //playerArray[1].current_health = 1;
+       
         for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);
         }
+
         windows.wstawPortret(playerArray);
         playerName.text = playerArray[playerIndex].name;
         windows.setCursor(playerIndex);
@@ -399,7 +406,7 @@ public class TalismanBoardScript : MonoBehaviour
                 break;
 
         }
-        createMessage(p.gameObject, "lololo");
+        //createMessage(p.gameObject, "lololo");
         playerArray[i].playerPiece = p;
         MovePieceToStartLocation(p, i);
         return p;
@@ -424,9 +431,11 @@ public class TalismanBoardScript : MonoBehaviour
     }
     private void MovePieceToStartLocation(Piece p, int i)
     {
-        playerArray[i].playerPiece.indexOfField = playerArray[playerIndex].hero.startingLocation;
+        playerArray[i].playerPiece.indexOfField = playerArray[i].hero.startingLocation;
         playerArray[i].playerPiece.transform.position = outerRing[playerArray[i].hero.startingLocation].emptyGameObject.transform.position;
-        outerRing[playerArray[playerIndex].hero.startingLocation].counter++;
+        Debug.Log("player  " + i + " at " + playerArray[i].hero.startingLocation);
+
+        outerRing[playerArray[i].hero.startingLocation].counter++;
     }
 
 
@@ -440,7 +449,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     private void nextTurn()
     {
-        Debug.Log(deckOfCards.drawCard().getName());    // Returns one random card
+       // Debug.Log(deckOfCards.drawCard().getName());    // Returns one random card
         //deckOfCards.listCards();                         //Use to list cards
 
         if (CardDrawer.heroCardList.Count > 0)
@@ -454,7 +463,7 @@ public class TalismanBoardScript : MonoBehaviour
             playerIndex = 0;
         }
         //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
-        Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
+        //Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
         
         
@@ -490,11 +499,13 @@ public class TalismanBoardScript : MonoBehaviour
         //obliczanie gdzie przesunac pionek
         int y = playerArray[playerIndex].playerPiece.indexOfField;
         int whereToMove = 0;
-        if (playerArray[playerIndex].diceResult > y) { whereToMove = temp + (y - playerArray[playerIndex].diceResult); }
-        else { whereToMove = Math.Abs(y - playerArray[playerIndex].diceResult) % temp; }
+        Debug.Log("player at: " + y);
+        if (diceResult > y) { whereToMove = temp + (y - diceResult); }
+        else { whereToMove = Math.Abs(y - diceResult) % temp; }
 
-        
-        Debug.Log("Move player left");
+
+
+      //  Debug.Log("Move player left");
         
 
 
@@ -532,7 +543,7 @@ public class TalismanBoardScript : MonoBehaviour
         
         go.CmdMovePlayerRight(diceResult);*/
 
-        Debug.Log("Move player right");
+       // Debug.Log("Move player right");
         
 
         //przesuniecie pionka, aby nie nachodzily na siebie
@@ -757,7 +768,8 @@ public class TalismanBoardScript : MonoBehaviour
         Debug.Log("pozycja gracza w kolejce " + playerIndex);
         windows.setCursor(playerIndex);
 
-
+        //playerArray[playerIndex].playerPiece.transform.position = outerRing[0].emptyGameObject.transform.position;
+    //playerArray[indexOfPlayer].playerPiece.transform.position = outerRing[indexOfFieldToMoveOn].emptyGameObject.transform.position;
     }
     void Update()
     {
