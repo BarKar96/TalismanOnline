@@ -252,6 +252,33 @@ public class PlayerObject : NetworkBehaviour
         return k < 0 ? (-1) * k : k;
     }
     
+    [Command]
+    public void CmdMoveRight(int x)
+    {
+        localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + x) % fields.Length].emptyGameObject.transform.position;
+        localPlayer.NET_RingPos = (localPlayer.NET_RingPos + x) % fields.Length;
+        localPlayer.boardField = fields[localPlayer.NET_RingPos].fieldEvent;
+
+        //RpcshowDiceAndButtons();
+        for (int i = 0; i < turn; i++)
+        {
+            TargetHideDice(NetworkServer.connections[i]);
+        }
+
+        //RpcupdateTurn(k);
+        if (current < turn - 1)
+        {
+            current++;
+            RpcupdateTurn(current, turn);
+        }
+        else
+        {
+            current = 0;
+            RpcupdateTurn(0, turn);
+        }
+        TargetShowDice(NetworkServer.connections[current]);
+    }
+
     //******CLIENT_SIDE******
 
     [ClientRpc]
