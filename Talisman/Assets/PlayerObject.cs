@@ -36,7 +36,7 @@ public class PlayerObject : NetworkBehaviour
         //localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
-        
+        CmdDiceAvailabilityCheck();
     }
 
 
@@ -192,6 +192,26 @@ public class PlayerObject : NetworkBehaviour
     void CmdUpdateTurn()
     {
 
+    }
+
+    [Command]
+    void CmdDiceAvailabilityCheck(){
+        for(int i  = 0; i < turn; i++)
+        {
+            TargetHideDice(NetworkServer.connections[i]);
+        }        
+        //RpcupdateTurn(k);
+        if (current < turn-1)
+        {            
+            current++;
+            RpcupdateTurn(current, turn);
+        }
+        else
+        {
+            current = 0;
+            RpcupdateTurn(0, turn);
+        }
+        TargetShowDice(NetworkServer.connections[current]);
     }
 
     [Command]
