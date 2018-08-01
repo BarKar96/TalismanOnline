@@ -512,6 +512,10 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);
 
+        var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
+         
+        go.CmdMovePlayerLeft(diceResult);
+
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
 
