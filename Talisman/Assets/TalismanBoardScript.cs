@@ -539,7 +539,10 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);
         //var go = 
-        GameObject.Find("PlayerObject(Clone)").GetComponent<PlayerObject>().CmdMoveRight(diceResult);
+        var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
+         
+        go.CmdMovePlayerRight(diceResult);
+        //GameObject.Find("PlayerObject(Clone)").GetComponent<PlayerObject>().CmdMoveRight(diceResult);
         /*Debug.Log("Requesting Piece" + PlayerObject.current);
         
         

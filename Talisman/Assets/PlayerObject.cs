@@ -139,7 +139,8 @@ public class PlayerObject : NetworkBehaviour
         //Piece p = go.GetComponent<Piece>();
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
-        
+        this.name = "Piece" + turn;
+ 
         nowMoves = turn;
         turn++;
         //      CmdtranslatePieceToStart();
@@ -252,9 +253,94 @@ public class PlayerObject : NetworkBehaviour
         return k < 0 ? (-1) * k : k;
     }
     
+     [Command]
+ 
+    public void CmdMovePlayerLeft(int k)
+ 
+    {
+ 
+        /*if (!(current == localPlayer.NET_Turn))
+ 
+            return;*/
+ 
+        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
+ 
+        localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
+ 
+
+ 
+        localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
+ 
+        localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
+ 
+        //RpcupdateTurn(k);
+ 
+        if (current < turn - 1)
+ 
+        {
+ 
+            current++;
+ 
+            RpcupdateTurn(current, turn);
+ 
+        }
+ 
+        else
+ 
+            RpcupdateTurn(0, turn);
+ 
+
+ 
+        Debug.Log("Moving online player to the left");
+ 
+    }
+ 
+    [Command]
+ 
+    public void CmdMovePlayerRight(int k)
+ 
+    {
+ 
+       /* if (!(current == localPlayer.NET_Turn))
+ 
+            return;*/
+ 
+        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
+ 
+        localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
+ 
+
+ 
+        localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
+ 
+        localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
+ 
+        //RpcupdateTurn(k);
+ 
+        if (current < turn - 1)
+ 
+        {
+ 
+            current++;
+ 
+            RpcupdateTurn(current, turn);
+ 
+        }
+ 
+        else
+ 
+            RpcupdateTurn(0, turn);
+ 
+        Debug.Log("Moving online player to the right");
+ 
+    }
+ 
+    
     [Command]
     public void CmdMoveRight(int x)
     {
+        if(!isLocalPlayer)
+            return;
         localPlayerPiece.transform.position = fields[(localPlayer.NET_RingPos + x) % fields.Length].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + x) % fields.Length;
         localPlayer.boardField = fields[localPlayer.NET_RingPos].fieldEvent;
