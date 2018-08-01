@@ -185,9 +185,11 @@ public class PlayerObject : NetworkBehaviour
             return;*/
         //localPlayer.playerPiece.indexOfField = localPlayer.hero.startingLocation;
         Debug.Log("Moving player to " + localPlayer.hero.startingLocation);
-        localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
-        //fields[localPlayer.hero.startingLocation].counter++;
         
+        localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
+        localPlayer.NET_RingPos = localPlayer.hero.startingLocation;
+        //fields[localPlayer.hero.startingLocation].counter++;
+
     }
 
     [Command]
@@ -255,17 +257,17 @@ public class PlayerObject : NetworkBehaviour
     }
     
      [Command]
- 
     public void CmdMovePlayerLeft(int k)
  
     {
- 
+
         /*if (!(current == localPlayer.NET_Turn))
  
             return;*/
- 
+        Debug.Log("aktualnie" + localPlayer.NET_RingPos);
         Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
- 
+
+
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
  
 
