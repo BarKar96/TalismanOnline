@@ -33,6 +33,7 @@ public class PlayerObject : NetworkBehaviour
         if (!isLocalPlayer)
             return;
         Debug.Log("Created local player piece");
+
         //localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
@@ -139,7 +140,7 @@ public class PlayerObject : NetworkBehaviour
         //Piece p = go.GetComponent<Piece>();
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
-        this.name = "Piece" + turn;
+        
  
         nowMoves = turn;
         turn++;
@@ -275,7 +276,7 @@ public class PlayerObject : NetworkBehaviour
  
         //RpcupdateTurn(k);
  
-        if (current < turn - 1)
+        /*if (current < turn - 1)
  
         {
  
@@ -287,10 +288,10 @@ public class PlayerObject : NetworkBehaviour
  
         else
  
-            RpcupdateTurn(0, turn);
+            RpcupdateTurn(0, turn);*/
  
 
- 
+        turnAndDiceReload();
         Debug.Log("Moving online player to the left");
  
     }
@@ -317,7 +318,7 @@ public class PlayerObject : NetworkBehaviour
  
         //RpcupdateTurn(k);
  
-        if (current < turn - 1)
+        /*if (current < turn - 1)
  
         {
  
@@ -329,13 +330,14 @@ public class PlayerObject : NetworkBehaviour
  
         else
  
-            RpcupdateTurn(0, turn);
+            RpcupdateTurn(0, turn);*/
+            turnAndDiceReload();
  
         Debug.Log("Moving online player to the right");
  
     }
  
-    
+
     [Command]
     public void CmdMoveRight(int x)
     {
@@ -365,6 +367,25 @@ public class PlayerObject : NetworkBehaviour
         TargetShowDice(NetworkServer.connections[current]);
     }
 
+    void turnAndDiceReload(){
+        for (int i = 0; i < turn; i++)
+        {
+            TargetHideDice(NetworkServer.connections[i]);
+        }
+
+        //RpcupdateTurn(k);
+        if (current < turn - 1)
+        {
+            current++;
+            RpcupdateTurn(current, turn);
+        }
+        else
+        {
+            current = 0;
+            RpcupdateTurn(0, turn);
+        }
+        TargetShowDice(NetworkServer.connections[current]);
+    }
     //******CLIENT_SIDE******
 
     [ClientRpc]
@@ -386,6 +407,7 @@ public class PlayerObject : NetworkBehaviour
         Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
+        this.name = "Piece" + turn;
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
 }
