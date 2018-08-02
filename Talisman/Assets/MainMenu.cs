@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,11 +10,10 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     #region NewGameWindow
-    public bool[] flag = { false, false, false, false };
+    public bool[] flag = { false, false, false };
     public Button goToGame;
     public Dropdown heroType;
     public Dropdown numberOfPlayers;
-    public Dropdown gameType;
     public TMP_InputField Nickname;
     public TextMeshProUGUI Info;
     public static string nickNameValue;
@@ -45,8 +44,9 @@ public class MainMenu : MonoBehaviour
         catch (NullReferenceException) { };
         Debug.Log("flaga hero" + flag[1]);
     }
-    public void OnlineOflineBoxIndex_changed(int index)
+    public void NumberOfPlayersIndex_changed(int index)
     {
+
         if (index == 0)
         {
             try
@@ -62,29 +62,6 @@ public class MainMenu : MonoBehaviour
                 Info.text = ""; flag[2] = false;
             }
             catch (NullReferenceException) { };
-        Debug.Log("flaga online" + flag[2]);
-    }
-    public void NumberOfPlayersIndex_changed(int index)
-    {
-
-        if (index == 0)
-        {
-            try
-            {
-                Info.text = "Not all fields are correct filled";
-                flag[3] = true;
-            }
-            catch (NullReferenceException) { };
-        }
-        else
-            try
-            {
-                Info.text = ""; flag[3] = false;
-            }
-            catch (NullReferenceException) { };
-        Debug.Log("flaga gracze" + flag[3]);
-
-        Debug.Log("flaga field" + flag[0]);
     }
     public void HeroTypeBox()
     {
@@ -110,7 +87,7 @@ public class MainMenu : MonoBehaviour
         {
             CheckField();
             bool temp_flag = true;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if (flag[i] == true)
                 {
@@ -119,16 +96,6 @@ public class MainMenu : MonoBehaviour
                 }
             }
             goToGame.gameObject.SetActive(temp_flag);
-        }
-        catch (NullReferenceException) { };
-    }
-    public void OnlineOfflineBox()
-    {
-        string[] gameType = {"Choose hero type" ,"Online", "Offline" };
-        List<string> names = new List<string>(gameType);
-        try
-        {
-            this.gameType.AddOptions(names);
         }
         catch (NullReferenceException) { };
     }
@@ -145,7 +112,6 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         HeroTypeBox();
-        OnlineOfflineBox();
         NumberOfPlayersBox();
     }
     public void Update()
