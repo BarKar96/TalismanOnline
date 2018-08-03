@@ -465,14 +465,16 @@ public class TalismanBoardScript : MonoBehaviour
         //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
         //Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
         playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
-        
-        
+
+
 
         //showHeroName();
         //showHeroStatistics();
         //showHeroCards();
 
+        var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
 
+        go.CmdReloadDice();
 
     }
 
@@ -504,8 +506,8 @@ public class TalismanBoardScript : MonoBehaviour
         else { whereToMove = Math.Abs(y - diceResult) % temp; }
 
 
-
-      //  Debug.Log("Move player left");
+    
+        //  Debug.Log("Move player left");
         
 
 
@@ -514,7 +516,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
          
-        go.CmdMovePlayerLeft(diceResult);
+        //go.CmdMovePlayerLeft(diceResult);
 
         //przesuniecie pionka, aby nie nachodzily na siebie
         cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
@@ -556,7 +558,9 @@ public class TalismanBoardScript : MonoBehaviour
 
 
         //przesuniecie pionka, aby nie nachodzily na siebie
-        cd.movePieceToRightLocation(outerRing);
+
+        //cd.movePieceToRightLocation(outerRing);
+        
         //Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
         //playerArray[playerIndex].getCards().Add(c);
         foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)

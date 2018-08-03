@@ -293,7 +293,8 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
  
 
-        turnAndDiceReload();
+        //turnAndDiceReload();
+
         Debug.Log("Moving online player to the left");
  
     }
@@ -333,12 +334,23 @@ public class PlayerObject : NetworkBehaviour
         else
  
             RpcupdateTurn(0, turn);*/
-            turnAndDiceReload();
+        
+        //turnAndDiceReload();
  
         Debug.Log("Moving online player to the right");
  
     }
  
+    [Command]
+    public  void CmdReloadDice()
+    {
+        /*for (int i = 0; i < turn; i++)
+        {
+            TargetHideDice(NetworkServer.connections[i]);
+        }
+        TargetShowDice(NetworkServer.connections[current]);*/
+        turnAndDiceReload();
+    }
 
     [Command]
     public void CmdMoveRight(int x)
