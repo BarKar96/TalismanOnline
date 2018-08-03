@@ -54,13 +54,13 @@ public class TalismanBoardScript : MonoBehaviour
     {
         combat = GameObject.Find("Combat").GetComponent<Combat>();
         windows = GameObject.Find("Windows").GetComponent<Windows>();
-        playerIndex = 0;
+        /*playerIndex = 0;
         playersCounter = 3;
         playerArray = new Player[playersCounter];
         //  Initialise sample players
         playerArray[0] = new Player("Bartek", new Hero(hero_type.CZARNOKSIEZNIK));
         playerArray[1] = new Player("Slawek", new Hero(hero_type.TROLL));
-        playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
+        playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));*/
 
 
 
@@ -90,14 +90,14 @@ public class TalismanBoardScript : MonoBehaviour
 
         //playerArray[1].current_health = 1;
        
-        for (int i = 0; i < playersCounter; i++)
+        /*for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);
         }
 
         windows.wstawPortret(playerArray);
         playerName.text = playerArray[playerIndex].name;
-        windows.setCursor(playerIndex);
+        windows.setCursor(playerIndex);*/
         // deckOfCards.listCards();a
     }
 
@@ -495,7 +495,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     public void Left_Button()
     {
-        CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
+        /*CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
         int temp = getActualPlayerRingFieldNumber();
         playerArray[playerIndex].diceResult = diceResult;
         //obliczanie gdzie przesunac pionek
@@ -505,29 +505,29 @@ public class TalismanBoardScript : MonoBehaviour
         if (diceResult > y) { whereToMove = temp + (y - diceResult); }
         else { whereToMove = Math.Abs(y - diceResult) % temp; }
 
-
+        */
     
         //  Debug.Log("Move player left");
         
 
 
         //przesuniecie pionka
-        movePiece(playerIndex, whereToMove);
+       // movePiece(playerIndex, whereToMove);
 
         var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
          
-        //go.CmdMovePlayerLeft(diceResult);
+        go.CmdMovePlayerLeft(diceResult);
 
         //przesuniecie pionka, aby nie nachodzily na siebie
-        cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
-
-        foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
+        /*cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
+        */
+        foreach (Card c in outerRing[go.localPlayer.NET_RingPos].cardsOnField)
         {
-            playerArray[playerIndex].getCards().Add(c);
+            go.localPlayer.getCards().Add(c);
         }
 
 
-
+        
 
         buttonCombat();
 
@@ -535,7 +535,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     public void Right_Button()
     {
-        CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
+       /* CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
         playerArray[playerIndex].diceResult = diceResult;
         //obliczanie gdzie przesunac pionek
         int temp = getActualPlayerRingFieldNumber();
@@ -545,6 +545,7 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka
         movePiece(playerIndex, whereToMove);
         //var go = 
+        */
         var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
          
         go.CmdMovePlayerRight(diceResult);
@@ -563,9 +564,9 @@ public class TalismanBoardScript : MonoBehaviour
         
         //Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
         //playerArray[playerIndex].getCards().Add(c);
-        foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
+        foreach (Card c in outerRing[go.localPlayer.NET_RingPos].cardsOnField)
         {
-            playerArray[playerIndex].getCards().Add(c);
+            go.localPlayer.getCards().Add(c);
         }
 
 
