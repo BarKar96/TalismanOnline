@@ -51,7 +51,7 @@ public class TalismanBoardScript : MonoBehaviour
     /// //////////////////////////////////////////////////////////////
     /// </summary>
     
-    private void initializePlayers()
+    public void initializePlayers()
     {
         combat = GameObject.Find("Combat").GetComponent<Combat>();
         windows = GameObject.Find("Windows").GetComponent<Windows>();
@@ -90,7 +90,7 @@ public class TalismanBoardScript : MonoBehaviour
 
 
         //playerArray[1].current_health = 1;
-       
+
         /*for (int i = 0; i < playersCounter; i++)
         {
             GeneratePiece(i);
@@ -99,7 +99,11 @@ public class TalismanBoardScript : MonoBehaviour
         windows.wstawPortret(playerArray);
         playerName.text = playerArray[playerIndex].name;
         windows.setCursor(playerIndex);*/
-        // deckOfCards.listCards();a
+        // deckOfCards.listCards();
+        NET_NetworkManager = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
+        playerArray = new Player[1];
+        playerArray[0] = NET_NetworkManager.localPlayer;
+        windows.wstawPortret(playerArray);
     }
 
     public void ChangeNetworkPlayerState(Player p){
@@ -375,7 +379,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         fillFields();
         addCardsToFields();
-        initializePlayers();
+        //initializePlayers();
     }
 
     private Piece GeneratePiece(int i)
@@ -666,8 +670,8 @@ public class TalismanBoardScript : MonoBehaviour
     }
     public void buttonExplore()
     {
-        playerArray[playerIndex].iterate_cards();
-        playerArray[playerIndex].getCards().Clear();
+        NET_NetworkManager.localPlayer.iterate_cards();
+        NET_NetworkManager.localPlayer.getCards().Clear();
     }
     //to fix
     public void PlayerItems()
@@ -713,9 +717,9 @@ public class TalismanBoardScript : MonoBehaviour
     public void nextTurn_Button()
     {
         nextTurn();
-        playerName.text = playerArray[playerIndex].name;
+        //playerName.text = playerArray[playerIndex].name;
         //Debug.Log("pozycja gracza w kolejce " + playerIndex);
-        windows.setCursor(playerIndex);
+        //windows.setCursor(playerIndex);
     }
 
     /// <summary>

@@ -7239,6 +7239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spc: {fileID: 0}
   playerIndex: 0
+  NET_NetworkManager: {fileID: 0}
   piecePrefab: {fileID: 1800155370316318, guid: a3ab7504c9fa6844892988499bb3ae89,
     type: 2}
   playerName: {fileID: 401532957}
@@ -17716,7 +17717,7 @@ MonoBehaviour:
   m_NetworkPort: 7777
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
-  m_NetworkAddress: 192.168.0.5
+  m_NetworkAddress: 192.168.0.2
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1

@@ -131,6 +131,12 @@ public class PlayerObject : NetworkBehaviour
     }
 
     [Command]
+    public void CmdAssignPortait()
+    {
+        TargetassignPortrait(connectionToClient);
+    }
+
+    [Command]
     void CmdspawnPlayerPiece()
     {
         Debug.Log("*********************Spawning one piece*********************");
@@ -175,6 +181,12 @@ public class PlayerObject : NetworkBehaviour
     {
         Debug.Log("showing dice");
         dice.SetActive(false);
+    }
+
+    [TargetRpc]
+    public void TargetassignPortrait(NetworkConnection nc)
+    {
+        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().initializePlayers();
     }
 
     [Command]
@@ -422,6 +434,7 @@ public class PlayerObject : NetworkBehaviour
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         this.name = "Piece" + turn;
+        CmdAssignPortait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
 }
