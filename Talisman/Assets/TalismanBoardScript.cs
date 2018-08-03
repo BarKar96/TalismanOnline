@@ -20,6 +20,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     public int playerIndex;
 
+    public PlayerObject NET_NetworkManager;
     public GameObject piecePrefab;
 
     public TextMeshProUGUI playerName;
@@ -464,7 +465,7 @@ public class TalismanBoardScript : MonoBehaviour
         }
         //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
         //Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
-        playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
+        //playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
 
 
 
@@ -517,7 +518,7 @@ public class TalismanBoardScript : MonoBehaviour
         var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
          
         go.CmdMovePlayerLeft(diceResult);
-
+        NET_NetworkManager = go;
         //przesuniecie pionka, aby nie nachodzily na siebie
         /*cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
         */
@@ -529,7 +530,7 @@ public class TalismanBoardScript : MonoBehaviour
 
         
 
-        buttonCombat();
+        //buttonCombat();
 
 
     }
@@ -549,6 +550,7 @@ public class TalismanBoardScript : MonoBehaviour
         var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>(); 
          
         go.CmdMovePlayerRight(diceResult);
+        NET_NetworkManager = go;
         //GameObject.Find("PlayerObject(Clone)").GetComponent<PlayerObject>().CmdMoveRight(diceResult);
         /*Debug.Log("Requesting Piece" + PlayerObject.current);
         
@@ -571,7 +573,7 @@ public class TalismanBoardScript : MonoBehaviour
 
 
 
-        buttonCombat();
+        //buttonCombat();
 
 
     }
