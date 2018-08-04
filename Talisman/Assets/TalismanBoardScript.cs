@@ -187,16 +187,16 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 1:
                     outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] {}, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell1")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
 
                     break;
                 case 2:
                     outerRing[i].fieldEvent = new Card("dorozkaze", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 3:
                     outerRing[i].fieldEvent = new Card("zewastobomir", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                   
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 4:
                     outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -206,7 +206,7 @@ public class TalismanBoardScript : MonoBehaviour
                 case 5:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
 
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell2")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 6:
                     //todo Slavek
@@ -613,7 +613,7 @@ public class TalismanBoardScript : MonoBehaviour
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
         if (_subPanel_Items_Opened == true)
         {
-            CardDrawer.spawnPlayerItems(playerArray[playerIndex],"PanelEkwipunku");
+            CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer,"PanelEkwipunku");
         }
         else
         {

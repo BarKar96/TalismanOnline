@@ -13,34 +13,32 @@ public class ItemsListener : MonoBehaviour
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         var windows = GameObject.Find("Windows").GetComponent<Windows>();
-        Player[] tempPlayerArray = tbs.playerArray;
-        int tempPlayerIndex = tbs.playerIndex;
+
+        Player player = tbs.NET_NetworkManager.localPlayer;
         Deck deck = tbs.deckOfCards;
         Card c = deck.fullDeck.Find(x => x.getName().Equals(name));
-        Debug.Log(tempPlayerArray[tempPlayerIndex].current_health + " " + tempPlayerArray[tempPlayerIndex].strength);
+
         if (c == null)
         {
 
         }
         else if (c.itemType == item_type.CONSUMABLE)
         {
-            if (!(tempPlayerArray[tempPlayerIndex].current_health == tempPlayerArray[tempPlayerIndex].total_health))
-            {
-                tempPlayerArray[tempPlayerIndex].current_health += c.getSpecialCardEvents()[0].get_roll()[0];
-                tempPlayerArray[tempPlayerIndex].getItems().Remove(c);
+
+                player.current_health += c.getSpecialCardEvents()[0].get_roll()[0];
+                player.getItems().Remove(c);
                 tbs.Items_Button();
                 tbs.Items_Button();
-              
                 StartCoroutine(messager("użyto przedmiotu: " + c.getName()));   
                 
-                
-            }
+           
+
         }
         else if (c.itemType == item_type.WEAPON)
         {
-            
+
             //tempPlayerArray[tempPlayerIndex].strength_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
-            tempPlayerArray[tempPlayerIndex].weapon = c;
+            player.weapon = c;
             bron.text = "Założona broń: \n" + c.getName();
             StartCoroutine(messager("założono broń: " + c.getName()));
 
@@ -50,20 +48,22 @@ public class ItemsListener : MonoBehaviour
         else if (c.itemType == item_type.ARMOR)
         {
             // tempPlayerArray[tempPlayerIndex].health_modifier = c.getSpecialCardEvents()[0].get_roll()[0];
-            tempPlayerArray[tempPlayerIndex].armor = c;
+            player.armor = c;
             zbroja.text = "Założony pancerz: \n"+ c.getName();
             StartCoroutine(messager("założono zbroję: " + c.getName()));
             
         }
-        tempPlayerArray[tempPlayerIndex].updateStatistics();
-        windows.UpdateStatsToText(tempPlayerArray);
+        player.updateStatistics();
+
+        //ta funkcja wymaga zmiany bo powinna zmieniac statystki pojedynczego gracza, nie mamy juz tablicy dostepnej
+        //windows.UpdateStatsToText(player);
     }
     public void detachItem(string name)
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         var windows = GameObject.Find("Windows").GetComponent<Windows>();
-        Player[] tempPlayerArray = tbs.playerArray;
-        int tempPlayerIndex = tbs.playerIndex;
+
+        Player player = tbs.NET_NetworkManager.localPlayer;
         Deck deck = tbs.deckOfCards;
         Card c = deck.fullDeck.Find(x => x.getName().Equals(name));
         if (c != null)
@@ -72,19 +72,20 @@ public class ItemsListener : MonoBehaviour
             {
 
                 //tempPlayerArray[tempPlayerIndex].strength_modifier = 0;
-                tempPlayerArray[tempPlayerIndex].weapon = null;
+                player.weapon = null;
                 StartCoroutine(messager("zdjęto broń: " + c.getName()));
                 bron.text = "Założona broń: \n";
             }
             else if (c.itemType == item_type.ARMOR)
             {
                 //tempPlayerArray[tempPlayerIndex].health_modifier = 0;
-                tempPlayerArray[tempPlayerIndex].armor = null;
+                player.armor = null;
                 StartCoroutine(messager("zdjęto zbroję: " + c.getName()));
                 zbroja.text = "Założony pancerz: \n";
             }
-            tempPlayerArray[tempPlayerIndex].updateStatistics();
-            windows.UpdateStatsToText(tempPlayerArray);
+            player.updateStatistics();
+
+            //windows.UpdateStatsToText(tempPlayerArray);
         }
         
     }
@@ -92,13 +93,13 @@ public class ItemsListener : MonoBehaviour
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         var windows = GameObject.Find("Windows").GetComponent<Windows>();
-        Player[] tempPlayerArray = tbs.playerArray;
-        int tempPlayerIndex = tbs.playerIndex;
+
+        Player player = tbs.NET_NetworkManager.localPlayer;
         Deck deck = tbs.deckOfCards;
         Card c = deck.fullDeck.Find(x => x.getName().Equals(name));
         if (c != null)
         {
-            tempPlayerArray[tempPlayerIndex].getItems().Remove(c);
+            player.getItems().Remove(c);
             tbs.Items_Button();
             tbs.Items_Button();
             StartCoroutine(messager("odrzucono przedmiot: " + c.getName()));
