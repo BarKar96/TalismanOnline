@@ -106,17 +106,7 @@ public class PlayerObject : NetworkBehaviour
     public string playername = "asjkglhalsk";
 
     //******SERVER_SIDE******
-    [ClientRpc]
-    void RpcprintStats()
-    {
-        Debug.Log("NETSTATS");
-        Debug.Log("current: " + current);
-        Debug.Log("Turn: " + turn);
-        Debug.Log("PlayerName: " + localPlayer.hero.name);
-        Debug.Log("nowMoves: " + nowMoves);
-        //Debug.Log("current: " + current);
-        Debug.Log("NETSTATS_END");
-    }
+    
     [Command]
     void CmdChangePlayerName(string s)
     {
@@ -162,32 +152,7 @@ public class PlayerObject : NetworkBehaviour
             return;
         localPlayerPiece.transform.Translate(1, 0, 0);
     }
-    [TargetRpc]
-    public void TargetShowDice(NetworkConnection nc)
-    {
-        /*
-        if (localPlayer != null)
-        {
-            Debug.Log("Player: " + localPlayer.hero.name);
-
-        }
-        else
-            Debug.Log("No player found");*/
-        Debug.Log("showing dice");
-        dice.SetActive(true);
-    }
-    [TargetRpc]
-    public void TargetHideDice(NetworkConnection nc)
-    {
-        Debug.Log("showing dice");
-        dice.SetActive(false);
-    }
-
-    [TargetRpc]
-    public void TargetassignPortrait(NetworkConnection nc)
-    {
-        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().initializePlayers();
-    }
+    
 
     [Command]
     void CmdtranslatePieceToStart(int p)
@@ -268,89 +233,47 @@ public class PlayerObject : NetworkBehaviour
         return k < 0 ? (-1) * k : k;
     }
     
-     [Command]
+    [Command]
     public void CmdMovePlayerLeft(int k)
- 
     {
-
         /*if (!(current == localPlayer.NET_Turn))
- 
             return;*/
         Debug.Log("aktualnie" + localPlayer.NET_RingPos);
         Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
-
-
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
- 
-
- 
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
- 
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
- 
         //RpcupdateTurn(k);
- 
         /*if (current < turn - 1)
- 
         {
- 
             current++;
- 
             RpcupdateTurn(current, turn);
- 
         }
- 
         else
- 
             RpcupdateTurn(0, turn);*/
- 
-
         //turnAndDiceReload();
-
         Debug.Log("Moving online player to the left");
- 
     }
  
     [Command]
- 
     public void CmdMovePlayerRight(int k)
- 
     {
- 
        /* if (!(current == localPlayer.NET_Turn))
- 
-            return;*/
- 
-        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
- 
+             return;*/ 
+        Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length)); 
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
- 
-
- 
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
- 
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
- 
         //RpcupdateTurn(k);
- 
         /*if (current < turn - 1)
- 
         {
- 
             current++;
- 
             RpcupdateTurn(current, turn);
- 
         }
- 
         else
- 
             RpcupdateTurn(0, turn);*/
-        
         //turnAndDiceReload();
- 
         Debug.Log("Moving online player to the right");
- 
     }
  
     [Command]
@@ -436,5 +359,37 @@ public class PlayerObject : NetworkBehaviour
         this.name = "Piece" + turn;
         CmdAssignPortait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
+    }
+
+    [TargetRpc]
+    public void TargetShowDice(NetworkConnection nc)
+    {
+        Debug.Log("showing dice");
+        dice.SetActive(true);
+    }
+
+    [TargetRpc]
+    public void TargetHideDice(NetworkConnection nc)
+    {
+        Debug.Log("showing dice");
+        dice.SetActive(false);
+    }
+
+    [TargetRpc]
+    public void TargetassignPortrait(NetworkConnection nc)
+    {
+        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().initializePlayers();
+    }
+
+    [ClientRpc]
+    void RpcprintStats()
+    {
+        Debug.Log("NETSTATS");
+        Debug.Log("current: " + current);
+        Debug.Log("Turn: " + turn);
+        Debug.Log("PlayerName: " + localPlayer.hero.name);
+        Debug.Log("nowMoves: " + nowMoves);
+        //Debug.Log("current: " + current);
+        Debug.Log("NETSTATS_END");
     }
 }
