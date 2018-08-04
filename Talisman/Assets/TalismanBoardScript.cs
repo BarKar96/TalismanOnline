@@ -523,6 +523,7 @@ public class TalismanBoardScript : MonoBehaviour
          
         go.CmdMovePlayerLeft(diceResult);
         NET_NetworkManager = go;
+        showFieldDescription();
         //przesuniecie pionka, aby nie nachodzily na siebie
         /*cd.movePieceToRightLocation(outerRing); //Debug.Log(playerArray[playerIndex].current_health);
         */
@@ -555,6 +556,7 @@ public class TalismanBoardScript : MonoBehaviour
          
         go.CmdMovePlayerRight(diceResult);
         NET_NetworkManager = go;
+        showFieldDescription();
         //GameObject.Find("PlayerObject(Clone)").GetComponent<PlayerObject>().CmdMoveRight(diceResult);
         /*Debug.Log("Requesting Piece" + PlayerObject.current);
         
@@ -567,7 +569,7 @@ public class TalismanBoardScript : MonoBehaviour
         //przesuniecie pionka, aby nie nachodzily na siebie
 
         //cd.movePieceToRightLocation(outerRing);
-        
+
         //Card c = deckOfCards.fullDeck.Find(x => x.getName().Equals("tomasz"));
         //playerArray[playerIndex].getCards().Add(c);
         foreach (Card c in outerRing[go.localPlayer.NET_RingPos].cardsOnField)
@@ -635,7 +637,7 @@ public class TalismanBoardScript : MonoBehaviour
         setSubPanelVisibility(subPanel_Spells, _subPanel_Spells_Opened);
         if (_subPanel_Spells_Opened == true)
         {
-            CardDrawer.spawnPlayerSpells(playerArray[playerIndex], "PanelZaklec");
+            CardDrawer.spawnPlayerSpells(NET_NetworkManager.localPlayer, "PanelZaklec");
         }
         else
         {
@@ -754,7 +756,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         //fieldDescription.color = Color.white;
         //fieldDescription.transform.position = new Vector3(0, 0, -4);
-        fieldDescription.text = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getDescription();
+        fieldDescription.text = outerRing[NET_NetworkManager.localPlayer.NET_RingPos].fieldEvent.getDescription();
     }
 
 
@@ -784,7 +786,7 @@ public class TalismanBoardScript : MonoBehaviour
         GenerateBoard();
         playerIndex = 0;
         nextTurn();
-        playerName.text = playerArray[playerIndex].name;
+        playerName.text = NET_NetworkManager.localPlayer.hero.name;
         Debug.Log("pozycja gracza w kolejce " + playerIndex);
         windows.setCursor(playerIndex);
 
