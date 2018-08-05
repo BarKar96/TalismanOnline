@@ -13,7 +13,7 @@ public class PlayerObject : NetworkBehaviour
     public Field[] fields;
     public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
-
+    Windows a;
     public static int turn = 0;
     //[SyncVar]
     
@@ -30,6 +30,7 @@ public class PlayerObject : NetworkBehaviour
         //this.localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //turn++;
         fields = TalismanBoardScript.outerRing;
+        a = gameObject.AddComponent<Windows>();
         if (!isLocalPlayer)
             return;
         Debug.Log("Created local player piece");
@@ -356,6 +357,8 @@ public class PlayerObject : NetworkBehaviour
         Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
+        //GameObject.Find("ScrollArea").GetComponent<Windows>().addToHistory("New player entered");
+        a.addToHistory("new player entered");
         this.name = "Piece" + turn;
         CmdAssignPortait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
