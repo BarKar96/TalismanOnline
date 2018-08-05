@@ -108,14 +108,15 @@ public class TalismanBoardScript : MonoBehaviour
 
     public void addNewPlayerPortrait(Player p, int players)
     {
+        Debug.Log("addind player of type: " + p.hero.type.ToString());
         Player[] newarr = new Player[players];
         foreach(Player pl in playerArray)
         {
             newarr[pl.NET_Turn] = pl;
         }
-        newarr[players - 1] = p;
+        newarr[players-1] = p;
         playerArray = newarr;
-        windows.wstawPortret(playerArray);
+        windows.wstawPortret(newarr);
         /*Player[] newArr = new Player[playerArray.Length + 1];
         for(int i =0; i < playerArray.Length; i++)
         {
