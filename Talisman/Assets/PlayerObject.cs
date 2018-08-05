@@ -141,25 +141,23 @@ public class PlayerObject : NetworkBehaviour
     
         
     //  ******************WORKZONE[ONLINECOLLISION]****************************
-    [Command]
-    void CmdRequestPositions()
+    //[Command]
+    void RequestPositions()
     {
-        int[] positions = new int[turn];
         for(int i =0; i < turn; i++)
         {
-            //positions[i] = 
-                TargetReturnCurrentPosition(NetworkServer.connections[i]);
-        }
-        foreach(int i in positions)
-        {
-            Debug.Log("THere is a player @ " + i);
+            if(i != this.localPlayer.NET_Turn)
+                TargetCompareCurrentPosition(NetworkServer.connections[i], this.localPlayer.NET_RingPos);
         }
     }
 
     [TargetRpc]
-    void TargetReturnCurrentPosition(NetworkConnection nc)
+    void TargetCompareCurrentPosition(NetworkConnection nc, int otherPlayerPosition)
     {
-        //return localPlayer.NET_RingPos;
+        if(this.localPlayer.NET_RingPos == otherPlayerPosition)
+        {
+            Debug.Log("COMBAT!");
+        }
     }
     //  ******************WORKZONE[ONLINECOLLISION]****************************
 
@@ -309,6 +307,7 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
         //turnAndDiceReload();
         Debug.Log("Moving online player to the left");
+        RequestPositions();
     }
  
     [Command]
@@ -330,6 +329,7 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
         //turnAndDiceReload();
         Debug.Log("Moving online player to the right");
+        RequestPositions();
     }
  
     [Command]
@@ -417,7 +417,7 @@ public class PlayerObject : NetworkBehaviour
         this.name = "Piece" + turn;
         //CmdAssignPortait();
         CmdAssignPortait();
-        CmdPortrait();
+        //CmdPortrait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
 
