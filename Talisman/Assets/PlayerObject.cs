@@ -125,6 +125,18 @@ public class PlayerObject : NetworkBehaviour
     public void CmdAssignPortait()
     {
         TargetassignPortrait(connectionToClient);
+        if (NetworkServer.connections.Count > 1)
+        {
+            RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero);
+        }
+    }
+
+    [ClientRpc]
+    void RpcAddPortrait(string name, Hero hero)
+    {
+        
+        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().addNewPlayerPortrait(
+            new Player(name, hero));
     }
 
     [Command]
@@ -354,7 +366,7 @@ public class PlayerObject : NetworkBehaviour
     void RpcAssignPlayer(string s, int turn)
     {
         Debug.Log("Player " + playername + " Sets new hero");
-        Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+        Player p = new Player("S", new Hero(Assets.hero_type.TROLL), turn);
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         //GameObject.Find("ScrollArea").GetComponent<Windows>().addToHistory("New player entered");
