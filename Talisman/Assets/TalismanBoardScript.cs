@@ -106,16 +106,25 @@ public class TalismanBoardScript : MonoBehaviour
         windows.wstawPortret(playerArray);
     }
 
-    public void addNewPlayerPortrait(Player p)
+    public void addNewPlayerPortrait(Player p, int players)
     {
-        Player[] newArr = new Player[playerArray.Length + 1];
+        Player[] newarr = new Player[players];
+        foreach(Player pl in playerArray)
+        {
+            newarr[pl.NET_Turn] = pl;
+        }
+        newarr[players - 1] = p;
+        playerArray = newarr;
+        windows.wstawPortret(playerArray);
+        /*Player[] newArr = new Player[playerArray.Length + 1];
         for(int i =0; i < playerArray.Length; i++)
         {
             newArr[i] = playerArray[i];
         }
         newArr[playerArray.Length] = p;
         playerArray = newArr;
-        windows.wstawPortret(playerArray);
+        windows.wstawPortret(playerArray);*/
+
     }
 
     public void ChangeNetworkPlayerState(Player p){

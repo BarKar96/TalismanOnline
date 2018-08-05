@@ -121,23 +121,64 @@ public class PlayerObject : NetworkBehaviour
             TargetcheckThis(conn, 15);
         }*/
     }
+    //  ******************WORKZONE[PORTRAITS]****************************
+    [Command]
+    public void CmdPortrait()
+    {
+        if (NetworkServer.connections.Count < 2)
+            TargetassignPortrait(connectionToClient);
+        RpcNewPortrait(localPlayer.name, localPlayer.hero.type, localPlayer.NET_Turn, NetworkServer.connections.Count);
+    }
+
+    [ClientRpc]
+    public void RpcNewPortrait(string name, hero_type hero, int queue, int playersonserver)
+    {
+        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().addNewPlayerPortrait(
+            new Player(name, new Hero(hero), queue), playersonserver);
+    }
+    //  ******************WORKZONE[PORTRAITS]****************************
+
+    //  ******************WORKZONE[ONLINECOLLISION]****************************
+
+    [Command]
+    void CmdRequestPositions()
+    {
+        int[] positions = new int[turn];
+        for(int i =0; i < turn; i++)
+        {
+            //positions[i] = 
+                TargetReturnCurrentPosition(NetworkServer.connections[i]);
+        }
+        foreach(int i in positions)
+        {
+            Debug.Log("THere is a player @ " + i);
+        }
+    }
+
+    [TargetRpc]
+    void TargetReturnCurrentPosition(NetworkConnection nc)
+    {
+        //return localPlayer.NET_RingPos;
+    }
+    //  ******************WORKZONE[ONLINECOLLISION]****************************
 
     [Command]
     public void CmdAssignPortait()
     {
-        TargetassignPortrait(connectionToClient);
+        //TargetassignPortrait(connectionToClient);
         if (NetworkServer.connections.Count > 1)
         {
-            RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero.type);
+         
         }
+        RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero.type);
     }
 
     [ClientRpc]
     void RpcAddPortrait(string name, hero_type hero)
     {
         
-        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().addNewPlayerPortrait(
-            new Player(name, new Hero(hero)));
+    /*    GameObject.Find("Tile").GetComponent<TalismanBoardScript>().addNewPlayerPortrait(
+            new Player(name, new Hero(hero)));*/
     }
 
     [Command]
@@ -367,13 +408,15 @@ public class PlayerObject : NetworkBehaviour
     void RpcAssignPlayer(string s, int turn)
     {
         Debug.Log("Player " + playername + " Sets new hero");
-        Player p = new Player("S", new Hero(Assets.hero_type.TROLL), turn);
+        Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         //GameObject.Find("ScrollArea").GetComponent<Windows>().addToHistory("New player entered");
         a.addToHistory("new player entered");
         this.name = "Piece" + turn;
-        CmdAssignPortait();
+        //CmdAssignPortait();
+
+        CmdPortrait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
 
