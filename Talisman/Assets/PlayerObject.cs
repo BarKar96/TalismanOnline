@@ -150,15 +150,17 @@ public class PlayerObject : NetworkBehaviour
             //positions[i] = 
                 TargetReturnCurrentPosition(NetworkServer.connections[i]);
         }
-        foreach(int i in positions)
+        /*foreach(int i in positions)
         {
             Debug.Log("THere is a player @ " + i);
-        }
+        }*/
     }
 
     [TargetRpc]
     void TargetReturnCurrentPosition(NetworkConnection nc)
     {
+
+        Debug.Log("Position is " + localPlayer.NET_RingPos);
         //return localPlayer.NET_RingPos;
     }
     //  ******************WORKZONE[ONLINECOLLISION]****************************
