@@ -106,6 +106,15 @@ public class TalismanBoardScript : MonoBehaviour
         windows.wstawPortret(playerArray);
     }
 
+    public void compareValues(int a)
+    {
+        Debug.Log("Comparing " + NET_NetworkManager.localPlayer.NET_RingPos + " with " + a);
+        if(NET_NetworkManager.localPlayer.NET_RingPos == a)
+        {
+            Debug.Log("COMBAT");
+        }
+    }
+
     public void addNewPlayerPortrait(Player p, int players)
     {
         Debug.Log("addind player of type: " + p.hero.type.ToString());

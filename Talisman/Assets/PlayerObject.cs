@@ -15,6 +15,10 @@ public class PlayerObject : NetworkBehaviour
     public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
     Windows a;
+
+    [SyncVar]
+    public int playerPosition;
+
     public static int turn = 0;
     //[SyncVar]
     
@@ -141,23 +145,26 @@ public class PlayerObject : NetworkBehaviour
     
         
     //  ******************WORKZONE[ONLINECOLLISION]****************************
-    //[Command]
-    void RequestPositions()
+    [ClientRpc]
+    void RpcRequestPositions()
     {
         for(int i =0; i < turn; i++)
         {
-            if(i != this.localPlayer.NET_Turn)
-                TargetCompareCurrentPosition(NetworkServer.connections[i], this.localPlayer.NET_RingPos);
+            //if(i != this.localPlayer.NET_Turn)
+              
         }
+        CmdCompareCurrentPosition(this.playerPosition);
     }
 
-    [TargetRpc]
-    void TargetCompareCurrentPosition(NetworkConnection nc, int otherPlayerPosition)
+    [Command]
+    void CmdCompareCurrentPosition(int otherPlayerPosition)
     {
-        if(this.localPlayer.NET_RingPos == otherPlayerPosition)
+        /*if(this.localPlayer.NET_RingPos == otherPlayerPosition)
         {
             Debug.Log("COMBAT!");
-        }
+        }*/
+        //GameObject.Find("Tile").GetComponent<TalismanBoardScript>().compareValues(otherPlayerPosition);
+        Debug.Log("Comparing " + this.playerPosition + " with " + otherPlayerPosition);
     }
     //  ******************WORKZONE[ONLINECOLLISION]****************************
 
@@ -219,6 +226,7 @@ public class PlayerObject : NetworkBehaviour
         
         localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = localPlayer.hero.startingLocation;
+        playerPosition = localPlayer.NET_RingPos;
         //fields[localPlayer.hero.startingLocation].counter++;
 
     }
@@ -296,6 +304,7 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
+        playerPosition = localPlayer.NET_RingPos;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
@@ -307,7 +316,7 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
         //turnAndDiceReload();
         Debug.Log("Moving online player to the left");
-        RequestPositions();
+        //RequestPositions();
     }
  
     [Command]
@@ -318,6 +327,7 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length)); 
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
+        playerPosition = localPlayer.NET_RingPos;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
@@ -329,7 +339,7 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
         //turnAndDiceReload();
         Debug.Log("Moving online player to the right");
-        RequestPositions();
+        RpcRequestPositions();
     }
  
     [Command]
