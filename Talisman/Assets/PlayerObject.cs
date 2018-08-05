@@ -125,8 +125,8 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     public void CmdPortrait()
     {
-        if (NetworkServer.connections.Count < 2)
-            TargetassignPortrait(connectionToClient);
+        //if (NetworkServer.connections.Count < 2)
+           // TargetassignPortrait(connectionToClient);
         RpcNewPortrait(localPlayer.name, localPlayer.hero.type, localPlayer.NET_Turn, NetworkServer.connections.Count);
     }
 
@@ -165,12 +165,12 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     public void CmdAssignPortait()
     {
-        //TargetassignPortrait(connectionToClient);
-        if (NetworkServer.connections.Count > 1)
+        TargetassignPortrait(connectionToClient);
+        /*if (NetworkServer.connections.Count > 1)
         {
          
         }
-        RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero.type);
+        RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero.type);*/
     }
 
     [ClientRpc]
@@ -408,14 +408,14 @@ public class PlayerObject : NetworkBehaviour
     void RpcAssignPlayer(string s, int turn)
     {
         Debug.Log("Player " + playername + " Sets new hero");
-        Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+        Player p = new Player("S", new Hero(Assets.hero_type.TROLL), turn);
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         //GameObject.Find("ScrollArea").GetComponent<Windows>().addToHistory("New player entered");
         a.addToHistory("new player entered");
         this.name = "Piece" + turn;
         //CmdAssignPortait();
-
+        CmdAssignPortait();
         CmdPortrait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
