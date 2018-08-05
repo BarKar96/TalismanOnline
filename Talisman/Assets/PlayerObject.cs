@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -127,16 +128,16 @@ public class PlayerObject : NetworkBehaviour
         TargetassignPortrait(connectionToClient);
         if (NetworkServer.connections.Count > 1)
         {
-            RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero);
+            RpcAddPortrait(this.localPlayer.name, this.localPlayer.hero.type);
         }
     }
 
     [ClientRpc]
-    void RpcAddPortrait(string name, Hero hero)
+    void RpcAddPortrait(string name, hero_type hero)
     {
         
         GameObject.Find("Tile").GetComponent<TalismanBoardScript>().addNewPlayerPortrait(
-            new Player(name, hero));
+            new Player(name, new Hero(hero)));
     }
 
     [Command]

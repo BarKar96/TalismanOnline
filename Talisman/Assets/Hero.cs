@@ -11,7 +11,7 @@ public class Hero
     public int luck;
     public int hp;
     public int startingLocation;
-
+    public hero_type type;
     public Hero(hero_type index)
     {
         
@@ -20,6 +20,7 @@ public class Hero
 
     public void fillHeroInformation(hero_type ht)
     {
+        type = ht;
         switch (ht)
         {
             case hero_type.ZLODZIEJ:
