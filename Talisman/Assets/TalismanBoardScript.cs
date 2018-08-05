@@ -476,11 +476,15 @@ public class TalismanBoardScript : MonoBehaviour
         //showHeroName();
         //showHeroStatistics();
         //showHeroCards();
+        try
+        {
+            var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
 
-        var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
-
-        go.CmdReloadDice();
-
+            go.CmdReloadDice();
+        } catch (Exception e)
+        {
+            Debug.Log("Probably first run error. " + e.Message);
+        }
     }
 
     private int getActualPlayerRingFieldNumber()
@@ -786,9 +790,9 @@ public class TalismanBoardScript : MonoBehaviour
         GenerateBoard();
         playerIndex = 0;
         nextTurn();
-        playerName.text = NET_NetworkManager.localPlayer.hero.name;
+        //playerName.text = NET_NetworkManager.localPlayer.hero.name;
         Debug.Log("pozycja gracza w kolejce " + playerIndex);
-        windows.setCursor(playerIndex);
+        //windows.setCursor(playerIndex);
 
         //playerArray[playerIndex].playerPiece.transform.position = outerRing[0].emptyGameObject.transform.position;
     //playerArray[indexOfPlayer].playerPiece.transform.position = outerRing[indexOfFieldToMoveOn].emptyGameObject.transform.position;
