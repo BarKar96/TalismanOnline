@@ -6,6 +6,7 @@ using Assets;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 
 public class TalismanBoardScript : MonoBehaviour
 {
@@ -108,11 +109,22 @@ public class TalismanBoardScript : MonoBehaviour
 
     public void addNewPlayerPortrait(Player p, int players)
     {
-        Debug.Log("addind player of type: " + p.hero.type.ToString());
+        Debug.Log("addind player of type: " + p.hero.type.ToString() + " net turn: " + p);
         Player[] newarr = new Player[players];
         foreach(Player pl in playerArray)
         {
-            newarr[pl.NET_Turn] = pl;
+            Debug.Log("isServer "+NetworkServer.active);
+            if(NetworkServer.active)
+            {
+                newarr[pl.NET_Turn] = pl;
+            }
+            else
+            {
+                newarr[pl.NET_Turn-1] = pl;
+            }
+                
+                
+           
         }
         newarr[players-1] = p;
         playerArray = newarr;
