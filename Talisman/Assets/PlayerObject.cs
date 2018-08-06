@@ -16,8 +16,10 @@ public class PlayerObject : NetworkBehaviour
     public Piece localPiece;
     Windows a;
     public static int turn = 0;
-    //[SyncVar]
-    
+
+    [SyncVar]
+    public int position;
+
     public static int current = 0;
 
     [SyncVar]
@@ -148,7 +150,7 @@ public class PlayerObject : NetworkBehaviour
     {
         for(int i =0; i < turn; i++)
         {
-                TargetReturnCurrentPosition(NetworkServer.connections[i]);
+                RpcReturnCurrentPosition(NetworkServer.connections[i]);
         }  
     }
 
@@ -158,11 +160,11 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("received " + x + " / " + name);
     }
 
-    [TargetRpc]
-    void TargetReturnCurrentPosition(NetworkConnection nc)
+    [ClientRpc]
+    void RpcReturnCurrentPosition(NetworkConnection nc)
     {
 
-        CmdpassPosition(localPlayer.NET_RingPos, "asd");
+        CmdpassPosition(position, "asd");
         //return localPlayer.NET_RingPos;
     }
     //  ******************WORKZONE[ONLINECOLLISION]****************************
@@ -225,6 +227,7 @@ public class PlayerObject : NetworkBehaviour
         
         localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = localPlayer.hero.startingLocation;
+        position = localPlayer.NET_RingPos;
         //fields[localPlayer.hero.startingLocation].counter++;
 
     }
@@ -303,11 +306,13 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
-        for (int i = 0; i < turn; i++)
+        position = localPlayer.NET_RingPos;
+        for(int i =0; i < turn; i++)
         {
-            TargetReturnCurrentPosition(NetworkServer.connections[i]);
-        }
-
+            Debug.Log("Asking:");
+                RpcReturnCurrentPosition(NetworkServer.connections[i]);
+        }  
+        
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
         {
@@ -329,6 +334,12 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
+        position = localPlayer.NET_RingPos;
+        for (int i = 0; i < turn; i++)
+        {
+            Debug.Log("Asking:");
+            RpcReturnCurrentPosition(NetworkServer.connections[i]);
+        }
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
         {
