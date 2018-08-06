@@ -724,24 +724,48 @@ public class TalismanBoardScript : MonoBehaviour
             switch (target)
             {
                 case "ButtonCards1":
-                    CardDrawer.spawnPlayerItems(playerArray[0], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards2":
-                    CardDrawer.spawnPlayerItems(playerArray[1], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards3":
-                    CardDrawer.spawnPlayerItems(playerArray[2], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards4":
-                    CardDrawer.spawnPlayerItems(playerArray[3], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards5":
-                    CardDrawer.spawnPlayerItems(playerArray[4], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards6":
-                    CardDrawer.spawnPlayerItems(playerArray[5], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+
                     break;
             }
+            //offline
+            //string target = EventSystem.current.currentSelectedGameObject.name;
+            //switch (target)
+            //{
+            //    case "ButtonCards1":
+            //        CardDrawer.spawnPlayerItems(playerArray[0], "PanelEkwipunku");
+            //        break;
+            //    case "ButtonCards2":
+            //        CardDrawer.spawnPlayerItems(playerArray[1], "PanelEkwipunku");
+            //        break;
+            //    case "ButtonCards3":
+            //        CardDrawer.spawnPlayerItems(playerArray[2], "PanelEkwipunku");
+            //        break;
+            //    case "ButtonCards4":
+            //        CardDrawer.spawnPlayerItems(playerArray[3], "PanelEkwipunku");
+            //        break;
+            //    case "ButtonCards5":
+            //        CardDrawer.spawnPlayerItems(playerArray[4], "PanelEkwipunku");
+            //        break;
+            //    case "ButtonCards6":
+            //        CardDrawer.spawnPlayerItems(playerArray[5], "PanelEkwipunku");
+            //        break;
+            //}
         }
         else
         {
