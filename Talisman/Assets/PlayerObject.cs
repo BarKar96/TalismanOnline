@@ -68,6 +68,7 @@ public class PlayerObject : NetworkBehaviour
                 Debug.Log("Player name: " + this.localPlayer.hero.name);
                 Debug.Log("Turn / current / playerTurn / nowMoves:" + turn + " / " + current + " / " + localPlayer.NET_Turn + " / " + nowMoves);
             }
+            CmdPortrait();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -126,8 +127,9 @@ public class PlayerObject : NetworkBehaviour
     public void CmdPortrait()
     {
         //if (NetworkServer.connections.Count < 2)
-           // TargetassignPortrait(connectionToClient);
-        RpcNewPortrait(this.localPlayer.name, this.localPlayer.hero.type, this.localPlayer.NET_Turn, NetworkServer.connections.Count);
+        // TargetassignPortrait(connectionToClient);
+        // RpcNewPortrait(this.localPlayer.name, this.localPlayer.hero.type, this.localPlayer.NET_Turn, NetworkServer.connections.Count);
+        RpcprintStats();
     }
 
     [ClientRpc]
@@ -144,23 +146,23 @@ public class PlayerObject : NetworkBehaviour
     [Command]
     void CmdRequestPositions()
     {
-        int[] positions = new int[turn];
         for(int i =0; i < turn; i++)
         {
-            //positions[i] = 
                 TargetReturnCurrentPosition(NetworkServer.connections[i]);
-        }
-        /*foreach(int i in positions)
-        {
-            Debug.Log("THere is a player @ " + i);
-        }*/
+        }  
+    }
+
+    [Command]
+    void CmdpassPosition(int x, string name)
+    {
+        Debug.Log("received " + x + " / " + name);
     }
 
     [TargetRpc]
     void TargetReturnCurrentPosition(NetworkConnection nc)
     {
 
-        Debug.Log("Position is " + localPlayer.NET_RingPos);
+        CmdpassPosition(localPlayer.NET_RingPos, "asd");
         //return localPlayer.NET_RingPos;
     }
     //  ******************WORKZONE[ONLINECOLLISION]****************************
@@ -301,6 +303,11 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
+        for (int i = 0; i < turn; i++)
+        {
+            TargetReturnCurrentPosition(NetworkServer.connections[i]);
+        }
+
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
         {
