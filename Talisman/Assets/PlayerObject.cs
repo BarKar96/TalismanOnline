@@ -150,7 +150,7 @@ public class PlayerObject : NetworkBehaviour
     {
         for(int i =0; i < turn; i++)
         {
-                RpcReturnCurrentPosition(NetworkServer.connections[i]);
+                RpcReturnCurrentPosition();
         }  
     }
 
@@ -161,7 +161,7 @@ public class PlayerObject : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcReturnCurrentPosition(NetworkConnection nc)
+    void RpcReturnCurrentPosition()
     {
 
         CmdpassPosition(position, "asd");
@@ -310,7 +310,7 @@ public class PlayerObject : NetworkBehaviour
         for(int i =0; i < turn; i++)
         {
             Debug.Log("Asking:");
-                RpcReturnCurrentPosition(NetworkServer.connections[i]);
+                RpcReturnCurrentPosition();
         }  
         
         //RpcupdateTurn(k);
@@ -338,7 +338,7 @@ public class PlayerObject : NetworkBehaviour
         for (int i = 0; i < turn; i++)
         {
             Debug.Log("Asking:");
-            RpcReturnCurrentPosition(NetworkServer.connections[i]);
+            RpcReturnCurrentPosition();
         }
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
