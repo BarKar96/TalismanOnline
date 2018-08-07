@@ -428,7 +428,7 @@ public class PlayerObject : NetworkBehaviour
         this.name = "Piece" + turn;
         //CmdAssignPortait();
         CmdAssignPortait();
-        //CmdPortrait();
+        CmdPortrait();
         CmdtranslatePieceToStart(localPlayer.hero.startingLocation);
     }
 
