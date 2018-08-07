@@ -122,10 +122,18 @@ public class TalismanBoardScript : MonoBehaviour
         else if (MainMenu.onoff == 1)
         {
             // deckOfCards.listCards();
+            try
+            {
             NET_NetworkManager = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
             playerArray = new Player[1];
             playerArray[0] = NET_NetworkManager.localPlayer;
             windows.wstawPortret(playerArray);
+            }
+            catch(Exception e)
+            {
+                Debug.Log("Probably first run error");
+            }
+
         }
     }
 
