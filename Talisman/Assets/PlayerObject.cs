@@ -418,7 +418,9 @@ public class PlayerObject : NetworkBehaviour
     void RpcAssignPlayer(string s, int turn)
     {
         Debug.Log("Player " + playername + " Sets new hero");
-        Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+        //TU MACIE ZEBY Zmieniac na statyczne dynamiczne
+        Player p = new Player(MainMenu.nickNameValue[0], new Hero(MainMenu.heroValue[0]), turn);//dynamiczne
+        //Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);//statyczne
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         //GameObject.Find("ScrollArea").GetComponent<Windows>().addToHistory("New player entered");
