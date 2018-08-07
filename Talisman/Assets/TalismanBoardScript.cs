@@ -612,6 +612,7 @@ public class TalismanBoardScript : MonoBehaviour
 
             //przesuniecie pionka
             movePiece(playerIndex, whereToMove);
+            buttonCombat();
         }
         else if (MainMenu.onoff == 1)
         {
@@ -633,7 +634,7 @@ public class TalismanBoardScript : MonoBehaviour
         showFieldDescription();
 
 
-        buttonCombat();
+       
 
 
     }
@@ -656,6 +657,7 @@ public class TalismanBoardScript : MonoBehaviour
             {
                 playerArray[playerIndex].getCards().Add(c);
             }
+            buttonCombat();
         }
         else if (MainMenu.onoff == 1)
         {
@@ -685,8 +687,6 @@ public class TalismanBoardScript : MonoBehaviour
             }
         }
 
-
-        buttonCombat();
 
 
     }
