@@ -6,6 +6,7 @@ using Assets;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 
 public class TalismanBoardScript : MonoBehaviour
 {
@@ -117,11 +118,22 @@ public class TalismanBoardScript : MonoBehaviour
 
     public void addNewPlayerPortrait(Player p, int players)
     {
-        Debug.Log("addind player of type: " + p.hero.type.ToString());
+        Debug.Log("addind player of type: " + p.hero.type.ToString() + " net turn: " + p);
         Player[] newarr = new Player[players];
         foreach(Player pl in playerArray)
         {
-            newarr[pl.NET_Turn] = pl;
+            Debug.Log("isServer "+NetworkServer.active);
+            if(NetworkServer.active)
+            {
+                newarr[pl.NET_Turn] = pl;
+            }
+            else
+            {
+                newarr[pl.NET_Turn-1] = pl;
+            }
+                
+                
+           
         }
         newarr[players-1] = p;
         playerArray = newarr;
@@ -721,22 +733,22 @@ public class TalismanBoardScript : MonoBehaviour
             switch (target)
             {
                 case "ButtonCards1":
-                    CardDrawer.spawnPlayerItems(playerArray[0], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards2":
-                    CardDrawer.spawnPlayerItems(playerArray[1], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards3":
-                    CardDrawer.spawnPlayerItems(playerArray[2], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards4":
-                    CardDrawer.spawnPlayerItems(playerArray[3], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards5":
-                    CardDrawer.spawnPlayerItems(playerArray[4], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
                 case "ButtonCards6":
-                    CardDrawer.spawnPlayerItems(playerArray[5], "PanelEkwipunku");
+                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
                     break;
             }
         }
