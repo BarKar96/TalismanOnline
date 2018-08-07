@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour
                 flag[1] = true;
                 break;
             }
-            else flag[i] = false;
+            else flag[1] = false;
         }
     }
     public void HeroTypeIndex_changed(int index)
@@ -68,12 +68,7 @@ public class MainMenu : MonoBehaviour
     public void NumberOfPlayersIndex_changed(int index)
     {
         TurnOffAll();
-        if (index == 0) playerscount = 1;
-        else if (index == 1) playerscount = 2;
-        else if (index == 2) playerscount = 3;
-        else if (index == 3) playerscount = 4;
-        else if (index == 4) playerscount = 5;
-        else if (index == 5) playerscount = 6;
+        playerscount = index + 1;
         if (index == 0)
         {
             try
@@ -136,7 +131,7 @@ public class MainMenu : MonoBehaviour
         kek[0] = hero[0];
         for(int i=1;i<heroNames.Length+1;i++)
         {
-            kek[i] = heroNames[i - 1];
+            kek[i] = heroNames[i-1];
         }
 
         List<string> names = new List<string>(kek);
@@ -225,14 +220,6 @@ public class MainMenu : MonoBehaviour
         SpawnPlayer();
         UpdateData();
     }
-    //public static string getNickname()
-    //{
-    //    return nickNameValue;
-    //}
-    //public static [] string getHero()
-    //{
-    //    return heroValue;
-    //}
     public static int getOnOff()
     {
         return onoff;
@@ -271,48 +258,11 @@ public class MainMenu : MonoBehaviour
     {
         try
         {
-            switch (playerscount)
+            for (int i = 1; i < playerscount; i++)
             {
-                case 2:
-                    for (int i = 1; i < playerscount; i++)
-                    {
-                        Players[i].gameObject.SetActive(true);
-                        heroType[i].gameObject.SetActive(true);
-                        Nickname[i].gameObject.SetActive(true);
-                    }
-                    break;
-                case 3:
-                    for (int i = 1; i < playerscount; i++)
-                    {
-                        Players[i].gameObject.SetActive(true);
-                        heroType[i].gameObject.SetActive(true);
-                        Nickname[i].gameObject.SetActive(true);
-                    }
-                    break;
-                case 4:
-                    for (int i = 1; i < playerscount; i++)
-                    {
-                        Players[i].gameObject.SetActive(true);
-                        heroType[i].gameObject.SetActive(true);
-                        Nickname[i].gameObject.SetActive(true);
-                    }
-                    break;
-                case 5:
-                    for (int i = 1; i < playerscount; i++)
-                    {
-                        Players[i].gameObject.SetActive(true);
-                        heroType[i].gameObject.SetActive(true);
-                        Nickname[i].gameObject.SetActive(true);
-                    }
-                    break;
-                case 6:
-                    for (int i = 1; i < playerscount; i++)
-                    {
-                        Players[i].gameObject.SetActive(true);
-                        heroType[i].gameObject.SetActive(true);
-                        Nickname[i].gameObject.SetActive(true);
-                    }
-                    break;
+                Players[i].gameObject.SetActive(true);
+                heroType[i].gameObject.SetActive(true);
+                Nickname[i].gameObject.SetActive(true);
             }
         }
         catch (IndexOutOfRangeException) { };
