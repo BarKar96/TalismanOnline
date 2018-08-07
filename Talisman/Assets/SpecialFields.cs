@@ -12,6 +12,7 @@ public class SpecialFields : MonoBehaviour {
     public TextMeshProUGUI MessageText;
     public GameObject panel;
     public GameObject MessageBox;
+    public bool gospodaDiceBlock = false;
 	// Use this for initialization
     //just some random comment
     public void SetPanelOn()
@@ -21,6 +22,7 @@ public class SpecialFields : MonoBehaviour {
     }
 	public void Gospoda()
     {
+        gospodaDiceBlock = true;
         Name.text = "Gospoda";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Upiłeś się i zasnąłeś w kącie - tracisz turę. \n(2) Upiłeś się i wdałeś w bójkę z chłopem tracisz 1 hp. \n(3) Grałeś w karty i przegrałeś 1 sztukę złota. \n(4) Grałeś w karty i wygrałeś jedną sztukę złota. \n(5) Potknąłeś się wpadłeś do piwnicy. Znalazłeś dwie sztuki złota. \n(6) Karateka uczy Ciebie sztuk walki (+1 punkt Siły.)";
     }
@@ -57,5 +59,6 @@ public class SpecialFields : MonoBehaviour {
                 MessageText.text = "Też mi karateka skoro go tak łatwo pokonałem - siła zwiększona o 1";
                 break;
         }
+        gospodaDiceBlock = false;
     }
 }
