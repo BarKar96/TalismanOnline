@@ -21,7 +21,6 @@ public class PlayerObject : NetworkBehaviour
 
     public static int turn = 0;
     //[SyncVar]
-    
     public static int current = 0;
 
     [SyncVar]

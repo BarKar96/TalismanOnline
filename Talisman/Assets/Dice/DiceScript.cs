@@ -44,9 +44,5 @@ public class DiceScript : MonoBehaviour
     void Update()
     {
         diceVelocity = rb.velocity;
-
-       
-            
-    
     }
 }
