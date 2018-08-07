@@ -129,9 +129,10 @@ public class MainMenu : MonoBehaviour
         string[] hero = { "Choose Hero" };
         string[] kek = new string[heroNames.Length + hero.Length];
         kek[0] = hero[0];
-        for(int i=1;i<heroNames.Length+1;i++)
+        for(int i=0;i<heroNames.Length;i++)
         {
-            kek[i] = heroNames[i-1];
+
+            kek[i+1] = heroNames[i];
         }
 
         List<string> names = new List<string>(kek);
@@ -242,7 +243,7 @@ public class MainMenu : MonoBehaviour
             {
                 if ((Assets.hero_type)heroType[i].value != 0)
                 {
-                    temp = (Assets.hero_type)heroType[i].value;
+                    temp = (Assets.hero_type)heroType[i].value-1;
                     heroValue[i] = temp.ToString();
                 }
                 else heroValue[i] = null;
