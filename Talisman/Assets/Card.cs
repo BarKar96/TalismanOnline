@@ -138,7 +138,7 @@ namespace Assets
 
     public void describeSpecial()
         {
-            Debug.Log("Str: " + this.strength + " Pwr: " + this.power);
+            //Debug.Log("Str: " + this.strength + " Pwr: " + this.power);
         }
         public bool isSpecialField()
         {

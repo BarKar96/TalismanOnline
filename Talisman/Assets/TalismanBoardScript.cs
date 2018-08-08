@@ -139,20 +139,20 @@ public class TalismanBoardScript : MonoBehaviour
 
     public void compareValues(int a)
     {
-        Debug.Log("Comparing " + NET_NetworkManager.localPlayer.NET_RingPos + " with " + a);
+        //Debug.Log("Comparing " + NET_NetworkManager.localPlayer.NET_RingPos + " with " + a);
         if(NET_NetworkManager.localPlayer.NET_RingPos == a)
         {
-            Debug.Log("COMBAT");
+           // Debug.Log("COMBAT");
         }
     }
 
     public void addNewPlayerPortrait(Player p, int players)
     {
-        Debug.Log("addind player of type: " + p.hero.type.ToString() + " net turn: " + p);
+        //Debug.Log("addind player of type: " + p.hero.type.ToString() + " net turn: " + p);
         Player[] newarr = new Player[players];
         foreach(Player pl in playerArray)
         {
-            Debug.Log("isServer "+NetworkServer.active);
+            //Debug.Log("isServer "+NetworkServer.active);
             if(NetworkServer.active)
             {
                 newarr[pl.NET_Turn] = pl;
@@ -519,7 +519,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         playerArray[i].playerPiece.indexOfField = playerArray[i].hero.startingLocation;
         playerArray[i].playerPiece.transform.position = outerRing[playerArray[i].hero.startingLocation].emptyGameObject.transform.position;
-        Debug.Log("player  " + i + " at " + playerArray[i].hero.startingLocation);
+       // Debug.Log("player  " + i + " at " + playerArray[i].hero.startingLocation);
 
         outerRing[playerArray[i].hero.startingLocation].counter++;
     }
@@ -553,7 +553,7 @@ public class TalismanBoardScript : MonoBehaviour
             try
             {
                 //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
-                Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
+               // Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
                 playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
             }
             catch (Exception) { };
@@ -600,21 +600,26 @@ public class TalismanBoardScript : MonoBehaviour
         {
             CollisionDetector cd = new CollisionDetector(playerArray, playerIndex);
             int temp = getActualPlayerRingFieldNumber();
+            Debug.Log("gracz aktualnie stoi na polu: " + playerArray[playerIndex].playerPiece.indexOfField);
             playerArray[playerIndex].diceResult = diceResult;
             //obliczanie gdzie przesunac pionek
             int y = playerArray[playerIndex].playerPiece.indexOfField;
             int whereToMove = 0;
-            Debug.Log("player at: " + y);
+            //Debug.Log("player at: " + y);
             if (diceResult > y) { whereToMove = temp + (y - diceResult); }
             else { whereToMove = Math.Abs(y - diceResult) % temp; }
 
+            playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+            //Debug.Log("przesuwam sie na pole: " + whereToMove);
 
-            
-
-            //  Debug.Log("Move player left");
+           // Debug.Log("Move player left" + playerArray[playerIndex].playerPiece.indexOfField);
             foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
             {
+
+                //Debug.Log("AADD: " + c.getName());
+                //Debug.Log("cos: " + playerArray[playerIndex].playerPiece.indexOfField);
                 playerArray[playerIndex].getCards().Add(c);
+
             }
 
 
@@ -660,7 +665,7 @@ public class TalismanBoardScript : MonoBehaviour
 
             //przesuniecie pionka
             movePiece(playerIndex, whereToMove);
-            //var go = 
+            playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
             foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
             {
                 playerArray[playerIndex].getCards().Add(c);
@@ -691,6 +696,7 @@ public class TalismanBoardScript : MonoBehaviour
             //playerArray[playerIndex].getCards().Add(c);
             foreach (Card c in outerRing[go.localPlayer.NET_RingPos].cardsOnField)
             {
+                Debug.Log(c.getName());
                 go.localPlayer.getCards().Add(c);
             }
         }
@@ -730,7 +736,15 @@ public class TalismanBoardScript : MonoBehaviour
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
         if (_subPanel_Items_Opened == true)
         {
-            CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer,"PanelEkwipunku");
+            if (MainMenu.onoff == 1)
+            {
+                CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+            }
+            if (MainMenu.onoff == 2)
+            {
+                CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+            }
+            
         }
         else
         {
@@ -752,7 +766,15 @@ public class TalismanBoardScript : MonoBehaviour
         setSubPanelVisibility(subPanel_Spells, _subPanel_Spells_Opened);
         if (_subPanel_Spells_Opened == true)
         {
-            CardDrawer.spawnPlayerSpells(NET_NetworkManager.localPlayer, "PanelZaklec");
+            if (MainMenu.onoff == 1)
+            {
+                CardDrawer.spawnPlayerSpells(NET_NetworkManager.localPlayer, "PanelZaklec");
+            }
+            if (MainMenu.onoff == 2)
+            {
+                CardDrawer.spawnPlayerSpells(playerArray[playerIndex], "PanelZaklec");
+            }
+            
         }
         else
         {
@@ -794,6 +816,7 @@ public class TalismanBoardScript : MonoBehaviour
         }
         else if(MainMenu.onoff == 2)
         {
+            Player p = playerArray[playerIndex];
             playerArray[playerIndex].iterate_cards();
             playerArray[playerIndex].getCards().Clear();
         }
@@ -836,22 +859,22 @@ public class TalismanBoardScript : MonoBehaviour
                 switch (target)
                 {
                     case "ButtonCards1":
-                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        CardDrawer.spawnPlayerItems(playerArray[0], "PanelEkwipunku");
                         break;
                     case "ButtonCards2":
-                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        CardDrawer.spawnPlayerItems(playerArray[1], "PanelEkwipunku");
                         break;
                     case "ButtonCards3":
-                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        CardDrawer.spawnPlayerItems(playerArray[2], "PanelEkwipunku");
                         break;
                     case "ButtonCards4":
-                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        CardDrawer.spawnPlayerItems(playerArray[3], "PanelEkwipunku");
                         break;
                     case "ButtonCards5":
-                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        CardDrawer.spawnPlayerItems(playerArray[4], "PanelEkwipunku");
                         break;
                     case "ButtonCards6":
-                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        CardDrawer.spawnPlayerItems(playerArray[5], "PanelEkwipunku");
                         break;
                 }
 
@@ -876,7 +899,7 @@ public class TalismanBoardScript : MonoBehaviour
         if (MainMenu.onoff == 2)
         {
             playerName.text = playerArray[playerIndex].name;
-            Debug.Log("pozycja gracza w kolejce " + playerIndex);
+            //Debug.Log("pozycja gracza w kolejce " + playerIndex);
             windows.setCursor(playerIndex);
         }
     }
@@ -946,10 +969,11 @@ public class TalismanBoardScript : MonoBehaviour
             NETWORK.gameObject.SetActive(false);
         }
         GenerateBoard();
+        
         playerIndex = 0;
         nextTurn();
         //playerName.text = NET_NetworkManager.localPlayer.hero.name;
-        Debug.Log("pozycja gracza w kolejce " + playerIndex);
+       // Debug.Log("pozycja gracza w kolejce " + playerIndex);
         //windows.setCursor(playerIndex);
 
         //playerArray[playerIndex].playerPiece.transform.position = outerRing[0].emptyGameObject.transform.position;

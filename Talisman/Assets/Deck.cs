@@ -191,23 +191,23 @@ namespace Assets
         }
         public void listCards()
         {
-            Debug.Log("Cards in deck: " + fullDeck.Count());
+           // Debug.Log("Cards in deck: " + fullDeck.Count());
             foreach(Card c in fullDeck)
             {
                 switch (c.getCard_Type())
                 {
                     case card_type.ENEMY:
-                        Debug.Log("Enemy : " +c.getName()+c);
+                       // Debug.Log("Enemy : " +c.getName()+c);
                         c.describeSpecial();
                         break;
                     case card_type.ITEM:
-                        Debug.Log("Item : " + c.getName());
+                       // Debug.Log("Item : " + c.getName());
                         break;
                     case card_type.SPELL:
-                        Debug.Log("Spell : " + c.getName());
+                       // Debug.Log("Spell : " + c.getName());
                         break;
                     default:
-                        Debug.Log("Other? : " + c.getName());
+                       // Debug.Log("Other? : " + c.getName());
                         break;
                 }
                 

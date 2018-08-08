@@ -120,8 +120,7 @@ public class ItemsListener : MonoBehaviour
         }
         else if (c.itemType == item_type.CONSUMABLE)
         {
-            if (!(tempPlayerArray[tempPlayerIndex].current_health == tempPlayerArray[tempPlayerIndex].total_health))
-            {
+            
                 tempPlayerArray[tempPlayerIndex].current_health += c.getSpecialCardEvents()[0].get_roll()[0];
                 tempPlayerArray[tempPlayerIndex].getItems().Remove(c);
                 tbs.Items_Button();
@@ -130,7 +129,6 @@ public class ItemsListener : MonoBehaviour
                 StartCoroutine(messager("użyto przedmiotu: " + c.getName()));
 
 
-            }
         }
         else if (c.itemType == item_type.WEAPON)
         {

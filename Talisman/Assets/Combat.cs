@@ -286,7 +286,7 @@ public  class Combat : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         int x = rnd.Next(1, 6);
-        Debug.Log(x);
+       // Debug.Log(x);
         if (x>3)
         {
             subPanel_enterCombat.SetActive(false);
