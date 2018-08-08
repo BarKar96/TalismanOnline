@@ -112,7 +112,7 @@ public class ItemsListener : MonoBehaviour
         Player[] tempPlayerArray = tbs.playerArray;
         int tempPlayerIndex = tbs.playerIndex;
         Deck deck = tbs.deckOfCards;
-        Card c = deck.fullDeck.Find(x => x.getName().Equals(name));
+        Card c = tempPlayerArray[tempPlayerIndex].getItems().Find(x => x.getName().Equals(name));
         Debug.Log(tempPlayerArray[tempPlayerIndex].current_health + " " + tempPlayerArray[tempPlayerIndex].strength);
         if (c == null)
         {
@@ -189,7 +189,7 @@ public class ItemsListener : MonoBehaviour
         Player[] tempPlayerArray = tbs.playerArray;
         int tempPlayerIndex = tbs.playerIndex;
         Deck deck = tbs.deckOfCards;
-        Card c = deck.fullDeck.Find(x => x.getName().Equals(name));
+        Card c = tempPlayerArray[tempPlayerIndex].getItems().Find(x => x.getName().Equals(name));
         if (c != null)
         {
             tempPlayerArray[tempPlayerIndex].getItems().Remove(c);

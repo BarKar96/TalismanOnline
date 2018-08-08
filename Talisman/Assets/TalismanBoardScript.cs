@@ -862,7 +862,7 @@ public class TalismanBoardScript : MonoBehaviour
                         break;
                 }
             }
-            else
+            else if (MainMenu.onoff == 2)
             {
                 switch (target)
                 {
@@ -986,12 +986,13 @@ public class TalismanBoardScript : MonoBehaviour
         
         playerIndex = 0;
         nextTurn();
+
         //playerName.text = NET_NetworkManager.localPlayer.hero.name;
-       // Debug.Log("pozycja gracza w kolejce " + playerIndex);
+        // Debug.Log("pozycja gracza w kolejce " + playerIndex);
         //windows.setCursor(playerIndex);
 
         //playerArray[playerIndex].playerPiece.transform.position = outerRing[0].emptyGameObject.transform.position;
-    //playerArray[indexOfPlayer].playerPiece.transform.position = outerRing[indexOfFieldToMoveOn].emptyGameObject.transform.position;
+        //playerArray[indexOfPlayer].playerPiece.transform.position = outerRing[indexOfFieldToMoveOn].emptyGameObject.transform.position;
     }
     void Update()
     {
