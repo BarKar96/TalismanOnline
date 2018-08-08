@@ -734,11 +734,10 @@ public class TalismanBoardScript : MonoBehaviour
     }
     */
     //panel ekwipunku
+    private int eqFlag = 0;
     public void Items_Button()
     {
-        //Card c = new Card(card_type.ITEM, new event_type[] { });
-        //c.equipable = true;
-        //playerArray[playerIndex].getItems().Add(c);
+       
 
         _subPanel_Items_Opened = !_subPanel_Items_Opened;
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
@@ -830,12 +829,70 @@ public class TalismanBoardScript : MonoBehaviour
         }
     }
     //to fix
+    public Button lewo;
+    public Button prawo;
+    public Button koniecTury;
+    public Button bierzUdzialWPotyczce;
+    public Button zbadajTeren;
+    public void chowajPrzyciski()
+    {
+        if (lewo.gameObject.activeSelf && prawo.gameObject.activeSelf)
+        {
+            eqFlag = 1;
+            lewo.gameObject.SetActive(false);
+            prawo.gameObject.SetActive(false);
+        }
+        else if (koniecTury.gameObject.activeSelf)
+        {
+            eqFlag = 2;
+            koniecTury.gameObject.SetActive(false);
+        }
+        else if (zbadajTeren.gameObject.activeSelf && bierzUdzialWPotyczce.gameObject.activeSelf)
+        {
+            eqFlag = 3;
+            zbadajTeren.gameObject.SetActive(false);
+            bierzUdzialWPotyczce.gameObject.SetActive(false);
+        }
+        else if (zbadajTeren.gameObject.activeSelf)
+        {
+            eqFlag = 4;
+            zbadajTeren.gameObject.SetActive(false);
+        }
+    }
+    public void przywrocPrzyciski()
+    {
+
+        if (eqFlag==1)
+        {
+            lewo.gameObject.SetActive(true);
+            prawo.gameObject.SetActive(true);
+        } else if (eqFlag==2)
+        {
+            koniecTury.gameObject.SetActive(true);
+        }
+        else if (eqFlag == 3)
+        {
+            zbadajTeren.gameObject.SetActive(true);
+            bierzUdzialWPotyczce.gameObject.SetActive(true);
+        }
+        else if (eqFlag == 4)
+        {
+            zbadajTeren.gameObject.SetActive(true);
+        }
+        eqFlag = 0;
+        
+    }
     public void PlayerItems()
     {
+        
+
+        
+
         _subPanel_Items_Opened = !_subPanel_Items_Opened;
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
         if (_subPanel_Items_Opened == true)
         {
+            chowajPrzyciski();
             string target = EventSystem.current.currentSelectedGameObject.name;
             if (MainMenu.onoff == 1)
             {
@@ -892,6 +949,7 @@ public class TalismanBoardScript : MonoBehaviour
         else
         {
             clearPlayerPanelView(CardDrawer.itemsList);
+            przywrocPrzyciski();
         }
     }
     public void buttonSetNextTurnButtonOn()
