@@ -4,7 +4,7 @@
 #-------------------ITEMS-----------------------------#
 9:itm:butelka:con:desert_immmunity:nospecial
 9:itm:puszkazlota:con:special:get_gold@2
-9:itm:jablko:con:special:gain_health@1
+#9:itm:jablko:con:special:gain_health@1
 9:itm:zbroja:arm:special:gain_health@3
 9:itm:pelnazbroja:arm:special:gain_health@6
 9:itm:helmdemona:arm:special:gain_health@3

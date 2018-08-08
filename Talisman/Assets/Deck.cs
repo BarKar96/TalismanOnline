@@ -51,8 +51,10 @@ namespace Assets
         }
         public Card drawCard()
         {
-            System.Random rand = new System.Random();
-            return fullDeck[rand.Next(0, fullDeck.Count)];
+            //System.Random rand = new System.Random();
+            int k = UnityEngine.Random.Range(0, fullDeck.Count);
+            Debug.Log("Returning Card # " + k);
+            return fullDeck[k];
         }
 
         public event_type translateToEvent(string s)

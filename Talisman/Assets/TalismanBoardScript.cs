@@ -93,7 +93,7 @@ public class TalismanBoardScript : MonoBehaviour
             //playerArray[4] = new Player("Slawek", new Hero(hero_type.TROLL));
             //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
             //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
-            //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+            //playerArray[1].getItems().Add(deckOfCards.drawCard());
             //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
             //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("miecz")));
             //playerArray[1].getItems().Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("zbroja")));
@@ -256,30 +256,30 @@ public class TalismanBoardScript : MonoBehaviour
             {
                 case 0:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota. Czarodziejka - możesz uzyskać losową rzecz po rzucie kostką");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 1:
                     outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
 
                     break;
                 case 2:
                     outerRing[i].fieldEvent = new Card("dorozkaze", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 3:
                     outerRing[i].fieldEvent = new Card("zewastobomir", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 4:
                     outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
 
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 5:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
 
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 6:
                     //todo Slavek
@@ -289,15 +289,15 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 7:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 8:
                     outerRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 2 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 2 karty");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 9:
                     outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell3")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 10:
                     outerRing[i].fieldEvent = new Card("Las", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Rzuć 1 kością. (1) Napada na Ciebie rozbójnik (Siła 4) (2-3) Zgubiłeś się, tracisz następną turę. (4-5) Odpoczywasz, nic się nie dzieje. (6) Wyprowadza Cię stąd zwiadowca - otrzymujesz 1 punkt mocy");
@@ -313,7 +313,7 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 13:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell4")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 14:
                     outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -330,7 +330,7 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 17:
                     outerRing[i].fieldEvent = new Card("Wzgórza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell5")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 18:
                     var Arena = new Card("Arena", card_type.BOARDFIELD, new event_type[] { }, "Arena wielkich wojowników - ludzie tu przychodzą żeby zwyciężać ale najczęściej nawet nie są brani pod uwagę.");
@@ -342,7 +342,7 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 19:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell6")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 20:
                     outerRing[i].fieldEvent = new Card("Skały", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Rzuć 1 kością: (1) zaatakował Ciebie duch (Siła 4). (2-3) Zabłądziłeś tracisz następną turę. (4-5) Nic się nie dzieje. (6) Barbarzyńca wskazuje Ci drogę - otrzymujesz 1 punkt Siły");
@@ -355,7 +355,7 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 22:
                     outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell7")));
+                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 23:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -894,6 +894,12 @@ public class TalismanBoardScript : MonoBehaviour
     // przejscie do kolejnej tury
     public void nextTurn_Button()
     {
+        
+        if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count != 0)
+            outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+
+        outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+        
         nextTurn();
 
         if (MainMenu.onoff == 2)
