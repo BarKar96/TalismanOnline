@@ -908,7 +908,7 @@ MonoBehaviour:
   MessageText: {fileID: 2083210463}
   panel: {fileID: 894363767}
   MessageBox: {fileID: 339400294}
-  diceRollButton: {fileID: 0}
+  diceRollButton: {fileID: 7560912}
   specialDiceBlock: 0
 --- !u!4 &70186992
 Transform:
@@ -14211,7 +14211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1335966555
 RectTransform:
   m_ObjectHideFlags: 0

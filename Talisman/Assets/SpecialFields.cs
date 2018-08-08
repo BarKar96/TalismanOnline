@@ -19,31 +19,37 @@ public class SpecialFields : MonoBehaviour {
     public void SetGospodaOn()
     {
         panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
         Gospoda();
     }
     public void SetCzarodziejkaOn()
     {
         panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
         Czarodziejka();
     }
     public void SetArenaOn()
     {
         panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
         Arena();
     }
     public void SetKaplicaOn()
     {
         panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
         Kaplica();
     }
     public void SetCmentarzOn()
     {
         panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
         Cmentarz();
     }
     public void SetLasOn()
     {
         panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
         Las();
     }
     public void Kaplica()
