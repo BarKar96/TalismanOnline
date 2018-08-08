@@ -180,7 +180,7 @@ public class ItemsListener : MonoBehaviour
             tempPlayerArray[tempPlayerIndex].updateStatistics();
             windows.UpdateStatsToText();
         }
-
+        
     }
     public void dropItemOffline(string name)
     {
@@ -192,6 +192,20 @@ public class ItemsListener : MonoBehaviour
         Card c = tempPlayerArray[tempPlayerIndex].getItems().Find(x => x.getName().Equals(name));
         if (c != null)
         {
+            if (tempPlayerArray[tempPlayerIndex].weapon != null)
+            {
+                if (c.getName() == tempPlayerArray[tempPlayerIndex].weapon.getName())
+                {
+                    detachItemOffline(c.getName());
+                }
+            }
+            if (tempPlayerArray[tempPlayerIndex].armor != null)
+            {
+                if (c.getName() == tempPlayerArray[tempPlayerIndex].armor.getName())
+                {
+                    detachItemOffline(c.getName());
+                }
+            }
             tempPlayerArray[tempPlayerIndex].getItems().Remove(c);
             tbs.Items_Button();
             tbs.Items_Button();
