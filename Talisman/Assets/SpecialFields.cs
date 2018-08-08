@@ -66,7 +66,9 @@ public class SpecialFields : MonoBehaviour {
     }
     public void Las()
     {
-
+        specialDiceBlock = true;
+        Name.text = "Las";
+        Descryption.text = "Wykonaj 1 rzut kością. \n(1) Otrzymujesz 1 punkt życia\n(2) Tracisz 1 punkt życia.\n(3) Tracisz 1 punkt siły.\n(4) Otrzymujesz 1 punkt siły.\n(5) Nic się nie dzieje.\n(6) Otrzymujesz 1 sztukę złota.";
     }
     public void Arena()
     {
@@ -85,6 +87,10 @@ public class SpecialFields : MonoBehaviour {
         specialDiceBlock = true;
         Name.text = "Gospoda";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Upiłeś się i zasnąłeś w kącie - tracisz turę. \n(2) Upiłeś się i wdałeś w bójkę z chłopem tracisz 1 hp. \n(3) Grałeś w karty i przegrałeś 1 sztukę złota. \n(4) Grałeś w karty i wygrałeś jedną sztukę złota. \n(5) Potknąłeś się wpadłeś do piwnicy. Znalazłeś dwie sztuki złota. \n(6) Karateka uczy Ciebie sztuk walki (+1 punkt Siły.)";
+    }
+    public void OK_BUTTON()
+    {
+        specialDiceBlock = false;
     }
     public void Rzuckosciascript()
     {
@@ -265,7 +271,6 @@ public class SpecialFields : MonoBehaviour {
                     go.playerArray[go.playerIndex].gold++;
                     break;
             }
-        }
-        specialDiceBlock = false;
+        }        
     }
 }
