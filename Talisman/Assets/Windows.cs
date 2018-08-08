@@ -62,7 +62,7 @@ public class Windows : MonoBehaviour {
                 _hero6button.GetComponent<Image>().sprite = HeroPort(playerArray[5].hero);
                 break;
         }
-        UpdateStatsToText(playerArray);
+        UpdateStatsToText();
     }
     //funkcja wybierająca portrety
     public Sprite HeroPort(Hero i)
@@ -273,169 +273,170 @@ public class Windows : MonoBehaviour {
         else text.color = Color.blue;
     }
     //funkcja dotycząca statystyk czyli wypisująca i aktualizująca statystyki wszystkich użytkowników na raz
-    public void UpdateStatsToText(Player[] playerArray)
+    public void UpdateStatsToText()
     {
-        heroNames(playerArray);
-        switch (playerArray.Length)
+        var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        heroNames(go.playerArray);
+        switch (go.playerArray.Length)
         {
             case 1:
-                changeColor(_hero1HP, playerArray[0]);
-                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
-                _hero1STR.text = (playerArray[0].strength+ playerArray[0].strength_modifier).ToString();
-                _hero1INT.text = playerArray[0].hero.power.ToString();
-                _hero1LOS.text = playerArray[0].hero.luck.ToString();
-                _hero1GOLD.text = playerArray[0].gold.ToString();
+                changeColor(_hero1HP, go.playerArray[0]);
+                _hero1HP.text = (go.playerArray[0].current_health + go.playerArray[0].health_modifier).ToString();
+                _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
+                _hero1INT.text = go.playerArray[0].hero.power.ToString();
+                _hero1LOS.text = go.playerArray[0].hero.luck.ToString();
+                _hero1GOLD.text = go.playerArray[0].gold.ToString();
                 break;
             case 2:
                 //player 1
-                changeColor(_hero1HP, playerArray[0]);
-                _hero1HP.text = (playerArray[0].current_health.ToString() + playerArray[0].health_modifier).ToString();
-                _hero1STR.text = (playerArray[0].strength + playerArray[0].strength_modifier).ToString();
-                _hero1INT.text = playerArray[0].hero.power.ToString();
-                _hero1LOS.text = playerArray[0].hero.luck.ToString();
-                _hero1GOLD.text = playerArray[0].gold.ToString();
+                changeColor(_hero1HP, go.playerArray[0]);
+                _hero1HP.text = (go.playerArray[0].current_health.ToString() + go.playerArray[0].health_modifier).ToString();
+                _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
+                _hero1INT.text = go.playerArray[0].hero.power.ToString();
+                _hero1LOS.text = go.playerArray[0].hero.luck.ToString();
+                _hero1GOLD.text = go.playerArray[0].gold.ToString();
                 //player 2
-                changeColor(_hero2HP, playerArray[1]);
-                _hero2HP.text = (playerArray[1].current_health + playerArray[1].health_modifier).ToString();
-                _hero2STR.text = (playerArray[1].strength + playerArray[1].strength_modifier).ToString();
-                _hero2INT.text = playerArray[1].hero.power.ToString();
-                _hero2LOS.text = playerArray[1].hero.luck.ToString();
-                _hero2GOLD.text = playerArray[1].gold.ToString();
+                changeColor(_hero2HP, go.playerArray[1]);
+                _hero2HP.text = (go.playerArray[1].current_health + go.playerArray[1].health_modifier).ToString();
+                _hero2STR.text = (go.playerArray[1].strength + go.playerArray[1].strength_modifier).ToString();
+                _hero2INT.text = go.playerArray[1].hero.power.ToString();
+                _hero2LOS.text = go.playerArray[1].hero.luck.ToString();
+                _hero2GOLD.text = go.playerArray[1].gold.ToString();
                 break;
             case 3:
-                changeColor(_hero1HP, playerArray[0]);
-                changeColor(_hero2HP, playerArray[1]);
-                changeColor(_hero3HP, playerArray[2]);
+                changeColor(_hero1HP, go.playerArray[0]);
+                changeColor(_hero2HP, go.playerArray[1]);
+                changeColor(_hero3HP, go.playerArray[2]);
                 //player 1
-                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
-                _hero1STR.text = (playerArray[0].strength + playerArray[0].strength_modifier).ToString();
-                _hero1INT.text = playerArray[0].hero.power.ToString();
-                _hero1LOS.text = playerArray[0].hero.luck.ToString();
-                _hero1GOLD.text = playerArray[0].gold.ToString();
+                _hero1HP.text = (go.playerArray[0].current_health + go.playerArray[0].health_modifier).ToString();
+                _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
+                _hero1INT.text = go.playerArray[0].hero.power.ToString();
+                _hero1LOS.text = go.playerArray[0].hero.luck.ToString();
+                _hero1GOLD.text = go.playerArray[0].gold.ToString();
                 //player 2
-                _hero2HP.text = (playerArray[1].current_health + playerArray[1].health_modifier).ToString();
-                _hero2STR.text = (playerArray[1].strength + playerArray[1].strength_modifier).ToString();
-                _hero2INT.text = playerArray[1].hero.power.ToString();
-                _hero2LOS.text = playerArray[1].hero.luck.ToString();
-                _hero2GOLD.text = playerArray[1].gold.ToString();
+                _hero2HP.text = (go.playerArray[1].current_health + go.playerArray[1].health_modifier).ToString();
+                _hero2STR.text = (go.playerArray[1].strength + go.playerArray[1].strength_modifier).ToString();
+                _hero2INT.text = go.playerArray[1].hero.power.ToString();
+                _hero2LOS.text = go.playerArray[1].hero.luck.ToString();
+                _hero2GOLD.text = go.playerArray[1].gold.ToString();
                 //player 3
-                _hero3HP.text = (playerArray[2].current_health + playerArray[2].health_modifier).ToString();
-                _hero3STR.text = (playerArray[2].strength + playerArray[2].strength_modifier).ToString();
-                _hero3INT.text = playerArray[2].hero.power.ToString();
-                _hero3LOS.text = playerArray[2].hero.luck.ToString();
-                _hero3GOLD.text = playerArray[2].gold.ToString();
+                _hero3HP.text = (go.playerArray[2].current_health + go.playerArray[2].health_modifier).ToString();
+                _hero3STR.text = (go.playerArray[2].strength + go.playerArray[2].strength_modifier).ToString();
+                _hero3INT.text = go.playerArray[2].hero.power.ToString();
+                _hero3LOS.text = go.playerArray[2].hero.luck.ToString();
+                _hero3GOLD.text = go.playerArray[2].gold.ToString();
                 break;
             case 4:
 
-                changeColor(_hero1HP, playerArray[0]);
-                changeColor(_hero2HP, playerArray[1]);
-                changeColor(_hero3HP, playerArray[2]);
-                changeColor(_hero4HP, playerArray[3]);
+                changeColor(_hero1HP, go.playerArray[0]);
+                changeColor(_hero2HP, go.playerArray[1]);
+                changeColor(_hero3HP, go.playerArray[2]);
+                changeColor(_hero4HP, go.playerArray[3]);
                 //player 1
-                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
-                _hero1STR.text = (playerArray[0].strength + playerArray[0].strength_modifier).ToString();
-                _hero1INT.text = playerArray[0].hero.power.ToString();
-                _hero1LOS.text = playerArray[0].hero.luck.ToString();
-                _hero1GOLD.text = playerArray[0].gold.ToString();
+                _hero1HP.text = (go.playerArray[0].current_health + go.playerArray[0].health_modifier).ToString();
+                _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
+                _hero1INT.text = go.playerArray[0].hero.power.ToString();
+                _hero1LOS.text = go.playerArray[0].hero.luck.ToString();
+                _hero1GOLD.text = go.playerArray[0].gold.ToString();
                 //player 2
-                _hero2HP.text = (playerArray[1].current_health + playerArray[1].health_modifier).ToString();
-                _hero2STR.text = (playerArray[1].strength + playerArray[1].strength_modifier).ToString();
-                _hero2INT.text = playerArray[1].hero.power.ToString();
-                _hero2LOS.text = playerArray[1].hero.luck.ToString();
-                _hero2GOLD.text = playerArray[1].gold.ToString();
+                _hero2HP.text = (go.playerArray[1].current_health + go.playerArray[1].health_modifier).ToString();
+                _hero2STR.text = (go.playerArray[1].strength + go.playerArray[1].strength_modifier).ToString();
+                _hero2INT.text = go.playerArray[1].hero.power.ToString();
+                _hero2LOS.text = go.playerArray[1].hero.luck.ToString();
+                _hero2GOLD.text = go.playerArray[1].gold.ToString();
                 //player 3
-                _hero3HP.text = (playerArray[2].current_health+ playerArray[2].health_modifier).ToString();
-                _hero3STR.text = (playerArray[2].strength + playerArray[2].strength_modifier).ToString();
-                _hero3INT.text = playerArray[2].hero.power.ToString();
-                _hero3LOS.text = playerArray[2].hero.luck.ToString();
-                _hero3GOLD.text = playerArray[2].gold.ToString();
+                _hero3HP.text = (go.playerArray[2].current_health+ go.playerArray[2].health_modifier).ToString();
+                _hero3STR.text = (go.playerArray[2].strength + go.playerArray[2].strength_modifier).ToString();
+                _hero3INT.text = go.playerArray[2].hero.power.ToString();
+                _hero3LOS.text = go.playerArray[2].hero.luck.ToString();
+                _hero3GOLD.text = go.playerArray[2].gold.ToString();
                 //player 4
-                _hero4HP.text = (playerArray[3].current_health + playerArray[3].health_modifier).ToString();
-                _hero4STR.text = (playerArray[3].strength + playerArray[3].strength_modifier).ToString();
-                _hero4INT.text = playerArray[3].hero.power.ToString();
-                _hero4LOS.text = playerArray[3].hero.luck.ToString();
-                _hero4GOLD.text = playerArray[3].gold.ToString();
+                _hero4HP.text = (go.playerArray[3].current_health + go.playerArray[3].health_modifier).ToString();
+                _hero4STR.text = (go.playerArray[3].strength + go.playerArray[3].strength_modifier).ToString();
+                _hero4INT.text = go.playerArray[3].hero.power.ToString();
+                _hero4LOS.text = go.playerArray[3].hero.luck.ToString();
+                _hero4GOLD.text = go.playerArray[3].gold.ToString();
                 break;
             case 5:
-                changeColor(_hero1HP, playerArray[0]);
-                changeColor(_hero2HP, playerArray[1]);
-                changeColor(_hero3HP, playerArray[2]);
-                changeColor(_hero4HP, playerArray[3]);
-                changeColor(_hero5HP, playerArray[4]);
+                changeColor(_hero1HP, go.playerArray[0]);
+                changeColor(_hero2HP, go.playerArray[1]);
+                changeColor(_hero3HP, go.playerArray[2]);
+                changeColor(_hero4HP, go.playerArray[3]);
+                changeColor(_hero5HP, go.playerArray[4]);
                 //Player 1
-                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
-                _hero1STR.text = (playerArray[0].strength + playerArray[0].strength_modifier).ToString();
-                _hero1INT.text = playerArray[0].hero.power.ToString();
-                _hero1LOS.text = playerArray[0].hero.luck.ToString();
-                _hero1GOLD.text = playerArray[0].gold.ToString();
+                _hero1HP.text = (go.playerArray[0].current_health + go.playerArray[0].health_modifier).ToString();
+                _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
+                _hero1INT.text = go.playerArray[0].hero.power.ToString();
+                _hero1LOS.text = go.playerArray[0].hero.luck.ToString();
+                _hero1GOLD.text = go.playerArray[0].gold.ToString();
                 //player 2
-                _hero2HP.text = (playerArray[1].current_health + playerArray[1].health_modifier).ToString();
-                _hero2STR.text = (playerArray[1].strength + playerArray[1].strength_modifier).ToString();
-                _hero2INT.text = playerArray[1].hero.power.ToString();
-                _hero2LOS.text = playerArray[1].hero.luck.ToString();
-                _hero2GOLD.text = playerArray[1].gold.ToString();
+                _hero2HP.text = (go.playerArray[1].current_health + go.playerArray[1].health_modifier).ToString();
+                _hero2STR.text = (go.playerArray[1].strength + go.playerArray[1].strength_modifier).ToString();
+                _hero2INT.text = go.playerArray[1].hero.power.ToString();
+                _hero2LOS.text = go.playerArray[1].hero.luck.ToString();
+                _hero2GOLD.text = go.playerArray[1].gold.ToString();
                 //player 3
-                _hero3HP.text = (playerArray[2].current_health + playerArray[2].health_modifier).ToString();
-                _hero3STR.text = (playerArray[2].strength + playerArray[2].strength_modifier).ToString();
-                _hero3INT.text = playerArray[2].hero.power.ToString();
-                _hero3LOS.text = playerArray[2].hero.luck.ToString();
-                _hero3GOLD.text = playerArray[2].gold.ToString();
+                _hero3HP.text = (go.playerArray[2].current_health + go.playerArray[2].health_modifier).ToString();
+                _hero3STR.text = (go.playerArray[2].strength + go.playerArray[2].strength_modifier).ToString();
+                _hero3INT.text = go.playerArray[2].hero.power.ToString();
+                _hero3LOS.text = go.playerArray[2].hero.luck.ToString();
+                _hero3GOLD.text = go.playerArray[2].gold.ToString();
                 //player 4
-                _hero4HP.text = (playerArray[3].current_health + playerArray[3].health_modifier).ToString();
-                _hero4STR.text = (playerArray[3].strength + playerArray[3].strength_modifier).ToString();
-                _hero4INT.text = playerArray[3].hero.power.ToString();
-                _hero4LOS.text = playerArray[3].hero.luck.ToString();
-                _hero4GOLD.text = playerArray[3].gold.ToString();
+                _hero4HP.text = (go.playerArray[3].current_health + go.playerArray[3].health_modifier).ToString();
+                _hero4STR.text = (go.playerArray[3].strength + go.playerArray[3].strength_modifier).ToString();
+                _hero4INT.text = go.playerArray[3].hero.power.ToString();
+                _hero4LOS.text = go.playerArray[3].hero.luck.ToString();
+                _hero4GOLD.text = go.playerArray[3].gold.ToString();
                 //player 5
-                _hero5HP.text = (playerArray[4].current_health + playerArray[4].health_modifier).ToString();
-                _hero5STR.text = (playerArray[4].strength + playerArray[4].strength_modifier).ToString();
-                _hero5INT.text = playerArray[4].hero.power.ToString();
-                _hero5LOS.text = playerArray[4].hero.luck.ToString();
-                _hero5GOLD.text = playerArray[4].gold.ToString();
+                _hero5HP.text = (go.playerArray[4].current_health + go.playerArray[4].health_modifier).ToString();
+                _hero5STR.text = (go.playerArray[4].strength + go.playerArray[4].strength_modifier).ToString();
+                _hero5INT.text = go.playerArray[4].hero.power.ToString();
+                _hero5LOS.text = go.playerArray[4].hero.luck.ToString();
+                _hero5GOLD.text = go.playerArray[4].gold.ToString();
                 break;
             case 6:
-                changeColor(_hero1HP, playerArray[0]);
-                changeColor(_hero2HP, playerArray[1]);
-                changeColor(_hero3HP, playerArray[2]);
-                changeColor(_hero4HP, playerArray[3]);
-                changeColor(_hero5HP, playerArray[4]);
-                changeColor(_hero6HP, playerArray[5]);
+                changeColor(_hero1HP, go.playerArray[0]);
+                changeColor(_hero2HP, go.playerArray[1]);
+                changeColor(_hero3HP, go.playerArray[2]);
+                changeColor(_hero4HP, go.playerArray[3]);
+                changeColor(_hero5HP, go.playerArray[4]);
+                changeColor(_hero6HP, go.playerArray[5]);
                 //player 1
-                _hero1HP.text = (playerArray[0].current_health + playerArray[0].health_modifier).ToString();
-                _hero1STR.text = (playerArray[0].strength + playerArray[0].strength_modifier).ToString();
-                _hero1INT.text = playerArray[0].hero.power.ToString();
-                _hero1LOS.text = playerArray[0].hero.luck.ToString();
-                _hero1GOLD.text = playerArray[0].gold.ToString();
+                _hero1HP.text = (go.playerArray[0].current_health + go.playerArray[0].health_modifier).ToString();
+                _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
+                _hero1INT.text = go.playerArray[0].hero.power.ToString();
+                _hero1LOS.text = go.playerArray[0].hero.luck.ToString();
+                _hero1GOLD.text = go.playerArray[0].gold.ToString();
                 //player 2
-                _hero2HP.text = (playerArray[1].current_health + playerArray[1].health_modifier).ToString();
-                _hero2STR.text = (playerArray[1].strength + playerArray[1].strength_modifier).ToString();
-                _hero2INT.text = playerArray[1].hero.power.ToString();
-                _hero2LOS.text = playerArray[1].hero.luck.ToString();
-                _hero2GOLD.text = playerArray[1].gold.ToString();
+                _hero2HP.text = (go.playerArray[1].current_health + go.playerArray[1].health_modifier).ToString();
+                _hero2STR.text = (go.playerArray[1].strength + go.playerArray[1].strength_modifier).ToString();
+                _hero2INT.text = go.playerArray[1].hero.power.ToString();
+                _hero2LOS.text = go.playerArray[1].hero.luck.ToString();
+                _hero2GOLD.text = go.playerArray[1].gold.ToString();
                 //player 3
-                _hero3HP.text = (playerArray[2].current_health + playerArray[2].health_modifier).ToString();
-                _hero3STR.text = (playerArray[2].strength + playerArray[2].strength_modifier).ToString();
-                _hero3INT.text = playerArray[2].hero.power.ToString();
-                _hero3LOS.text = playerArray[2].hero.luck.ToString();
-                _hero3GOLD.text = playerArray[2].gold.ToString();
+                _hero3HP.text = (go.playerArray[2].current_health + go.playerArray[2].health_modifier).ToString();
+                _hero3STR.text = (go.playerArray[2].strength + go.playerArray[2].strength_modifier).ToString();
+                _hero3INT.text = go.playerArray[2].hero.power.ToString();
+                _hero3LOS.text = go.playerArray[2].hero.luck.ToString();
+                _hero3GOLD.text = go.playerArray[2].gold.ToString();
                 //player 4
-                _hero4HP.text = (playerArray[3].current_health + playerArray[3].health_modifier).ToString();
-                _hero4STR.text = (playerArray[3].strength + playerArray[3].strength_modifier).ToString();
-                _hero4INT.text = playerArray[3].hero.power.ToString();
-                _hero4LOS.text = playerArray[3].hero.luck.ToString();
-                _hero4GOLD.text = playerArray[3].gold.ToString();
+                _hero4HP.text = (go.playerArray[3].current_health + go.playerArray[3].health_modifier).ToString();
+                _hero4STR.text = (go.playerArray[3].strength + go.playerArray[3].strength_modifier).ToString();
+                _hero4INT.text = go.playerArray[3].hero.power.ToString();
+                _hero4LOS.text = go.playerArray[3].hero.luck.ToString();
+                _hero4GOLD.text = go.playerArray[3].gold.ToString();
                 //player 5
-                _hero5HP.text = (playerArray[4].current_health + playerArray[4].health_modifier).ToString();
-                _hero5STR.text = (playerArray[4].strength + playerArray[4].strength_modifier).ToString();
-                _hero5INT.text = playerArray[4].hero.power.ToString();
-                _hero5LOS.text = playerArray[4].hero.luck.ToString();
-                _hero5GOLD.text = playerArray[4].gold.ToString();
+                _hero5HP.text = (go.playerArray[4].current_health + go.playerArray[4].health_modifier).ToString();
+                _hero5STR.text = (go.playerArray[4].strength + go.playerArray[4].strength_modifier).ToString();
+                _hero5INT.text = go.playerArray[4].hero.power.ToString();
+                _hero5LOS.text = go.playerArray[4].hero.luck.ToString();
+                _hero5GOLD.text = go.playerArray[4].gold.ToString();
                 //player 6
-                _hero6HP.text = (playerArray[5].current_health + playerArray[5].health_modifier).ToString();
-                _hero6STR.text = (playerArray[5].strength + playerArray[5].strength_modifier).ToString();
-                _hero6INT.text = playerArray[5].hero.power.ToString();
-                _hero6LOS.text = playerArray[5].hero.luck.ToString();
-                _hero6GOLD.text = playerArray[5].gold.ToString();
+                _hero6HP.text = (go.playerArray[5].current_health + go.playerArray[5].health_modifier).ToString();
+                _hero6STR.text = (go.playerArray[5].strength + go.playerArray[5].strength_modifier).ToString();
+                _hero6INT.text = go.playerArray[5].hero.power.ToString();
+                _hero6LOS.text = go.playerArray[5].hero.luck.ToString();
+                _hero6GOLD.text = go.playerArray[5].gold.ToString();
                 break;
         }
     }

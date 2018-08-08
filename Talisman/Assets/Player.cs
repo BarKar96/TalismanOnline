@@ -111,6 +111,7 @@ public class Player
 
     public void iterate_cards()
     {
+        var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
         int size = this.cardsToIterate.Count;
         int current = 0;
         if (!fieldCheckedOut)
@@ -134,8 +135,27 @@ public class Player
                     case card_type.BOARDFIELD:
                         if (cardsToIterate[current].getName().Equals("Gospoda"))
                         {
-                            var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
-                            g1.SetPanelOn();
+                            g1.SetGospodaOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Cmentarz"))
+                        {
+                            g1.SetCmentarzOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Kaplica"))
+                        {
+                            g1.SetKaplicaOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Arena"))
+                        {
+                            g1.SetArenaOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Las"))
+                        {
+                            g1.SetLasOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Czarodziejka"))
+                        {
+                            g1.SetCzarodziejkaOn();
                         }
                         break;
                     case card_type.ENEMY:
