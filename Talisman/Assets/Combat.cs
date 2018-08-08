@@ -285,12 +285,13 @@ public  class Combat : MonoBehaviour
     public void wymykanie()
     {
         System.Random rnd = new System.Random();
-        int x = rnd.Next(1, 6);
+        int x = rnd.Next(1, 7);
        // Debug.Log(x);
         if (x>3)
         {
             subPanel_enterCombat.SetActive(false);
-            tal.buttonSetNextTurnButtonOn();
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            go.buttonSetNextTurnButtonOn();
         }
         else
         {
