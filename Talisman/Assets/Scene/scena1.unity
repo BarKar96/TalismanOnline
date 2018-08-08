@@ -7308,6 +7308,11 @@ MonoBehaviour:
   subPanel_Spells: {fileID: 1210792985}
   list: []
   list2: []
+  lewo: {fileID: 1151249412}
+  prawo: {fileID: 109485806}
+  koniecTury: {fileID: 1380650701}
+  bierzUdzialWPotyczce: {fileID: 1543079049}
+  zbadajTeren: {fileID: 1922545523}
 --- !u!114 &767090189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15916,7 +15921,7 @@ GameObject:
   - component: {fileID: 1543079050}
   - component: {fileID: 1543079049}
   m_Layer: 5
-  m_Name: "ButtonBierzUdzia\u0142WPotyczce"
+  m_Name: ButtonBierzUdzialWPotyczce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
