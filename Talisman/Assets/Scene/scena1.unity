@@ -2407,19 +2407,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef98e7b6640412f4f97391e1c1cc440a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KAPLAN: {fileID: 0}
-  ELF: {fileID: 0}
-  ZLODZIEJ: {fileID: 0}
-  ZABOJCA: {fileID: 0}
-  GHUL: {fileID: 0}
+  KAPLAN: {fileID: 21300000, guid: e2a3d1b0d2d39844f92493e2c633d52d, type: 3}
+  ELF: {fileID: 21300000, guid: f47f4182352a12a45b55207aa32e5837, type: 3}
+  ZLODZIEJ: {fileID: 21300000, guid: e2bac74ddc2d17a478f3048ce1e8b590, type: 3}
+  ZABOJCA: {fileID: 21300000, guid: 5833e75cc45fa7244a607d2e553add84, type: 3}
+  GHUL: {fileID: 21300000, guid: b42453512f877374c9d004d1680eec0c, type: 3}
   TROLL: {fileID: 21300000, guid: 49356471d1d9ca145a89b752396719af, type: 3}
   CZARNOKSIEZNIK: {fileID: 21300000, guid: 0fdd795a226c3e04a8a31face74ea94e, type: 3}
-  WROZKA: {fileID: 0}
-  CZAROWNICA: {fileID: 0}
-  WOJOWNIK: {fileID: 0}
+  WROZKA: {fileID: 21300000, guid: b787b62a9f0dc124692cdbec316b5529, type: 3}
+  CZAROWNICA: {fileID: 21300000, guid: 45f263cab126860408ccc7117d2b4921, type: 3}
+  WOJOWNIK: {fileID: 21300000, guid: 074d8b3185d2ef941b71de97ca444716, type: 3}
   KRASNOLUD: {fileID: 21300000, guid: 02180924d8ddedd42a640dc0379da26f, type: 3}
-  DRUID: {fileID: 0}
-  MINSTREL: {fileID: 0}
+  DRUID: {fileID: 21300000, guid: ebb16a61b1b3fc4488912ca0fd7757f9, type: 3}
+  MINSTREL: {fileID: 21300000, guid: 4b0aa59fd035a574c83daeb71442b4f3, type: 3}
   _heroPanel1: {fileID: 2139691131}
   _heroPanel2: {fileID: 730196085}
   _heroPanel3: {fileID: 1569813256}
