@@ -30,9 +30,16 @@ public class DiceCheckZoneScript : MonoBehaviour
                 var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
                 var combat = GameObject.Find("Combat").GetComponent<Combat>();
                 var temp = GameObject.Find("D6").GetComponent<DiceScript>();
-                temp.buttonLewo.SetActive(true);
-                temp.buttonPrawo.SetActive(true);
-                temp.buttonRzutKoscia.SetActive(false);
+                var gospoda = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
+
+                if (combat.combatDiceBlock == false && gospoda.gospodaDiceBlock == false)
+                {
+                    
+                    temp.buttonLewo.SetActive(true);
+                    temp.buttonPrawo.SetActive(true);
+                    temp.buttonRzutKoscia.SetActive(false);
+                }
+               
                 switch (col.gameObject.name)
                 {
                     case "Side1":

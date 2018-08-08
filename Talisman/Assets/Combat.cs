@@ -9,6 +9,8 @@ public  class Combat : MonoBehaviour
 {
     TalismanBoardScript tal;
 
+    public bool combatDiceBlock = false;
+
     public Player player1 = null;
     public Player player2 = null;
     public bool player2SpellsDone = false;
@@ -61,9 +63,11 @@ public  class Combat : MonoBehaviour
         c = null;
         turaIstoty = false;
         turaGracza = true;
+        
     }
     public void toggleEnterCombatPanel()
     {
+        combatDiceBlock = true;
         
         _subPanel_enterCombat_Opened = !_subPanel_enterCombat_Opened;
         setSubPanelVisibility(subPanel_enterCombat, _subPanel_enterCombat_Opened);
@@ -133,6 +137,7 @@ public  class Combat : MonoBehaviour
     }
     public void StartCombat(Player p, Card c)
     {
+        combatDiceBlock = true;
         this.player1 = p;
         this.c = c;
 
@@ -152,6 +157,7 @@ public  class Combat : MonoBehaviour
     }
     public void StartCombat(Player p1, Player p2)
     {
+        combatDiceBlock = true;
         this.player1 = p1;
         this.player2 = p2;
 
@@ -273,6 +279,7 @@ public  class Combat : MonoBehaviour
             //istota nie zostaje pokonana
         }
         ButtonOK.gameObject.SetActive(true);
+        
         reset();
     }
     public void wymykanie()
@@ -377,6 +384,7 @@ public  class Combat : MonoBehaviour
     }
     public void OK_Button()
     {
+        combatDiceBlock = false;
         toggleCombatPanel();
     }
     public void SpellOK_Button()

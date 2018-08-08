@@ -15,11 +15,12 @@ public class PlayerObject : NetworkBehaviour
     public Player localPlayer;// = new Player("Suavek", new Hero(Assets.hero_type.DRUID), 1);
     public Piece localPiece;
     Windows a;
-    public static int turn = 0;
 
     [SyncVar]
-    public int position;
+    public int playerPosition;
 
+    public static int turn = 0;
+    //[SyncVar]
     public static int current = 0;
 
     [SyncVar]
@@ -70,7 +71,6 @@ public class PlayerObject : NetworkBehaviour
                 Debug.Log("Player name: " + this.localPlayer.hero.name);
                 Debug.Log("Turn / current / playerTurn / nowMoves:" + turn + " / " + current + " / " + localPlayer.NET_Turn + " / " + nowMoves);
             }
-            CmdPortrait();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -129,9 +129,8 @@ public class PlayerObject : NetworkBehaviour
     public void CmdPortrait()
     {
         //if (NetworkServer.connections.Count < 2)
-        // TargetassignPortrait(connectionToClient);
-        // RpcNewPortrait(this.localPlayer.name, this.localPlayer.hero.type, this.localPlayer.NET_Turn, NetworkServer.connections.Count);
-        RpcprintStats();
+           // TargetassignPortrait(connectionToClient);
+        RpcNewPortrait(this.localPlayer.name, this.localPlayer.hero.type, this.localPlayer.NET_Turn, NetworkServer.connections.Count);
     }
 
     [ClientRpc]
@@ -145,27 +144,26 @@ public class PlayerObject : NetworkBehaviour
     
         
     //  ******************WORKZONE[ONLINECOLLISION]****************************
-    [Command]
-    void CmdRequestPositions()
+    [ClientRpc]
+    void RpcRequestPositions()
     {
         for(int i =0; i < turn; i++)
         {
-                RpcReturnCurrentPosition();
-        }  
+            //if(i != this.localPlayer.NET_Turn)
+              
+        }
+        CmdCompareCurrentPosition(this.playerPosition);
     }
 
     [Command]
-    void CmdpassPosition(int x, string name)
+    void CmdCompareCurrentPosition(int otherPlayerPosition)
     {
-        Debug.Log("received " + x + " / " + name);
-    }
-
-    [ClientRpc]
-    void RpcReturnCurrentPosition()
-    {
-
-        CmdpassPosition(position, "asd");
-        //return localPlayer.NET_RingPos;
+        /*if(this.localPlayer.NET_RingPos == otherPlayerPosition)
+        {
+            Debug.Log("COMBAT!");
+        }*/
+        //GameObject.Find("Tile").GetComponent<TalismanBoardScript>().compareValues(otherPlayerPosition);
+        Debug.Log("Comparing " + this.playerPosition + " with " + otherPlayerPosition);
     }
     //  ******************WORKZONE[ONLINECOLLISION]****************************
 
@@ -227,7 +225,7 @@ public class PlayerObject : NetworkBehaviour
         
         localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = localPlayer.hero.startingLocation;
-        position = localPlayer.NET_RingPos;
+        playerPosition = localPlayer.NET_RingPos;
         //fields[localPlayer.hero.startingLocation].counter++;
 
     }
@@ -305,14 +303,8 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length));
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
+        playerPosition = localPlayer.NET_RingPos;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
-        position = localPlayer.NET_RingPos;
-        for(int i =0; i < turn; i++)
-        {
-            Debug.Log("Asking:");
-                RpcReturnCurrentPosition();
-        }  
-        
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
         {
@@ -323,6 +315,7 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
         //turnAndDiceReload();
         Debug.Log("Moving online player to the left");
+        //RequestPositions();
     }
  
     [Command]
@@ -333,13 +326,8 @@ public class PlayerObject : NetworkBehaviour
         Debug.Log("Moving: " + abs((localPlayer.NET_RingPos - k) % fields.Length)); 
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
+        playerPosition = localPlayer.NET_RingPos;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
-        position = localPlayer.NET_RingPos;
-        for (int i = 0; i < turn; i++)
-        {
-            Debug.Log("Asking:");
-            RpcReturnCurrentPosition();
-        }
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
         {
@@ -350,6 +338,7 @@ public class PlayerObject : NetworkBehaviour
             RpcupdateTurn(0, turn);*/
         //turnAndDiceReload();
         Debug.Log("Moving online player to the right");
+        RpcRequestPositions();
     }
  
     [Command]
@@ -429,7 +418,9 @@ public class PlayerObject : NetworkBehaviour
     void RpcAssignPlayer(string s, int turn)
     {
         Debug.Log("Player " + playername + " Sets new hero");
-        Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);
+        //TU MACIE ZEBY Zmieniac na statyczne dynamiczne
+        Player p = new Player(MainMenu.nickNameValue[0], new Hero(MainMenu.heroValue[0]), turn);//dynamiczne
+        //Player p = new Player("S", new Hero(Assets.hero_type.CZARNOKSIEZNIK), turn);//statyczne
         p.boardField = fields[p.NET_RingPos].fieldEvent;
         localPlayer = p;
         //GameObject.Find("ScrollArea").GetComponent<Windows>().addToHistory("New player entered");

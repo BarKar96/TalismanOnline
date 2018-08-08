@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,18 +10,43 @@ using TMPro;
 public class MainMenu : MonoBehaviour
 {
     #region NewGameWindow
-    public bool[] flag = { false, false, false };
+    public bool[] flag = { true, true, true, true };
+    public bool flag2 = false;
     public Button goToGame;
-    public Dropdown heroType;
+    public Dropdown [] heroType;
     public Dropdown numberOfPlayers;
-    public TMP_InputField Nickname;
+    public Dropdown gameType;
+    public TMP_InputField [] Nickname;
+    public TextMeshProUGUI [] Players;
     public TextMeshProUGUI Info;
-    public static string nickNameValue;
-    public static string heroValue;
+    public static string [] nickNameValue;
+    public static string [] heroValue;
+    public static int onoff = 0;
+    public static int playerscount = 0;
+    public MainMenu()
+    {
+        heroValue = new string[6];
+        nickNameValue = new string[6];
+        heroType = new Dropdown[6];
+        Nickname = new TMP_InputField[6];
+    }
     public void CheckField()
     {
-        if (Nickname.text != "") flag[0] = false;
-        else flag[0] = true;
+        for (int i = 0; i < playerscount; i++)
+        {
+            if (Nickname[i].text != "") flag[0] = false;
+            else
+            {
+                flag[0] = true;
+                break;
+            }
+            if (heroType[i].value == 0)
+            {
+                flag[1] = true;
+                break;
+            }
+            else flag[1] = false;
+        }
     }
     public void HeroTypeIndex_changed(int index)
     {
@@ -29,26 +54,50 @@ public class MainMenu : MonoBehaviour
         {
             if (index == 0)
             {
-                Info.text = "Not all fields are correct filled";
+                Info.text = "";
                 flag[1] = true;
             }
             else
             {
                 Info.text = "";
-                flag[1] = false; 
-                Assets.hero_type kek = (Assets.hero_type)index;
-                heroValue = kek.ToString();
-                nickNameValue = Nickname.text;
+                flag[1] = false;
             }
         }
         catch (NullReferenceException) { };
-        Debug.Log("flaga hero" + flag[1]);
     }
     public void NumberOfPlayersIndex_changed(int index)
     {
-
+        TurnOffAll();
+        playerscount = index + 1;
         if (index == 0)
         {
+            try
+            {
+                Info.text = "You can't play alone ;c - if u don't have friends i'm sorry";
+                flag[3] = true;
+            }
+            catch (NullReferenceException) { };
+        }
+        else
+            try
+            {
+                Info.text = ""; flag[3] = false;
+            }
+            catch (NullReferenceException) { };
+    }
+    public void OnlineOflineBoxIndex_changed(int index)
+    {
+        if (index == 1)
+        {
+            onoff = 1;
+            TurnOffAll();
+            playerscount = 1;
+
+        }
+        if (index == 2) onoff = 2;
+        if (index == 0)
+        {
+            onoff = 0;
             try
             {
                 Info.text = "Not all fields are correct filled";
@@ -62,6 +111,17 @@ public class MainMenu : MonoBehaviour
                 Info.text = ""; flag[2] = false;
             }
             catch (NullReferenceException) { };
+        //Debug.Log("flaga online" + flag[3]);
+    }
+    public void OnlineOfflineBox()
+    {
+        string[] gameType = { "Choose game type", "Online", "Offline" };
+        List<string> names = new List<string>(gameType);
+        try
+        {
+            this.gameType.AddOptions(names);
+        }
+        catch (NullReferenceException) { };
     }
     public void HeroTypeBox()
     {
@@ -69,35 +129,75 @@ public class MainMenu : MonoBehaviour
         string[] hero = { "Choose Hero" };
         string[] kek = new string[heroNames.Length + hero.Length];
         kek[0] = hero[0];
-        for(int i=1;i<heroNames.Length+1;i++)
+        for(int i=0;i<heroNames.Length;i++)
         {
-            kek[i] = heroNames[i - 1];
+
+            kek[i+1] = heroNames[i];
         }
 
         List<string> names = new List<string>(kek);
         try
         {
-            heroType.AddOptions(names);
+            heroType[0].AddOptions(names);
+            heroType[1].AddOptions(names);
+            heroType[2].AddOptions(names);
+            heroType[3].AddOptions(names);
+            heroType[4].AddOptions(names);
+            heroType[5].AddOptions(names);
         }
-        catch (NullReferenceException) { }; 
+        catch (Exception) { }; 
     }
     public void Check()
     {
         try
         {
-            CheckField();
-            bool temp_flag = true;
-            for (int i = 0; i < 3; i++)
+            if (onoff == 0)
             {
-                if (flag[i] == true)
-                {
-                    temp_flag = false;
-                    break;
-                }
+                numberOfPlayers.gameObject.SetActive(false);
             }
-            goToGame.gameObject.SetActive(temp_flag);
+            else if (onoff == 1)
+            {
+                flag[3] = true;
+                numberOfPlayers.gameObject.SetActive(false);
+                try
+                {
+                    CheckField();
+                    bool temp_flag = true;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (flag[i] == true)
+                        {
+                            temp_flag = false;
+                            break;
+                        }
+                    }
+                    goToGame.gameObject.SetActive(temp_flag);
+                }
+                catch (NullReferenceException) { };
+
+            }
+            else if (onoff == 2)
+            {
+                numberOfPlayers.gameObject.SetActive(true);
+                try
+                {
+                    CheckField();
+                    bool temp_flag = true;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (flag[i] == true)
+                        {
+                            temp_flag = false;
+                            break;
+                        }
+                    }
+                    goToGame.gameObject.SetActive(temp_flag);
+                }
+                catch (NullReferenceException) { };
+            }
         }
         catch (NullReferenceException) { };
+        
     }
     public void NumberOfPlayersBox()
     {
@@ -111,20 +211,62 @@ public class MainMenu : MonoBehaviour
     }
     public void Start()
     {
+        OnlineOfflineBox();
         HeroTypeBox();
         NumberOfPlayersBox();
     }
     public void Update()
     {
         Check();
+        SpawnPlayer();
+        UpdateData();
     }
-    public static string getNickname()
+    public static int getOnOff()
     {
-        return nickNameValue;
+        return onoff;
     }
-    public static string getHero()
+    public void TurnOffAll()
     {
-        return heroValue;
+        for (int i = 1; i < 6; i++)
+        {
+            Players[i].gameObject.SetActive(false);
+            heroType[i].gameObject.SetActive(false);
+            Nickname[i].gameObject.SetActive(false);
+        }
+    }
+    public void UpdateData()
+    {
+        try
+        {
+            Assets.hero_type temp;
+            for(int i=0;i<playerscount;i++)
+            {
+                if ((Assets.hero_type)heroType[i].value != 0)
+                {
+                    temp = (Assets.hero_type)heroType[i].value-1;
+                    heroValue[i] = temp.ToString();
+                }
+                else heroValue[i] = null;
+            }
+            for(int i=0;i<playerscount;i++)
+            {
+                nickNameValue[i] = Nickname[i].text;
+            }
+        }
+        catch (Exception) { };
+    }
+    public void SpawnPlayer()
+    {
+        try
+        {
+            for (int i = 1; i < playerscount; i++)
+            {
+                Players[i].gameObject.SetActive(true);
+                heroType[i].gameObject.SetActive(true);
+                Nickname[i].gameObject.SetActive(true);
+            }
+        }
+        catch (IndexOutOfRangeException) { };
     }
     #endregion
     #region MainMenuWindow

@@ -481,7 +481,7 @@ public class Windows : MonoBehaviour {
         }
     }
     #endregion
-    /*
+    
     #region Ekwipunek
     private TalismanBoardScript TBS;
     //Przyciski poszczególnych bohaterów
@@ -523,7 +523,7 @@ public class Windows : MonoBehaviour {
         //CardDrawer.spawnPlayerItems(playerArray[0], playerArray[0].name);
     }
     #endregion   
-    */
+    
     #region ScrollView
     public TextMeshProUGUI scrollcontetnt;
     private string texts;

@@ -14,10 +14,46 @@ public class Hero
     public hero_type type;
     public Hero(hero_type index)
     {
-        
         fillHeroInformation(index);
     }
-
+    public Hero(string name)
+    {
+        fillHeroInformation(changeToEnum(name));
+    }
+    public hero_type changeToEnum(string name)
+    {
+        switch (name)
+        {
+            case "KAPLAN":
+                return hero_type.KAPLAN;
+            case "ELF":
+                return hero_type.ELF;
+            case "ZLODZIEJ":
+                return hero_type.ZLODZIEJ;
+            case "ZABOJCA":
+                return hero_type.ZABOJCA;
+            case "GHUL":
+                return hero_type.GHUL;
+            case "TROLL":
+                return hero_type.TROLL;
+            case "CZARNOKSIEZNIK":
+                return hero_type.CZARNOKSIEZNIK;
+            case "WROZKA":
+                return hero_type.WROZKA;
+            case "CZAROWNICA":
+                return hero_type.CZAROWNICA;
+            case "WOJOWNIK":
+                return hero_type.WOJOWNIK;
+            case "KRASNOLUD":
+                return hero_type.KRASNOLUD;
+            case "DRUID":
+                return hero_type.DRUID;
+            case "MINSTREL":
+                return hero_type.MINSTREL;
+            default: break;
+        }
+        return hero_type.KRASNOLUD;
+    }
     public void fillHeroInformation(hero_type ht)
     {
         type = ht;
