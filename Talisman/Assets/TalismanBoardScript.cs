@@ -255,11 +255,11 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota.");
+                    outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Możesz odwiedzić cyrkulika, alchemika, czarodziejke. Cyrkulik - Możesz odzyskać do 2 punktów życia płacąc za każdy z nich 1 sztukę złota. Alchemik - Możesz odrzucić każdy przedmiot za 1 sztukę złota. Czarodziejka - możesz uzyskać losową rzecz po rzucie kostką");
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
                     break;
                 case 1:
-                    outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] {}, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("jablko")));
 
                     break;
@@ -283,16 +283,9 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 6:
                     //todo Slavek
-                    var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Gospoda");                  
-                    //  Gospoda
-                    /*Gospoda.AssignSpecial(new int[] { 1 }, event_type.LOSE_TURN);
-                    Gospoda.AssignSpecial(new int[] { 2 }, event_type.COMBAT);
-                    Gospoda.AssignSpecial(new int[] { 3 }, event_type.LOSE_COIN);
-                    Gospoda.AssignSpecial(new int[] { 4 }, event_type.ADD_COIN);
-                    Gospoda.AssignSpecial(new int[] { 5 }, event_type.ADD_COINx2);
-                    Gospoda.AssignSpecial(new int[] { 6 }, event_type.GAIN_STRENGTH);*/
+                    var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Gospoda");
                     outerRing[i].fieldEvent = Gospoda;
-                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
+                    outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Miejsce spotkań pijaków zabójców i innych takich."));
                     break;
                 case 7:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -313,19 +306,25 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
                 case 12:
-                    outerRing[i].fieldEvent = new Card("Wioska", card_type.BOARDFIELD, new event_type[] { }, "Możesz odwiedzić kowala, medyka lub mistyka. Kowal: (możesz zakupić za złoto przedmioty: Hełm [2 SZ], Miecz [2 SZ], Topór [3 SZ], Tarczę [3 SZ], Zbroję [4 SZ], Medyk odzyskujesz 1 punkt zdrowia za 1 sztuke złota, Mistyk (Rzucasz kostką jeśli wypadnie: (1) Tracisz jeden punkt życia bo otrzymujesz czarem rykoszetem. (2-4) Nic się nie dzieje. (5) Otrzymujesz jeden punkt mocy. (6) Otrzymujesz 1 zaklęcie.");
-
+                    var Czarodziejka = new Card("Czarodziejka", card_type.BOARDFIELD, new event_type[] { }, "Dziwne miejsce wszędzie pełno tu latających stworzeń - ktos nawet widział kiedyś chodzącą na dwóch nogach krowę.");
+                    outerRing[i].fieldEvent = Czarodziejka;
+                    outerRing[i].cardsOnField.Add(Czarodziejka);
+                    outerRing[i].fieldEvent = new Card("Czarodziejka", card_type.BOARDFIELD, new event_type[] { }, "Dziwne miejsce wszędzie pełno tu latających stworzeń - ktos nawet widział kiedyś chodzącą na dwóch nogach krowę.");//"Możesz odwiedzić kowala, medyka lub mistyka. Kowal: (możesz zakupić za złoto przedmioty: Hełm [2 SZ], Miecz [2 SZ], Topór [3 SZ], Tarczę [3 SZ], Zbroję [4 SZ], Medyk odzyskujesz 1 punkt zdrowia za 1 sztuke złota, Mistyk (Rzucasz kostką jeśli wypadnie: (1) Tracisz jeden punkt życia bo otrzymujesz czarem rykoszetem. (2-4) Nic się nie dzieje. (5) Otrzymujesz jeden punkt mocy. (6) Otrzymujesz 1 zaklęcie.");
                     break;
                 case 13:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell4")));
                     break;
                 case 14:
-                    outerRing[i].fieldEvent = new Card("Cmentarz", card_type.BOARDFIELD, new event_type[] { }, "Jeśli jesteś: dobry tracisz jeden punkt życia, neutralny możesz odkupić punkty losu za 1 sztukę złota każdy, zły możesz odzyskać za darmo wszystkie punkty losu lub modlić się [rzucić 1 kością]: (1-4) modły nie zostały wysłuchane - nic się nie dzieje. (5) Otrzymujesz 1 punkt losu. (6) Otrzymujesz 1 zaklęcie.");
-                    break;
-                case 15:
                     outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     break;
+                case 15:
+                    var Cmentarz = new Card("Cmentarz", card_type.BOARDFIELD, new event_type[] { }, "Zawiało grozą wszędzie widać tylko nagrobki po poległych a brama zrobiona jest ze smoczej czaszki.");
+                    outerRing[i].fieldEvent = Cmentarz;
+                    outerRing[i].cardsOnField.Add(Cmentarz);
+                    //outerRing[i].fieldEvent = new Card("Cmentarz", card_type.BOARDFIELD, new event_type[] { }, "Zawiało grozą wszędzie widać tylko nagrobki po poległych a brama zrobiona jest ze smoczej czaszki.");//"Jeśli jesteś: dobry tracisz jeden punkt życia, neutralny możesz odkupić punkty losu za 1 sztukę złota każdy, zły możesz odzyskać za darmo wszystkie punkty losu lub modlić się [rzucić 1 kością]: (1-4) modły nie zostały wysłuchane - nic się nie dzieje. (5) Otrzymujesz 1 punkt losu. (6) Otrzymujesz 1 zaklęcie.");
+                    break;
+
                 case 16:
                     outerRing[i].fieldEvent = new Card("Strażnik", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje lub jeślizamierzasz przejść przez most do środkowej krainy. Możesz przejść przez most, jeżeli pokonasz strażnika (Siła 9). Nie musisz walczyć ze strażnikiem, jeśli przybywasz ze środkowej krainy");
                     break;
@@ -334,7 +333,12 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].cardsOnField.Add(deckOfCards.fullDeck.Find(x => x.getName().Equals("spell5")));
                     break;
                 case 18:
-                    outerRing[i].fieldEvent = new Card("Kapliczka", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Jeśli jesteś: zły tracisz 1 punkt życia, neutralny odzyskujesz 1 punkt życia za każdą 1 sztukę złota, dobry możesz odzyskać za darmo początkową ilość punktów życia lub modlić się [rzucić 1 kością]: (1-4) modły nie zostały wysłuchane - nic się nie dzieje. (5) Otrzymujesz 1 punkt życia. (6) Otrzymujesz 1 zaklęcie. ");
+                    var Arena = new Card("Arena", card_type.BOARDFIELD, new event_type[] { }, "Arena wielkich wojowników - ludzie tu przychodzą żeby zwyciężać ale najczęściej nawet nie są brani pod uwagę.");
+                    outerRing[i].fieldEvent = Arena;
+                    outerRing[i].cardsOnField.Add(Arena);
+                    //outerRing[i].fieldEvent = new Card("Cmentarz", card_type.BOARDFIELD, new event_type[] { }, "Zawiało grozą wszędzie widać tylko nagrobki po poległych a brama zrobiona jest ze smoczej czaszki.");//"Jeśli jesteś: dobry tracisz jeden punkt życia, neutralny możesz odkupić punkty losu za 1 sztukę złota każdy, zły możesz odzyskać za darmo wszystkie punkty losu lub modlić się [rzucić 1 kością]: (1-4) modły nie zostały wysłuchane - nic się nie dzieje. (5) Otrzymujesz 1 punkt losu. (6) Otrzymujesz 1 zaklęcie.");
+
+                    //outerRing[i].fieldEvent = new Card("Kapliczka", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Jeśli jesteś: zły tracisz 1 punkt życia, neutralny odzyskujesz 1 punkt życia za każdą 1 sztukę złota, dobry możesz odzyskać za darmo początkową ilość punktów życia lub modlić się [rzucić 1 kością]: (1-4) modły nie zostały wysłuchane - nic się nie dzieje. (5) Otrzymujesz 1 punkt życia. (6) Otrzymujesz 1 zaklęcie. ");
                     break;
                 case 19:
                     outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -344,7 +348,10 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].fieldEvent = new Card("Skały", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Rzuć 1 kością: (1) zaatakował Ciebie duch (Siła 4). (2-3) Zabłądziłeś tracisz następną turę. (4-5) Nic się nie dzieje. (6) Barbarzyńca wskazuje Ci drogę - otrzymujesz 1 punkt Siły");
                     break;
                 case 21:
-                    outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje ");
+                    var Kaplica = new Card("Kaplica", card_type.BOARDFIELD, new event_type[] { }, "No to Kaplica strasznie niebezpieczne miejsce. Tutejsi kapłani w gruncie rzeczy nic nie robią ale potężna magia stąd wypływa.");
+                    outerRing[i].fieldEvent = Kaplica;
+                    outerRing[i].cardsOnField.Add(Kaplica);
+                    //outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje ");
                     break;
                 case 22:
                     outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -357,6 +364,7 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
             }
         }
+    
         for (int i = 0; i < 16; i++)
         {
             switch (i)
