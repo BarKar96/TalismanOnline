@@ -2474,12 +2474,12 @@ MonoBehaviour:
   Arrow4: {fileID: 829137589}
   Arrow5: {fileID: 712035440}
   Arrow6: {fileID: 47806472}
-  _heroItems_1: {fileID: 0}
-  _heroItems_2: {fileID: 0}
-  _heroItems_3: {fileID: 0}
-  _heroItems_4: {fileID: 0}
-  _heroItems_5: {fileID: 0}
-  _heroItems_6: {fileID: 0}
+  _heroItems_1: {fileID: 569853419}
+  _heroItems_2: {fileID: 1084952167}
+  _heroItems_3: {fileID: 184648746}
+  _heroItems_4: {fileID: 948031566}
+  _heroItems_5: {fileID: 1183168221}
+  _heroItems_6: {fileID: 1365352798}
   subPanel_Items: {fileID: 0}
   scrollcontetnt: {fileID: 0}
 --- !u!4 &196285797
@@ -5075,7 +5075,7 @@ MonoBehaviour:
   m_fontSize: 25
   m_fontSizeBase: 25
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
