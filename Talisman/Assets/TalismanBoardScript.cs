@@ -903,10 +903,19 @@ public class TalismanBoardScript : MonoBehaviour
     public void nextTurn_Button()
     {
         
-        if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count != 0)
-            outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-
-        outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+       Card p = null; 
+        if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0].getCard_Type().Equals(card_type.BOARDFIELD)) 
+        { 
+            p = outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0]; 
+            outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear(); 
+            outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(p); 
+        } 
+        else     
+            if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count != 0) 
+            { 
+                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear(); 
+                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard()); 
+            } 
         
         nextTurn();
 
