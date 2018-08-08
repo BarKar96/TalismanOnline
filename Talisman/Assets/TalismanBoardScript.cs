@@ -116,7 +116,7 @@ public class TalismanBoardScript : MonoBehaviour
             }
 
             windows.wstawPortret(playerArray);
-            playerName.text = playerArray[playerIndex].name;
+            playerName.text = playerArray[playerIndex+1].name;
             windows.setCursor(playerIndex+1);
         }
         else if (MainMenu.onoff == 1)
