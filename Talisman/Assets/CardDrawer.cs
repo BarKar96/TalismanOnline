@@ -55,6 +55,24 @@ public static class CardDrawer
         counter = 0;
         int temp = 0;
         int help = 0;
+        var q = GameObject.Find("PanelEkwipunku").GetComponent<ItemsListener>();
+        if (p.weapon == null)
+        {
+            q.bron.text = "Założona broń: \n";
+        }
+        else
+        {
+            q.bron.text = "Założona broń: \n" + p.weapon.getName();
+        }
+        if (p.armor == null)
+        {
+            q.zbroja.text = "Założony pancerz: \n";
+        }
+        else
+        {
+            q.zbroja.text = "Założony pancerz: \n" + p.armor.getName();
+        }
+     
         //////////////       
         foreach (Card c in p.getItems())
         {
