@@ -283,7 +283,7 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 6:
                     //todo Slavek
-                    var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Gospoda");
+                    var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Miejsce spotkań pijaków zabójców i innych takich.");
                     outerRing[i].fieldEvent = Gospoda;
                     outerRing[i].cardsOnField.Add(new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Miejsce spotkań pijaków zabójców i innych takich."));
                     break;
@@ -806,26 +806,56 @@ public class TalismanBoardScript : MonoBehaviour
         if (_subPanel_Items_Opened == true)
         {
             string target = EventSystem.current.currentSelectedGameObject.name;
-            switch (target)
+            if (MainMenu.onoff == 1)
             {
-                case "ButtonCards1":
-                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
-                    break;
-                case "ButtonCards2":
-                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
-                    break;
-                case "ButtonCards3":
-                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
-                    break;
-                case "ButtonCards4":
-                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
-                    break;
-                case "ButtonCards5":
-                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
-                    break;
-                case "ButtonCards6":
-                    CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
-                    break;
+                switch (target)
+                {
+
+                    case "ButtonCards1":
+                        CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+                        break;
+                    case "ButtonCards2":
+                        CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+                        break;
+                    case "ButtonCards3":
+                        CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+                        break;
+                    case "ButtonCards4":
+                        CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+                        break;
+                    case "ButtonCards5":
+                        CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+                        break;
+                    case "ButtonCards6":
+                        CardDrawer.spawnPlayerItems(NET_NetworkManager.localPlayer, "PanelEkwipunku");
+                        break;
+                }
+            }
+            else
+            {
+                switch (target)
+                {
+                    case "ButtonCards1":
+                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        break;
+                    case "ButtonCards2":
+                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        break;
+                    case "ButtonCards3":
+                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        break;
+                    case "ButtonCards4":
+                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        break;
+                    case "ButtonCards5":
+                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        break;
+                    case "ButtonCards6":
+                        CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                        break;
+                }
+
+
             }
         }
         else
