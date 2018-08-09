@@ -312,7 +312,7 @@ public  class Combat : MonoBehaviour
         //karta bohatera
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat = Resources.Load(p.hero.name, typeof(Material)) as Material;
-        go.transform.localScale = new Vector3(2.2f, 0.3f, 2.6f);
+        go.transform.localScale = new Vector3(1.0f, 0.3f, 1.0f);
         go.transform.localRotation *= Quaternion.Euler(0, 180, 0);
         go.transform.SetParent(GameObject.Find("PanelWalki").transform);
         go.transform.localPosition = new Vector3(-300, 100, -2);
@@ -321,7 +321,7 @@ public  class Combat : MonoBehaviour
         //karta przeciwnika
         GameObject go1 = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat1 = Resources.Load(c.getName(), typeof(Material)) as Material;
-        go1.transform.localScale = new Vector3(2.2f, 0.3f, 2.6f);
+        go1.transform.localScale = new Vector3(2.0f, 0.3f, 2.6f);
         go1.transform.localRotation *= Quaternion.Euler(0, 180, 0);
         go1.transform.SetParent(GameObject.Find("PanelWalki").transform);
         go1.transform.localPosition = new Vector3(300, 100, -2);
@@ -346,7 +346,7 @@ public  class Combat : MonoBehaviour
         //karta bohatera
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat = Resources.Load(p1.hero.name, typeof(Material)) as Material;
-        go.transform.localScale = new Vector3(2.2f, 0.3f, 2.6f);
+        go.transform.localScale = new Vector3(1.0f, 0.3f, 1.0f);
         go.transform.localRotation *= Quaternion.Euler(0, 180, 0);
         go.transform.SetParent(GameObject.Find("PanelWalki").transform);
         go.transform.localPosition = new Vector3(-300, 100, -2);
@@ -355,7 +355,7 @@ public  class Combat : MonoBehaviour
         //karta przeciwnika
         GameObject go1 = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat1 = Resources.Load(p2.hero.name, typeof(Material)) as Material;
-        go1.transform.localScale = new Vector3(2.2f, 0.3f, 2.6f);
+        go1.transform.localScale = new Vector3(1.0f, 0.3f, 1.0f);
         go1.transform.localRotation *= Quaternion.Euler(0, 180, 0);
         go1.transform.SetParent(GameObject.Find("PanelWalki").transform);
         go1.transform.localPosition = new Vector3(300, 100, -2);

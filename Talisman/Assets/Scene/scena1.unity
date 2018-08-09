@@ -2950,7 +2950,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 289844935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000021076}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.9999656, y: 1.0000286, z: 1.0000066}
   m_Children: []
   m_Father: {fileID: 874524792}
@@ -2958,8 +2958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 295.25003, y: -149.50006}
-  m_SizeDelta: {x: 159.5, y: 159}
+  m_AnchoredPosition: {x: 313.7, y: -151.6}
+  m_SizeDelta: {x: 238.7, y: 134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289844937
 MonoBehaviour:
@@ -3583,8 +3583,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 85e4e8b03d81f9c47a834bc3e3ea6f6e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5560,7 +5560,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 99a64826c0a034b4f95e5bad2123ccc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8727,8 +8727,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 30943312ec0a3de428ea3a9a3a10d988, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8990,7 +8990,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 895853784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000021076}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0000005269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 874524792}
@@ -8998,8 +8998,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -318.45, y: -149.50002}
-  m_SizeDelta: {x: 160.9, y: 159}
+  m_AnchoredPosition: {x: -311.9, y: -144.68}
+  m_SizeDelta: {x: 237.5, y: 132.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895853786
 MonoBehaviour:
@@ -10610,7 +10610,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1026996914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0000052834}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999656, y: 1.0000286, z: 1.0000066}
   m_Children: []
   m_Father: {fileID: 874524792}
@@ -10618,8 +10618,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000005722, y: 29}
-  m_SizeDelta: {x: 300, y: 350}
+  m_AnchoredPosition: {x: -5.3, y: 17.5}
+  m_SizeDelta: {x: 239.3, y: 333.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026996916
 MonoBehaviour:
@@ -10673,7 +10673,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 40
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_textAlignment: 258
   m_isAlignmentEnumConverted: 1
@@ -17836,7 +17836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1741838204
 Transform:
   m_ObjectHideFlags: 0
@@ -18566,7 +18566,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fe7243de8a6b04d409cb76096108cce5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
