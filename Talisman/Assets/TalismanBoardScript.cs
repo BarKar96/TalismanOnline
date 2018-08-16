@@ -417,7 +417,7 @@ public class TalismanBoardScript : MonoBehaviour
                     middleRing[i].fieldEvent = new Card("Przeklęta Polana", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Kiedy przebywasz na Przeklętej polanie, przedmioty i magiczne przedmioty nie zapewniają premii do siły i mocy. Co więcej nie możesz korzystać ze specjalnych zdolności Magicznych przedmiotów, ani rzucać zaklęć");
                     break;
                 case 13:
-                    middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku.");
+                    middleRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku.");
                     break;
                 case 14:
                     middleRing[i].fieldEvent = new Card("Przepaść", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.LOSE_HEALTH }, "Rzuć raz kością za siebie i każdego swojego przyjaciela. Jeśli wylosujesz 1 lub 2 dla siebie tracisz jeden punkt życia. Jeśli wypadnie 1 lub 2 dla przyjaciela wpada on w przepaść i go tracisz.");
@@ -617,6 +617,8 @@ public class TalismanBoardScript : MonoBehaviour
             if (diceResult > y) { whereToMove = temp + (y - diceResult); }
             else { whereToMove = Math.Abs(y - diceResult) % temp; }
 
+
+            movePiece(playerIndex, whereToMove);
             playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
             //Debug.Log("przesuwam sie na pole: " + whereToMove);
 
@@ -629,10 +631,39 @@ public class TalismanBoardScript : MonoBehaviour
                 playerArray[playerIndex].getCards().Add(c);
 
             }
+            if (playerArray[playerIndex].outerRing == true)
+            {
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Puszcza"))
+                {
+                    playerArray[playerIndex].outerRing = false;
+                    playerArray[playerIndex].middleRing = true;
 
+                    temp = getActualPlayerRingFieldNumber();
+                    y = playerArray[playerIndex].playerPiece.indexOfField;
+                    whereToMove = (playerArray[playerIndex].diceResult + y) % temp;
 
+                    //przesuniecie pionka
+                    movePiece(playerIndex, whereToMove);
+                    playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+                }
+            }
+            else if(playerArray[playerIndex].middleRing == true)
+            {
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Zamek"))
+                {
+                    playerArray[playerIndex].middleRing = false;
+                    playerArray[playerIndex].innerRing = true;
+
+                    temp = getActualPlayerRingFieldNumber();
+                    y = playerArray[playerIndex].playerPiece.indexOfField;
+                    whereToMove = (playerArray[playerIndex].diceResult + y) % temp;
+
+                    //przesuniecie pionka
+                    movePiece(playerIndex, whereToMove);
+                    playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+                }
+            }
             //przesuniecie pionka
-            movePiece(playerIndex, whereToMove);
             buttonCombat();
         }
         else if (MainMenu.onoff == 1)
@@ -677,6 +708,38 @@ public class TalismanBoardScript : MonoBehaviour
             foreach (Card c in outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField)
             {
                 playerArray[playerIndex].getCards().Add(c);
+            }
+            if(playerArray[playerIndex].outerRing== true)
+            {
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Puszcza"))
+                {
+                    playerArray[playerIndex].outerRing = false;
+                    playerArray[playerIndex].middleRing = true;
+
+                    temp = getActualPlayerRingFieldNumber();
+                    y = playerArray[playerIndex].playerPiece.indexOfField;
+                    whereToMove = (playerArray[playerIndex].diceResult + y) % temp;
+
+                    //przesuniecie pionka
+                    movePiece(playerIndex, whereToMove);
+                    playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+                }
+            }
+            else if (playerArray[playerIndex].middleRing == true)
+            {
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Zamek"))
+                {
+                    playerArray[playerIndex].middleRing = false;
+                    playerArray[playerIndex].innerRing = true;
+
+                    temp = getActualPlayerRingFieldNumber();
+                    y = playerArray[playerIndex].playerPiece.indexOfField;
+                    whereToMove = (playerArray[playerIndex].diceResult + y) % temp;
+
+                    //przesuniecie pionka
+                    movePiece(playerIndex, whereToMove);
+                    playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+                }
             }
             buttonCombat();
         }
