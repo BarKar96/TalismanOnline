@@ -4,13 +4,15 @@
 #-------------------ITEMS-----------------------------#
 9:itm:butelka:con:desert_immmunity:nospecial
 9:itm:puszkazlota:con:special:get_gold@2
-#9:itm:jablko:con:special:gain_health@1
+9:itm:jablko:con:special:gain_health@1
 9:itm:zbroja:arm:special:gain_health@3
 9:itm:pelnazbroja:arm:special:gain_health@6
 9:itm:helmdemona:arm:special:gain_health@0
 9:itm:miecz:wep:special:gain_strength@3
 9:itm:koscianyluk:wep:special:gain_strength@2
 9:itm:pogromcakrolow:wep:special:gain_strength@3
+4:itm:talizman:wep:nospecial
+9:itm:topor:wep:special:gain_strength@2
 #-------------------Spells----------------------------#
 1:spl:kula_ognia:get_spell:nospecial
 1:spl:zamiec:get_spell:nospeacial

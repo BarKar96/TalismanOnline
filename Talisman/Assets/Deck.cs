@@ -53,7 +53,7 @@ namespace Assets
         {
             //System.Random rand = new System.Random();
             int k = UnityEngine.Random.Range(0, fullDeck.Count);
-            Debug.Log("Returning Card # " + k);
+            Debug.Log("Returning Card # " + k + " / " + fullDeck[k].getName());
             return fullDeck[k];
         }
 
