@@ -663,6 +663,16 @@ public class TalismanBoardScript : MonoBehaviour
                     playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
                 }
             }
+            else if (playerArray[playerIndex].innerRing == true)
+            {
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Dolina Ognia"))
+                {
+                    if (playerArray[playerIndex].getItems().Find(x => x.getName().Equals("Talizman")) != null)
+                    {
+                        Debug.Log("Koniec Gry?");
+                    }
+                }
+            }
             //przesuniecie pionka
             buttonCombat();
         }
@@ -739,6 +749,16 @@ public class TalismanBoardScript : MonoBehaviour
                     //przesuniecie pionka
                     movePiece(playerIndex, whereToMove);
                     playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
+                }
+            }
+            else if (playerArray[playerIndex].innerRing == true)
+            {
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Dolina Ognia"))
+                {
+                    if (playerArray[playerIndex].getItems().Find(x => x.getName().Equals("Talizman")) != null)
+                    {
+                        Debug.Log("Koniec Gry?");
+                    }
                 }
             }
             buttonCombat();
