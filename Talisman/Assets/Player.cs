@@ -114,17 +114,7 @@ public class Player
         var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
         int size = this.cardsToIterate.Count;
         int current = 0;
-        if (!fieldCheckedOut)
-        {
-            
-            if (boardField.isSpecialField())
-            {
-                Debug.Log("Player has dice roll of: " + diceResult);
-                boardField.specialAction(this);
-            }
-            //  Player can't checkout the same field on next turn
-            //fieldCheckedOut = true;
-        }
+        
 
         while (current != size)
         {
