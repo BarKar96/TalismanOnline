@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49dca91926fdeb4ca3c2f04a115e728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 114871019410099650}
+  buttonComponent: {fileID: 114871019410099650}
   nameLabel: {fileID: 114877447691558142}
-  priceLabel: {fileID: 114583406663847388}
   iconImage: {fileID: 114681406743875284}
+  priceText: {fileID: 114583406663847388}
 --- !u!114 &114681406743875284
 MonoBehaviour:
   m_ObjectHideFlags: 1
