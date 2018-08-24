@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player
 {
@@ -146,6 +147,10 @@ public class Player
                         else if (cardsToIterate[current].getName().Equals("Czarodziejka"))
                         {
                             g1.SetCzarodziejkaOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Sklep"))
+                        {
+                            SceneManager.LoadScene("Sklep", LoadSceneMode.Additive);
                         }
                         break;
                     case card_type.ENEMY:

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Item
@@ -90,5 +91,9 @@ public class ShopScrollList : MonoBehaviour
                 shopList.itemList.RemoveAt(i);
             }
         }
+    }
+    public void LoadScene()
+    {
+        SceneManager.LoadScene("scena1", LoadSceneMode.Additive);
     }
 }
