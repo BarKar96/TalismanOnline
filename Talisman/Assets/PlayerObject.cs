@@ -393,7 +393,7 @@ public class PlayerObject : NetworkBehaviour
     }
 
     void turnAndDiceReload(){
-        int checked_player = positions[0];
+        /*int checked_player = positions[0];
         for(int i = 0 ;i < turn; i++){
             checked_player = positions[i];
             for(int j = 0; j < turn; j++){
@@ -401,6 +401,13 @@ public class PlayerObject : NetworkBehaviour
                     Debug.Log("Combat z Graczem na polu: " + positions[j]);
                     break;
                 }
+            }
+        }*/
+        for(int i =0; i < turn; i++)
+        {
+            if(i != current && positions[i] == positions[current])
+            {
+                Debug.Log("Combat z Graczem na polu: " + positions[i]);
             }
         }
         
