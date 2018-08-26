@@ -1062,21 +1062,38 @@ public class TalismanBoardScript : MonoBehaviour
     // przejscie do kolejnej tury
     public void nextTurn_Button()
     {
-        
-       Card p = null; 
-        if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0].getCard_Type().Equals(card_type.BOARDFIELD)) 
-        { 
-            p = outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0]; 
-            outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear(); 
-            outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(p); 
-        } 
-        else     
-            if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count != 0) 
-            { 
-                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear(); 
-                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard()); 
-            } 
-        
+        if (MainMenu.onoff == 2)
+        {
+            Card p = null;
+            if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0].getCard_Type().Equals(card_type.BOARDFIELD))
+            {
+                p = outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0];
+                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(p);
+            }
+            else
+                if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count != 0)
+            {
+                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+            }
+        }
+        else
+        {
+            Card p = null;
+            if (outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField[0].getCard_Type().Equals(card_type.BOARDFIELD))
+            {
+                p = outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField[0];
+                outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField.Clear();
+                outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField.Add(p);
+            }
+            else
+                if (outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField.Count != 0)
+            {
+                outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField.Clear();
+                outerRing[NET_NetworkManager.localPlayer.NET_RingPos].cardsOnField.Add(deckOfCards.drawCard());
+            }
+        }
         nextTurn();
 
         if (MainMenu.onoff == 2)
