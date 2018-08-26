@@ -155,7 +155,7 @@ public class PlayerObject : NetworkBehaviour
             //if(i != this.localPlayer.NET_Turn)
               
         }
-        CmdCompareCurrentPosition(this.playerPosition);
+        //CmdCompareCurrentPosition(this.playerPosition);
     }
 
     [Command]
@@ -405,8 +405,9 @@ public class PlayerObject : NetworkBehaviour
         }*/
         for(int i =0; i < turn; i++)
         {
-            if(i != current && positions[i] == positions[current])
+            if(i != nowMoves && positions[i] == positions[nowMoves])
             {
+                Debug.Log("Sprawdzam: " + positions[i] + " / " + positions[nowMoves]);
                 Debug.Log("Combat z Graczem na polu: " + positions[i]);
             }
         }
