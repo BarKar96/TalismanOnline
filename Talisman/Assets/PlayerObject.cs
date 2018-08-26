@@ -26,7 +26,7 @@ public class PlayerObject : NetworkBehaviour
     [SyncVar]
     private int nowMoves = 0;
 
-    private int [] positions;
+    private static int []  positions = new int[6];
 
     // Use this for initialization
     void Start()
@@ -40,8 +40,8 @@ public class PlayerObject : NetworkBehaviour
         if (!isLocalPlayer)
             return;
         Debug.Log("Created local player piece");
-        if(isServer)
-            positions = new int[6];
+        //if(isServer)
+           
         //localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
@@ -225,8 +225,12 @@ public class PlayerObject : NetworkBehaviour
         //localPlayer.playerPiece.indexOfField = localPlayer.hero.startingLocation;
         Debug.Log("Moving player to " + localPlayer.hero.startingLocation);
         
-        if(isServer)
-            positions[turn--] = p;
+
+        if(positions != null)
+        {
+            Debug.Log("All good in the hood");
+            positions[turn] = localPlayer.hero.startingLocation;
+        }
         
         localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = localPlayer.hero.startingLocation;
