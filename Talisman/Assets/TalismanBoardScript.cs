@@ -389,7 +389,8 @@ public class TalismanBoardScript : MonoBehaviour
                     middleRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku.");
                     break;
                 case 14:
-                    middleRing[i].fieldEvent = new Card("Przepaść", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.LOSE_HEALTH }, "Rzuć raz kością za siebie i każdego swojego przyjaciela. Jeśli wylosujesz 1 lub 2 dla siebie tracisz jeden punkt życia. Jeśli wypadnie 1 lub 2 dla przyjaciela wpada on w przepaść i go tracisz.");
+                    middleRing[i].fieldEvent = new Card("Przepaść", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.LOSE_HEALTH }, "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.");
+                    //Rzuć raz kością za siebie i każdego swojego przyjaciela. Jeśli wylosujesz 1 lub 2 dla siebie tracisz jeden punkt życia. Jeśli wypadnie 1 lub 2 dla przyjaciela wpada on w przepaść i go tracisz.
                     break;
                 case 15:
                     middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku");
