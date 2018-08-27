@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Assets;
 
 public class SpecialFields : MonoBehaviour
 {
@@ -73,6 +74,7 @@ public class SpecialFields : MonoBehaviour
         diceRollButton.gameObject.SetActive(true);
         Przepasc();
     }
+<<<<<<< HEAD
     public void SetStraznikOn()
     {
         panel.SetActive(true);
@@ -82,6 +84,27 @@ public class SpecialFields : MonoBehaviour
     }
     #endregion
     #region Events
+=======
+    public void SetWiezaWDolinieOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        WiezaWDolinie();
+    }
+    public void SetSmiercOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        Smierc();
+    }
+    public void SetWilkolakOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        JamaWilkolaka();
+    }
+
+>>>>>>> 31ffd7c38bdacf64017825300da0a1d6e3e42ba4
     //  ********************
     //  Zdarzenia
     //  ********************
@@ -148,6 +171,7 @@ public class SpecialFields : MonoBehaviour
         Name.text = "Przepaść";
         Descryption.text = "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.";
     }
+<<<<<<< HEAD
     public void Straznik()
     {
         specialDiceBlock = true;
@@ -156,6 +180,34 @@ public class SpecialFields : MonoBehaviour
     }
     #endregion
     #region Panels and Dice events
+=======
+    public void WiezaWDolinie()
+    {
+        specialDiceBlock = true;
+        Name.text = "Wieża w Dolinie";
+        Descryption.text = "Rzuć 1 kością.Jeśli wylosujesz 6 wsyzscy pozostali gracze tracą 1 punkt życia.";
+    }
+    public void Smierc()
+    {
+        specialDiceBlock = true;
+        Name.text = "Śmierć";
+        Descryption.text = "Gra ze śmiercią - Jeśli wyrzucisz 1 umierasz. Takie życie.";
+    }
+    public void JamaWilkolaka()
+    {
+        specialDiceBlock = true;
+        Name.text = "Jama Wilkołaka";
+        Descryption.text = "Jama Wilkołaka - Rzuć kością. Jeśli suma oczek z Twoją siłą jest większa od sumy oczek z Twoim życiem pokonujesz wilkołaka. Inaczej zadaje on tobie tyle obrażeń ile oczek na kostce";
+    }
+    public void Krypta()
+    {
+        specialDiceBlock = true;
+        Name.text = "Krypta";
+        Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.";
+    }
+
+
+>>>>>>> 31ffd7c38bdacf64017825300da0a1d6e3e42ba4
     public void OK_BUTTON()
     {
         specialDiceBlock = false;
@@ -323,7 +375,7 @@ public class SpecialFields : MonoBehaviour
                     break;
             }
         }
-        else if (Name.text.Equals("Wieża wampira"))
+        else if (Name.text.Equals("Wieża Wampira"))
         {
             switch (DiceScript.getResult())
             {
@@ -352,18 +404,73 @@ public class SpecialFields : MonoBehaviour
                 case 3:
                 case 5:
                     MessageText.text = "Skaczesz jak pasikonik. Ta przepaść to dla Ciebie nic.";
-                    //  Przesuń gracza dalej.
-
+                    //  Nic się nie dzieje i gracz może iść dalej.
                     break;
                 case 2:
                 case 4:
                 case 6:
                     MessageText.text = "Z takim brzuchem musiałeś odrzucić ekwipunek. Ale się udało.";
-                    //  Odrzuć ekwipunek poza talizmanem jeśli jakiś ma
-                    
+                    //  Odrzuć ekwipunek poza talizmanem jeśli jakiś ma        
+                    go.playerArray[go.playerIndex].armor = null;
+                    go.playerArray[go.playerIndex].weapon = null;
+                    go.playerArray[go.playerIndex].health_modifier = 0;
+                    go.playerArray[go.playerIndex].strength_modifier = 0;
+                    //  Jeśli gracz ma talizman to go zachowuje
+                    Card c = go.playerArray[go.playerIndex].getItems().Find(x => x.getName().Equals("talizman"));
+                    if(c != null)
+                    {
+                        go.playerArray[go.playerIndex].getItems().Clear();
+                        go.playerArray[go.playerIndex].getItems().Add(c);
+                    }
+                    else
+                    {
+                        go.playerArray[go.playerIndex].getItems().Clear();
+                    }
                     break;
             }
-        }    
+        }
+        else if (Name.text.Equals("Wieża w Dolinie"))
+        {
+            switch (DiceScript.getResult())
+            {
+                case 6:
+                    MessageText.text = "Zsyłasz na wszystkich potężny piorun. Każdy w krainie traci życie.";
+                    for (int i = 0; i < go.playerArray.Length; i++)
+                    {
+                        if(i != go.playerIndex)
+                        {
+                            go.playerArray[go.playerIndex].current_health--;
+                        }
+                    }
+                    break;
+                default:
+                    MessageText.text = "Talizman nie chce Cię wysłuchać.";
+                    break;
+            }
+        }
+        else if (Name.text.Equals("Śmierć"))
+        {
+            if(DiceScript.getResult().Equals(Random.Range(1, 6)))
+            {
+                MessageText.text = "Przegrałeś z śmiercią w kości. Wyskakuj z ciała!";
+                go.playerArray[go.playerIndex].current_health = 0;
+            }
+            MessageText.text = "Lata nałogowego hazardu opłaciły się. Pokonałeś śmierć w kości."; 
+        }
+        else if (Name.text.Equals("Jama Wilkołaka"))
+        {
+            if(DiceScript.getResult() + go.playerArray[go.playerIndex].current_health < 
+                go.playerArray[go.playerIndex].strength + go.playerArray[go.playerIndex].strength_modifier + DiceScript.getResult())
+            {
+                MessageText.text = "Wilkołak zobaczył Twoje mięśnie nabłyszczane olejkiem i nawet nie fikał. Możesz przejść.";
+            }
+            else
+            {
+                MessageText.text = "Nie jesteś wcale taki twardy. Wilkołak wyciosał Ci ładną bliznę na ciele.";
+                go.playerArray[go.playerIndex].current_health -= DiceScript.getResult();
+            }
+            
+        }
     }
     #endregion
 }
