@@ -26,6 +26,8 @@ public class PlayerObject : NetworkBehaviour
     [SyncVar]
     private int nowMoves = 0;
 
+    private static int []  positions = new int[6];
+
     // Use this for initialization
     void Start()
     {
@@ -38,7 +40,8 @@ public class PlayerObject : NetworkBehaviour
         if (!isLocalPlayer)
             return;
         Debug.Log("Created local player piece");
-
+        //if(isServer)
+           
         //localPlayer = new Player("Suavek", new Hero(Assets.hero_type.DRUID), turn);
         //Instantiate(PlayerUnitPrefab);
         CmdspawnPlayerPiece();
@@ -152,7 +155,7 @@ public class PlayerObject : NetworkBehaviour
             //if(i != this.localPlayer.NET_Turn)
               
         }
-        CmdCompareCurrentPosition(this.playerPosition);
+        //CmdCompareCurrentPosition(this.playerPosition);
     }
 
     [Command]
@@ -196,7 +199,6 @@ public class PlayerObject : NetworkBehaviour
         //Piece p = go.GetComponent<Piece>();
         //localPlayer.playerPiece = p;
         RpcAssignPlayer("asd", turn);
-        
  
         nowMoves = turn;
         turn++;
@@ -222,6 +224,13 @@ public class PlayerObject : NetworkBehaviour
             return;*/
         //localPlayer.playerPiece.indexOfField = localPlayer.hero.startingLocation;
         Debug.Log("Moving player to " + localPlayer.hero.startingLocation);
+        
+
+        if(positions != null)
+        {
+            Debug.Log("All good in the hood");
+            positions[turn] = localPlayer.hero.startingLocation;
+        }
         
         localPlayerPiece.transform.position = fields[p].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = localPlayer.hero.startingLocation;
@@ -304,6 +313,7 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos - k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos - k) % fields.Length;
         playerPosition = localPlayer.NET_RingPos;
+        positions[current] = localPlayer.NET_RingPos;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
@@ -327,6 +337,7 @@ public class PlayerObject : NetworkBehaviour
         localPlayerPiece.transform.position = fields[abs((localPlayer.NET_RingPos + k) % fields.Length)].emptyGameObject.transform.position;
         localPlayer.NET_RingPos = (localPlayer.NET_RingPos + k) % fields.Length;
         playerPosition = localPlayer.NET_RingPos;
+        positions[current] = localPlayer.NET_RingPos;
         localPlayer.boardField = fields[abs(localPlayer.NET_RingPos)].fieldEvent;
         //RpcupdateTurn(k);
         /*if (current < turn - 1)
@@ -382,6 +393,25 @@ public class PlayerObject : NetworkBehaviour
     }
 
     void turnAndDiceReload(){
+        /*int checked_player = positions[0];
+        for(int i = 0 ;i < turn; i++){
+            checked_player = positions[i];
+            for(int j = 0; j < turn; j++){
+                if(checked_player == positions[j]){
+                    Debug.Log("Combat z Graczem na polu: " + positions[j]);
+                    break;
+                }
+            }
+        }*/
+        for(int i =0; i < turn; i++)
+        {
+            if(i != nowMoves && positions[i] == positions[nowMoves])
+            {
+                Debug.Log("Sprawdzam: " + positions[i] + " / " + positions[nowMoves]);
+                Debug.Log("Combat z Graczem na polu: " + positions[i]);
+            }
+        }
+        
         for (int i = 0; i < turn; i++)
         {
             TargetHideDice(NetworkServer.connections[i]);

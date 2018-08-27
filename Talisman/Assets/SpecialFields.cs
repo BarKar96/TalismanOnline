@@ -16,6 +16,11 @@ public class SpecialFields : MonoBehaviour {
     public bool specialDiceBlock = false;
 	// Use this for initialization
     //just some random comment
+    
+    //  ********************
+    //  Włączniki
+    //  ********************
+    
     public void SetGospodaOn()
     {
         panel.SetActive(true);
@@ -52,6 +57,23 @@ public class SpecialFields : MonoBehaviour {
         diceRollButton.gameObject.SetActive(true);
         Las();
     }
+    public void SetWiezaWampiraOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        WiezaWampira();
+    }
+    public void SetPrzepascOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        Przepasc();
+    }
+
+    //  ********************
+    //  Zdarzenia
+    //  ********************
+
     public void Kaplica()
     {
         specialDiceBlock = true;
@@ -88,6 +110,17 @@ public class SpecialFields : MonoBehaviour {
         Name.text = "Gospoda";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Upiłeś się i zasnąłeś w kącie - tracisz turę. \n(2) Upiłeś się i wdałeś w bójkę z chłopem tracisz 1 hp. \n(3) Grałeś w karty i przegrałeś 1 sztukę złota. \n(4) Grałeś w karty i wygrałeś jedną sztukę złota. \n(5) Potknąłeś się wpadłeś do piwnicy. Znalazłeś dwie sztuki złota. \n(6) Karateka uczy Ciebie sztuk walki (+1 punkt Siły.)";
     }
+    public void WiezaWampira(){
+        specialDiceBlock = true;
+        Name.text = "Wieża wampira";
+        Descryption.text = "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. Możesz odrzucić dowolną liczbę przyjaciół, aby ograniczyć stratę punktów życia. Za każdego odrzuconego przyjaciela tracisz o 1 punkt życia mniej. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.";
+    }
+    public void Przepasc(){
+        specialDiceBlock = true;
+        Name.text = "Przepaść";
+        Descryption.text = "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.";
+    }
+
     public void OK_BUTTON()
     {
         specialDiceBlock = false;
@@ -167,18 +200,6 @@ public class SpecialFields : MonoBehaviour {
         {
             switch (DiceScript.getResult())
             {
-                case 1:
-                    MessageText.text = "Nic się nie stało - potrzebujesz większego miecza.";
-                    break;
-                case 2:
-                    MessageText.text = "Nic się nie stało - potrzebujesz większego miecza.";
-                    break;
-                case 3:
-                    MessageText.text = "Nic się nie stało - potrzebujesz większego miecza.";
-                    break;
-                case 4:
-                    MessageText.text = "Nic się nie stało - potrzebujesz większego miecza.";
-                    break;
                 case 5:
                     MessageText.text = "Pokonałeś jednego przeciwnika - otrzymujesz 1 siły.";
                     go.playerArray[go.playerIndex].strength++;
@@ -187,24 +208,15 @@ public class SpecialFields : MonoBehaviour {
                     MessageText.text = "Wygrałeś turniej - otrzymujesz 2 sztuki złota.";
                     go.playerArray[go.playerIndex].gold += 2;
                     break;
+                default:
+                    MessageText.text = "Nic się nie stało - potrzebujesz większego miecza.";
+                    break;
             }
         }
         else if (Name.text.Equals("Kaplica"))
         {
             switch (DiceScript.getResult())
             {
-                case 1:
-                    MessageText.text = "Nic się nie stało - Bogowie nie wysłuchują Twoich modlitw.";
-                    break;
-                case 2:
-                    MessageText.text = "Nic się nie stało - Bogowie nie wysłuchują Twoich modlitw.";
-                    break;
-                case 3:
-                    MessageText.text = "Nic się nie stało - Bogowie nie wysłuchują Twoich modlitw.";
-                    break;
-                case 4:
-                    MessageText.text = "Nic się nie stało - Bogowie nie wysłuchują Twoich modlitw.";
-                    break;
                 case 5:
                     MessageText.text = "Twe modły zostały wysłuchane. - Otrzymujesz jeden punkt siły.";
                     go.playerArray[go.playerIndex].strength++;
@@ -214,24 +226,15 @@ public class SpecialFields : MonoBehaviour {
                     go.playerArray[go.playerIndex].strength-=2;
                     go.playerArray[go.playerIndex].current_health--;
                     break;
+                default:
+                    MessageText.text = "Nic się nie stało - Bogowie nie wysłuchują Twoich modlitw.";
+                    break;
             }
         }
         else if (Name.text.Equals("Cmentarz"))
         {
             switch (DiceScript.getResult())
             {
-                case 1:
-                    MessageText.text = "Nic się nie stało - Zmarli przecież nie żyją LOL.";
-                    break;
-                case 2:
-                    MessageText.text = "Nic się nie stało - Zmarli przecież nie żyją LOL.";
-                    break;
-                case 3:
-                    MessageText.text = "Nic się nie stało - Zmarli przecież nie żyją LOL.";
-                    break;
-                case 4:
-                    MessageText.text = "Nic się nie stało - Zmarli przecież nie żyją LOL.";
-                    break;
                 case 5:
                     MessageText.text = "Twe modły zostały wysłuchane. - Otrzymujesz jeden punkt siły.";
                     go.playerArray[go.playerIndex].strength++;
@@ -240,6 +243,9 @@ public class SpecialFields : MonoBehaviour {
                     MessageText.text = "Gniew zmarłych spada na Ciebie w postaci trzęsienia ziemi spada na Ciebie konar drzewa. - Tracisz jeden punkt siły i dwa punkt życia.";
                     go.playerArray[go.playerIndex].current_health-=2;
                     go.playerArray[go.playerIndex].strength--;
+                    break;
+                default:
+                    MessageText.text = "Nic się nie stało - Zmarli przecież nie żyją LOL.";
                     break;
             }
         }
@@ -271,6 +277,47 @@ public class SpecialFields : MonoBehaviour {
                     go.playerArray[go.playerIndex].gold++;
                     break;
             }
-        }        
+        }
+        else if (Name.text.Equals("Wieża wampira"))
+        {
+            switch (DiceScript.getResult())
+            {
+                case 1:
+                case 2:
+                    MessageText.text = "Wampir miał próchnicę, z tymi zębami to tylko 1 punkt zdrowia.";
+                    go.playerArray[go.playerIndex].current_health--;
+                    break;
+                case 3:
+                case 4:
+                    MessageText.text = "Wspiąłeś się na najwyższy szczyt - otrzymujesz jeden punkt siły.";
+                    go.playerArray[go.playerIndex].current_health-=2;
+                    break;
+                case 5:
+                case 6:
+                    MessageText.text = "Widzisz spadającą gwiazdę - otrzymujesz jedna sztukę złota.";
+                    go.playerArray[go.playerIndex].current_health-=3;
+                    break;
+            }
+        }
+        else if (Name.text.Equals("Przepaść"))
+        {
+            switch (DiceScript.getResult())
+            {
+                case 1:
+                case 3:
+                case 5:
+                    MessageText.text = "Skaczesz jak pasikonik. Ta przepaść to dla Ciebie nic.";
+                    //  Przesuń gracza dalej.
+
+                    break;
+                case 2:
+                case 4:
+                case 6:
+                    MessageText.text = "Z takim brzuchem musiałeś odrzucić ekwipunek. Ale się udało.";
+                    //  Odrzuć ekwipunek poza talizmanem jeśli jakiś ma
+                    
+                    break;
+            }
+        }    
     }
 }
