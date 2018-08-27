@@ -252,7 +252,7 @@ public  class Combat : MonoBehaviour
             {
                 player2.current_health--;
                 textPrzebieg.text += "\n\n" + player1.name + " wygrał! ";
-
+                //  TODO gracz wygrał - sprawdź bossa i przejdź 
             }
 
 

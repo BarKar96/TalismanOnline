@@ -157,6 +157,25 @@ public class Player
                         {
                             g1.SetCzarodziejkaOn();
                         }
+                        //
+                        else if (cardsToIterate[current].getName().Equals("Wieża wampira"))
+                        {
+                            g1.SetWiezaWampiraOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Wieża w Dolinie"))
+                        {
+                            g1.SetWiezaWDolinieOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Przepaść"))
+                        {
+                            g1.SetPrzepascOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Śmierć"))
+                        {
+                            g1.SetSmiercOn();
+                        }
+
+                        //
                         else if (cardsToIterate[current].getName().Equals("Sklep"))
                         {
                             shopCanvas.gameObject.SetActive(true);

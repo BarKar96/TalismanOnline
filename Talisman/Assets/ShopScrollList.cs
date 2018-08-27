@@ -41,7 +41,7 @@ public class ShopScrollList : MonoBehaviour
         playerArray = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerArray;
         playerIndex = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerIndex;
         player = playerArray[playerIndex];
-        gold = player.gold;
+        //gold = player.gold;
         RefreshDisplay();
     }
     void RefreshDisplay()
