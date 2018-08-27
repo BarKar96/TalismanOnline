@@ -74,7 +74,6 @@ public class SpecialFields : MonoBehaviour
         diceRollButton.gameObject.SetActive(true);
         Przepasc();
     }
-<<<<<<< HEAD
     public void SetStraznikOn()
     {
         panel.SetActive(true);
@@ -84,7 +83,6 @@ public class SpecialFields : MonoBehaviour
     }
     #endregion
     #region Events
-=======
     public void SetWiezaWDolinieOn()
     {
         panel.SetActive(true);
@@ -103,8 +101,7 @@ public class SpecialFields : MonoBehaviour
         diceRollButton.gameObject.SetActive(true);
         JamaWilkolaka();
     }
-
->>>>>>> 31ffd7c38bdacf64017825300da0a1d6e3e42ba4
+    
     //  ********************
     //  Zdarzenia
     //  ********************
@@ -171,7 +168,6 @@ public class SpecialFields : MonoBehaviour
         Name.text = "Przepaść";
         Descryption.text = "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.";
     }
-<<<<<<< HEAD
     public void Straznik()
     {
         specialDiceBlock = true;
@@ -180,7 +176,6 @@ public class SpecialFields : MonoBehaviour
     }
     #endregion
     #region Panels and Dice events
-=======
     public void WiezaWDolinie()
     {
         specialDiceBlock = true;
@@ -205,9 +200,6 @@ public class SpecialFields : MonoBehaviour
         Name.text = "Krypta";
         Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.";
     }
-
-
->>>>>>> 31ffd7c38bdacf64017825300da0a1d6e3e42ba4
     public void OK_BUTTON()
     {
         specialDiceBlock = false;
