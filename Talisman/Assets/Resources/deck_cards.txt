@@ -29,3 +29,4 @@
 9:enm:pszczoly:strn@3:nospecial
 9:enm:tomasz:strn@7:powr@3:nospecial
 9:enm:dorozkaze:powr@10:nospecial
+1:enm:straznik:strn@7:nospecial

@@ -5,22 +5,26 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SpecialFields : MonoBehaviour {
-    private TalismanBoardScript tms;
+public class SpecialFields : MonoBehaviour
+{
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Descryption;
     public TextMeshProUGUI MessageText;
     public GameObject panel;
     public GameObject MessageBox;
     public Button diceRollButton;
+    public Button Yes;
+    public Button No;
+    public bool wait = true;
+    public bool TurnFight = false;
     public bool specialDiceBlock = false;
-	// Use this for initialization
+    // Use this for initialization
     //just some random comment
-    
+    #region Sets
     //  ********************
     //  Włączniki
     //  ********************
-    
+
     public void SetGospodaOn()
     {
         panel.SetActive(true);
@@ -69,11 +73,33 @@ public class SpecialFields : MonoBehaviour {
         diceRollButton.gameObject.SetActive(true);
         Przepasc();
     }
-
+    public void SetStraznikOn()
+    {
+        panel.SetActive(true);
+        Yes.gameObject.SetActive(true);
+        No.gameObject.SetActive(true);
+        Straznik();
+    }
+    #endregion
+    #region Events
     //  ********************
     //  Zdarzenia
     //  ********************
-
+    public void StraznikMessage(bool meh)
+    {
+        MessageBox.SetActive(true);
+        if (meh)
+        {
+            MessageText.text = "Gratulacje pokonałeś strażnika - przenosisz się do innej krainy";
+        }
+        else
+        {
+            MessageText.text = "Przykro mi nie udało Ci się pokonać strażnika";
+        }
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        tbs.playerArray[tbs.playerIndex].outerRing = false;
+        tbs.playerArray[tbs.playerIndex].middleRing = false;
+    }
     public void Kaplica()
     {
         specialDiceBlock = true;
@@ -110,20 +136,39 @@ public class SpecialFields : MonoBehaviour {
         Name.text = "Gospoda";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Upiłeś się i zasnąłeś w kącie - tracisz turę. \n(2) Upiłeś się i wdałeś w bójkę z chłopem tracisz 1 hp. \n(3) Grałeś w karty i przegrałeś 1 sztukę złota. \n(4) Grałeś w karty i wygrałeś jedną sztukę złota. \n(5) Potknąłeś się wpadłeś do piwnicy. Znalazłeś dwie sztuki złota. \n(6) Karateka uczy Ciebie sztuk walki (+1 punkt Siły.)";
     }
-    public void WiezaWampira(){
+    public void WiezaWampira()
+    {
         specialDiceBlock = true;
         Name.text = "Wieża wampira";
         Descryption.text = "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. Możesz odrzucić dowolną liczbę przyjaciół, aby ograniczyć stratę punktów życia. Za każdego odrzuconego przyjaciela tracisz o 1 punkt życia mniej. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.";
     }
-    public void Przepasc(){
+    public void Przepasc()
+    {
         specialDiceBlock = true;
         Name.text = "Przepaść";
         Descryption.text = "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.";
     }
-
+    public void Straznik()
+    {
+        specialDiceBlock = true;
+        Name.text = "Strażnik";
+        Descryption.text = "Przebywając równinę zauważasz dziwne miejsce strzeżone przez silnego (Siła 7) strażnika. Strażnik mówi że jeśli go pokonasz będziesz mógł przejść przez portal przenoszący Ci do innej krainy. Podejmujesz wyzwanie?";
+    }
+    #endregion
+    #region Panels and Dice events
     public void OK_BUTTON()
     {
         specialDiceBlock = false;
+    }
+    public void YES_BUTTON()
+    {
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        tbs.playerArray[tbs.playerIndex].CombatStraznik();
+        panel.SetActive(false);
+    }
+    public void NO_BUTTON()
+    {
+        panel.SetActive(false);
     }
     public void Rzuckosciascript()
     {
@@ -320,4 +365,5 @@ public class SpecialFields : MonoBehaviour {
             }
         }    
     }
+    #endregion
 }

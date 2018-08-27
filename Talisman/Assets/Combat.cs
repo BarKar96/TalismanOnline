@@ -10,12 +10,12 @@ public  class Combat : MonoBehaviour
     TalismanBoardScript tal;
 
     public bool combatDiceBlock = false;
-
+    public bool combatWin = false;
     public Player player1 = null;
     public Player player2 = null;
     public bool player2SpellsDone = false;
     public bool player1SpellsDone = false;
-
+    public bool temp = false;
     Card c = null;
 
     public bool turaIstoty = false;
@@ -246,6 +246,7 @@ public  class Combat : MonoBehaviour
 
         if (skutecznosc_Ataku_gracza > skutecznosc_Ataku_istoty)
         {
+            combatWin = true;
             //istota zostala pokonana wyczyszczenie pola planszy z tej kart;
             textPrzebieg.text += "\n\n Udało ci się pokonać stwora!";
             if (player2 != null)
@@ -259,7 +260,7 @@ public  class Combat : MonoBehaviour
         }
         else if (skutecznosc_Ataku_gracza < skutecznosc_Ataku_istoty)
         {
-            
+            combatWin = false;
             player1.current_health--;
             if (player2 != null)
             {
@@ -270,12 +271,14 @@ public  class Combat : MonoBehaviour
             else
             {
                 textPrzebieg.text += "\n\n Ponosisz porażkę!";
+                
             }
 
         }
         else if (skutecznosc_Ataku_gracza == skutecznosc_Ataku_istoty)
         {
             textPrzebieg.text += "\n\nRemis! ";
+            combatWin = false;
             //istota nie zostaje pokonana
         }
         ButtonOK.gameObject.SetActive(true);
@@ -301,7 +304,7 @@ public  class Combat : MonoBehaviour
         }
     }
 
-    public  int rzutAtaku()
+    public int rzutAtaku()
     {
         System.Random rnd = new System.Random();
         return rnd.Next(1, 6);
@@ -339,6 +342,12 @@ public  class Combat : MonoBehaviour
         textPrzeciwnik.text = "";
         textPrzeciwnik.text += "Bohater: " + c.getName();
         textPrzeciwnik.text += "\nSiła:  " + c.strength;
+        if (c.getName() == "straznik")
+        {
+            temp = true;
+        }
+        else temp = false ;
+        
     }
     public void spawnCombatCards(Player p1, Player p2)
     {
@@ -387,6 +396,11 @@ public  class Combat : MonoBehaviour
     {
         combatDiceBlock = false;
         toggleCombatPanel();
+        var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
+        if (temp)
+        {
+            g1.StraznikMessage(this.combatWin);
+        }
     }
     public void SpellOK_Button()
     {

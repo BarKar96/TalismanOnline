@@ -10,8 +10,6 @@ public class Player
     public Piece playerPiece;
     //Control event on field
     public Card boardField;
-
-
    
 
     //Player item inventory
@@ -162,6 +160,18 @@ public class Player
                             shopCanvas.gameObject.SetActive(true);
                             //mainCanvas.gameObject.SetActive(false);
                         }
+                        else if (cardsToIterate[current].getName().Equals("Strażnik"))
+                        {
+                            g1.SetStraznikOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Przepaść"))
+                        {
+                            g1.SetPrzepascOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Wieża wampira"))
+                        {
+                            g1.SetWiezaWampiraOn();
+                        }
                         break;
                     case card_type.ENEMY:
                         combat.StartCombat(this, cardsToIterate[current]);
@@ -232,5 +242,10 @@ public class Player
     {
         return spells;
     }
-
+    public void CombatStraznik()
+    {
+        var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
+        var meh = deck.fullDeck.Find(x => x.getName().Equals("straznik"));
+        combat.StartCombat(this, meh);
+    }
 }
