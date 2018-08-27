@@ -9,7 +9,7 @@ public class Item
 {
     public string itemName;
     public Sprite icon;
-    public float price = 1;
+    public int price = 1;
 }
 
 public class ShopScrollList : MonoBehaviour
@@ -21,15 +21,29 @@ public class ShopScrollList : MonoBehaviour
     public Text myGoldDisplay;
     public SimpleObjectPool buttonObjectPool;
 
-    public float gold = 20f;
+    public Player player;
+    public int gold = 20;
+
+    //from TalismanBoardScript
+    public GameObject shopCanvas;
+    public Player[] playerArray;
+    public int playerIndex;
 
 
-    // Use this for initialization
     void Start()
     {
+        shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
+        startShop();
+    }
+    public void startShop()
+    {
+
+        playerArray = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerArray;
+        playerIndex = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerIndex;
+        player = playerArray[playerIndex];
+        gold = player.gold;
         RefreshDisplay();
     }
-
     void RefreshDisplay()
     {
         myGoldDisplay.text = "Gold: " + gold.ToString();
@@ -92,8 +106,11 @@ public class ShopScrollList : MonoBehaviour
             }
         }
     }
-    public void LoadScene()
+    /// <summary>
+    /// /////////////////////////////////////////////////////////////////////////
+    /// </summary>
+    public void exitFromShop()
     {
-        SceneManager.LoadScene("scena1", LoadSceneMode.Additive);
+        shopCanvas.gameObject.SetActive(false);
     }
 }

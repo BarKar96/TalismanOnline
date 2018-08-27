@@ -11,6 +11,9 @@ public class Player
     //Control event on field
     public Card boardField;
 
+
+   
+
     //Player item inventory
     private Deck deck;
     public int gold;
@@ -42,9 +45,15 @@ public class Player
     public int NET_RingPos,
                 NET_Turn;
 
+    // Canvas
+    private GameObject shopCanvas;
+    private GameObject mainCanvas;
+
     public Player(string name, Hero hero)
     {
         combat = GameObject.Find("Combat").GetComponent<Combat>();
+        shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
+        mainCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().mainCanvas;
         this.name = name;
         this.outerRing = true;
         this.middleRing = false;
@@ -150,7 +159,8 @@ public class Player
                         }
                         else if (cardsToIterate[current].getName().Equals("Sklep"))
                         {
-                            SceneManager.LoadScene("Sklep", LoadSceneMode.Additive);
+                            shopCanvas.gameObject.SetActive(true);
+                            //mainCanvas.gameObject.SetActive(false);
                         }
                         break;
                     case card_type.ENEMY:

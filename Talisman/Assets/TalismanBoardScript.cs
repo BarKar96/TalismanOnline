@@ -45,7 +45,9 @@ public class TalismanBoardScript : MonoBehaviour
 
     Windows windows;
 
-    
+    //Canvas
+    public GameObject shopCanvas;
+    public GameObject mainCanvas;
 
     /// <summary>
     /// //////////////////////////////////////////////////////////////

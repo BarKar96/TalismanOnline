@@ -13,9 +13,12 @@ namespace Assets
         private bool specialField = false;
         private List<special> specialCardEvents;
         public event_type[] getEvents() { return events; }
+
         private string description;
         private string name;
         public int strength, power;
+
+
         public item_type itemType;
        
 
