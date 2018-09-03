@@ -203,16 +203,23 @@ public class SpecialFields : MonoBehaviour
     public void OK_BUTTON()
     {
         specialDiceBlock = false;
+        diceRollButton.gameObject.SetActive(false);
     }
     public void YES_BUTTON()
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         tbs.playerArray[tbs.playerIndex].CombatStraznik();
         panel.SetActive(false);
+        specialDiceBlock = false;
+        Yes.gameObject.SetActive(false);
+        No.gameObject.SetActive(false);
     }
     public void NO_BUTTON()
     {
         panel.SetActive(false);
+        specialDiceBlock = false;
+        Yes.gameObject.SetActive(false);
+        No.gameObject.SetActive(false);
     }
     public void Rzuckosciascript()
     {

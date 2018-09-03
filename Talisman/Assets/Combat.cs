@@ -396,10 +396,17 @@ public  class Combat : MonoBehaviour
     {
         combatDiceBlock = false;
         toggleCombatPanel();
+        
         var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
+        var g2 = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         if (temp)
         {
             g1.StraznikMessage(this.combatWin);
+        }
+        else
+        {
+
+            g2.nextTurnButton.gameObject.SetActive(true);
         }
     }
     public void SpellOK_Button()
