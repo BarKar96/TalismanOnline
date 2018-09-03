@@ -155,6 +155,10 @@ public class Player
                         {
                             g1.SetCzarodziejkaOn();
                         }
+                        else if (cardsToIterate[current].getName().Equals("Strażnik"))
+                        {
+                            g1.SetStraznikOn();
+                        }
                         //
                         else if (cardsToIterate[current].getName().Equals("Wieża wampira"))
                         {

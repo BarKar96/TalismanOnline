@@ -8,6 +8,7 @@ using Assets;
 
 public class SpecialFields : MonoBehaviour
 {
+    #region Variables and GUI
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Descryption;
     public TextMeshProUGUI MessageText;
@@ -19,8 +20,7 @@ public class SpecialFields : MonoBehaviour
     public bool wait = true;
     public bool TurnFight = false;
     public bool specialDiceBlock = false;
-    // Use this for initialization
-    //just some random comment
+    #endregion
     #region Sets
     //  ********************
     //  Włączniki
@@ -81,8 +81,6 @@ public class SpecialFields : MonoBehaviour
         No.gameObject.SetActive(true);
         Straznik();
     }
-    #endregion
-    #region Events
     public void SetWiezaWDolinieOn()
     {
         panel.SetActive(true);
@@ -122,15 +120,14 @@ public class SpecialFields : MonoBehaviour
         MessageBox.SetActive(true);
         if (meh)
         {
+            TurnFight = true;
             MessageText.text = "Gratulacje pokonałeś strażnika - przenosisz się do innej krainy";
         }
         else
         {
             MessageText.text = "Przykro mi nie udało Ci się pokonać strażnika";
         }
-        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-        tbs.playerArray[tbs.playerIndex].outerRing = false;
-        tbs.playerArray[tbs.playerIndex].middleRing = false;
+        
     }
     public void resetPlayerRings(){
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();   
@@ -179,7 +176,7 @@ public class SpecialFields : MonoBehaviour
     {
         specialDiceBlock = true;
         Name.text = "Wieża wampira";
-        Descryption.text = "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. Możesz odrzucić dowolną liczbę przyjaciół, aby ograniczyć stratę punktów życia. Za każdego odrzuconego przyjaciela tracisz o 1 punkt życia mniej. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.";
+        Descryption.text = "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.";
     }
     public void Przepasc()
     {
@@ -193,8 +190,6 @@ public class SpecialFields : MonoBehaviour
         Name.text = "Strażnik";
         Descryption.text = "Przebywając równinę zauważasz dziwne miejsce strzeżone przez silnego (Siła 7) strażnika. Strażnik mówi że jeśli go pokonasz będziesz mógł przejść przez portal przenoszący Ci do innej krainy. Podejmujesz wyzwanie?";
     }
-    #endregion
-    #region Panels and Dice events
     public void WiezaWDolinie()
     {
         specialDiceBlock = true;
@@ -227,8 +222,19 @@ public class SpecialFields : MonoBehaviour
     }
     public void OK_BUTTON()
     {
-        specialDiceBlock = false;
-        diceRollButton.gameObject.SetActive(false);
+        if (!TurnFight)
+        {
+            specialDiceBlock = false;
+            diceRollButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            tbs.playerArray[tbs.playerIndex].outerRing = false;
+            tbs.playerArray[tbs.playerIndex].middleRing = true;
+            tbs.movePiece(tbs.playerIndex, 1);
+            TurnFight = false;
+        }
     }
     public void YES_BUTTON()
     {
@@ -410,12 +416,12 @@ public class SpecialFields : MonoBehaviour
                     break;
                 case 3:
                 case 4:
-                    MessageText.text = "Wspiąłeś się na najwyższy szczyt - otrzymujesz jeden punkt siły.";
+                    MessageText.text = "Wampir wysysa z Ciebie 2 punkty życia.";
                     go.playerArray[go.playerIndex].current_health-=2;
                     break;
                 case 5:
                 case 6:
-                    MessageText.text = "Widzisz spadającą gwiazdę - otrzymujesz jedna sztukę złota.";
+                    MessageText.text = "Wampir zawołał kolegów i wyssał z Ciebie 3 punkty życia";
                     go.playerArray[go.playerIndex].current_health-=3;
                     break;
             }
