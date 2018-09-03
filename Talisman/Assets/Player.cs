@@ -172,7 +172,6 @@ public class Player
                         {
                             g1.SetSmiercOn();
                         }
-
                         //
                         else if (cardsToIterate[current].getName().Equals("Sklep"))
                         {
@@ -187,9 +186,13 @@ public class Player
                         {
                             g1.SetPrzepascOn();
                         }
-                        else if (cardsToIterate[current].getName().Equals("Wieża wampira"))
+                        else if (cardsToIterate[current].getName().Equals("Krypta"))
                         {
-                            g1.SetWiezaWampiraOn();
+                            g1.SetKryptaOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Kopalnia"))
+                        {
+                            g1.SetKopalniaOn();
                         }
                         break;
                     case card_type.ENEMY:

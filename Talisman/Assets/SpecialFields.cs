@@ -101,7 +101,19 @@ public class SpecialFields : MonoBehaviour
         diceRollButton.gameObject.SetActive(true);
         JamaWilkolaka();
     }
-    
+    public void SetKryptaOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        Krypta();
+    }
+    public void SetKopalniaOn()
+    {
+        panel.SetActive(true);
+        diceRollButton.gameObject.SetActive(true);
+        Kopalnia();
+    }
+
     //  ********************
     //  Zdarzenia
     //  ********************
@@ -120,6 +132,13 @@ public class SpecialFields : MonoBehaviour
         tbs.playerArray[tbs.playerIndex].outerRing = false;
         tbs.playerArray[tbs.playerIndex].middleRing = false;
     }
+    public void resetPlayerRings(){
+        var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();   
+        go.playerArray[go.playerIndex].innerRing = false;
+        go.playerArray[go.playerIndex].outerRing = false;
+        go.playerArray[go.playerIndex].middleRing = false;
+    }
+
     public void Kaplica()
     {
         specialDiceBlock = true;
@@ -193,6 +212,12 @@ public class SpecialFields : MonoBehaviour
         specialDiceBlock = true;
         Name.text = "Jama Wilkołaka";
         Descryption.text = "Jama Wilkołaka - Rzuć kością. Jeśli suma oczek z Twoją siłą jest większa od sumy oczek z Twoim życiem pokonujesz wilkołaka. Inaczej zadaje on tobie tyle obrażeń ile oczek na kostce";
+    }
+    public void Kopalnia()
+    {
+        specialDiceBlock = true;
+        Name.text = "Kopalnia";
+        Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Gospoda.";
     }
     public void Krypta()
     {
@@ -469,6 +494,37 @@ public class SpecialFields : MonoBehaviour
                 go.playerArray[go.playerIndex].current_health -= DiceScript.getResult();
             }
             
+        }
+        else if (Name.text.Equals("Krypta") || Name.text.Equals("Kopalnia"))
+        {
+      /*(1) Pozostajesz w tym miejscu. 
+        (2) Równina Grozy. i 4 
+        (3-4) Tajemne Wrota. m 8
+        (5) Jaskinia Czarownika. m 0
+        (6) gospoda. o 6*/
+            switch(DiceScript.getResult()){
+                case 2:
+                    resetPlayerRings();
+                    go.playerArray[go.playerIndex].innerRing=true;
+                    go.movePiece(go.playerIndex, 4);
+                    break;
+                case 3:
+                case 4:
+                    resetPlayerRings();
+                    go.playerArray[go.playerIndex].middleRing=true;
+                    go.movePiece(go.playerIndex, 8);
+                    break;
+                case 5:
+                    resetPlayerRings();
+                    go.playerArray[go.playerIndex].middleRing=true;
+                    go.movePiece(go.playerIndex, 0);
+                    break;
+                case 6:
+                    resetPlayerRings();
+                    go.playerArray[go.playerIndex].outerRing=true;
+                    go.movePiece(go.playerIndex, 6);
+                    break;
+            }
         }
     }
     #endregion
