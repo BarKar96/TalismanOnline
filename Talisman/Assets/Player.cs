@@ -155,6 +155,10 @@ public class Player
                         {
                             g1.SetCzarodziejkaOn();
                         }
+                        else if (cardsToIterate[current].getName().Equals("Strażnik"))
+                        {
+                            g1.SetStraznikOn();
+                        }
                         //
                         else if (cardsToIterate[current].getName().Equals("Wieża wampira"))
                         {
@@ -172,24 +176,10 @@ public class Player
                         {
                             g1.SetSmiercOn();
                         }
-
-                        //
                         else if (cardsToIterate[current].getName().Equals("Sklep"))
                         {
                             shopCanvas.gameObject.SetActive(true);
                             //mainCanvas.gameObject.SetActive(false);
-                        }
-                        else if (cardsToIterate[current].getName().Equals("Strażnik"))
-                        {
-                            g1.SetStraznikOn();
-                        }
-                        else if (cardsToIterate[current].getName().Equals("Przepaść"))
-                        {
-                            g1.SetPrzepascOn();
-                        }
-                        else if (cardsToIterate[current].getName().Equals("Wieża wampira"))
-                        {
-                            g1.SetWiezaWampiraOn();
                         }
                         break;
                     case card_type.ENEMY:

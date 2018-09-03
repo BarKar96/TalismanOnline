@@ -206,7 +206,7 @@ public class TalismanBoardScript : MonoBehaviour
         FieldDescriptor fd = new FieldDescriptor(outerRing, middleRing, innerRing);
     }
 
-    private void movePiece(int indexOfPlayer, int indexOfFieldToMoveOn)
+    public void movePiece(int indexOfPlayer, int indexOfFieldToMoveOn)
     {
         if (playerArray[indexOfPlayer].outerRing == true)
         {
@@ -237,7 +237,6 @@ public class TalismanBoardScript : MonoBehaviour
                 case 1:
                     outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-
                     break;
                 case 2:
                     outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] {  }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -254,7 +253,6 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 5:
                     outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-
                     outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 6:
@@ -562,14 +560,10 @@ public class TalismanBoardScript : MonoBehaviour
         else if (playerArray[playerIndex].innerRing == true) { return 8; }
         else { return 0; }
     }
-   
-
     private void RollADice_Button()
     {
         playerArray[playerIndex].diceResult = rollDice();
     }
-
-
     public void Left_Button()
     {
         if (MainMenu.onoff == 2)
