@@ -126,9 +126,12 @@ public class TalismanBoardScript : MonoBehaviour
             }
         }
         playersCounter--;
+        playerIndex++;
+        playerIndex %= playersCounter;
+        playerArray = newArray;
         windows.wstawPortret(playerArray);
-        playerName.text = playerArray[playerIndex + 1 % playersCounter].name;
-        windows.setCursor(playerIndex + 1 % playersCounter);
+        playerName.text = playerArray[playerIndex].name;
+        windows.setCursor(playerIndex);
     }
 
     public void compareValues(int a)
@@ -1199,6 +1202,16 @@ public class TalismanBoardScript : MonoBehaviour
     {
         if(playerArray[playerIndex].current_health <= 0){
             rebuildPlayerPortaits(playerIndex);
+        }
+        if(playerArray.Length <= 1)
+        {
+            var temp = GameObject.Find("Windows").GetComponent<Windows>();
+            temp.WinningGame(); 
+        }
+         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerArray[playerIndex].current_health = 0;
+           
         }
     }
 }
