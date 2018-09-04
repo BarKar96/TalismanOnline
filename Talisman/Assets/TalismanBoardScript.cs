@@ -1155,6 +1155,7 @@ public class TalismanBoardScript : MonoBehaviour
 
     void Start()
     {
+        
         if(MainMenu.onoff==2)
         {
             NETWORK.gameObject.SetActive(false);
@@ -1163,7 +1164,12 @@ public class TalismanBoardScript : MonoBehaviour
         
         playerIndex = 0;
         nextTurn();
-
+        playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
+        playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
+        playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
+        playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
+        playerArray[playerIndex].getCards().Add(new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
+       
         //playerName.text = NET_NetworkManager.localPlayer.hero.name;
         // Debug.Log("pozycja gracza w kolejce " + playerIndex);
         //windows.setCursor(playerIndex);

@@ -17,7 +17,7 @@ namespace Assets
         private string description;
         private string name;
         public int strength, power;
-
+        public int price;
 
         public item_type itemType;
        
