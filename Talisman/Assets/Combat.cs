@@ -366,10 +366,18 @@ public  class Combat : MonoBehaviour
         textGracz.text += "Bohater: " + p.hero.name;
         textGracz.text += "\nSiła:  " + p.hero.strength;
         textGracz.text += "\nHP: " + p.current_health + "/" + p.total_health;
-
-        textPrzeciwnik.text = "";
-        textPrzeciwnik.text += "Bohater: " + c.getName();
-        textPrzeciwnik.text += "\nSiła:  " + c.strength;
+        if (player1 == player2)
+        {
+            textPrzeciwnik.text = "";
+            textPrzeciwnik.text += "Bohater: Odbicie";
+            textPrzeciwnik.text += "\nSiła:  " + c.strength;
+        }
+        else
+        {
+            textPrzeciwnik.text = "";
+            textPrzeciwnik.text += "Bohater: " + c.getName();
+            textPrzeciwnik.text += "\nSiła:  " + c.strength;
+        }
         if (c.getName() == "straznik")
         {
             Guard = true;
@@ -430,7 +438,6 @@ public  class Combat : MonoBehaviour
         toggleCombatPanel();
         
         var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
-        var g2 = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         if (Guard)
         {
             g1.StraznikMessage(this.combatWin);
@@ -441,6 +448,7 @@ public  class Combat : MonoBehaviour
         }
         else
         {
+            var g2 = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
             g2.nextTurnButton.gameObject.SetActive(true);
         }
     }
@@ -451,7 +459,6 @@ public  class Combat : MonoBehaviour
         {
             if (player2SpellsDone)
             {
-               
                 StartCoroutine(rozpocznijWalke());
             }
             else
