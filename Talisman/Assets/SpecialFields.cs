@@ -131,13 +131,13 @@ public class SpecialFields : MonoBehaviour
     //  Zdarzenia
     //  ********************
 
-    public void resetPlayerRings(){
+    public void resetPlayerRings()
+    {
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();   
         go.playerArray[go.playerIndex].innerRing = false;
         go.playerArray[go.playerIndex].outerRing = false;
         go.playerArray[go.playerIndex].middleRing = false;
     }
-
     public void Kaplica()
     {
         specialDiceBlock = true;
@@ -221,6 +221,13 @@ public class SpecialFields : MonoBehaviour
         specialDiceBlock = true;
         Name.text = "Krypta";
         Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.";
+    }
+    public void TajemneWrota()
+    {
+        specialDiceBlock = true;
+        Name.text = "TajemneWrota";
+        Descryption.text = "Przemierzając pola lasy zauważasz drzwi, na środku pustyni. Podchodzisz do drzwi i słyszysz intrukcję. Musisz pokonać swoje odbicie w walce jeśli wygrasz możesz przejść do kolejnej krainy jeśli nie.";
+
     }
     #endregion
     #region UI
