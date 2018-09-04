@@ -109,8 +109,26 @@ public class TalismanBoardScript : MonoBehaviour
             {
                 Debug.Log("Probably first run error");
             }
-
         }
+    }
+
+    public void rebuildPlayerPortaits(int killedPlayer)
+    {
+        Player [] newArray = new Player[playersCounter - 1];
+        playerArray[killedPlayer] = null;
+        int current = 0;
+        for(int i = 0; i < playersCounter; i++)
+        {
+            if(playerArray[i] != null)
+            {
+                newArray[current] = playerArray[i];
+                current++;
+            }
+        }
+        playersCounter--;
+        windows.wstawPortret(playerArray);
+        playerName.text = playerArray[playerIndex + 1 % playersCounter].name;
+        windows.setCursor(playerIndex + 1 % playersCounter);
     }
 
     public void compareValues(int a)
@@ -1179,7 +1197,8 @@ public class TalismanBoardScript : MonoBehaviour
     }
     void Update()
     {
-
-
+        if(playerArray[playerIndex].current_health <= 0){
+            rebuildPlayerPortaits(playerIndex);
+        }
     }
 }
