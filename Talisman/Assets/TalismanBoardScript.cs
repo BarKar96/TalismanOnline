@@ -252,8 +252,10 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                    //outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    //outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                    var TajemneWrota = new Card("Tajemne Wrota", card_type.BOARDFIELD, new event_type[] { }, "O panie co tu się od janie pawliło");
+                    outerRing[i].fieldEvent = TajemneWrota;
                     break;
                 case 1:
                     outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");

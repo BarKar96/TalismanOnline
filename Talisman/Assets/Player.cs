@@ -198,6 +198,10 @@ public class Player
                         {
                             g1.SetKopalniaOn();
                         }
+                        else if (cardsToIterate[current].getName().Equals("Tajemne Wrota"))
+                        {
+                            g1.SetTajemneWrotaOn();
+                        }
                         break;
                     case card_type.ENEMY:
                         combat.StartCombat(this, cardsToIterate[current]);

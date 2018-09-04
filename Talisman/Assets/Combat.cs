@@ -15,7 +15,8 @@ public  class Combat : MonoBehaviour
     public Player player2 = null;
     public bool player2SpellsDone = false;
     public bool player1SpellsDone = false;
-    public bool temp = false;
+    public bool Guard = false;
+    public bool TajemneWrota = false;
     Card c = null;
 
     public bool turaIstoty = false;
@@ -192,21 +193,34 @@ public  class Combat : MonoBehaviour
 
     public IEnumerator rozpocznijWalke()
     {
-        var spellListener = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
+        int spellPlayerDMG = 0;
+        int spellOpponentDMG = 0;
+        if (player1 == player2)
+        {
+        }
+        else
+        {
 
-        int spellPlayerDMG = spellListener.playerDMG;
-        int spellOpponentDMG = spellListener.opponentDMG;
+            var spellListener = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
 
+            spellPlayerDMG = spellListener.playerDMG;
+            spellOpponentDMG = spellListener.opponentDMG;
+        }
 
-        if (player2 != null)
+        if (player1 == player2)
+        {
+            turaGracza = true;
+            turaIstoty = false;
+            spawnCombatCards(player1, player2);
+        }
+        else if (player2 != null)
         {
             toggleSpellPanel(player2);
             turaGracza = true;
             turaIstoty = false;
             spawnCombatCards(player1, player2);
-
         }
-        else
+        else 
         {
             toggleSpellPanel(player1);
             turaGracza = true;
@@ -223,13 +237,27 @@ public  class Combat : MonoBehaviour
         //czekaj az spadnie druga kostka
         yield return new WaitForSeconds(12);
         //rzut ataku gracza
-        
-        textPrzebieg.text += "Gracz wyrzucił: " + rzut_Ataku_gracza;
-        skutecznosc_Ataku_gracza = rzut_Ataku_gracza + player1.strength + spellPlayerDMG;
-        textPrzebieg.text += "\nSkuteczność ataku gracza: " + skutecznosc_Ataku_gracza ;
+        if (player1 == player2)
+        {
+            textPrzebieg.text += "\n\nPrzeciwnik wyrzucił: " + rzut_Ataku_gracza;
+            skutecznosc_Ataku_gracza = rzut_Ataku_gracza + player1.strength;
+            textPrzebieg.text += "\nSkuteczność ataku gracza: " + skutecznosc_Ataku_gracza;
+        }
+        else
+        {
+            textPrzebieg.text += "Gracz wyrzucił: " + rzut_Ataku_gracza;
+            skutecznosc_Ataku_gracza = rzut_Ataku_gracza + player1.strength + spellPlayerDMG;
+            textPrzebieg.text += "\nSkuteczność ataku gracza: " + skutecznosc_Ataku_gracza;
+        }
 
         //rzut ataku istoty
-        if (player2 != null)
+        if(player1 == player2)
+        {
+            textPrzebieg.text += "\n\n Lustrzane odbicie wyrzucił: " + rzut_Ataku_istoty;
+            skutecznosc_Ataku_istoty = rzut_Ataku_istoty + player2.strength;
+            textPrzebieg.text += "\nSkuteczność ataku lustrzanego odbicia: " + skutecznosc_Ataku_istoty;
+        }
+        else if (player2 != null)
         {
             textPrzebieg.text += "\n\nPrzeciwnik wyrzucił: " + rzut_Ataku_istoty;
             skutecznosc_Ataku_istoty = rzut_Ataku_istoty + player2.strength + spellOpponentDMG;
@@ -289,7 +317,7 @@ public  class Combat : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         int x = rnd.Next(1, 7);
-       // Debug.Log(x);
+        // Debug.Log(x);
         if (x>3)
         {
             subPanel_enterCombat.SetActive(false);
@@ -344,14 +372,18 @@ public  class Combat : MonoBehaviour
         textPrzeciwnik.text += "\nSiła:  " + c.strength;
         if (c.getName() == "straznik")
         {
-            temp = true;
+            Guard = true;
         }
-        else temp = false ;
-        
+        else Guard = false;        
     }
     public void spawnCombatCards(Player p1, Player p2)
     {
         toggleCombatPanel();
+        if (p1 == p2)
+        {
+            TajemneWrota = true;
+        }
+        else TajemneWrota = false;
         //karta bohatera
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Plane);
         Material newMat = Resources.Load(p1.hero.name, typeof(Material)) as Material;
@@ -399,9 +431,13 @@ public  class Combat : MonoBehaviour
         
         var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
         var g2 = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-        if (temp)
+        if (Guard)
         {
             g1.StraznikMessage(this.combatWin);
+        }
+        else if(TajemneWrota)
+        {
+            g1.TajemneWrotaMessage(this.combatWin);
         }
         else
         {
@@ -438,10 +474,18 @@ public  class Combat : MonoBehaviour
     {
         textPrzebieg.text += "Zaatakowałeś przeciwnika!" + "\n";
         toggleEnterCombatPanel();
-        toggleSpellPanel(player1);
-        var sl = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
-        sl.opponentDMG = 0;
-        sl.playerDMG = 0;
+        if(player1==player2)
+        {
+            StartCoroutine(rozpocznijWalke());
+        }
+        else
+        {
+            toggleSpellPanel(player1);
+            var sl = GameObject.Find("PanelZaklecWalki").GetComponent<SpellListener>();
+            sl.opponentDMG = 0;
+            sl.playerDMG = 0;
+        }
+        
         //CardDrawer.spawnPlayerSpells(player1, "PanelZaklecWalki");
 
 

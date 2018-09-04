@@ -125,11 +125,25 @@ public class SpecialFields : MonoBehaviour
         if (meh)
         {
             Guard = true;
-            MessageText.text = "Gratulacje pokonałeś strażnika - przenosisz się do innej krainy";
+            MessageText.text = "Gratulacje pokonałeś strażnika - przenosisz się do innej krainy.";
         }
         else
         {
-            MessageText.text = "Przykro mi nie udało Ci się pokonać strażnika";
+            MessageText.text = "Przykro mi nie udało Ci się pokonać strażnika tracisz 1 punkt hp.";
+        }
+
+    }
+    public void TajemneWrotaMessage(bool meh)
+    {
+        MessageBox.SetActive(true);
+        if (meh)
+        {
+            SecretGate = true;
+            MessageText.text = "Gratulacje rozbiłeś lustro - przechodzisz przez wrota do innej krainy.";
+        }
+        else
+        {
+            MessageText.text = "Przykro mi nie udało Ci się pokonać siebie tracisz 1 punkt hp.";
         }
 
     }
@@ -234,14 +248,14 @@ public class SpecialFields : MonoBehaviour
     {
         specialDiceBlock = true;
         Name.text = "Tajemne Wrota";
-        Descryption.text = "Przemierzając pola lasy zauważasz drzwi, na środku pustyni. Podchodzisz do drzwi i słyszysz intrukcję. Musisz pokonać swoje odbicie w walce jeśli wygrasz możesz przejść do kolejnej krainy jeśli nie.";
+        Descryption.text = "Przemierzając pola lasy zauważasz drzwi, na środku pustyni. Podchodzisz do drzwi i słyszysz intrukcję. Musisz pokonać swoje odbicie w walce jeśli wygrasz możesz przejść do kolejnej krainy jeśli nie. Odbicie wykorzystuje Twoje przedmioty i nie możesz używać magii na nich.";
     }
     #endregion
     #region UI
     public void OK_BUTTON()
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-        if (!Guard||!SecretGate)
+        if (!Guard&&!SecretGate)
         {
             specialDiceBlock = false;
             diceRollButton.gameObject.SetActive(false);
@@ -258,7 +272,7 @@ public class SpecialFields : MonoBehaviour
             resetPlayerRings();
             tbs.playerArray[tbs.playerIndex].innerRing = true;
             tbs.movePiece(tbs.playerIndex, 1);
-            Guard = false;
+            SecretGate = false;
         }
     }
     public void YES_BUTTON()
@@ -270,7 +284,7 @@ public class SpecialFields : MonoBehaviour
         }
         else if(Name.text == "Tajemne Wrota")
         {
-
+            tbs.playerArray[tbs.playerIndex].CombatWrota();
         }
         panel.SetActive(false);
         specialDiceBlock = false;
