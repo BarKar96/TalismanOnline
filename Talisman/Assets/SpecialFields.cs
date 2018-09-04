@@ -111,10 +111,6 @@ public class SpecialFields : MonoBehaviour
         diceRollButton.gameObject.SetActive(true);
         Kopalnia();
     }
-
-    //  ********************
-    //  Zdarzenia
-    //  ********************
     public void StraznikMessage(bool meh)
     {
         MessageBox.SetActive(true);
@@ -127,8 +123,14 @@ public class SpecialFields : MonoBehaviour
         {
             MessageText.text = "Przykro mi nie udało Ci się pokonać strażnika";
         }
-        
+
     }
+    #endregion
+    #region Events
+    //  ********************
+    //  Zdarzenia
+    //  ********************
+
     public void resetPlayerRings(){
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();   
         go.playerArray[go.playerIndex].innerRing = false;
@@ -220,6 +222,8 @@ public class SpecialFields : MonoBehaviour
         Name.text = "Krypta";
         Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.";
     }
+    #endregion
+    #region UI
     public void OK_BUTTON()
     {
         if (!TurnFight)
@@ -252,6 +256,8 @@ public class SpecialFields : MonoBehaviour
         Yes.gameObject.SetActive(false);
         No.gameObject.SetActive(false);
     }
+    #endregion
+    #region Dice and Events
     public void Rzuckosciascript()
     {
         StartCoroutine(RzucKoscia());

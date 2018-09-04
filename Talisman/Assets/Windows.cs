@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Windows : MonoBehaviour {
     //Kod odpowiedzialny za informacje o bohaterze i wszystkie informacje na jego temat
@@ -221,13 +222,15 @@ public class Windows : MonoBehaviour {
                 break;
         }
     }
-    #endregion 
+    #endregion
+    #region Features
     public Button _hero1button;
     public Button _hero2button;
     public Button _hero3button;
     public Button _hero4button;
     public Button _hero5button;
     public Button _hero6button;
+    #endregion
     #region Statystyki Graczy
     //Fragment kodu dotyczący statystyk graczy ich pojawiania się na mapie i ich zmian
     // HP = punkty życia
@@ -482,7 +485,6 @@ public class Windows : MonoBehaviour {
         }
     }
     #endregion
-    
     #region Ekwipunek
     private TalismanBoardScript TBS;
     //Przyciski poszczególnych bohaterów
@@ -524,7 +526,6 @@ public class Windows : MonoBehaviour {
         //CardDrawer.spawnPlayerItems(playerArray[0], playerArray[0].name);
     }
     #endregion   
-    
     #region ScrollView
     public TextMeshProUGUI scrollcontetnt;
     private string texts;
@@ -540,6 +541,24 @@ public class Windows : MonoBehaviour {
         scrollcontetnt = gameObject.AddComponent<TextMeshProUGUI>();
         //addToHistory("Nanna Bryndís Hilmarsdóttir (ur. 6 maja 1989 w Garður) – islandzka muzyk, piosenkarka i gitarzystka zespołu Of Monsters and Men. Spis treści 1   Biografia2   Of Monsters and Men3   Upodobania muzyczne4   PrzypisyBiografiaNanna Bryndís Hilmarsdóttir spędziła swoje dzieciństwo w Garður, miejscowości w południowo - zachodniej Islandii[1].Jako nastolatka uczęszczała do szkoły muzycznej. Zanim powstał zespół Of Monsters and Men Nanna Bryndís Hilmarsdóttir miała własny projekt muzyczny o nazwie Songbird, w ramach którego tworzyła utwory muzyczne i występowała w Reykjavíku.Była również pracownikiem sklepu muzycznego[2].W 2016 roku Nanna Bryndís Hilmarsdóttir wystąpiła gościnnie w serialu Gra o tron jako jeden z muzyków z Braavos[3][4].Of Monsters and MenW ramach poszerzenia projektu Songbird Nanna Bryndís Hilmarsdóttir nawiązała współpracę z pięcioma muzykami, z którymi stworzyła zespół Of Monsters and Men w 2010 roku: Brynjarem Leifssonem, Ragnarem Þórhallssonem, Arnarem Rósenkranzem Hilmarssonem, Árnim Guðjónssonem(od 2012 były członek zespołu) oraz Kristjánem Pállem Kristjánssonem[2][5]. Po tygodniu współpracy wygrali konkurs muzyczny Músíktilraunir[2].Pod koniec 2011 zespół wydał swój pierwszy album My Head Is an Animal, dzięki któremu zyskał popularność poza Islandią[6].Upodobania muzyczneNanna Bryndís Hilmarsdóttir przytaczała w wywiadach swoich ulubionych muzyków oraz zespoły muzyczne, m.in. zespół indie rockowy Gayngs, Arcade Fire, Lianne La Havas, Leslie Feist oraz Justina Vernona[7][8]. Wyraziła również chęć współpracy z zespołem Bon Iver[9].");
 
+    }
+    #endregion
+    #region EndGame
+    public GameObject Portrait;
+    public GameObject PanelWinGame;
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    private void SpawnWinnerAvatar()
+    {
+        var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        Portrait.GetComponent<Image>().sprite = HeroPort(go.playerArray[0].hero);
+    }
+    public void WinningGame()
+    {
+        PanelWinGame.SetActive(true);
+        SpawnWinnerAvatar();
     }
     #endregion
 }
