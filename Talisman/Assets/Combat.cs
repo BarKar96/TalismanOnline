@@ -405,7 +405,6 @@ public  class Combat : MonoBehaviour
         }
         else
         {
-
             g2.nextTurnButton.gameObject.SetActive(true);
         }
     }

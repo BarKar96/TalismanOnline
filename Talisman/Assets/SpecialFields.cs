@@ -18,7 +18,8 @@ public class SpecialFields : MonoBehaviour
     public Button Yes;
     public Button No;
     public bool wait = true;
-    public bool TurnFight = false;
+    public bool Guard = false;
+    public bool SecretGate = false;
     public bool specialDiceBlock = false;
     #endregion
     #region Sets
@@ -81,6 +82,13 @@ public class SpecialFields : MonoBehaviour
         No.gameObject.SetActive(true);
         Straznik();
     }
+    public void SetTajemneWrotaOn()
+    {
+        panel.SetActive(true);
+        Yes.gameObject.SetActive(true);
+        No.gameObject.SetActive(true);
+        TajemneWrota();
+    }
     public void SetWiezaWDolinieOn()
     {
         panel.SetActive(true);
@@ -116,7 +124,7 @@ public class SpecialFields : MonoBehaviour
         MessageBox.SetActive(true);
         if (meh)
         {
-            TurnFight = true;
+            Guard = true;
             MessageText.text = "Gratulacje pokonałeś strażnika - przenosisz się do innej krainy";
         }
         else
@@ -225,32 +233,45 @@ public class SpecialFields : MonoBehaviour
     public void TajemneWrota()
     {
         specialDiceBlock = true;
-        Name.text = "TajemneWrota";
+        Name.text = "Tajemne Wrota";
         Descryption.text = "Przemierzając pola lasy zauważasz drzwi, na środku pustyni. Podchodzisz do drzwi i słyszysz intrukcję. Musisz pokonać swoje odbicie w walce jeśli wygrasz możesz przejść do kolejnej krainy jeśli nie.";
-
     }
     #endregion
     #region UI
     public void OK_BUTTON()
     {
-        if (!TurnFight)
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        if (!Guard||!SecretGate)
         {
             specialDiceBlock = false;
             diceRollButton.gameObject.SetActive(false);
         }
-        else
+        else if(Guard)
         {
-            var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-            tbs.playerArray[tbs.playerIndex].outerRing = false;
+            resetPlayerRings();
             tbs.playerArray[tbs.playerIndex].middleRing = true;
             tbs.movePiece(tbs.playerIndex, 1);
-            TurnFight = false;
+            Guard = false;
+        }
+        else if(SecretGate)
+        {
+            resetPlayerRings();
+            tbs.playerArray[tbs.playerIndex].innerRing = true;
+            tbs.movePiece(tbs.playerIndex, 1);
+            Guard = false;
         }
     }
     public void YES_BUTTON()
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-        tbs.playerArray[tbs.playerIndex].CombatStraznik();
+        if (Name.text == "Strażnik")
+        {
+            tbs.playerArray[tbs.playerIndex].CombatStraznik();
+        }
+        else if(Name.text == "Tajemne Wrota")
+        {
+
+        }
         panel.SetActive(false);
         specialDiceBlock = false;
         Yes.gameObject.SetActive(false);

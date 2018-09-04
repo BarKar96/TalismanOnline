@@ -149,7 +149,7 @@ public class Hero
                 break;
             case hero_type.ELF:
                 name = "Elf";
-                strength = 30;
+                strength = 3;
                 power = 4;
                 luck = 3;
                 hp = 4;

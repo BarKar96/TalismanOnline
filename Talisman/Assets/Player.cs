@@ -274,4 +274,9 @@ public class Player
         var meh = deck.fullDeck.Find(x => x.getName().Equals("straznik"));
         combat.StartCombat(this, meh);
     }
+    public void CombatWrota()
+    {
+        var g1 = GameObject.Find("SpecialEvents").GetComponent<SpecialFields>();
+        combat.StartCombat(this, this);
+    }
 }
