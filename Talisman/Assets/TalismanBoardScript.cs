@@ -18,7 +18,7 @@ public class TalismanBoardScript : MonoBehaviour
     public Deck deckOfCards;
     public Player[] playerArray;
     public SpecialFields spc;
-
+    public bool initialised = false;
     public int playerIndex;
 
     public PlayerObject NET_NetworkManager;
@@ -110,6 +110,7 @@ public class TalismanBoardScript : MonoBehaviour
                 Debug.Log("Probably first run error");
             }
         }
+        initialised = true;
     }
 
     public void rebuildPlayerPortaits(int killedPlayer)
@@ -1202,6 +1203,8 @@ public class TalismanBoardScript : MonoBehaviour
     }
     void Update()
     {
+        if(!initialised)
+            return;
         if(playerArray[playerIndex].current_health <= 0){
             rebuildPlayerPortaits(playerIndex);
         }
