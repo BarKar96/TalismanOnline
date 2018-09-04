@@ -185,6 +185,12 @@ public class Windows : MonoBehaviour {
     //funkcja respiąca graczy
     public void SpawnPlayers(int x)
     {
+        _heroPanel1.SetActive(false);
+        _heroPanel2.SetActive(false);
+        _heroPanel3.SetActive(false);
+        _heroPanel4.SetActive(false);
+        _heroPanel5.SetActive(false);
+        _heroPanel6.SetActive(false);
         switch (x)
         {
             case 1:
