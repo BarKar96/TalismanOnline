@@ -12,6 +12,15 @@ public class Item
     public string itemName;
     public Sprite icon;
     public int price = 1;
+
+    public Item() { }
+    public Item(string itemName, string displayName, int price)
+    {
+        this.itemName = itemName;
+        this.displayName = displayName;
+        this.icon = Resources.Load<Sprite>(itemName);
+        this.price = price;
+    }
 }
 
 public class ShopScrollList : MonoBehaviour
@@ -36,7 +45,12 @@ public class ShopScrollList : MonoBehaviour
     public Item currentItem = null;
     public Button btnSell;
     public Button btnBuy;
+    public Text textInfoMessage;
     public Image image;
+    public List<Card> shopItems;
+    public Text HeroType;
+    public Text Name;
+    public Image HeroImage;
 
 
     void Start()
@@ -60,8 +74,22 @@ public class ShopScrollList : MonoBehaviour
                 itemList.Add(i);
             }
         }
+        if (whichShop == 1)
+        {
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().deckOfCards;
+            foreach (Card c in go.fullItemsDeck)
+            {
+                Item i = new Item();
+                i.itemName = c.getName();
+                i.displayName = c.display_name;
+                i.price = c.price;
+                i.icon = Resources.Load<Sprite>(c.getName());
+                itemList.Add(i);
+            }
+        }
         
     }
+
     public void addGoldToShops()
     {
         if (whichShop == 0)
@@ -73,6 +101,17 @@ public class ShopScrollList : MonoBehaviour
             gold = 30;
         }
     }
+    public void setHeaders()
+    {
+        if (whichShop == 0)
+        {
+            Name.text = player.name;
+            HeroType.text = player.hero.name;
+            Debug.Log(player.hero.name);
+            HeroImage.sprite = Resources.Load<Sprite>(player.hero.name);
+
+        }
+    }
     public void startShop()
     {
 
@@ -82,10 +121,12 @@ public class ShopScrollList : MonoBehaviour
         addGoldToShops();
         convertCardsToItems();
         RefreshDisplay();
+        clearAfterSuccesfulTransaction();
+        setHeaders();
     }
     public void RefreshDisplay()
     {
-        myGoldDisplay.text = "Gold: " + gold.ToString();
+        myGoldDisplay.text = "Złoto: " + gold.ToString();
         RemoveButtons();
         AddButtons();
     }
@@ -113,6 +154,25 @@ public class ShopScrollList : MonoBehaviour
 
     public void tryTransferItemToOtherShop()
     {
+        if (whichShop == 1)
+        {
+            if (otherShop.itemList.Count > 7)
+            {
+                Debug.Log("za duzo kart");
+            }
+            else
+            {
+                buySellItem();
+            }
+        }
+        else
+        {
+            buySellItem();
+        }
+       
+    }
+    public void buySellItem()
+    {
         if (otherShop.gold >= currentItem.price)
         {
             gold += currentItem.price;
@@ -124,11 +184,13 @@ public class ShopScrollList : MonoBehaviour
             RefreshDisplay();
             otherShop.RefreshDisplay();
             Debug.Log("enough gold");
+            //
+            //player.getItems().Add()
+            //
             clearAfterSuccesfulTransaction();
         }
         Debug.Log("attempted");
     }
-
     public void clearAfterSuccesfulTransaction()
     {
         currentItem = null;
@@ -139,6 +201,7 @@ public class ShopScrollList : MonoBehaviour
     }
     public void clickOnCard(Item item)
     {
+        textInfoMessage.gameObject.SetActive(false);
         currentItem = item;
         image.sprite = Resources.Load<Sprite>(item.itemName);
         if (whichShop == 0)
@@ -176,6 +239,9 @@ public class ShopScrollList : MonoBehaviour
     /// </summary>
     public void exitFromShop()
     {
+        var go = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
+        player.gold = go.gold;
+        Debug.Log(player.gold);
         shopCanvas.gameObject.SetActive(false);
     }
 
@@ -246,5 +312,26 @@ public class ShopScrollList : MonoBehaviour
             c.price = 1;
             c.display_name = "Topór";
         }
+    }
+    //public void setShopItems()
+    //{
+    //    if (whichShop == 1)
+    //    {
+
+    //        itemList.Add(new Item("jablko", "jabłko", 1));
+    //        itemList.Add(new Item("helmdemona", "Hełm demona", ));
+    //        itemList.Add(new Item());
+    //        itemList.Add(new Item());
+    //        itemList.Add(new Item());
+    //        itemList.Add(new Item());
+    //        itemList.Add(new Item());
+    //        itemList.Add(new Item());
+
+    //    }
+    //}
+    public void setInfoMessage()
+    {
+        clearAfterSuccesfulTransaction();
+        textInfoMessage.gameObject.SetActive(true);
     }
 }
