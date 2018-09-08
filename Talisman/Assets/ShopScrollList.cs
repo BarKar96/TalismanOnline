@@ -8,6 +8,7 @@ using Assets;
 [System.Serializable]
 public class Item
 {
+    public string displayName;
     public string itemName;
     public Sprite icon;
     public int price = 1;
@@ -22,7 +23,7 @@ public class ShopScrollList : MonoBehaviour
     public Text myGoldDisplay;
     public SimpleObjectPool buttonObjectPool;
     public int whichShop;
-    public Image image;
+
     public Player player;
     public int gold = 20;
 
@@ -31,12 +32,19 @@ public class ShopScrollList : MonoBehaviour
     public Player[] playerArray;
     public int playerIndex;
 
+    //for my dev
+    public Item currentItem = null;
+    public Button btnSell;
+    public Button btnBuy;
+    public Image image;
+
 
     void Start()
     {
         shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
-        startShop();
         setItemsPrices();
+        startShop();
+        
     }
     public void convertCardsToItems()
     {
@@ -46,6 +54,7 @@ public class ShopScrollList : MonoBehaviour
             {
                 Item i = new Item();
                 i.itemName = c.getName();
+                i.displayName = c.display_name;
                 i.price = c.price;
                 i.icon = Resources.Load<Sprite>(c.getName());
                 itemList.Add(i);
@@ -74,7 +83,7 @@ public class ShopScrollList : MonoBehaviour
         convertCardsToItems();
         RefreshDisplay();
     }
-    void RefreshDisplay()
+    public void RefreshDisplay()
     {
         myGoldDisplay.text = "Gold: " + gold.ToString();
         RemoveButtons();
@@ -97,40 +106,54 @@ public class ShopScrollList : MonoBehaviour
             Item item = itemList[i];
             GameObject newButton = buttonObjectPool.GetObject();
             newButton.transform.SetParent(contentPanel, false);
-
             SampleButton sampleButton = newButton.GetComponent<SampleButton>();
             sampleButton.Setup(item, this);
         }
     }
 
-    public void TryTransferItemToOtherShop(Item item)
+    public void tryTransferItemToOtherShop()
     {
-        clickOnCard(item);
-        if (otherShop.gold >= item.price)
+        if (otherShop.gold >= currentItem.price)
         {
-            gold += item.price;
-            otherShop.gold -= item.price;
+            gold += currentItem.price;
+            otherShop.gold -= currentItem.price;
 
-            AddItem(item, otherShop);
-            RemoveItem(item, this);
+            AddItem(currentItem, otherShop);
+            RemoveItem(currentItem, this);
 
             RefreshDisplay();
             otherShop.RefreshDisplay();
             Debug.Log("enough gold");
+            clearAfterSuccesfulTransaction();
         }
         Debug.Log("attempted");
     }
+
+    public void clearAfterSuccesfulTransaction()
+    {
+        currentItem = null;
+        image.gameObject.SetActive(false);
+        btnBuy.gameObject.SetActive(false);
+        btnSell.gameObject.SetActive(false);
+
+    }
     public void clickOnCard(Item item)
     {
+        currentItem = item;
         image.sprite = Resources.Load<Sprite>(item.itemName);
         if (whichShop == 0)
         {
-
+            image.gameObject.SetActive(true);
+            btnBuy.gameObject.SetActive(false);
+            btnSell.gameObject.SetActive(true);
         }
         if (whichShop == 1)
         {
+            image.gameObject.SetActive(true);
+            btnBuy.gameObject.SetActive(true);
+            btnSell.gameObject.SetActive(false);
 
-        }
+    }
     }
 
     void AddItem(Item itemToAdd, ShopScrollList shopList)
@@ -171,46 +194,57 @@ public class ShopScrollList : MonoBehaviour
         if (c.getName() == "butelka")
         {
             c.price = 1;
+            c.display_name = "Butelka";
         }
         else if (c.getName() == "jablko")
         {
             c.price = 1;
+            c.display_name = "Jabłko";
         }
         else if (c.getName() == "zbroja")
         {
             c.price = 1;
+            c.display_name = "Zbroja";
         }
         else if (c.getName() == "puszkazlota")
         {
             c.price = 1;
+            c.display_name = "Puszka złota";
         }
-        else if (c.getName() == "pelnazbroja")
+        else if (c.getName() == "pelnazbrojaplytowa")
         {
             c.price = 1;
+            c.display_name = "Pełna zbroja płytowa";
         }
         else if (c.getName() == "helmdemona")
         {
             c.price = 1;
+            c.display_name = "Hełm demona";
         }
         else if (c.getName() == "miecz")
         {
             c.price = 1;
+            c.display_name = "Miecz";
         }
         else if (c.getName() == "koscianyluk")
         {
             c.price = 1;
+            c.display_name = "Kościany łuk";
         }
         else if (c.getName() == "pogromcakrolow")
         {
             c.price = 1;
+            c.display_name = "Pogromca królów";
         }
         else if (c.getName() == "talizman")
         {
             c.price = 1;
+            c.display_name = "Talizman";
         }
         else if (c.getName() == "topor")
         {
             c.price = 1;
+            c.display_name = "Topór";
         }
     }
 }

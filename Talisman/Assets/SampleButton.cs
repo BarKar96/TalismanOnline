@@ -23,7 +23,7 @@ public class SampleButton : MonoBehaviour
     public void Setup(Item currentItem, ShopScrollList currentScrollList)
     {
         item = currentItem;
-        nameLabel.text = item.itemName;
+        nameLabel.text = item.displayName;
         iconImage.sprite = item.icon;
         priceText.text = item.price.ToString();
         scrollList = currentScrollList;
@@ -32,6 +32,8 @@ public class SampleButton : MonoBehaviour
 
     public void HandleClick()
     {
-        scrollList.TryTransferItemToOtherShop(item);
+        //scrollList.TryTransferItemToOtherShop(item);
+        scrollList.clickOnCard(item);
+
     }
 }
