@@ -45,7 +45,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                     case "Side1":
                         Debug.Log("1");
                         result = 1;
-                        go.diceResult = 7;
+                        go.diceResult = 1;
                         if (combat.turaGracza == true)
                         {
                             combat.rzut_Ataku_gracza = 1;
@@ -59,7 +59,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                     case "Side2":
                         Debug.Log("2");
                         result = 2;
-                        go.diceResult = 7;
+                        go.diceResult = 2;
                         if (combat.turaGracza == true)
                         {
                             combat.rzut_Ataku_gracza = 2;
@@ -73,7 +73,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                     case "Side3":
                         Debug.Log("3");
                         result = 3;
-                        go.diceResult = 7;
+                        go.diceResult = 3;
                         if (combat.turaGracza == true)
                         {
                             combat.rzut_Ataku_gracza = 3;
@@ -87,7 +87,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                     case "Side4":
                         Debug.Log("4");
                         result = 4;
-                        go.diceResult = 7;
+                        go.diceResult = 4;
                         if (combat.turaGracza == true)
                         {
                             combat.rzut_Ataku_gracza = 4;
@@ -101,7 +101,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                     case "Side5":
                         Debug.Log("5");
                         result = 5;
-                        go.diceResult = 7;
+                        go.diceResult = 5;
                         if (combat.turaGracza == true)
                         {
                             combat.rzut_Ataku_gracza = 5;
@@ -115,7 +115,7 @@ public class DiceCheckZoneScript : MonoBehaviour
                     case "Side6":
                         Debug.Log("6");
                         result = 6;
-                        go.diceResult = 7;
+                        go.diceResult = 6;
                         if (combat.turaGracza == true)
                         {
                             combat.rzut_Ataku_gracza = 6;
