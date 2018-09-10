@@ -265,6 +265,7 @@ public class ShopScrollList : MonoBehaviour
         fillPlayerEQwithBoughtItems();
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         go.nextTurnButton.gameObject.SetActive(true);
+        NotEnoughGoldText.text = "";
         shopCanvas.gameObject.SetActive(false);
     }
     public void fillPlayerEQwithBoughtItems()
