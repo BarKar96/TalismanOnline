@@ -55,12 +55,12 @@ public class ShopScrollList : MonoBehaviour
 
     void Start()
     {
-        
-      
+        shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
+
     }
     public void startShop()
     {
-        shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
+        
         setItemsPrices();
         playerArray = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerArray;
         playerIndex = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerIndex;
@@ -240,21 +240,43 @@ public class ShopScrollList : MonoBehaviour
     public void exitFromShop()
     {
         var shopB = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
-       
-        player.gold = shopB.gold;
+       if (whichShop == 0)
+       {
+            player.gold = gold;
+        }
+        
         fillPlayerEQwithBoughtItems();
+        var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        go.nextTurnButton.gameObject.SetActive(true);
         shopCanvas.gameObject.SetActive(false);
     }
     public void fillPlayerEQwithBoughtItems()
     {
-       var shopB = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
-       player.getItems().Clear();
-       var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
-       foreach (Item i in shopB.itemList)
-       {
+        if (whichShop == 0)
+        {
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            player = go.playerArray[go.playerIndex];
+            player.getItems().Clear();
+
+            foreach (Item i in itemList)
+            {
                 Card c = go.deckOfCards.uniqueItemsDeck.Find(x => x.getName() == i.itemName);
                 player.getItems().Add(c);
-       }
+            }
+        }
+        if (whichShop == 1)
+        {
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            player = go.playerArray[go.playerIndex];
+            player.getItems().Clear();
+            
+            foreach (Item i in otherShop.itemList)
+            {
+                Card c = go.deckOfCards.uniqueItemsDeck.Find(x => x.getName() == i.itemName);
+                player.getItems().Add(c);
+            }
+        }
+       
         
     }
 

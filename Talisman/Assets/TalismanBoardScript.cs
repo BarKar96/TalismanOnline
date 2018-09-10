@@ -259,12 +259,11 @@ public class TalismanBoardScript : MonoBehaviour
                     outerRing[i].fieldEvent = TajemneWrota;
                     break;
                 case 1:
-                    outerRing[i].fieldEvent = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
                     outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 2:
                     outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] {  }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 3:
                     outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] {  }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
@@ -540,7 +539,7 @@ public class TalismanBoardScript : MonoBehaviour
         {
             Destroy(CardDrawer.heroCardList[0]);
             CardDrawer.heroCardList.Clear();
-        }  
+        }
         playerIndex++;
         if (playerIndex == playersCounter)
         {
@@ -551,7 +550,7 @@ public class TalismanBoardScript : MonoBehaviour
             try
             {
                 //CardDrawer.spawnPlayerHeroCard(playerArray[playerIndex].hero.name);
-               // Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
+                // Debug.Log(playerArray[playerIndex].name + playerArray[playerIndex].getItems().Count);
                 playerArray[playerIndex].boardField = outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent;
             }
             catch (Exception) { };
@@ -575,7 +574,6 @@ public class TalismanBoardScript : MonoBehaviour
                 Debug.Log("Probably first run error. " + e.Message);
             }
         }
-        playerArray[playerIndex].getCards().Add(new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
     }
 
     private int getActualPlayerRingFieldNumber()
@@ -867,7 +865,9 @@ public class TalismanBoardScript : MonoBehaviour
             }
             if (MainMenu.onoff == 2)
             {
+                int x = playerArray[playerIndex].getItems().Count;
                 CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
+                
             }
             
         }
@@ -1042,6 +1042,7 @@ public class TalismanBoardScript : MonoBehaviour
                 switch (target)
                 {
                     case "ButtonCards1":
+                        
                         CardDrawer.spawnPlayerItems(playerArray[0], "PanelEkwipunku");
                         break;
                     case "ButtonCards2":
