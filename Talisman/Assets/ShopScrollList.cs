@@ -56,7 +56,24 @@ public class ShopScrollList : MonoBehaviour
     void Start()
     {
         shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
-
+        setShopItems();
+    }
+    public void setShopItems()
+    {
+        if (whichShop == 1)
+        {
+            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().deckOfCards;
+            foreach (Card c in go.uniqueItemsDeck)
+            {
+                Item i = new Item();
+                i.itemName = c.getName();
+                i.displayName = c.display_name;
+                i.price = c.price;
+                i.icon = Resources.Load<Sprite>(c.getName());
+                itemList.Add(i);
+            }
+        }
+        RefreshDisplay();
     }
     public void startShop()
     {
@@ -85,19 +102,7 @@ public class ShopScrollList : MonoBehaviour
                 i.icon = Resources.Load<Sprite>(c.getName());
                 itemList.Add(i);
             }
-        }
-        if (whichShop == 1)
-        {
-            var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().deckOfCards;
-            foreach (Card c in go.fullItemsDeck)
-            {
-                Item i = new Item();
-                i.itemName = c.getName();
-                i.displayName = c.display_name;
-                i.price = c.price;
-                i.icon = Resources.Load<Sprite>(c.getName());
-                itemList.Add(i);
-            }
+           
         }
         
     }
