@@ -51,7 +51,7 @@ public class ShopScrollList : MonoBehaviour
     public Text HeroType;
     public Text Name;
     public Image HeroImage;
-
+    public Text NotEnoughGoldText;
 
     void Start()
     {
@@ -189,12 +189,21 @@ public class ShopScrollList : MonoBehaviour
             RefreshDisplay();
             otherShop.RefreshDisplay();
             Debug.Log("enough gold");
-            //
-            //player.getItems().Add()
-            //
             clearAfterSuccesfulTransaction();
         }
+        else
+        {
+            StartCoroutine(goldMessage());
+        }
         Debug.Log("attempted");
+    }
+    public IEnumerator goldMessage()
+    {
+        NotEnoughGoldText.color = new Color(1, 0, 0);
+        NotEnoughGoldText.text = "Masz zbyt mało złota!";
+        yield return new WaitForSeconds(2);
+        NotEnoughGoldText.color = new Color(189f / 255f, 160f / 255f, 48f / 255f);
+        NotEnoughGoldText.text = "Koszt: " + currentItem.price;
     }
     public void clearAfterSuccesfulTransaction()
     {
@@ -202,6 +211,7 @@ public class ShopScrollList : MonoBehaviour
         image.gameObject.SetActive(false);
         btnBuy.gameObject.SetActive(false);
         btnSell.gameObject.SetActive(false);
+        NotEnoughGoldText.text = "";
 
     }
     public void clickOnCard(Item item)
@@ -221,7 +231,9 @@ public class ShopScrollList : MonoBehaviour
             btnBuy.gameObject.SetActive(true);
             btnSell.gameObject.SetActive(false);
 
-    }
+        }
+        NotEnoughGoldText.color = new Color(189f/255f, 160f/255f, 48f/255f);
+        NotEnoughGoldText.text = "Koszt: " + item.price;
     }
 
     void AddItem(Item itemToAdd, ShopScrollList shopList)
