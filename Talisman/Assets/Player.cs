@@ -180,6 +180,8 @@ public class Player
                         else if (cardsToIterate[current].getName().Equals("Sklep"))
                         {
                             shopCanvas.gameObject.SetActive(true);
+                            var go = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
+                            go.startShop();
                             //mainCanvas.gameObject.SetActive(false);
                         }
                         else if (cardsToIterate[current].getName().Equals("Strażnik"))

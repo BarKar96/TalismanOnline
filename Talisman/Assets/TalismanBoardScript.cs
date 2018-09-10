@@ -575,6 +575,7 @@ public class TalismanBoardScript : MonoBehaviour
                 Debug.Log("Probably first run error. " + e.Message);
             }
         }
+        playerArray[playerIndex].getCards().Add(new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
     }
 
     private int getActualPlayerRingFieldNumber()
@@ -1188,11 +1189,10 @@ public class TalismanBoardScript : MonoBehaviour
         
         playerIndex = 0;
         nextTurn();
-        //playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
-        //playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
-        //playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
-        //playerArray[playerIndex].getItems().Add(deckOfCards.drawCard());
-        //playerArray[playerIndex].getCards().Add(new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje"));
+        playerArray[playerIndex].getItems().Add(deckOfCards.uniqueItemsDeck.Find(x => x.getName() == "jablko"));
+        playerArray[playerIndex].getItems().Add(deckOfCards.uniqueItemsDeck.Find(x => x.getName() == "miecz"));
+
+        
 
         //playerName.text = NET_NetworkManager.localPlayer.hero.name;
         // Debug.Log("pozycja gracza w kolejce " + playerIndex);

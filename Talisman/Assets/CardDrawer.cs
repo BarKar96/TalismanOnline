@@ -90,6 +90,7 @@ public static class CardDrawer
             else
             {
                 CardDrawer.spawnCard(c.getName(), name, counter, 0);
+
             }
             counter+=150;
             temp++;

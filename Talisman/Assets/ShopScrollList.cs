@@ -55,15 +55,27 @@ public class ShopScrollList : MonoBehaviour
 
     void Start()
     {
+        
+      
+    }
+    public void startShop()
+    {
         shopCanvas = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().shopCanvas;
         setItemsPrices();
-        startShop();
-        
+        playerArray = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerArray;
+        playerIndex = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerIndex;
+        player = playerArray[playerIndex];
+        addGoldToShops();
+        convertCardsToItems();
+        RefreshDisplay();
+        //clearAfterSuccesfulTransaction();
+        setHeaders();
     }
     public void convertCardsToItems()
     {
         if (whichShop == 0)
         {
+            itemList.Clear();
             foreach (Card c in player.getItems())
             {
                 Item i = new Item();
@@ -95,11 +107,9 @@ public class ShopScrollList : MonoBehaviour
         if (whichShop == 0)
         {
             gold = player.gold;
+            otherShop.gold = 30;
         }
-        if (whichShop == 1)
-        {
-            gold = 30;
-        }
+        
     }
     public void setHeaders()
     {
@@ -112,21 +122,11 @@ public class ShopScrollList : MonoBehaviour
 
         }
     }
-    public void startShop()
-    {
-
-        playerArray = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerArray;
-        playerIndex = GameObject.Find("Tile").GetComponent<TalismanBoardScript>().playerIndex;
-        player = playerArray[playerIndex];
-        addGoldToShops();
-        convertCardsToItems();
-        RefreshDisplay();
-        clearAfterSuccesfulTransaction();
-        setHeaders();
-    }
+   
     public void RefreshDisplay()
     {
         myGoldDisplay.text = "Złoto: " + gold.ToString();
+        otherShop.myGoldDisplay.text = "Złoto: " + otherShop.gold.ToString();
         RemoveButtons();
         AddButtons();
     }
@@ -239,10 +239,23 @@ public class ShopScrollList : MonoBehaviour
     /// </summary>
     public void exitFromShop()
     {
-        var go = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
-        player.gold = go.gold;
-        Debug.Log(player.gold);
+        var shopB = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
+       
+        player.gold = shopB.gold;
+        fillPlayerEQwithBoughtItems();
         shopCanvas.gameObject.SetActive(false);
+    }
+    public void fillPlayerEQwithBoughtItems()
+    {
+       var shopB = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
+       player.getItems().Clear();
+       var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+       foreach (Item i in shopB.itemList)
+       {
+                Card c = go.deckOfCards.uniqueItemsDeck.Find(x => x.getName() == i.itemName);
+                player.getItems().Add(c);
+       }
+        
     }
 
     public void setItemsPrices()
@@ -313,22 +326,7 @@ public class ShopScrollList : MonoBehaviour
             c.display_name = "Topór";
         }
     }
-    //public void setShopItems()
-    //{
-    //    if (whichShop == 1)
-    //    {
 
-    //        itemList.Add(new Item("jablko", "jabłko", 1));
-    //        itemList.Add(new Item("helmdemona", "Hełm demona", ));
-    //        itemList.Add(new Item());
-    //        itemList.Add(new Item());
-    //        itemList.Add(new Item());
-    //        itemList.Add(new Item());
-    //        itemList.Add(new Item());
-    //        itemList.Add(new Item());
-
-    //    }
-    //}
     public void setInfoMessage()
     {
         clearAfterSuccesfulTransaction();

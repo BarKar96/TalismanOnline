@@ -12,6 +12,7 @@ namespace Assets
         public List<Card> fullItemsDeck;
         public List<Card> fullSpellsDeck;
         public List<Card> fullEnemyDeck;
+        public List<Card> uniqueItemsDeck;
 
 
         private int cardsInDeck;
@@ -24,8 +25,21 @@ namespace Assets
             fullItemsDeck = new List<Card>();
             fullSpellsDeck = new List<Card>();
             fullEnemyDeck = new List<Card>();
+            uniqueItemsDeck = new List<Card>();
+           
             loadFromFileAndParse();
             divideFullDeck();
+            fillUniqueItemsList();
+        }
+        public void fillUniqueItemsList()
+        {
+            var DistinctItems = fullItemsDeck.GroupBy(x => x.getName()).Select(y => y.First());
+            foreach (var item in DistinctItems)
+            {
+                uniqueItemsDeck.Add(item);
+
+            }
+            Debug.Log("lent" + uniqueItemsDeck.Count);
         }
         public int getDeckSize()
         {
