@@ -23,6 +23,7 @@ public class DiceScript : MonoBehaviour
     }
     public void roll()
     {
+        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Wybierz Kierunek ruchu!";
         var go = GameObject.Find("DiceCheckZone").GetComponent<DiceCheckZoneScript>();
         go.GetComponent<DiceCheckZoneScript>().enabled = true;
         diceVelocity = rb.velocity;

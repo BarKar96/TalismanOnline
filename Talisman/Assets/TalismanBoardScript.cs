@@ -49,12 +49,14 @@ public class TalismanBoardScript : MonoBehaviour
     public GameObject shopCanvas;
     public GameObject mainCanvas;
 
+    public GameObject HelperTextBox;
     /// <summary>
     /// //////////////////////////////////////////////////////////////
     /// </summary>
     
     public void initializePlayers()
     {
+        HelperTextBox.GetComponent<Text>().text = "Rzuć kostką!";
         if(MainMenu.onoff == 0)
         {
             MainMenu.onoff = 2;
@@ -719,7 +721,7 @@ public class TalismanBoardScript : MonoBehaviour
 
             // Debug.Log("Move player left" + playerArray[playerIndex].playerPiece.indexOfField);
             //  Na ktorym pierscieniu jest gracz
-
+            HelperTextBox.GetComponent<Text>().text = "Przeszedłeś dalej. Możesz zbadać teren!";
 
 
             // Na poczatku dodajemy graczowi karte specjalna FieldEvent (on sobie po niej iteruje najpierw dopiero potem przechodzi do nastepnych)
@@ -838,7 +840,9 @@ public class TalismanBoardScript : MonoBehaviour
             //przesuniecie pionka
             movePiece(playerIndex, whereToMove);
             playerArray[playerIndex].playerPiece.indexOfField = whereToMove;
-
+            
+            HelperTextBox.GetComponent<Text>().text = "Przeszedłeś dalej. Możesz zbadać teren!";
+            
             // Na poczatku dodajemy graczowi karte specjalna FieldEvent (on sobie po niej iteruje najpierw dopiero potem przechodzi do nastepnych)
             if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent != null)
             {
@@ -1045,6 +1049,7 @@ public class TalismanBoardScript : MonoBehaviour
                 && playerArray[counterOfPlayer].playerPiece.indexOfField == playerArray[playerIndex].playerPiece.indexOfField)
             {
                 combatButton.gameObject.SetActive(true);
+                HelperTextBox.GetComponent<Text>().text += "\nMożesz zaatakować innego gracza na tym polu!";
                 break;
             }
             else combatButton.gameObject.SetActive(false);
@@ -1222,6 +1227,7 @@ public class TalismanBoardScript : MonoBehaviour
                 outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
                 outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
             }*/
+            HelperTextBox.GetComponent<Text>().text = "Rzuć kostką!";
         }
         else
         {
