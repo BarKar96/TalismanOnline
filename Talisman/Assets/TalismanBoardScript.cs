@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -253,103 +253,149 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    //outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    //outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    var TajemneWrota = new Card("Tajemne Wrota", card_type.BOARDFIELD, new event_type[] { }, "O panie co tu się od janie pawliło");
-                    outerRing[i].fieldEvent = TajemneWrota;
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 1:
-                    outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 2:
-                    outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] {  }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    break;
+                    {
+                        var Straznik = new Card("Strażnik", card_type.BOARDFIELD, new event_type[] { }, "Taki tam portal pilnowany przez Strażnika (Siła 7)");
+                        outerRing[i].fieldEvent = Straznik;
+                        break;
+                    }
                 case 3:
-                    outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] {  }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 4:
-                    outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        var Cmentarz = new Card("Cmentarz", card_type.BOARDFIELD, new event_type[] { }, "Zawiało grozą wszędzie widać tylko nagrobki po poległych a brama zrobiona jest ze smoczej czaszki.");
+                        outerRing[i].fieldEvent = Cmentarz;
+                        break;
+                    }
                 case 5:
-                    outerRing[i].fieldEvent = new Card("tomasz", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 6:
-                    var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Miejsce spotkań pijaków zabójców i innych takich.");                   
-                    outerRing[i].fieldEvent = Gospoda;
-                    break;
+                    {
+                        var Gospoda = new Card("Gospoda", card_type.BOARDFIELD, new event_type[] { }, "Miejsce spotkań pijaków zabójców i innych takich.");
+                        outerRing[i].fieldEvent = Gospoda;
+                        break;
+                    }
                 case 7:
-                    outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 8:
-                    outerRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 2 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 2 karty");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        var Las = new Card("Las", card_type.BOARDFIELD, new event_type[] { }, "Wchodzisz do lasu nigdy nie wiadomo czego można tu się spodziewać może jakiś niedźwiedź kto wie.");
+                        outerRing[i].fieldEvent = Las;
+                        break;
+                    }
                 case 9:
-                    outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 10:
-                    var Las = new Card("Las", card_type.BOARDFIELD, new event_type[] { }, "Wchodzisz do lasu nigdy nie wiadomo czego można tu się spodziewać może jakiś niedźwiedź kto wie.");
-                    outerRing[i].fieldEvent = Las;
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 2 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 2 karty");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 11:
-                    outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 12:
-                    var Czarodziejka = new Card("Czarodziejka", card_type.BOARDFIELD, new event_type[] { }, "Dziwne miejsce wszędzie pełno tu latających stworzeń - ktos nawet widział kiedyś chodzącą na dwóch nogach krowę.");
-                    outerRing[i].fieldEvent = Czarodziejka;
-                    break;
+                    {
+                        var Czarodziejka = new Card("Czarodziejka", card_type.BOARDFIELD, new event_type[] { }, "Dziwne miejsce wszędzie pełno tu latających stworzeń - ktos nawet widział kiedyś chodzącą na dwóch nogach krowę.");
+                        outerRing[i].fieldEvent = Czarodziejka;
+                        break;
+                    }
                 case 13:
-                    outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 14:
-                    outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 15:
-                    var Cmentarz = new Card("Cmentarz", card_type.BOARDFIELD, new event_type[] { }, "Zawiało grozą wszędzie widać tylko nagrobki po poległych a brama zrobiona jest ze smoczej czaszki.");
-                    outerRing[i].fieldEvent = Cmentarz;
-                    break;
-
+                    {
+                        outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 16:
-                    var Straznik = new Card("Strażnik", card_type.BOARDFIELD, new event_type[] { }, "Taki tam portal pilnowany przez Strażnika (Siła 7)");
-                    outerRing[i].fieldEvent = Straznik;
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Wzgórza", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 17:
-                    outerRing[i].fieldEvent = new Card("Wzgórza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 18:
-                    var Arena = new Card("Arena", card_type.BOARDFIELD, new event_type[] { }, "Arena wielkich wojowników - ludzie tu przychodzą żeby zwyciężać ale najczęściej nawet nie są brani pod uwagę.");
-                    outerRing[i].fieldEvent = Arena;
-                    break;
+                    {
+                        var Arena = new Card("Arena", card_type.BOARDFIELD, new event_type[] { }, "Arena wielkich wojowników - ludzie tu przychodzą żeby zwyciężać ale najczęściej nawet nie są brani pod uwagę.");
+                        outerRing[i].fieldEvent = Arena;
+                        break;
+                    }
                 case 19:
-                    outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 20:
-                    outerRing[i].fieldEvent = new Card("Skały", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 21:
-                    var Kaplica = new Card("Kaplica", card_type.BOARDFIELD, new event_type[] { }, "No to Kaplica strasznie niebezpieczne miejsce. Tutejsi kapłani w gruncie rzeczy nic nie robią ale potężna magia stąd wypływa.");
-                    outerRing[i].fieldEvent = Kaplica;
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Równiny", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 22:
-                    outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 23:
-                    outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        outerRing[i].fieldEvent = new Card("Pola", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 default:
                     break;
             }
@@ -360,54 +406,97 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    middleRing[i].fieldEvent = new Card("Jaskinia czarownika", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Kiedy wypełnisz swoje zadanie, Czarownik natychmiast cię tu teleportuje i w nagrodę wręczy Ci Talizman (jeśli jeszcze jakieś pozostały). Rzut kością decyduje o zadaniu: (1) Wygraj potyczkę z innym poszukiwaczem. (2) Zabij wroga. (3) Odrzuć przyjaciela. (4) Odrzuć magiczny przedmiot. (5) Odrzuć 3 sztuki złota. (6) Odrzuć 2 sztuki złota.");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Przeklęta Polana", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Kiedy przebywasz na Przeklętej polanie, przedmioty i magiczne przedmioty nie zapewniają premii do siły i mocy. Co więcej nie możesz korzystać ze specjalnych zdolności Magicznych przedmiotów, ani rzucać zaklęć");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 1:
-                    middleRing[i].fieldEvent = new Card("Pustynia", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH, event_type.DRAW_CARD }, "Tracisz jeden punkt życia i następnie losujesz 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Wzgórza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 2:
-                    middleRing[i].fieldEvent = new Card("Oaza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 2 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 2 karty");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Ukryta Dolina", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 3 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 3 karty");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 3:
-                    middleRing[i].fieldEvent = new Card("Pustynia", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH, event_type.DRAW_CARD }, "Tracisz jeden punkt życia i następnie losujesz 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    break;
-                case 4:
-                    middleRing[i].fieldEvent = new Card("Świątynia", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE }, "Modlisz się rzuć 2ma koścmi: (2) Tracisz 2 punkty życia. (3) Tracisz jeden punkt życia. (4) Tracisz przyjaciela. (5) Zostałeś uwięziony w kolejnej turze rzucasz kością jeśli nie wylosujesz 4,5,6 tracisz kolejną turę. (6) Otrzymujesz 1 punkt siły. (7) Otrzymujesz 1 punkt mocy. (8-9) Otrzymujesz 1 zaklęcie. (10) Otrzymujesz talizman. (11) Otrzymujesz 2 punkty losu. (12) Otrzymujesz 2 punkty życia.");
-                    break;
-                case 5:
-                    middleRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje ");
-                    break;
-                case 6:
-                    middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku");
-                    break;
-                case 7:
-                    middleRing[i].fieldEvent = new Card("Zamek", card_type.BOARDFIELD, new event_type[] { event_type.GAIN_HEALTH }, "Nadworny medyk - możesz odzyskać punkty życia płacąc za każdy z nich 1 sztukę złota. Jeżeli wśród Przyjaciół jest księżniczka lub książę 2 punkty życia odzyskujesz za darmo");
-                    break;
-                case 8:
-                    middleRing[i].fieldEvent = new Card("Tajemne Wrota", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.ROLL_DICE, event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje lub jeśli zamierzasz przejść na Równiny Grozy. Tajemne Wrota możesz wyważyć za pomocą swojej siłylub sforsować za pomocą Mocy. Wybierz, której z tych cech użyjesz,a następnie rzuć dwiema kośćmi.");
-                    break;
-                case 9:
+                    //todo
                     middleRing[i].fieldEvent = new Card("Czarny Rycerz", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH }, "Tracisz 1 sztukę złota albo tracisz jeden punkt życia");
                     break;
+                case 4:
+                    {
+                        var TajemneWrota = new Card("Tajemne Wrota", card_type.BOARDFIELD, new event_type[] { }, "Tajemne wrota - patrzysz a pośród drzew jest polana a obok niej wrota bez niczego zamek wcięło głos mówi że musisz pokonać siebie żeby przejść do wewnetrznej krainy.");
+                        middleRing[i].fieldEvent = TajemneWrota;
+                        break;
+                    }
+                        
+                case 5:
+                    //todo
+                    middleRing[i].fieldEvent = new Card("Zamek", card_type.BOARDFIELD, new event_type[] { event_type.GAIN_HEALTH }, "Nadworny medyk - możesz odzyskać punkty życia płacąc za każdy z nich 1 sztukę złota. Jeżeli wśród Przyjaciół jest księżniczka lub książę 2 punkty życia odzyskujesz za darmo");
+                    break;
+                case 6:
+                    {
+                        middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
+                case 7:
+                    {
+                        middleRing[i].fieldEvent = new Card("Puszcza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje ");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
+                case 8:
+                    {
+                        var Kaplica = new Card("Kaplica", card_type.BOARDFIELD, new event_type[] { }, "No to Kaplica strasznie niebezpieczne miejsce. Tutejsi kapłani w gruncie rzeczy nic nie robią ale potężna magia stąd wypływa.");
+                        outerRing[i].fieldEvent = Kaplica;
+                        break;
+                    }
+                case 9:
+                    {
+                        middleRing[i].fieldEvent = new Card("Pustynia", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH, event_type.DRAW_CARD }, "Tracisz jeden punkt życia i następnie losujesz 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 10:
-                    middleRing[i].fieldEvent = new Card("Ukryta Dolina", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 3 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 3 karty");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Oaza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD, event_type.DRAW_CARD }, "Wylosuj 2 karty - jeśli znajdują się tu już jakieś karty, wylosuj ich tylko tyle, aby razem były tu 2 karty");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 11:
-                    middleRing[i].fieldEvent = new Card("Wzgórza", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Pustynia", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH, event_type.DRAW_CARD }, "Tracisz jeden punkt życia i następnie losujesz 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 12:
-                    middleRing[i].fieldEvent = new Card("Przeklęta Polana", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Kiedy przebywasz na Przeklętej polanie, przedmioty i magiczne przedmioty nie zapewniają premii do siły i mocy. Co więcej nie możesz korzystać ze specjalnych zdolności Magicznych przedmiotów, ani rzucać zaklęć");
+                    //todo
+                    middleRing[i].fieldEvent = new Card("Jaskinia Czarownika", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                    middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 13:
-                    middleRing[i].fieldEvent = new Card("Ruiny", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku.");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku.");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 14:
-                    middleRing[i].fieldEvent = new Card("Przepaść", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.LOSE_HEALTH }, "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.");
-                    //Rzuć raz kością za siebie i każdego swojego przyjaciela. Jeśli wylosujesz 1 lub 2 dla siebie tracisz jeden punkt życia. Jeśli wypadnie 1 lub 2 dla przyjaciela wpada on w przepaść i go tracisz.
-                    break;
+                    {
+                        var Przepasc = new Card("Przepaść", card_type.BOARDFIELD, new event_type[] { }, "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.");
+                        innerRing[i].fieldEvent = Przepasc;
+                        break;
+                    }
                 case 15:
-                    middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku");
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 default:
                     break;
             }
@@ -417,34 +506,55 @@ public class TalismanBoardScript : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    innerRing[i].fieldEvent = new Card("Dolina Ognia", card_type.BOARDFIELD, new event_type[] { }, "Musisz posiadać talizman - aby wejść na ten obszar musisz posiadać talizman. Jeśli go nie posiadasz, musisz zawrócić. Do korony można się dostać tylko z tego obszaru.");
-                    break;
+                    {
+                        var Wieza = new Card("Wieża w dolinie", card_type.BOARDFIELD, new event_type[] { }, "Musisz posiadać talizman - aby wejść na ten obszar musisz posiadać talizman. Jeśli go nie posiadasz, musisz zawrócić. Do korony można się dostać tylko z tego obszaru.");
+                        innerRing[i].fieldEvent = Wieza;
+                        break;
+                    }
                 case 1:
-                    innerRing[i].fieldEvent = new Card("Jama Wilkołaka", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE, event_type.LOSE_HEALTH }, "Jama Wilkołaka - Rzuć kością. Jeśli suma oczek z Twoją siłą jest większa od sumy oczek z Twoim życiem pokonujesz wilkołaka. Inaczej zadaje on tobie tyle obrażeń ile oczek na kostce");
-                    //  Walka z wilkołakiem. Rzuć 2 koścmi. Suma oczek określa siłę wilkołaka. Musisz z nim walczyć. Jeżeli przegrasz, tracisz jeden punkt życia i musisz w następnej turze ponownie walczyć z tym samym wilkołakiem. Dopóki nie pokonasz wilkołaka, nie możesz iść dalej
-                    break;
+                    {
+                        var Wilkolak = new Card("Wilkołak", card_type.BOARDFIELD, new event_type[] { }, "Jama Wilkołaka - Rzuć kością. Jeśli suma oczek z Twoją siłą jest większa od sumy oczek z Twoim życiem pokonujesz wilkołaka. Inaczej zadaje on tobie tyle obrażeń ile oczek na kostce");
+                        innerRing[i].fieldEvent = Wilkolak;
+                        break;
+                    }
                 case 2:
-                    innerRing[i].fieldEvent = new Card("Śmierć", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE }, "Gra ze śmiercią - Rzuciła kością. Jeśli wyrzucisz tyle ile ukryła na kości za plecami tracisz życie.");
-                    break;
+                    {
+                        var Smierc = new Card("Śmierć", card_type.BOARDFIELD, new event_type[] { }, "Gra ze śmiercią - Rzuciła kością. Jeśli wyrzucisz tyle ile ukryła na kości za plecami tracisz życie.");
+                        innerRing[i].fieldEvent = Smierc;
+                        break;
+                    }
                 case 3:
-                    innerRing[i].fieldEvent = new Card("Krypta", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE, event_type.ROLL_DICE }, "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.");
-                    break;
+                    {
+                        var Krypta = new Card("Krypta", card_type.BOARDFIELD, new event_type[] { }, "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.");
+                        innerRing[i].fieldEvent = Krypta;
+                        break;
+                    }
                 case 4:
+                    //TODO
                     innerRing[i].fieldEvent = new Card("Równina Grozy", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE, event_type.ROLL_DICE }, "Możesz odpocząć, podróżniku.");
                     break;
                 case 5:
-                    innerRing[i].fieldEvent = new Card("Kopalnia", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE, event_type.ROLL_DICE }, "Rzuć kością - Natychmiast przesuwasz się na obszar: (0) Pozostajesz w tym miejscu. (1) Równina Grozy. (2-3) Tajemne Wrota. (4-5) Jaskinia Czarownika. (6+) Gospoda.");
-                    //  Rzuć 3 koścmi - Od sumy wyrzuconych oczek odejmij swoją siłę. Natychmiast przesuwasz się na obszar: (0) Pozostajesz w tym miejscu. (1) Równina Grozy. (2-3) Tajemne Wrota. (4-5) Jaskinia Czarownika. (6+) Gospoda.
-                    break;
+                    {
+                        var Kopalnia = new Card("Kopalnia", card_type.BOARDFIELD, new event_type[] { }, "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.");
+                        innerRing[i].fieldEvent = Kopalnia;
+                        break;
+                    }
                 case 6:
-                    innerRing[i].fieldEvent = new Card("Wieża wampira", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH }, "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. Możesz odrzucić dowolną liczbę przyjaciół, aby ograniczyć stratę punktów życia. Za każdego odrzuconego przyjaciela tracisz o 1 punkt życia mniej. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.");
-                    break;
+                    {
+                        var wiezawamp = new Card("Wieża Wampira", card_type.BOARDFIELD, new event_type[] { }, "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.");
+                        innerRing[i].fieldEvent = wiezawamp;
+                        break;
+                    }
                 case 7:
+                    //TODO
                     innerRing[i].fieldEvent = new Card("Otchłań", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Rzuć 1 kością. Wynik rzutu określa liczbę diabłów (Siła 4), z którymi przyjdzie ci walczyć. Będziesz z nimi walczyć po kolei, dopóki nie pokonasz ich wszystkich lub nie stracisz 1 punkty życia. Możesz się poruszyć dopiero podczasnastępnej tury po pokonaniu wszystkich diabłów.");
                     break;
                 case 8:
-                    innerRing[i].fieldEvent = new Card("Wieża w Dolinie", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Rzuć 1 kością. Jeśli wylosujesz 6 wsyzscy pozostali gracze tracą 1 punkt życia.");
-                    break;
+                    {
+                        innerRing[i].fieldEvent = new Card("Wieża w Dolinie", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        innerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 default:
                     break;
             }
@@ -916,7 +1026,6 @@ public class TalismanBoardScript : MonoBehaviour
             {
                 CardDrawer.spawnPlayerSpells(playerArray[playerIndex], "PanelZaklec");
             }
-            
         }
         else
         {
@@ -1078,8 +1187,6 @@ public class TalismanBoardScript : MonoBehaviour
                         CardDrawer.spawnPlayerItems(playerArray[5], "PanelEkwipunku");
                         break;
                 }
-
-
             }
         }
         else
