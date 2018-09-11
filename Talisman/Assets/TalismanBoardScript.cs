@@ -626,10 +626,13 @@ public class TalismanBoardScript : MonoBehaviour
                 {
                     playerArray[playerIndex].getCards().Add(c);
                 }
-                //  Karty zostaly zebrane
-                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-                //  Na pole losujemy nowe karty
-                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count > 0)
+                {
+                    //  Karty zostaly zebrane
+                    outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                    //  Na pole losujemy nowe karty
+                    outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                }
                 //  Jesli gracz jest na odpowiednim polu
                 if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Puszcza") &&
                     playerArray[playerIndex].getItems().Find(x => x.getName().Equals("topor")) != null)
@@ -652,8 +655,11 @@ public class TalismanBoardScript : MonoBehaviour
                 {
                     playerArray[playerIndex].getCards().Add(c);
                 }
-                middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-                middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                if(middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count > 0)
+                {
+                    middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                    middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                }
                 if (middleRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Zamek"))
                 {
                     playerArray[playerIndex].middleRing = false;
@@ -674,8 +680,11 @@ public class TalismanBoardScript : MonoBehaviour
                 {
                     playerArray[playerIndex].getCards().Add(c);
                 }
-                innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-                innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count > 0)
+                {
+                    innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                    innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                }
                 if (innerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Dolina Ognia"))
                 {
                     if (playerArray[playerIndex].getItems().Find(x => x.getName().Equals("talizman")) != null)
@@ -736,10 +745,13 @@ public class TalismanBoardScript : MonoBehaviour
                 {
                     playerArray[playerIndex].getCards().Add(c);
                 }
-                //  Karty zostaly zebrane
-                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-                //  Na pole losujemy nowe karty
-                outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count > 0)
+                {
+                    //  Karty zostaly zebrane
+                    outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                    //  Na pole losujemy nowe karty
+                    outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                }
                 //  Jesli gracz jest na odpowiednim polu
                 if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Puszcza") &&
                     playerArray[playerIndex].getItems().Find(x => x.getName().Equals("topor")) != null)
@@ -762,8 +774,11 @@ public class TalismanBoardScript : MonoBehaviour
                 {
                     playerArray[playerIndex].getCards().Add(c);
                 }
-                middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-                middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                if(middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count > 0)
+                {
+                    middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                    middleRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                }
                 if (middleRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Zamek"))
                 {
                     playerArray[playerIndex].middleRing = false;
@@ -784,8 +799,11 @@ public class TalismanBoardScript : MonoBehaviour
                 {
                     playerArray[playerIndex].getCards().Add(c);
                 }
-                innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
-                innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                if(outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Count > 0)
+                {
+                    innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
+                    innerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
+                }
                 if (innerRing[playerArray[playerIndex].playerPiece.indexOfField].fieldEvent.getName().Equals("Dolina Ognia"))
                 {
                     if (playerArray[playerIndex].getItems().Find(x => x.getName().Equals("talizman")) != null)
