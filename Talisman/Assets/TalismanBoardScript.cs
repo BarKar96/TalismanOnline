@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -929,7 +929,11 @@ public class TalismanBoardScript : MonoBehaviour
         for (int counterOfPlayer = 0; counterOfPlayer < playerArray.Length; counterOfPlayer++)
         {
             if (playerArray[counterOfPlayer] == playerArray[playerIndex]) continue;
-            else if (playerArray[counterOfPlayer].playerPiece.indexOfField == playerArray[playerIndex].playerPiece.indexOfField)
+            else if (
+                ((playerArray[counterOfPlayer].outerRing == true && playerArray[playerIndex].outerRing == true) ||
+                (playerArray[counterOfPlayer].middleRing == true && playerArray[playerIndex].middleRing == true) ||
+                (playerArray[counterOfPlayer].innerRing == true && playerArray[playerIndex].innerRing == true)) 
+                && playerArray[counterOfPlayer].playerPiece.indexOfField == playerArray[playerIndex].playerPiece.indexOfField)
             {
                 combatButton.gameObject.SetActive(true);
                 break;
