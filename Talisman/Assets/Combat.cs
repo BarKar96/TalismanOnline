@@ -364,7 +364,7 @@ public  class Combat : MonoBehaviour
 
         textGracz.text = "";
         textGracz.text += "Bohater: " + p.hero.name;
-        textGracz.text += "\nSiła:  " + p.hero.strength;
+        textGracz.text += "\nSiła:  " + p.strength;
         textGracz.text += "\nHP: " + p.current_health + "/" + p.total_health;
         if (player1 == player2)
         {
