@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -1099,7 +1099,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         if (MainMenu.onoff == 2)
         {
-            Card p = null;
+            /*Card p = null;
             if (outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0].getCard_Type().Equals(card_type.BOARDFIELD))
             {
                 p = outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField[0];
@@ -1111,7 +1111,7 @@ public class TalismanBoardScript : MonoBehaviour
             {
                 outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Clear();
                 outerRing[playerArray[playerIndex].playerPiece.indexOfField].cardsOnField.Add(deckOfCards.drawCard());
-            }
+            }*/
         }
         else
         {
