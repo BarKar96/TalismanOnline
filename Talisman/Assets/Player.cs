@@ -214,7 +214,7 @@ public class Player
                         this.getSpells().Add(cardsToIterate[current]);
                         break;
                     case card_type.ITEM:
-                        if (this.getItems().Count <8)
+                        if (this.getItems().Count < 8)
                         {
                             CardDrawer.spawnMessage(cardsToIterate[current]);
                             this.getItems().Add(cardsToIterate[current]);

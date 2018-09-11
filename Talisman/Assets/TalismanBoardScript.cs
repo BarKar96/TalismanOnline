@@ -488,7 +488,7 @@ public class TalismanBoardScript : MonoBehaviour
                 case 14:
                     {
                         var Przepasc = new Card("Przepaść", card_type.BOARDFIELD, new event_type[] { }, "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.");
-                        innerRing[i].fieldEvent = Przepasc;
+                        middleRing[i].fieldEvent = Przepasc;
                         break;
                     }
                 case 15:
