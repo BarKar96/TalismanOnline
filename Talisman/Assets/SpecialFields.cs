@@ -92,7 +92,6 @@ public class SpecialFields : MonoBehaviour
     public void SetWiezaWDolinieOn()
     {
         panel.SetActive(true);
-        diceRollButton.gameObject.SetActive(true);
         WiezaWDolinie();
     }
     public void SetSmiercOn()
@@ -216,9 +215,17 @@ public class SpecialFields : MonoBehaviour
     }
     public void WiezaWDolinie()
     {
-        specialDiceBlock = true;
-        Name.text = "Wieża w Dolinie";
-        Descryption.text = "Rzuć 1 kością.Jeśli wylosujesz 6 wsyzscy pozostali gracze tracą 1 punkt życia.";
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        var windows = GameObject.Find("Windows").GetComponent<Windows>();
+        if (tbs.playerArray[tbs.playerIndex].getItems().Find(x => x.getName().Equals("talisman"))!= null)
+        {
+            windows.WinningGame();
+        }
+        else
+        {
+            tbs.innerRing[tbs.playerArray[tbs.playerIndex].playerPiece.indexOfField].cardsOnField.Add(tbs.deckOfCards.drawCard());
+            //tbs.[tbs.playerArray[tbs.playerIndex]].cardsOnField.Add(tbs.deckOfCards.drawCard());
+        }
     }
     public void Smierc()
     {
@@ -504,25 +511,6 @@ public class SpecialFields : MonoBehaviour
                     {
                         go.playerArray[go.playerIndex].getItems().Clear();
                     }
-                    break;
-            }
-        }
-        else if (Name.text.Equals("Wieża w Dolinie"))
-        {
-            switch (DiceScript.getResult())
-            {
-                case 6:
-                    MessageText.text = "Zsyłasz na wszystkich potężny piorun. Każdy w krainie traci życie.";
-                    for (int i = 0; i < go.playerArray.Length; i++)
-                    {
-                        if(i != go.playerIndex)
-                        {
-                            go.playerArray[go.playerIndex].current_health--;
-                        }
-                    }
-                    break;
-                default:
-                    MessageText.text = "Talizman nie chce Cię wysłuchać.";
                     break;
             }
         }

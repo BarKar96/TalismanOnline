@@ -13,8 +13,8 @@ public class TalismanBoardScript : MonoBehaviour
     public GameObject NETWORK;
     //private Field[][] rings;
     public static Field[] outerRing;
-    private Field[] middleRing;
-    private Field[] innerRing;
+    public static Field[] middleRing;
+    public Field[] innerRing;
     public Deck deckOfCards;
     public Player[] playerArray;
     public SpecialFields spc;
@@ -271,7 +271,6 @@ public class TalismanBoardScript : MonoBehaviour
                     break;
                 case 4:
                     outerRing[i].fieldEvent = new Card("pszczoly", card_type.BOARDFIELD, new event_type[] { event_type.ENEMY }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-
                     outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                     break;
                 case 5:

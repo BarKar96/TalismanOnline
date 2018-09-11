@@ -561,10 +561,24 @@ public class Windows : MonoBehaviour {
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         Portrait.GetComponent<Image>().sprite = HeroPort(go.playerArray[0].hero);
     }
+    private void SpawnWinnerAvatar2()
+    {
+        var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        Portrait.GetComponent<Image>().sprite = HeroPort(go.playerArray[go.playerIndex].hero);
+    }
     public void WinningGame()
     {
-        PanelWinGame.SetActive(true);
-        SpawnWinnerAvatar();
+        var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        if (go.playerArray[go.playerIndex].playerPiece.indexOfField.Equals(8) && go.playerArray[go.playerIndex].innerRing.Equals(true))
+        {
+            PanelWinGame.SetActive(true);
+            SpawnWinnerAvatar2();
+        }
+        else
+        {
+            PanelWinGame.SetActive(true);
+            SpawnWinnerAvatar();
+        }
     }
     #endregion
 }
