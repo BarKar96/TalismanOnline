@@ -554,9 +554,11 @@ public class TalismanBoardScript : MonoBehaviour
                         break;
                     }
                 case 7:
-                    //TODO
-                    innerRing[i].fieldEvent = new Card("Otchłań", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Rzuć 1 kością. Wynik rzutu określa liczbę diabłów (Siła 4), z którymi przyjdzie ci walczyć. Będziesz z nimi walczyć po kolei, dopóki nie pokonasz ich wszystkich lub nie stracisz 1 punkty życia. Możesz się poruszyć dopiero podczasnastępnej tury po pokonaniu wszystkich diabłów.");
-                    break;
+                    {
+                        innerRing[i].fieldEvent = new Card("Otchłań", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        innerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 8:
                     {
                         innerRing[i].fieldEvent = new Card("Wieża w Dolinie", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
