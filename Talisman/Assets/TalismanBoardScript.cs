@@ -1310,6 +1310,10 @@ public class TalismanBoardScript : MonoBehaviour
     {
         HelperTextBox.GetComponent<Text>().text = "Poczekaj aż kostka spadnie i wybierz kierunek ruchu!";
     }
+    public void endTurnHelperText()
+    {
+        HelperTextBox.GetComponent<Text>().text = "Poczekaj na wynik rzutu i zakończ turę!";
+    }
 
     void Start()
     {
