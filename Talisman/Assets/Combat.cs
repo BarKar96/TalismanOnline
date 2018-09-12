@@ -449,6 +449,7 @@ public  class Combat : MonoBehaviour
         else
         {
             var g2 = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+            GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Walka dobiegła końca. Zakończ turę!";
             g2.nextTurnButton.gameObject.SetActive(true);
         }
     }

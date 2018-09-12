@@ -628,7 +628,6 @@ public class TalismanBoardScript : MonoBehaviour
         playerArray[i].playerPiece.indexOfField = playerArray[i].hero.startingLocation;
         playerArray[i].playerPiece.transform.position = outerRing[playerArray[i].hero.startingLocation].emptyGameObject.transform.position;
        // Debug.Log("player  " + i + " at " + playerArray[i].hero.startingLocation);
-
         outerRing[playerArray[i].hero.startingLocation].counter++;
     }
 
@@ -645,7 +644,7 @@ public class TalismanBoardScript : MonoBehaviour
     {
         //Debug.Log(deckOfCards.drawCard().getName());    // Returns one random card
         //deckOfCards.listCards();                         //Use to list cards
-
+        HelperTextBox.GetComponent<Text>().text = "Rzuć kością!";
         if (CardDrawer.heroCardList.Count > 0)
         {
             Destroy(CardDrawer.heroCardList[0]);
@@ -666,18 +665,11 @@ public class TalismanBoardScript : MonoBehaviour
             }
             catch (Exception) { };
         }
-
-
-        //co to jest?
-        //showHeroName();
-        //showHeroStatistics();
-        //showHeroCards();
         if (MainMenu.onoff == 1)
         {
             try
             {
                 var go = GameObject.Find("Piece" + PlayerObject.current).GetComponent<PlayerObject>();
-
                 go.CmdReloadDice();
             }
             catch (Exception e)
@@ -984,8 +976,6 @@ public class TalismanBoardScript : MonoBehaviour
     private int eqFlag = 0;
     public void Items_Button()
     {
-       
-
         _subPanel_Items_Opened = !_subPanel_Items_Opened;
         setSubPanelVisibility(subPanel_Items, _subPanel_Items_Opened);
         if (_subPanel_Items_Opened == true)
@@ -1000,7 +990,6 @@ public class TalismanBoardScript : MonoBehaviour
                 CardDrawer.spawnPlayerItems(playerArray[playerIndex], "PanelEkwipunku");
                 
             }
-            
         }
         else
         {
@@ -1012,9 +1001,7 @@ public class TalismanBoardScript : MonoBehaviour
         if (subPanel != null)
         {
             subPanel.SetActive(b);
-        }
-        
-        
+        }        
     }
     public void Spells_Button()
     {
@@ -1310,6 +1297,7 @@ public class TalismanBoardScript : MonoBehaviour
     }
     public void exitMessage()
     {
+        HelperTextBox.GetComponent<Text>().text = "Możesz zakończyć turę.";
         clearPlayerPanelView(CardDrawer.komunikatList);
         messagePanel.gameObject.SetActive(false);
 
@@ -1318,6 +1306,10 @@ public class TalismanBoardScript : MonoBehaviour
     /// /////////////////////////////////MAIN/////////////////////////////////////////////////
     /// </summary>
 
+    public void initiateDiceRoll()
+    {
+        HelperTextBox.GetComponent<Text>().text = "Poczekaj aż kostka spadnie i wybierz kierunek ruchu!";
+    }
 
     void Start()
     {

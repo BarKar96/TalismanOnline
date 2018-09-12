@@ -15,15 +15,13 @@ public class DiceScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         rb = GetComponent<Rigidbody>();
         var go = GameObject.Find("DiceCheckZone").GetComponent<DiceCheckZoneScript>();
         go.GetComponent<DiceCheckZoneScript>().enabled = false;
-
     }
     public void roll()
     {
-        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Wybierz Kierunek ruchu!";
+        //GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Wybierz Kierunek ruchu!";
         var go = GameObject.Find("DiceCheckZone").GetComponent<DiceCheckZoneScript>();
         go.GetComponent<DiceCheckZoneScript>().enabled = true;
         diceVelocity = rb.velocity;
@@ -34,8 +32,6 @@ public class DiceScript : MonoBehaviour
         transform.rotation = Quaternion.identity;
         rb.AddForce(transform.up * 500);
         rb.AddTorque(dirX, dirY, dirZ);
-
-
     }
     public static int getResult()
     {

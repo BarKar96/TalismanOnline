@@ -207,10 +207,11 @@ public class Player
                         }
                         break;
                     case card_type.ENEMY:
+                    GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Spotkałeś na swojej drodze przeciwnika! Możesz walczyć lub próbować ucieczki.";
                         combat.StartCombat(this, cardsToIterate[current]);
                         break;
                     case card_type.SPELL:
-                       
+                        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Zdobyłeś zaklęcie. Pew! Pew!";
                         CardDrawer.spawnMessage(cardsToIterate[current]);
                         this.getSpells().Add(cardsToIterate[current]);
                         break;
