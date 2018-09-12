@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class Player
 {
     public string name;
@@ -131,6 +131,7 @@ public class Player
                 switch (et)
                 {
                     case card_type.BOARDFIELD:
+                    GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Wydarzenie specjalne!\nRzuć kością i przekonaj się co się stało!";
                         if (cardsToIterate[current].getName().Equals("Gospoda"))
                         {
                             g1.SetGospodaOn();
@@ -213,14 +214,16 @@ public class Player
                         }
                         break;
                     case card_type.ENEMY:
+                    GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Spotkałeś na swojej drodze przeciwnika! Możesz walczyć lub próbować ucieczki.";
                         combat.StartCombat(this, cardsToIterate[current]);
                         break;
                     case card_type.SPELL:
-                       
+                        GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Zdobyłeś zaklęcie. Pew! Pew!";
                         CardDrawer.spawnMessage(cardsToIterate[current]);
                         this.getSpells().Add(cardsToIterate[current]);
                         break;
                     case card_type.ITEM:
+                    GameObject.Find("Tile").GetComponent<TalismanBoardScript>().HelperTextBox.GetComponent<Text>().text = "Zdobyłeś nowy przedmiot!\nMożesz go wykorzystać w panelu EQ!";
                         if (this.getItems().Count < 8)
                         {
                             CardDrawer.spawnMessage(cardsToIterate[current]);
