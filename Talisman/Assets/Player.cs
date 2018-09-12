@@ -182,7 +182,6 @@ public class Player
                             shopCanvas.gameObject.SetActive(true);
                             var go = GameObject.Find("ContentB").GetComponent<ShopScrollList>();
                             go.startShop();
-                            //mainCanvas.gameObject.SetActive(false);
                         }
                         else if (cardsToIterate[current].getName().Equals("Strażnik"))
                         {
@@ -203,6 +202,14 @@ public class Player
                         else if (cardsToIterate[current].getName().Equals("Tajemne Wrota"))
                         {
                             g1.SetTajemneWrotaOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Czarny Rycerz"))
+                        {
+                            g1.SetRycerzOn();
+                        }
+                        else if (cardsToIterate[current].getName().Equals("Zamek"))
+                        {
+                            g1.SetZamekOn();
                         }
                         break;
                     case card_type.ENEMY:

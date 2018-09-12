@@ -17,16 +17,36 @@ public class SpecialFields : MonoBehaviour
     public Button diceRollButton;
     public Button Yes;
     public Button No;
-    public bool wait = true;
-    public bool Guard = false;
-    public bool SecretGate = false;
+    public Button Gold;
+    public Button HP;
+    public Button HPplus1;
+    public Button HPplus2;
+    public Button HPplus3;
+    public Button OKplus;
+    private bool Guard = false;
+    private bool SecretGate = false;
     public bool specialDiceBlock = false;
+    private int hp = 0;
     #endregion
     #region Sets
     //  ********************
     //  Włączniki
     //  ********************
-
+    public void SetRycerzOn()
+    {
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        panel.SetActive(true);
+        if(tbs.playerArray[tbs.playerIndex].gold>0)
+        {
+            Gold.gameObject.SetActive(true);
+        }
+        HP.gameObject.SetActive(true);
+        CzarnyRycerz();
+    }
+    public void SetZamekOn()
+    {
+        Zamek();
+    }
     public void SetGospodaOn()
     {
         panel.SetActive(true);
@@ -151,69 +171,74 @@ public class SpecialFields : MonoBehaviour
     //  ********************
     //  Zdarzenia
     //  ********************
-
-    public void resetPlayerRings()
+    private void resetPlayerRings()
     {
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();   
         go.playerArray[go.playerIndex].innerRing = false;
         go.playerArray[go.playerIndex].outerRing = false;
         go.playerArray[go.playerIndex].middleRing = false;
     }
-    public void Kaplica()
+    private void CzarnyRycerz()
+    {
+        specialDiceBlock = true;
+        Name.text = "Czarny Rycerz";
+        Descryption.text = "Spotykasz czarnego rycerza możesz wybrać albo stracić sztukę złota albo stracić punkt życia. (jak nie masz złota nie możesz zapłacić). Wybierz opcję.";
+    }
+    private void Kaplica()
     {
         specialDiceBlock = true;
         Name.text = "Kaplica";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1 - 4) Nic się nie dzieję - Twoje modły nie zostały wysłuchane. \n(5) Bogowie Ciebie wysłuchują. Otrzymujesz błogosławieństwo w postaci 1 punktu siły. \n(6) Świętokradztwo - tracisz jeden punkt życia i dwa punkty siły.";
     }
-    public void Cmentarz()
+    private void Cmentarz()
     {
         specialDiceBlock = true;
         Name.text = "Cmentarz";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1 - 4) Nic się nie dzieję. \n(5) Zmarli wysłuchali Twe modły otrzymujesz 1 punkt życia. \n(6) Zmarli nie są zadowoleni z Twojej obecności tracisz dwa punkty życia i jeden punkt siły. ";
     }
-    public void Las()
+    private void Las()
     {
         specialDiceBlock = true;
         Name.text = "Las";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Otrzymujesz 1 punkt życia\n(2) Tracisz 1 punkt życia.\n(3) Tracisz 1 punkt siły.\n(4) Otrzymujesz 1 punkt siły.\n(5) Nic się nie dzieje.\n(6) Otrzymujesz 1 sztukę złota.";
     }
-    public void Arena()
+    private void Arena()
     {
         specialDiceBlock = true;
         Name.text = "Arena";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1 - 4) Nic się nie dzieję bo Twój miecz nie wytrzymuje testu wytrzymałości oręża.\n(5) Pokonujesz potężnego przeciwnika - Otrzymujesz 1 punkt siły. \n(6) Zwycięsto hyaaaaaaaaaaah sam król Ciebie nagradza - Otrzymujesz 2 sztuki złota.";
     }
-    public void Czarodziejka()
+    private void Czarodziejka()
     {
         specialDiceBlock = true;
         Name.text = "Czarodziejka";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Nic się nie dzieję.\n(2) Czarodziejka rzuca na Ciebie osłabienie - Tracisz 1 punkt siły.\n(3) Czarodziejka zauracza Cię czarem i okrada Cię - Tracisz 1 sztukę złota.\n(4) Czarodziejka nagradza Cię - otrzymujesz 1 sztukę złota.\n(5) Czarodziejka wyzywa Cię na pojedynek wygrywasz - Otrzymujesz 1 punkt siły.\n(6) Czarodziejka błogosławi Ciebie - Otrzymujesz 2 punkty siły.";
     }
-	public void Gospoda()
+    private void Gospoda()
     {
         specialDiceBlock = true;
         Name.text = "Gospoda";
         Descryption.text = "Wykonaj 1 rzut kością. \n(1) Upiłeś się i zasnąłeś w kącie - tracisz turę. \n(2) Upiłeś się i wdałeś w bójkę z chłopem tracisz 1 hp. \n(3) Grałeś w karty i przegrałeś 1 sztukę złota. \n(4) Grałeś w karty i wygrałeś jedną sztukę złota. \n(5) Potknąłeś się wpadłeś do piwnicy. Znalazłeś dwie sztuki złota. \n(6) Karateka uczy Ciebie sztuk walki (+1 punkt Siły.)";
     }
-    public void WiezaWampira()
+    private void WiezaWampira()
     {
         specialDiceBlock = true;
         Name.text = "Wieża wampira";
         Descryption.text = "Tracisz Krew - Rzuć 1 kością by przekonać się ile krwi wyssał z Ciebie wampir. (1-2) Tracisz 1 punkt życia \n (3-4) Tracisz 2 punkty życia \n (5-6) Tracisz 3 punkty życia.";
     }
-    public void Przepasc()
+    private void Przepasc()
     {
         specialDiceBlock = true;
         Name.text = "Przepaść";
         Descryption.text = "Głęboko tu. Rzuć kością. Jeśli liczba oczek jest parzysta uda Ci się przeskoczyć. Jeśli nieparzysta musisz odrzucić swój ekwipunek by doskoczyć na drugą stronę.";
     }
-    public void Straznik()
+    private void Straznik()
     {
         specialDiceBlock = true;
         Name.text = "Strażnik";
         Descryption.text = "Przebywając równinę zauważasz dziwne miejsce strzeżone przez silnego (Siła 7) strażnika. Strażnik mówi że jeśli go pokonasz będziesz mógł przejść przez portal przenoszący Ci do innej krainy. Podejmujesz wyzwanie?";
     }
-    public void WiezaWDolinie()
+    private void WiezaWDolinie()
     {
         var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         var windows = GameObject.Find("Windows").GetComponent<Windows>();
@@ -227,31 +252,86 @@ public class SpecialFields : MonoBehaviour
             //tbs.[tbs.playerArray[tbs.playerIndex]].cardsOnField.Add(tbs.deckOfCards.drawCard());
         }
     }
-    public void Smierc()
+    private void Zamek()
+    {
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        var windows = GameObject.Find("Windows").GetComponent<Windows>();
+        if (tbs.playerArray[tbs.playerIndex].getItems().Find(x => x.getName().Equals("Książę")) != null || tbs.playerArray[tbs.playerIndex].getItems().Find(x => x.getName().Equals("Księżniczka")) != null)
+        {
+            MessageBox.SetActive(true);
+            if(tbs.playerArray[tbs.playerIndex].total_health - tbs.playerArray[tbs.playerIndex].current_health >= 2)
+            {
+                MessageText.text = "Przywrócono Ci dwa brakujące punkty życia gdyż posiadasz Księcia lub Księżniczkę jako swojego kompana.";
+                tbs.playerArray[tbs.playerIndex].current_health += 2;
+            }
+            else if (tbs.playerArray[tbs.playerIndex].total_health - tbs.playerArray[tbs.playerIndex].current_health == 1)
+            {
+                MessageText.text = "Przywrócono Ci brakujący punkt życia gdyż posiadasz Księcia lub Księżniczkę jako swojego kompana.";
+                tbs.playerArray[tbs.playerIndex].current_health += 1;
+            }
+            else
+            {
+                MessageText.text = "Nic się nie stało koniec tury.";
+            }
+        }
+        else if (tbs.playerArray[tbs.playerIndex].current_health == tbs.playerArray[tbs.playerIndex].total_health)
+        {
+            MessageBox.SetActive(true);
+            MessageText.text = "Nie możesz nic zrobić bo masz całe życie.";
+        }
+
+        else if (tbs.playerArray[tbs.playerIndex].gold <= 0)
+        {
+            MessageBox.SetActive(true);
+            MessageText.text = "Nie możesz nic zrobić bo nie masz złota.";
+        }
+        else
+        {
+            panel.SetActive(true);
+            specialDiceBlock = true;
+            Name.text = "Zamek";
+            Descryption.text = "Możesz odzyskać punkt życia u nadwornego medyka. Za każdą sztukę złota jaką posiadasz (max 3), lub kliknij OK jeśli nie zamierzasz nic robić.";
+            if (tbs.playerArray[tbs.playerIndex].gold > 0 && tbs.playerArray[tbs.playerIndex].current_health < tbs.playerArray[tbs.playerIndex].total_health)
+            {
+                HPplus1.gameObject.SetActive(true);
+            }
+            if (tbs.playerArray[tbs.playerIndex].gold > 1 && tbs.playerArray[tbs.playerIndex].current_health < tbs.playerArray[tbs.playerIndex].total_health && tbs.playerArray[tbs.playerIndex].total_health - tbs.playerArray[tbs.playerIndex].current_health > 1)
+            {
+                HPplus2.gameObject.SetActive(true);
+            }
+            if (tbs.playerArray[tbs.playerIndex].gold > 2 && tbs.playerArray[tbs.playerIndex].current_health < tbs.playerArray[tbs.playerIndex].total_health && tbs.playerArray[tbs.playerIndex].total_health - tbs.playerArray[tbs.playerIndex].current_health > 2)
+            {
+                HPplus3.gameObject.SetActive(true);
+            }
+            OKplus.gameObject.SetActive(true);
+        }
+
+    }
+    private void Smierc()
     {
         specialDiceBlock = true;
         Name.text = "Śmierć";
         Descryption.text = "Gra ze śmiercią - Jeśli wyrzucisz 1 umierasz. Takie życie.";
     }
-    public void JamaWilkolaka()
+    private void JamaWilkolaka()
     {
         specialDiceBlock = true;
         Name.text = "Jama Wilkołaka";
         Descryption.text = "Jama Wilkołaka - Rzuć kością. Jeśli suma oczek z Twoją siłą jest większa od sumy oczek z Twoim życiem pokonujesz wilkołaka. Inaczej zadaje on tobie tyle obrażeń ile oczek na kostce";
     }
-    public void Kopalnia()
+    private void Kopalnia()
     {
         specialDiceBlock = true;
         Name.text = "Kopalnia";
         Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Gospoda.";
     }
-    public void Krypta()
+    private void Krypta()
     {
         specialDiceBlock = true;
         Name.text = "Krypta";
         Descryption.text = "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.";
     }
-    public void TajemneWrota()
+    private void TajemneWrota()
     {
         specialDiceBlock = true;
         Name.text = "Tajemne Wrota";
@@ -273,6 +353,7 @@ public class SpecialFields : MonoBehaviour
             tbs.playerArray[tbs.playerIndex].middleRing = true;
             tbs.movePiece(tbs.playerIndex, 1);
             Guard = false;
+            specialDiceBlock = false;
         }
         else if(SecretGate)
         {
@@ -280,6 +361,7 @@ public class SpecialFields : MonoBehaviour
             tbs.playerArray[tbs.playerIndex].innerRing = true;
             tbs.movePiece(tbs.playerIndex, 1);
             SecretGate = false;
+            specialDiceBlock = false;
         }
     }
     public void YES_BUTTON()
@@ -304,6 +386,85 @@ public class SpecialFields : MonoBehaviour
         specialDiceBlock = false;
         Yes.gameObject.SetActive(false);
         No.gameObject.SetActive(false);
+    }
+    public void GOLD_BUTTON()
+    {
+        panel.SetActive(false);
+        specialDiceBlock = false;
+        var wnd = GameObject.Find("Windows").GetComponent<Windows>();
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        Gold.gameObject.SetActive(false);
+        HP.gameObject.SetActive(false);
+        tbs.playerArray[tbs.playerIndex].gold--;
+        wnd.UpdateStatsToText();
+    }
+    public void HP_BUTTON()
+    {
+        panel.SetActive(false);
+        specialDiceBlock = false;
+        var wnd = GameObject.Find("Windows").GetComponent<Windows>();
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        Gold.gameObject.SetActive(false);
+        HP.gameObject.SetActive(false);
+        tbs.playerArray[tbs.playerIndex].current_health--;
+        wnd.UpdateStatsToText();
+    }
+    public void HPPLUS1_BUTTON()
+    {
+        MessageBox.SetActive(true);
+        MessageText.text = "Wykupiłeś sobie 1 punkt życia";
+        panel.SetActive(false);
+        specialDiceBlock = false;
+        var wnd = GameObject.Find("Windows").GetComponent<Windows>();
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        HPplus1.gameObject.SetActive(false);
+        HPplus2.gameObject.SetActive(false);
+        HPplus3.gameObject.SetActive(false);
+        OKplus.gameObject.SetActive(false);
+        tbs.playerArray[tbs.playerIndex].gold--;
+        tbs.playerArray[tbs.playerIndex].current_health++;
+        wnd.UpdateStatsToText();
+    }
+    public void HPPLUS2_BUTTON()
+    {
+        MessageBox.SetActive(true);
+        MessageText.text = "Wykupiłeś sobie 2 punkty życia";
+        panel.SetActive(false);
+        specialDiceBlock = false;
+        var wnd = GameObject.Find("Windows").GetComponent<Windows>();
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        HPplus1.gameObject.SetActive(false);
+        HPplus2.gameObject.SetActive(false);
+        HPplus3.gameObject.SetActive(false);
+        OKplus.gameObject.SetActive(false);
+        tbs.playerArray[tbs.playerIndex].gold-=2;
+        tbs.playerArray[tbs.playerIndex].current_health+=2;
+        wnd.UpdateStatsToText();
+    }
+    public void HPPLUS3_BUTTON()
+    {
+        MessageBox.SetActive(true);
+        MessageText.text = "Wykupiłeś sobie 3 punkty życia";
+        panel.SetActive(false);
+        specialDiceBlock = false;
+        var wnd = GameObject.Find("Windows").GetComponent<Windows>();
+        var tbs = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
+        HPplus1.gameObject.SetActive(false);
+        HPplus2.gameObject.SetActive(false);
+        HPplus3.gameObject.SetActive(false);
+        OKplus.gameObject.SetActive(false);
+        tbs.playerArray[tbs.playerIndex].gold-=3;
+        tbs.playerArray[tbs.playerIndex].current_health+=3;
+        wnd.UpdateStatsToText();
+    }
+    public void OKPLUS_BUTTON()
+    {
+        panel.SetActive(false);
+        specialDiceBlock = false;
+        HPplus1.gameObject.SetActive(false);
+        HPplus2.gameObject.SetActive(false);
+        HPplus3.gameObject.SetActive(false);
+        OKplus.gameObject.SetActive(false);
     }
     #endregion
     #region Dice and Events

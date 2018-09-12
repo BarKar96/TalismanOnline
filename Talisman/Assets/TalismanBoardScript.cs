@@ -426,21 +426,24 @@ public class TalismanBoardScript : MonoBehaviour
                         break;
                     }
                 case 3:
-                    //todo
-                    middleRing[i].fieldEvent = new Card("Czarny Rycerz", card_type.BOARDFIELD, new event_type[] { event_type.LOSE_HEALTH }, "Tracisz 1 sztukę złota albo tracisz jeden punkt życia");
-                    break;
+                    {
+                        var Rycerz = new Card("Czarny Rycerz", card_type.BOARDFIELD, new event_type[] { }, "Wchodzisz do lasu nigdy nie wiadomo czego można tu się spodziewać może jakiś niedźwiedź kto wie.");
+                        middleRing[i].fieldEvent = Rycerz;
+                        break;
+                    }
                 case 4:
                     {
                         var TajemneWrota = new Card("Tajemne Wrota", card_type.BOARDFIELD, new event_type[] { }, "Tajemne wrota - patrzysz a pośród drzew jest polana a obok niej wrota bez niczego zamek wcięło głos mówi że musisz pokonać siebie żeby przejść do wewnetrznej krainy.");
                         middleRing[i].fieldEvent = TajemneWrota;
                         break;
                     }
-                        
                 case 5:
-                    //todo
-                    middleRing[i].fieldEvent = new Card("Zamek", card_type.BOARDFIELD, new event_type[] { event_type.GAIN_HEALTH }, "Nadworny medyk - możesz odzyskać punkty życia płacąc za każdy z nich 1 sztukę złota. Jeżeli wśród Przyjaciół jest księżniczka lub książę 2 punkty życia odzyskujesz za darmo");
-                    break;
-                case 6:
+                    {
+                        var TajemneWrota = new Card("Tajemne Wrota", card_type.BOARDFIELD, new event_type[] { }, "Nadworny medyk - możesz odzyskać punkty życia płacąc za każdy z nich 1 sztukę złota (max 3). Jeżeli wśród Przyjaciół jest księżniczka lub książę 2 punkty życia odzyskujesz za darmo");
+                        middleRing[i].fieldEvent = TajemneWrota;
+                        break;
+                    }
+               case 6:
                     {
                         middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku");
                         middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
@@ -477,10 +480,11 @@ public class TalismanBoardScript : MonoBehaviour
                         break;
                     }
                 case 12:
-                    //todo
-                    middleRing[i].fieldEvent = new Card("Jaskinia Czarownika", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                    middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
-                    break;
+                    {
+                        middleRing[i].fieldEvent = new Card("Jaskinia Czarownika", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
+                        middleRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 13:
                     {
                         middleRing[i].fieldEvent = new Card("Runy", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje. Każda istota z którą zmierzysz się tutaj na obszarze Runów, dodaje 2 do wyniku swego rzutu ataku.");
@@ -532,9 +536,11 @@ public class TalismanBoardScript : MonoBehaviour
                         break;
                     }
                 case 4:
-                    //TODO
-                    innerRing[i].fieldEvent = new Card("Równina Grozy", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE, event_type.ROLL_DICE }, "Możesz odpocząć, podróżniku.");
-                    break;
+                    {
+                        innerRing[i].fieldEvent = new Card("Równina Grozy", card_type.BOARDFIELD, new event_type[] { event_type.ROLL_DICE, event_type.ROLL_DICE, event_type.ROLL_DICE }, "Możesz odpocząć, podróżniku.");
+                        innerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        break;
+                    }
                 case 5:
                     {
                         var Kopalnia = new Card("Kopalnia", card_type.BOARDFIELD, new event_type[] { }, "Rzuć kością - Natychmiast przesuwasz się na obszar: (1) Pozostajesz w tym miejscu. (2) Równina Grozy. (3-4) Tajemne Wrota. (5) Jaskinia Czarownika. (6) Miasto.");
@@ -1306,7 +1312,6 @@ public class TalismanBoardScript : MonoBehaviour
     {
         clearPlayerPanelView(CardDrawer.komunikatList);
         messagePanel.gameObject.SetActive(false);
-
     }
     /// <summary>
     /// /////////////////////////////////MAIN/////////////////////////////////////////////////
