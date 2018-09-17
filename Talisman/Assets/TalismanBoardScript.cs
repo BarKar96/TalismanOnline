@@ -257,7 +257,8 @@ public class TalismanBoardScript : MonoBehaviour
                 case 0:
                     {
                         outerRing[i].fieldEvent = new Card("Sklep", card_type.BOARDFIELD, new event_type[] { }, "Wylosuj 1 kartę - nie losujesz, jeśli jakaś karta się tutaj znajduje");
-                        outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
+                        //nie dodawac tutaj karty prosze
+                        //outerRing[i].cardsOnField.Add(deckOfCards.drawCard());
                         break;
                     }
                 case 1:
