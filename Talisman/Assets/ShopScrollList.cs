@@ -322,37 +322,37 @@ public class ShopScrollList : MonoBehaviour
         }
         else if (c.getName() == "zbroja")
         {
-            c.price = 1;
+            c.price = 3;
             c.display_name = "Zbroja";
         }
         else if (c.getName() == "puszkazlota")
         {
-            c.price = 1;
+            c.price = 2;
             c.display_name = "Puszka złota";
         }
         else if (c.getName() == "pelnazbrojaplytowa")
         {
-            c.price = 1;
+            c.price = 4;
             c.display_name = "Pełna zbroja płytowa";
         }
         else if (c.getName() == "helmdemona")
         {
-            c.price = 1;
+            c.price = 2;
             c.display_name = "Hełm demona";
         }
         else if (c.getName() == "miecz")
         {
-            c.price = 1;
+            c.price = 5;
             c.display_name = "Miecz";
         }
         else if (c.getName() == "koscianyluk")
         {
-            c.price = 1;
+            c.price = 6;
             c.display_name = "Kościany łuk";
         }
         else if (c.getName() == "pogromcakrolow")
         {
-            c.price = 1;
+            c.price = 4;
             c.display_name = "Pogromca królów";
         }
         else if (c.getName() == "talizman")
@@ -362,7 +362,7 @@ public class ShopScrollList : MonoBehaviour
         }
         else if (c.getName() == "topor")
         {
-            c.price = 1;
+            c.price = 2;
             c.display_name = "Topór";
         }
     }

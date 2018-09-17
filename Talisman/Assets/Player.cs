@@ -14,7 +14,7 @@ public class Player
 
     //Player item inventory
     private Deck deck;
-    public int gold;
+    public int gold = 2;
     private List<Card> cardsToIterate;
     private List<Card> items;
     private List<Card> spells;
