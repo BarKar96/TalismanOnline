@@ -494,6 +494,7 @@ public class SpecialFields : MonoBehaviour
                     break;
                 case 3:
                     MessageText.text = "Hazard nie zawsze popłaca - tracisz jedną sztukę złota.";
+                    if(!go.playerArray[go.playerIndex].gold.Equals(0))
                     go.playerArray[go.playerIndex].gold--;
                     break;
                 case 4:
@@ -523,6 +524,7 @@ public class SpecialFields : MonoBehaviour
                     break;
                 case 3:
                     MessageText.text = "Budzisz się i zauważasz że nie masz sakiewki. - tracisz jedną sztukę złota.";
+                    if (!go.playerArray[go.playerIndex].gold.Equals(0))
                     go.playerArray[go.playerIndex].gold--;
                     break;
                 case 4:
