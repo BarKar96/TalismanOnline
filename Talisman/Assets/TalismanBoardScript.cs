@@ -1334,7 +1334,7 @@ public class TalismanBoardScript : MonoBehaviour
         
         playerIndex = 0;
         nextTurn();
-        playerArray[playerIndex].getCards().Add(new Card("Sklep", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }));
+        //playerArray[playerIndex].getCards().Add(new Card("Sklep", card_type.BOARDFIELD, new event_type[] { event_type.DRAW_CARD }));
         //playerArray[playerIndex].getItems().Add(deckOfCards.uniqueItemsDeck.Find(x => x.getName() == "jablko"));
         //playerArray[playerIndex].getItems().Add(deckOfCards.uniqueItemsDeck.Find(x => x.getName() == "miecz"));
 
