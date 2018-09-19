@@ -12,15 +12,16 @@ public class MainMenu : MonoBehaviour
     #region NewGameWindow
     public bool[] flag = { true, true, true, true };
     public bool flag2 = false;
+    public bool flag3 = false;
     public Button goToGame;
-    public Dropdown [] heroType;
+    public Dropdown[] heroType;
     public Dropdown numberOfPlayers;
     public Dropdown gameType;
-    public TMP_InputField [] Nickname;
-    public TextMeshProUGUI [] Players;
+    public TMP_InputField[] Nickname;
+    public TextMeshProUGUI[] Players;
     public TextMeshProUGUI Info;
-    public static string [] nickNameValue;
-    public static string [] heroValue;
+    public static string[] nickNameValue;
+    public static string[] heroValue;
     public static int onoff = 0;
     public static int playerscount = 0;
     public MainMenu()
@@ -30,7 +31,24 @@ public class MainMenu : MonoBehaviour
         heroType = new Dropdown[6];
         Nickname = new TMP_InputField[6];
     }
-    public void CheckField()
+    private void CheckNickName()
+    {
+        if (playerscount == 0) return;
+        if (nickNameValue == null) return;
+        for (int i = 0; i < playerscount; i++)
+        {
+            for (int j = i + 1; j < playerscount; j++)
+            {
+                if (nickNameValue[i] == nickNameValue[j])
+                {
+                    flag3 = true;
+                    return;
+                }
+            }
+            flag3 = false;
+        }
+    }
+    private void CheckField()
     {
         for (int i = 0; i < playerscount; i++)
         {
@@ -46,6 +64,7 @@ public class MainMenu : MonoBehaviour
                 break;
             }
             else flag[1] = false;
+            if (flag3 == true) flag[0] = true;
         }
     }
     public void HeroTypeIndex_changed(int index)
@@ -113,7 +132,7 @@ public class MainMenu : MonoBehaviour
             catch (NullReferenceException) { };
         //Debug.Log("flaga online" + flag[3]);
     }
-    public void OnlineOfflineBox()
+    private void OnlineOfflineBox()
     {
         string[] gameType = { "Choose game type", "Online", "Offline" };
         List<string> names = new List<string>(gameType);
@@ -123,7 +142,7 @@ public class MainMenu : MonoBehaviour
         }
         catch (NullReferenceException) { };
     }
-    public void HeroTypeBox()
+    private void HeroTypeBox()
     {
         string[] heroNames = Enum.GetNames(typeof(Assets.hero_type));
         string[] hero = { "Choose Hero" };
@@ -147,10 +166,11 @@ public class MainMenu : MonoBehaviour
         }
         catch (Exception) { }; 
     }
-    public void Check()
+    private void Check()
     {
         try
         {
+
             if (onoff == 0)
             {
                 numberOfPlayers.gameObject.SetActive(false);
@@ -161,6 +181,7 @@ public class MainMenu : MonoBehaviour
                 numberOfPlayers.gameObject.SetActive(false);
                 try
                 {
+                    CheckNickName();
                     CheckField();
                     bool temp_flag = true;
                     for (int i = 0; i < 3; i++)
@@ -181,6 +202,7 @@ public class MainMenu : MonoBehaviour
                 numberOfPlayers.gameObject.SetActive(true);
                 try
                 {
+                    CheckNickName();
                     CheckField();
                     bool temp_flag = true;
                     for (int i = 0; i < 4; i++)
@@ -199,7 +221,7 @@ public class MainMenu : MonoBehaviour
         catch (NullReferenceException) { };
         
     }
-    public void NumberOfPlayersBox()
+    private void NumberOfPlayersBox()
     {
         string[] playerNumber = {"Choose number of players", "2", "3" , "4", "5" , "6"};
         List<string> names = new List<string>(playerNumber);
@@ -221,11 +243,11 @@ public class MainMenu : MonoBehaviour
         SpawnPlayer();
         UpdateData();
     }
-    public static int getOnOff()
+    private static int getOnOff()
     {
         return onoff;
     }
-    public void TurnOffAll()
+    private void TurnOffAll()
     {
         for (int i = 1; i < 6; i++)
         {
@@ -234,7 +256,7 @@ public class MainMenu : MonoBehaviour
             Nickname[i].gameObject.SetActive(false);
         }
     }
-    public void UpdateData()
+    private void UpdateData()
     {
         try
         {
@@ -255,7 +277,7 @@ public class MainMenu : MonoBehaviour
         }
         catch (Exception) { };
     }
-    public void SpawnPlayer()
+    private void SpawnPlayer()
     {
         try
         {
