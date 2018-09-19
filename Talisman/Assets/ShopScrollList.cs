@@ -261,12 +261,19 @@ public class ShopScrollList : MonoBehaviour
        {
             player.gold = gold;
         }
+       if (whichShop == 1)
+        {
+            otherShop.player.gold = shopB.gold;
+        }
         
         fillPlayerEQwithBoughtItems();
         var go = GameObject.Find("Tile").GetComponent<TalismanBoardScript>();
         go.nextTurnButton.gameObject.SetActive(true);
         NotEnoughGoldText.text = "";
         shopCanvas.gameObject.SetActive(false);
+
+        var q = GameObject.Find("Windows").GetComponent<Windows>();
+        q.UpdateStatsToText();
     }
     public void fillPlayerEQwithBoughtItems()
     {
