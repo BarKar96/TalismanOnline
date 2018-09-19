@@ -92,7 +92,7 @@ public class MainMenu : MonoBehaviour
         {
             try
             {
-                Info.text = "You can't play alone ;c - if u don't have friends i'm sorry";
+                Info.text = "Nie możesz grać jako jeden gracz - jeśli nie masz przyjaciół zagraj sam ze sobą.";
                 flag[3] = true;
             }
             catch (NullReferenceException) { };
@@ -119,7 +119,7 @@ public class MainMenu : MonoBehaviour
             onoff = 0;
             try
             {
-                Info.text = "Not all fields are correct filled";
+                Info.text = "Nie wszystkie pola są wypełnione prawidłowo";
                 flag[2] = true;
             }
             catch (NullReferenceException) { };
@@ -134,7 +134,7 @@ public class MainMenu : MonoBehaviour
     }
     private void OnlineOfflineBox()
     {
-        string[] gameType = { "Choose game type", "Online", "Offline" };
+        string[] gameType = { "Wybierz typ rozgrywki", "Online", "Offline" };
         List<string> names = new List<string>(gameType);
         try
         {
@@ -145,7 +145,7 @@ public class MainMenu : MonoBehaviour
     private void HeroTypeBox()
     {
         string[] heroNames = Enum.GetNames(typeof(Assets.hero_type));
-        string[] hero = { "Choose Hero" };
+        string[] hero = { "Wybierz bohatera" };
         string[] kek = new string[heroNames.Length + hero.Length];
         kek[0] = hero[0];
         for(int i=0;i<heroNames.Length;i++)
@@ -223,7 +223,7 @@ public class MainMenu : MonoBehaviour
     }
     private void NumberOfPlayersBox()
     {
-        string[] playerNumber = {"Choose number of players", "2", "3" , "4", "5" , "6"};
+        string[] playerNumber = {"Liczba graczy", "2", "3" , "4", "5" , "6"};
         List<string> names = new List<string>(playerNumber);
         try
         {
