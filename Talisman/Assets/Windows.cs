@@ -299,7 +299,7 @@ public class Windows : MonoBehaviour {
             case 2:
                 //player 1
                 changeColor(_hero1HP, go.playerArray[0]);
-                _hero1HP.text = (go.playerArray[0].current_health.ToString() + go.playerArray[0].health_modifier).ToString();
+                _hero1HP.text = (go.playerArray[0].current_health + go.playerArray[0].health_modifier).ToString();
                 _hero1STR.text = (go.playerArray[0].strength + go.playerArray[0].strength_modifier).ToString();
                 _hero1INT.text = go.playerArray[0].hero.power.ToString();
                 _hero1LOS.text = go.playerArray[0].hero.luck.ToString();

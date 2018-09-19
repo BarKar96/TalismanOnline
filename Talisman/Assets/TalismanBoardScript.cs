@@ -86,7 +86,7 @@ public class TalismanBoardScript : MonoBehaviour
                 playerArray[2] = new Player("Darek", new Hero(hero_type.KRASNOLUD));
             }
 
-
+            playerArray[0].current_health = 4;
 
             for (int i = 0; i < playersCounter; i++)
             {
